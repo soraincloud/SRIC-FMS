@@ -18,7 +18,7 @@
           </el-menu-item>
           <div class="flex-grow-10"></div>
           <el-menu-item index="H">
-            <span class="app-menu-item-span">H</span>
+            <span class="app-menu-item-span">H-files</span>
           </el-menu-item>
           <el-switch
             v-model="isDarkModeOpen"
