@@ -17,7 +17,7 @@
             <span class="app-menu-title-span-small">FMS</span>
           </el-menu-item>
           <div class="flex-grow-10"></div>
-          <el-menu-item index="H">
+          <el-menu-item index="Hfiles">
             <span class="app-menu-item-span">H-files</span>
           </el-menu-item>
           <el-switch
@@ -40,10 +40,12 @@
 
 <script lang="ts" setup>
 import { useDark, useToggle } from '@vueuse/core'
-import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { ref,computed } from 'vue'
 
 const isDark = useDark()//黑暗模式所需变量
-const deafultActiveMenu = ref('home')//访问页面时默认菜单选项
+let route = useRoute()
+const deafultActiveMenu = computed( () => { return route.name })//访问页面时默认菜单选项
 const isDarkModeOpen = ref(false)//当前是否为黑暗模式
 if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设置开关状态
 {

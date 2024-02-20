@@ -11,6 +11,35 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: () => import('@/views/home.vue'),
   },
+  {
+    path: '/Hfiles',
+    name: 'Hfiles',
+    redirect: '/HfilesVideo',
+    component: () => import('@/views/H-files/H-files-index.vue'),
+    children:
+    [
+      {
+        path: '/HfilesVideo',
+        name: 'HfilesVideo',
+        component: () => import('@/views/H-files/HfilesVideo.vue')
+      },
+      {
+        path: '/HfilesComic',
+        name: 'HfilesComic',
+        component: () => import('@/views/H-files/HfilesComic.vue')
+      },
+      {
+        path: '/HfilesPicture',
+        name: 'HfilesPicture',
+        component: () => import('@/views/H-files/HfilesPicture.vue')
+      },
+      {
+        path: '/HfilesPackage',
+        name: 'HfilesPackage',
+        component: () => import('@/views/H-files/HfilesPackage.vue')
+      },
+    ]
+  }
 ]
 
 const router = createRouter({
