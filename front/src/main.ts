@@ -1,6 +1,24 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import router from './router'//路由
+import store from './store'//仓库
+import ElementPlus from 'element-plus'//element组件
+import 'element-plus/dist/index.css'//element组件的css
+import 'element-plus/theme-chalk/dark/css-vars.css'//使用element的黑暗模式css
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'//element图标
+import axios from 'axios'//ajax请求通信
+import VueAxios from 'vue-axios'
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+
+app.use(store)
+app.use(router)
+app.use(ElementPlus)
+app.use(VueAxios, axios)
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue))//注册所有element图标
+{
+    app.component(key, component)
+}
+
+app.mount('#app')
