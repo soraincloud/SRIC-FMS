@@ -1,5 +1,7 @@
 <template>
     <div>
-        213
+        <el-card>
+            
+        </el-card>
     </div>
 </template>
