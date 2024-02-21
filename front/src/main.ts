@@ -9,6 +9,8 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'//element图标
 import axios from 'axios'//ajax请求通信
 import VueAxios from 'vue-axios'
 
+axios.defaults.baseURL = 'http://localhost:8088'
+
 const app = createApp(App)
 
 app.use(store)
