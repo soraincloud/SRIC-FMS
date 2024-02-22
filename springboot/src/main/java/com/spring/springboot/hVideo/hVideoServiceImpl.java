@@ -24,4 +24,10 @@ public class hVideoServiceImpl implements hVideoService
         }
         return hVideoList;
     }
+
+    @Override
+    public String getFilenameById(int id)
+    {
+        return hVideoMapper.getFilenameById(id);
+    }
 }

@@ -1,37 +1,42 @@
 <template>
-    <div class="HFilesVideo">
+    <div class="HfilesVideo">
         <el-card
         v-for="(item,i) in hVdeoList"
         :key="i"
+        @mouseover="mouseOver(i)"
+        @mouseleave="mouseLeave(i)"
+        @click="mouseClick(i)"
+        :style="item.background"
+        class="HfilesVideo-card"
         >
-            <span class="HFilesVideo-card-name-text">{{ item.name }}</span>
-            <span class="HFilesVideo-card-number-text">{{ item.number }}</span>
+            <span class="HfilesVideo-card-name-text">{{ item.name }}</span>
+            <span class="HfilesVideo-card-number-text">{{ item.number }}</span>
             <el-tag
-            class="HFilesVideo-card-mosaic-text"
+            class="HfilesVideo-card-mosaic-text"
             effect="plain"
             :type="item.mosaicType"
             >
-            <span class="hFilesVideo-card-tag-text">{{ item.mosaicText }}</span>
+            <span class="HfilesVideo-card-tag-text">{{ item.mosaicText }}</span>
             </el-tag>
             <el-tag
-            class="HFilesVideo-card-category-text"
+            class="HfilesVideo-card-category-text"
             effect="plain"
             :type="item.categoryType"
             round
             >
-            <span class="hFilesVideo-card-tag-text">{{ item.categoryText }}</span>
+            <span class="HfilesVideo-card-tag-text">{{ item.categoryText }}</span>
             </el-tag>
-            <div class="HFilesVideo-card-tags-div">
-                <span class="hFilesVideo-card-tag-text">TAGS:</span>
+            <div class="HfilesVideo-card-tags-div">
+                <span class="HfilesVideo-card-tag-text">TAGS:</span>
                 <el-tag
                 v-for="(tagItem,tagI) in item.hvideoTagList"
                 :key="tagI"
-                class="HFilesVideo-card-tags"
+                class="HfilesVideo-card-tags"
                 effect="dark"
                 type="info"
                 size="small"
                 >
-                <span class="hFilesVideo-card-tag-text">{{ tagItem.tag }}</span>
+                <span class="HfilesVideo-card-tag-text">{{ tagItem.tag }}</span>
                 </el-tag>
             </div>
         </el-card>
@@ -41,12 +46,14 @@
 <script lang="ts" setup>
 import { getHVideoList } from "@/axios/api/hVideo"
 import { ref,onMounted } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 let hVdeoList:any = ref([])
 
 onMounted(async () => 
 {
-    try 
+    try //获取视频列表
     {
         const resp = await getHVideoList({});
         hVdeoList.value = resp.data;
@@ -83,6 +90,7 @@ onMounted(async () =>
                 element.categoryType = "warning"
                 element.categoryText = "2D"
             }
+            element.background = ""
         });
     }
     catch (error) 
@@ -90,47 +98,80 @@ onMounted(async () =>
         console.error(error);
     }
 });
+
+const mouseOver = (i:any) => //鼠标移入
+{
+    hVdeoList.value[i].background = "border-width: 5px;"
+}
+
+const mouseLeave = (i:any) => //鼠标移出
+{
+    hVdeoList.value[i].background = ""
+}
+
+
+
+const mouseClick = (i:any) => //点击跳转
+{
+    const url = router.resolve
+    ({
+        name: 'HfilesVideoPlayer',
+        path: '/HfilesVideoPlayer',
+        query:
+        {
+            video: hVdeoList.value[i].id
+        }
+    })
+
+    window.open(url.href,'_blank')
+}
 </script>
 
 <style>
-.HFilesVideo-card-name-text
+.HfilesVideo-card-name-text
 {
     font-size: 30px;
     font-weight: bold;
     margin: 0;
 }
 
-.HFilesVideo-card-number-text
+.HfilesVideo-card-number-text
 {
     font-size: 15px;
     font-weight: bold;
     margin: 0px 0px 0px 20px;
 }
 
-.HFilesVideo-card-mosaic-text
+.HfilesVideo-card-mosaic-text
 {
     margin-left: 20px;
     margin-bottom: 5px;
 }
 
-.HFilesVideo-card-category-text
+.HfilesVideo-card-category-text
 {
     margin-left: 10px;
     margin-bottom: 5px;
 }
 
-.HFilesVideo-card-tags-div
+.HfilesVideo-card-tags-div
 {
     margin: 10px 0px 0px 0px;
 }
 
-.HFilesVideo-card-tags
+.HfilesVideo-card-tags
 {
     margin: 0px 0px 2px 10px;
 }
 
-.hFilesVideo-card-tag-text
+.HfilesVideo-card-tag-text
 {
     font-weight: bold;
+}
+
+.HfilesVideo-card
+{
+    border-color: #aaaaaa;
+    margin-bottom: 10px;
 }
 </style>
