@@ -1,6 +1,9 @@
 package com.spring.springboot.hVideo;
 
+import com.spring.springboot.hVideoTag.hVideoTag;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class hVideo
@@ -11,4 +14,5 @@ public class hVideo
     private String number;
     private int mosaic;
     private int category;
+    private List<hVideoTag> hVideoTagList;
 }
