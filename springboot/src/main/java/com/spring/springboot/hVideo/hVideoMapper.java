@@ -14,4 +14,7 @@ public interface hVideoMapper
 
     @Select(value = "SELECT FILENAME FROM `data_h_video` WHERE ID = #{id}")
     String getFilenameById(@Param(value = "id")int id);
+
+    @Select(value = "SELECT * FROM `data_h_video` WHERE ID = #{id}")
+    hVideo getHVideoById(@Param(value = "id")int id);
 }

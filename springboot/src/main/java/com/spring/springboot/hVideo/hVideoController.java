@@ -52,4 +52,10 @@ public class hVideoController
 
         }
     }
+
+    @GetMapping("/getHVideoById")
+    public hVideo getHVideoById(int id)
+    {
+        return hVideoService.getHVideoById(id);
+    }
 }

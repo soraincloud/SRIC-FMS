@@ -30,4 +30,12 @@ public class hVideoServiceImpl implements hVideoService
     {
         return hVideoMapper.getFilenameById(id);
     }
+
+    @Override
+    public hVideo getHVideoById(int id)
+    {
+        hVideo video = hVideoMapper.getHVideoById(id);
+        video.setHVideoTagList(hVideoTagMapper.getHVideoTagByVid(id));
+        return video;
+    }
 }

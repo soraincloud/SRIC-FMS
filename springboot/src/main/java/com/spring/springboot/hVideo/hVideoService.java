@@ -6,4 +6,6 @@ public interface hVideoService
 {
     List<hVideo> getHVideoList();
     String getFilenameById(int id);
+
+    hVideo getHVideoById(int id);
 }

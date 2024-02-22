@@ -120,7 +120,7 @@ const mouseClick = (i:any) => //点击跳转
         query:
         {
             video: hVdeoList.value[i].id
-        }
+        },
     })
 
     window.open(url.href,'_blank')
