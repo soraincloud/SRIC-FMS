@@ -35,7 +35,14 @@ import { ref,computed } from 'vue'
 
 let route = useRoute()
 const deafultActiveMenu = computed( () => { return route.name })//访问页面时默认菜单选项
-const minHeight = "min-height:" + (window.innerHeight - 100) + "px;"//设置菜单栏高度
+let minHeight = ref("min-height:" + (window.innerHeight - 100) + "px;")//设置菜单栏高度
+
+const resetMinHeight = () => ////重置菜单栏高度(适应窗口大小)
+{
+    minHeight.value = "min-height:" + (window.innerHeight - 100) + "px;"
+}
+
+window.addEventListener('resize',resetMinHeight) //监听窗口变动
 </script>
 
 <style>

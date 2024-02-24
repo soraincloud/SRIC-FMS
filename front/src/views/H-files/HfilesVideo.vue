@@ -1,45 +1,85 @@
 <template>
     <div class="HfilesVideo">
-        <el-card
-        v-for="(item,i) in hVdeoList"
-        :key="i"
-        @mouseover="mouseOver(i)"
-        @mouseleave="mouseLeave(i)"
-        @click="mouseClick(i)"
-        :style="item.background"
-        class="HfilesVideo-card"
-        >
-            <span class="HfilesVideo-card-name-text">{{ item.name }}</span>
-            <span class="HfilesVideo-card-number-text">{{ item.number }}</span>
-            <el-tag
-            class="HfilesVideo-card-mosaic-text"
-            effect="plain"
-            :type="item.mosaicType"
+        <div class="HfilesVideo-search-div">
+            <el-row>
+                <el-col :span="12">
+                    <el-input
+                    v-model="searchInput"
+                    placeholder="搜索"
+                    >
+                    <template #prepend>
+                        <el-select v-model="searchSelect" style="width: 100px">
+                            <el-option label="全部" value="0" />
+                            <el-option label="名称" value="1" />
+                            <el-option label="TAG" value="2" />
+                        </el-select>
+                    </template>
+                    <template #append>
+                        <el-button>
+                            <el-icon>
+                                <search/>
+                            </el-icon>
+                        </el-button>
+                    </template>
+                    </el-input>
+                </el-col>
+                <el-col :span="12">
+                    <el-select v-model="mosaicSelect" class="HfilesVideo-search-select">
+                        <el-option label="所有修正" value="0" />
+                        <el-option label="无修正" value="1" />
+                        <el-option label="有修正" value="2" />
+                    </el-select>
+                    <el-select v-model="categorySelect" class="HfilesVideo-search-select">
+                        <el-option label="所有类型" value="0" />
+                        <el-option label="REAL" value="1" />
+                        <el-option label="3D MMD" value="2" />
+                        <el-option label="2D" value="3" />
+                    </el-select>
+                </el-col>
+            </el-row>
+        </div>
+        <el-scrollbar :height="scrollbarHeight">
+            <el-card
+            v-for="(item,i) in hVdeoList"
+            :key="i"
+            @mouseover="mouseOver(i)"
+            @mouseleave="mouseLeave(i)"
+            @click="mouseClick(i)"
+            :style="item.background"
+            class="HfilesVideo-card"
             >
-            <span class="HfilesVideo-card-tag-text">{{ item.mosaicText }}</span>
-            </el-tag>
-            <el-tag
-            class="HfilesVideo-card-category-text"
-            effect="plain"
-            :type="item.categoryType"
-            round
-            >
-            <span class="HfilesVideo-card-tag-text">{{ item.categoryText }}</span>
-            </el-tag>
-            <div class="HfilesVideo-card-tags-div">
-                <span class="HfilesVideo-card-tag-text">TAGS:</span>
+                <span class="HfilesVideo-card-name-text">{{ item.name }}</span>
+                <span class="HfilesVideo-card-number-text">{{ item.number }}</span>
                 <el-tag
-                v-for="(tagItem,tagI) in item.hvideoTagList"
-                :key="tagI"
-                class="HfilesVideo-card-tags"
-                effect="dark"
-                type="info"
-                size="small"
+                class="HfilesVideo-card-mosaic-text"
+                effect="plain"
+                :type="item.mosaicType"
                 >
-                <span class="HfilesVideo-card-tag-text">{{ tagItem.tag }}</span>
+                <span class="HfilesVideo-card-tag-text">{{ item.mosaicText }}</span>
                 </el-tag>
-            </div>
-        </el-card>
+                <el-tag
+                class="HfilesVideo-card-category-text"
+                effect="plain"
+                :type="item.categoryType"
+                round
+                >
+                <span class="HfilesVideo-card-tag-text">{{ item.categoryText }}</span>
+                </el-tag>
+                <div class="HfilesVideo-card-tags-div">
+                    <span class="HfilesVideo-card-tag-text">TAGS:</span>
+                    <el-tag
+                    v-for="(tagItem,tagI) in item.hvideoTagList"
+                    :key="tagI"
+                    class="HfilesVideo-card-tags"
+                    effect="dark"
+                    type="info"
+                    size="small"
+                    >
+                    <span class="HfilesVideo-card-tag-text">{{ tagItem.tag }}</span>
+                    </el-tag>
+                </div>
+            </el-card>
+        </el-scrollbar>
     </div>
 </template>
 
@@ -49,7 +89,12 @@ import { ref,onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter()
-let hVdeoList:any = ref([])
+let hVdeoList:any = ref([]) //视频列表数据
+let scrollbarHeight = ref((window.innerHeight - 185) + "px") //设置滚动条高度
+let searchInput = ref()
+let searchSelect = ref("0")
+let mosaicSelect = ref("0")
+let categorySelect = ref("0")
 
 onMounted(async () => 
 {
@@ -125,9 +170,27 @@ const mouseClick = (i:any) => //点击跳转
 
     window.open(url.href,'_blank')
 }
+
+const resetScrollbarHeight = () => //重置滚动条高度(适应窗口大小)
+{
+    scrollbarHeight.value = (window.innerHeight - 185) + "px"
+}
+
+window.addEventListener('resize',resetScrollbarHeight) //监听窗口变动
 </script>
 
 <style>
+.HfilesVideo-search-div
+{
+    margin-bottom: 10px;
+}
+
+.HfilesVideo-search-select
+{
+    width: 100px;
+    margin-left: 10px;
+}
+
 .HfilesVideo-card-name-text
 {
     font-size: 30px;
