@@ -2,10 +2,7 @@ package com.spring.springboot.hVideo;
 
 import com.spring.springboot.tools.StaticResourceHttpRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,9 +21,9 @@ public class hVideoController
     StaticResourceHttpRequestHandler StaticResourceHttpRequestHandler;
 
     @GetMapping("/getHVideoList")
-    public List<hVideo> getHVideoList()
+    public List<hVideo> getHVideoList(hVideoSearchRequestPojo hVideoSearchRequestPojo)
     {
-        return hVideoService.getHVideoList();
+        return hVideoService.getHVideoList(hVideoSearchRequestPojo);
     }
 
     @GetMapping("/playHVideo")

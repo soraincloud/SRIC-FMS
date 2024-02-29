@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface hVideoService
 {
-    List<hVideo> getHVideoList();
+    List<hVideo> getHVideoList(hVideoSearchRequestPojo hVideoSearchRequestPojo);
     String getFilenameById(int id);
 
     hVideo getHVideoById(int id);

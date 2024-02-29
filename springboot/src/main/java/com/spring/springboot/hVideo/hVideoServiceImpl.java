@@ -15,9 +15,10 @@ public class hVideoServiceImpl implements hVideoService
     hVideoTagMapper hVideoTagMapper;
 
     @Override
-    public List<hVideo> getHVideoList()
+    public List<hVideo> getHVideoList(hVideoSearchRequestPojo hVideoSearchRequestPojo)
     {
-        List<hVideo> hVideoList = hVideoMapper.getHVideoList();
+        System.out.println(hVideoSearchRequestPojo.toString());
+        List<hVideo> hVideoList = hVideoMapper.getHVideoList(hVideoSearchRequestPojo);
         for(int i = 0;i < hVideoList.size();i++)//遍历获取tag
         {
             hVideoList.get(i).setHVideoTagList(hVideoTagMapper.getHVideoTagByVid(hVideoList.get(i).getId()));

@@ -7,15 +7,8 @@
                     v-model="searchInput"
                     placeholder="搜索"
                     >
-                    <template #prepend>
-                        <el-select v-model="searchSelect" style="width: 100px">
-                            <el-option label="全部" value="0" />
-                            <el-option label="名称" value="1" />
-                            <el-option label="TAG" value="2" />
-                        </el-select>
-                    </template>
                     <template #append>
-                        <el-button>
+                        <el-button @click="clickSearch">
                             <el-icon>
                                 <search/>
                             </el-icon>
@@ -91,16 +84,26 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 let hVdeoList:any = ref([]) //视频列表数据
 let scrollbarHeight = ref((window.innerHeight - 185) + "px") //设置滚动条高度
-let searchInput = ref()
-let searchSelect = ref("0")
-let mosaicSelect = ref("0")
-let categorySelect = ref("0")
+let searchInput = ref() //搜索输入内容
+let mosaicSelect = ref("0") //修正类型
+let categorySelect = ref("0") //类别
 
-onMounted(async () => 
+onMounted( () => 
+{
+    getHVideoListData()
+});
+
+const getHVideoListData = async () =>
 {
     try //获取视频列表
     {
-        const resp = await getHVideoList({});
+        const requestData = 
+        {
+            searchInput: searchInput.value,
+            mosaicSelect: mosaicSelect.value,
+            categorySelect: categorySelect.value,
+        }
+        const resp = await getHVideoList(requestData);
         hVdeoList.value = resp.data;
         hVdeoList.value.forEach((element:any,index:any) => 
         {
@@ -142,7 +145,7 @@ onMounted(async () =>
     {
         console.error(error);
     }
-});
+}
 
 const mouseOver = (i:any) => //鼠标移入
 {
@@ -177,6 +180,11 @@ const resetScrollbarHeight = () => //重置滚动条高度(适应窗口大小)
 }
 
 window.addEventListener('resize',resetScrollbarHeight) //监听窗口变动
+
+const clickSearch = () =>
+{
+    getHVideoListData()
+}
 </script>
 
 <style>

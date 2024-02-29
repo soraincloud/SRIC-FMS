@@ -9,8 +9,11 @@ import java.util.List;
 @Mapper
 public interface hVideoMapper
 {
-    @Select(value = "SELECT * FROM `data_h_video`")
-    List<hVideo> getHVideoList();
+    @Select(value = "SELECT * FROM `data_h_video` WHERE " +
+            "( ( NAME LIKE concat('%',#{searchInput},'%') or NUMBER LIKE concat('%',#{searchInput},'%') ) OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
+            "AND ( MOSAIC = #{mosaicSelect} OR #{mosaicSelect} = '0' )" +
+            "AND ( CATEGORY = #{categorySelect} OR #{categorySelect} = '0' )")
+    List<hVideo> getHVideoList(hVideoSearchRequestPojo pojo);
 
     @Select(value = "SELECT FILENAME FROM `data_h_video` WHERE ID = #{id}")
     String getFilenameById(@Param(value = "id")int id);

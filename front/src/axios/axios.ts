@@ -13,6 +13,6 @@ export function post(url: string, params: any): Promise<AxiosResponse<any>> {
         method: 'post',
         url: `${url}`,
         data: params,
-        headers: { "Content-Type": "application/json" } // 注意这里是 headers，而不是 header
+        headers: { "Content-Type": "application/json" }
     });
 }
