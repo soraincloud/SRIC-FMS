@@ -17,7 +17,6 @@ public class hVideoServiceImpl implements hVideoService
     @Override
     public List<hVideo> getHVideoList(hVideoSearchRequestPojo hVideoSearchRequestPojo)
     {
-        System.out.println(hVideoSearchRequestPojo.toString());
         List<hVideo> hVideoList = hVideoMapper.getHVideoList(hVideoSearchRequestPojo);
         for(int i = 0;i < hVideoList.size();i++)//遍历获取tag
         {
