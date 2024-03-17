@@ -20,7 +20,7 @@ public class hVideoServiceImpl implements hVideoService
         List<hVideo> hVideoList = hVideoMapper.getHVideoList(hVideoSearchRequestPojo);
         for(int i = 0;i < hVideoList.size();i++)//遍历获取tag
         {
-            hVideoList.get(i).setHVideoTagList(hVideoTagMapper.getHVideoTagByVid(hVideoList.get(i).getId()));
+            hVideoList.get(i).setHVideoTagList(hVideoTagMapper.getHVideoTagsByVideoId(hVideoList.get(i).getId()));
         }
         return hVideoList;
     }
@@ -35,7 +35,7 @@ public class hVideoServiceImpl implements hVideoService
     public hVideo getHVideoById(int id)
     {
         hVideo video = hVideoMapper.getHVideoById(id);
-        video.setHVideoTagList(hVideoTagMapper.getHVideoTagByVid(id));
+        video.setHVideoTagList(hVideoTagMapper.getHVideoTagsByVideoId(id));
         return video;
     }
 }

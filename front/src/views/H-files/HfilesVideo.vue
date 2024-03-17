@@ -68,7 +68,7 @@
                     type="info"
                     size="small"
                     >
-                    <span class="HfilesVideo-card-tag-text">{{ tagItem.tag }}</span>
+                    <span class="HfilesVideo-card-tag-text">{{ tagItem.name }}</span>
                     </el-tag>
                 </div>
             </el-card>

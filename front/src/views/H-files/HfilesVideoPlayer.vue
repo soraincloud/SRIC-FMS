@@ -37,7 +37,7 @@
                         type="info"
                         size="small"
                         >
-                            <span class="HfilesVideo-card-tag-text">{{ item.tag }}</span>
+                            <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
                         </el-tag>
                     </el-aside>
                     <el-main>

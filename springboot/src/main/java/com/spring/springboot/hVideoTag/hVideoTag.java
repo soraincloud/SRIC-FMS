@@ -6,6 +6,5 @@ import lombok.Data;
 public class hVideoTag
 {
     private int id;
-    private int vid;
-    private String tag;
+    private String name;
 }
