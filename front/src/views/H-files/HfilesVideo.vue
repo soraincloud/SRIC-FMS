@@ -16,7 +16,7 @@
                     </template>
                     </el-input>
                 </el-col>
-                <el-col :span="12">
+                <el-col :span="6">
                     <el-select v-model="mosaicSelect" class="HfilesVideo-search-select">
                         <el-option label="所有修正" value="0" />
                         <el-option label="无修正" value="1" />
@@ -28,6 +28,9 @@
                         <el-option label="3D MMD" value="2" />
                         <el-option label="2D" value="3" />
                     </el-select>
+                </el-col>
+                <el-col :span="6">
+                    
                 </el-col>
             </el-row>
         </div>
@@ -70,6 +73,9 @@
                     >
                     <span class="HfilesVideo-card-tag-text">{{ tagItem.name }}</span>
                     </el-tag>
+                </div>
+                <div>
+                    <el-image v-if="item.isVideoCoverNotNull" :src="item.videoCover" class="HfilesVideo-card-image"></el-image>
                 </div>
             </el-card>
         </el-scrollbar>
@@ -260,6 +266,12 @@ const pageChange = () =>
 
 .HfilesVideo-pagination-div
 {
-    margin-top:10px
+    margin-top: 10px;
+}
+
+.HfilesVideo-card-image
+{
+    margin-top: 10px;
+    border-radius: 10px;
 }
 </style>

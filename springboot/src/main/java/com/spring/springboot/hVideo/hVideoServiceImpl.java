@@ -2,13 +2,18 @@ package com.spring.springboot.hVideo;
 
 import com.spring.springboot.hVideoTag.hVideoTagMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import static com.spring.springboot.tools.imageToBase64.imageToBase64;
 
 import java.util.List;
 
 @Service
 public class hVideoServiceImpl implements hVideoService
 {
+    @Value("${filesPath}") //获取application.properties中的全局变量
+    private String filesPath;
+
     @Autowired
     hVideoMapper hVideoMapper;
     @Autowired
@@ -23,6 +28,17 @@ public class hVideoServiceImpl implements hVideoService
         for(int i = 0;i < hVideoList.size();i++)//遍历获取tag
         {
             hVideoList.get(i).setHVideoTagList(hVideoTagMapper.getHVideoTagsByVideoId(hVideoList.get(i).getId()));
+            String coverPath = filesPath + "/videoCover/" + hVideoList.get(i).getId() + ".webp";
+            String imageData = imageToBase64(coverPath);
+            if(imageData.isEmpty())
+            {
+                hVideoList.get(i).setIsVideoCoverNotNull(false);
+            }
+            else
+            {
+                hVideoList.get(i).setIsVideoCoverNotNull(true);
+                hVideoList.get(i).setVideoCover("data:image/webp;base64," + imageData);
+            }
         }
         return hVideoList;
     }

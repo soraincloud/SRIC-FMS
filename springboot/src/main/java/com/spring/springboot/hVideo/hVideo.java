@@ -15,4 +15,6 @@ public class hVideo
     private int mosaic;
     private int category;
     private List<hVideoTag> hVideoTagList;
+    private String videoCover;
+    private Boolean isVideoCoverNotNull;
 }

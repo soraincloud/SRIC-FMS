@@ -2,6 +2,7 @@ package com.spring.springboot.hVideo;
 
 import com.spring.springboot.tools.StaticResourceHttpRequestHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,9 @@ import java.util.List;
 @RequestMapping("/h")
 public class hVideoController
 {
+    @Value("${filesPath}") //获取application.properties中的全局变量
+    private String filesPath;
+
     @Autowired
     hVideoService hVideoService;
     @Autowired
@@ -32,9 +36,11 @@ public class hVideoController
     @GetMapping("/playHVideo")
     public void playHVideo(int video, HttpServletRequest request, HttpServletResponse response)
     {
+
+
         try
         {
-            String path = "F:/OneDrive/SRIC-FMS-H-FILES/video/" + hVideoService.getFilenameById(video);
+            String path = filesPath + "/video/" + hVideoService.getFilenameById(video);
             File file = new File(path);
             if(file.exists())
             {
