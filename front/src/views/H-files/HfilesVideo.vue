@@ -16,7 +16,7 @@
                     </template>
                     </el-input>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span="12">
                     <el-select v-model="mosaicSelect" class="HfilesVideo-search-select">
                         <el-option label="所有修正" value="0" />
                         <el-option label="无修正" value="1" />
@@ -28,9 +28,10 @@
                         <el-option label="3D MMD" value="2" />
                         <el-option label="2D" value="3" />
                     </el-select>
-                </el-col>
-                <el-col :span="6">
-                    
+                    <div style="float: right;">
+                        <el-switch v-model="showVideoCover" />
+                        <span class="HfilesVideo-showVideoCover-text">预览图</span>
+                    </div>
                 </el-col>
             </el-row>
         </div>
@@ -74,7 +75,7 @@
                     <span class="HfilesVideo-card-tag-text">{{ tagItem.name }}</span>
                     </el-tag>
                 </div>
-                <div>
+                <div v-if="showVideoCover">
                     <el-image v-if="item.isVideoCoverNotNull" :src="item.videoCover" class="HfilesVideo-card-image"></el-image>
                 </div>
             </el-card>
@@ -98,6 +99,7 @@ let mosaicSelect = ref("0") //修正类型
 let categorySelect = ref("0") //类别
 let page = ref("1") //页数
 let pageTotal = ref("0") //总条数
+let showVideoCover = ref(false)
 
 onMounted( () => 
 {
@@ -273,5 +275,12 @@ const pageChange = () =>
 {
     margin-top: 10px;
     border-radius: 10px;
+}
+
+.HfilesVideo-showVideoCover-text
+{
+    margin: 10px 10px 0px 10px;
+    font-weight: bold;
+    font-size: 15px;
 }
 </style>
