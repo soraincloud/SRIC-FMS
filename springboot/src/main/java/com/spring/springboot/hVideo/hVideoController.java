@@ -21,9 +21,12 @@ public class hVideoController
     StaticResourceHttpRequestHandler StaticResourceHttpRequestHandler;
 
     @GetMapping("/getHVideoList")
-    public List<hVideo> getHVideoList(hVideoSearchRequestPojo hVideoSearchRequestPojo)
+    public hVideoResponsePojo getHVideoList(hVideoRequestPojo hVideoRequest)
     {
-        return hVideoService.getHVideoList(hVideoSearchRequestPojo);
+        hVideoResponsePojo hVideoResponse = new hVideoResponsePojo();
+        hVideoResponse.setHVideoList(hVideoService.getHVideoList(hVideoRequest));
+        hVideoResponse.setTotal(hVideoService.getHVideoCount());
+        return hVideoResponse;
     }
 
     @GetMapping("/playHVideo")

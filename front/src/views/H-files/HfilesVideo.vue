@@ -73,6 +73,9 @@
                 </div>
             </el-card>
         </el-scrollbar>
+        <div class="HfilesVideo-pagination-div">
+            <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" background />
+        </div>
     </div>
 </template>
 
@@ -83,10 +86,12 @@ import { useRouter } from "vue-router";
 
 const router = useRouter()
 let hVdeoList:any = ref([]) //视频列表数据
-let scrollbarHeight = ref((window.innerHeight - 185) + "px") //设置滚动条高度
+let scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
 let searchInput = ref() //搜索输入内容
 let mosaicSelect = ref("0") //修正类型
 let categorySelect = ref("0") //类别
+let page = ref("1") //页数
+let pageTotal = ref("0") //总条数
 
 onMounted( () => 
 {
@@ -102,9 +107,11 @@ const getHVideoListData = async () =>
             searchInput: searchInput.value,
             mosaicSelect: mosaicSelect.value,
             categorySelect: categorySelect.value,
+            page: page.value,
         }
         const resp = await getHVideoList(requestData);
-        hVdeoList.value = resp.data;
+        pageTotal.value = resp.data.total
+        hVdeoList.value = resp.data.hvideoList;
         hVdeoList.value.forEach((element:any,index:any) => 
         {
             if(element.mosaic == 1)
@@ -176,12 +183,17 @@ const mouseClick = (i:any) => //点击跳转
 
 const resetScrollbarHeight = () => //重置滚动条高度(适应窗口大小)
 {
-    scrollbarHeight.value = (window.innerHeight - 185) + "px"
+    scrollbarHeight.value = (window.innerHeight - 225) + "px"
 }
 
 window.addEventListener('resize',resetScrollbarHeight) //监听窗口变动
 
 const clickSearch = () =>
+{
+    getHVideoListData()
+}
+
+const pageChange = () =>
 {
     getHVideoListData()
 }
@@ -244,5 +256,10 @@ const clickSearch = () =>
 {
     border-color: #aaaaaa;
     margin-bottom: 10px;
+}
+
+.HfilesVideo-pagination-div
+{
+    margin-top:10px
 }
 </style>

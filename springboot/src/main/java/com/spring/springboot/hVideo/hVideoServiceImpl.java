@@ -15,9 +15,11 @@ public class hVideoServiceImpl implements hVideoService
     hVideoTagMapper hVideoTagMapper;
 
     @Override
-    public List<hVideo> getHVideoList(hVideoSearchRequestPojo hVideoSearchRequestPojo)
+    public List<hVideo> getHVideoList(hVideoRequestPojo hVideoRequest)
     {
-        List<hVideo> hVideoList = hVideoMapper.getHVideoList(hVideoSearchRequestPojo);
+        hVideoRequest.setLimitSize(20); //一页获取20条数据
+        hVideoRequest.setLimitBefore((hVideoRequest.getPage() - 1) * 20); //当前获取数据之前的空缺 （如第一页空缺0条 第二页空缺20条）
+        List<hVideo> hVideoList = hVideoMapper.getHVideoList(hVideoRequest);
         for(int i = 0;i < hVideoList.size();i++)//遍历获取tag
         {
             hVideoList.get(i).setHVideoTagList(hVideoTagMapper.getHVideoTagsByVideoId(hVideoList.get(i).getId()));
@@ -37,5 +39,11 @@ public class hVideoServiceImpl implements hVideoService
         hVideo video = hVideoMapper.getHVideoById(id);
         video.setHVideoTagList(hVideoTagMapper.getHVideoTagsByVideoId(id));
         return video;
+    }
+
+    @Override
+    public int getHVideoCount()
+    {
+        return hVideoMapper.getHVideoCount();
     }
 }
