@@ -11,11 +11,43 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 20/03/2024 00:28:08
+ Date: 20/03/2024 09:01:26
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for data_h_comic
+-- ----------------------------
+DROP TABLE IF EXISTS `data_h_comic`;
+CREATE TABLE `data_h_comic`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
+  `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文件名称',
+  `pages` int UNSIGNED NOT NULL COMMENT '总页数',
+  `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
+  `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of data_h_comic
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for data_h_comic_tags
+-- ----------------------------
+DROP TABLE IF EXISTS `data_h_comic_tags`;
+CREATE TABLE `data_h_comic_tags`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of data_h_comic_tags
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for data_h_video
@@ -27,9 +59,9 @@ CREATE TABLE `data_h_video`  (
   `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文件名称',
   `number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '番号',
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
-  `category` int NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
+  `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -90,13 +122,28 @@ INSERT INTO `data_h_video_tags` VALUES (2, 'tag2');
 INSERT INTO `data_h_video_tags` VALUES (3, 'tag3');
 
 -- ----------------------------
+-- Table structure for relation_h_comic_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `relation_h_comic_tag`;
+CREATE TABLE `relation_h_comic_tag`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
+  `comicid` int UNSIGNED NOT NULL COMMENT '对应comic的id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of relation_h_comic_tag
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for relation_h_video_tag
 -- ----------------------------
 DROP TABLE IF EXISTS `relation_h_video_tag`;
 CREATE TABLE `relation_h_video_tag`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
-  `videoid` int NOT NULL COMMENT '对应视频的id',
+  `videoid` int UNSIGNED NOT NULL COMMENT '对应视频的id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
