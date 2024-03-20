@@ -50,4 +50,10 @@ window.addEventListener('resize',resetMinHeight) //监听窗口变动
 {
     font-size: 15px;
 }
+
+.common-layout
+{
+  max-width: 1080px; /* 设置最大宽度为1080px */
+  margin: 0 auto; /* 水平居中 */
+}
 </style>

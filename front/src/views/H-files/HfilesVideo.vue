@@ -37,7 +37,7 @@
         </div>
         <el-scrollbar :height="scrollbarHeight">
             <el-card
-            v-for="(item,i) in hVdeoList"
+            v-for="(item,i) in hVideoList"
             :key="i"
             @mouseover="mouseOver(i)"
             @mouseleave="mouseLeave(i)"
@@ -92,7 +92,7 @@ import { ref,onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter()
-let hVdeoList:any = ref([]) //视频列表数据
+let hVideoList:any = ref([]) //视频列表数据
 let scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
 let searchInput = ref() //搜索输入内容
 let mosaicSelect = ref("0") //修正类型
@@ -119,8 +119,8 @@ const getHVideoListData = async () =>
         }
         const resp = await getHVideoList(requestData);
         pageTotal.value = resp.data.total
-        hVdeoList.value = resp.data.hvideoList;
-        hVdeoList.value.forEach((element:any,index:any) => 
+        hVideoList.value = resp.data.hvideoList;
+        hVideoList.value.forEach((element:any,index:any) => 
         {
             if(element.mosaic == 1)
             {
@@ -153,6 +153,11 @@ const getHVideoListData = async () =>
                 element.categoryType = "warning"
                 element.categoryText = "2D"
             }
+            else
+            {
+                element.mosaicType = "warning"
+                element.mosaicText = "分类类别错误"
+            }
             element.background = ""
         });
     }
@@ -164,12 +169,12 @@ const getHVideoListData = async () =>
 
 const mouseOver = (i:any) => //鼠标移入
 {
-    hVdeoList.value[i].background = "border-width: 5px;"
+    hVideoList.value[i].background = "border-width: 5px;"
 }
 
 const mouseLeave = (i:any) => //鼠标移出
 {
-    hVdeoList.value[i].background = ""
+    hVideoList.value[i].background = ""
 }
 
 
@@ -182,7 +187,7 @@ const mouseClick = (i:any) => //点击跳转
         path: '/HfilesVideoPlayer',
         query:
         {
-            video: hVdeoList.value[i].id
+            video: hVideoList.value[i].id
         },
     })
 
