@@ -1,5 +1,5 @@
 <template>
-        <div class="HfilesComic">
+    <div class="HfilesComic">
         <div class="HfilesComic-search-div">
             <el-row>
                 <el-col :span="12">
@@ -173,11 +173,11 @@ const mouseClick = (i:any) => //点击跳转
 {
     const url = router.resolve
     ({
-        name: 'HfilesVideoPlayer',
-        path: '/HfilesVideoPlayer',
+        name: 'HfilesComicReader',
+        path: '/HfilesComicReader',
         query:
         {
-            video: hComicList.value[i].id
+            comic: hComicList.value[i].id
         },
     })
 

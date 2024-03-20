@@ -5,6 +5,6 @@ import java.util.List;
 public interface hComicService
 {
     List<hComic> getHComicList(hComicRequestPojo hComicRequestPojo);
-    hComic getHComicById(int id);
+    hComicData getHComicById(int id);
     int getHComicCount();
 }

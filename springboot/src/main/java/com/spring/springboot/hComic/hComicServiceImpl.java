@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.spring.springboot.hComicTag.hComicTagMapper;
 
-import java.util.List;
+import java.text.DecimalFormat;
+import java.util.*;
 
 import static com.spring.springboot.tools.imageToBase64.imageToBase64;
 
@@ -37,11 +38,19 @@ public class hComicServiceImpl implements hComicService
     }
 
     @Override
-    public hComic getHComicById(int id)
+    public hComicData getHComicById(int id)
     {
         hComic comic = hComicMapper.getHComicById(id);
         comic.setHComicTagList(hComicTagMapper.getHComicTagsByComicId(id));
-        return comic;
+        hComicData data = new hComicData();
+        data.setHComic(comic);
+        List<String> list = new ArrayList<>();
+        for (int i = 1; i <= comic.getPages(); i++) {
+            String webp = "/comic/" + comic.getFileName() + "/" + String.format("%05d.webp", i);
+            list.add(webp);
+        }
+        data.setHComicPages(list);
+        return data;
     }
 
     @Override

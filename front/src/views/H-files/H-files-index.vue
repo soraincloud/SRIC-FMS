@@ -1,5 +1,5 @@
 <template>
-      <div class="common-layout">
+      <div class="common-body-set-width">
         <el-container>
             <el-aside width="200px">
                 <el-menu
@@ -46,14 +46,11 @@ window.addEventListener('resize',resetMinHeight) //监听窗口变动
 </script>
 
 <style>
+@import '@/css/common.css';
+
 .H-files-index-menu-item-span
 {
-    font-size: 15px;
-}
-
-.common-layout
-{
-  max-width: 1080px; /* 设置最大宽度为1080px */
-  margin: 0 auto; /* 水平居中 */
+    font-size: 20px;
+    font-weight: bold;
 }
 </style>

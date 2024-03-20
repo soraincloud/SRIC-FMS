@@ -1,53 +1,49 @@
 <template>
-    <el-row>
-        <el-col :span="1"></el-col>
-        <el-col :span="22">
+    <div class="common-body-set-width">
+        <el-container>
+            <el-header>
+                <span class="HfilesVideoPlayer-header-name">{{ videoData.name }}</span>
+            </el-header>
             <el-container>
-                <el-header>
-                    <span class="HfilesVideoPlayer-header-name">{{ videoData.name }}</span>
-                </el-header>
-                <el-container>
-                    <el-aside width="200px">
-                        <p class="HfilesVideoPlayer-title">番号:</p>
-                        <p class="HfilesVideoPlayer-text">{{ videoData.number }}</p>
-                        <p class="HfilesVideoPlayer-title">文件名称:</p>
-                        <p class="HfilesVideoPlayer-text">{{ videoData.filename }}</p>
-                        <p class="HfilesVideoPlayer-title">类别:</p>
-                        <el-tag
-                        class="HfilesVideoPlayer-category-tag"
-                        effect="plain"
-                        :type="videoData.mosaicType"
-                        >
-                        <span class="HfilesVideo-card-tag-text">{{ videoData.mosaicText }}</span>
-                        </el-tag>
-                        <el-tag
-                        class="HfilesVideoPlayer-category-tag"
-                        effect="plain"
-                        :type="videoData.categoryType"
-                        round
-                        >
-                        <span class="HfilesVideo-card-tag-text">{{ videoData.categoryText }}</span>
-                        </el-tag>
-                        <p class="HfilesVideoPlayer-title">TAGS:</p>
-                        <el-tag
-                        v-for="(item,i) in videoData.hvideoTagList"
-                        :key="i"
-                        class="HfilesVideoPlayer-tag"
-                        effect="dark"
-                        type="info"
-                        size="small"
-                        >
-                            <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
-                        </el-tag>
-                    </el-aside>
-                    <el-main>
-                        <div id="dplayer"></div>
-                    </el-main>
-                </el-container>
+                <el-aside width="200px">
+                    <p class="HfilesVideoPlayer-title">番号:</p>
+                    <p class="HfilesVideoPlayer-text">{{ videoData.number }}</p>
+                    <p class="HfilesVideoPlayer-title">文件名称:</p>
+                    <p class="HfilesVideoPlayer-text">{{ videoData.filename }}</p>
+                    <p class="HfilesVideoPlayer-title">类别:</p>
+                    <el-tag
+                    class="HfilesVideoPlayer-category-tag"
+                    effect="plain"
+                    :type="videoData.mosaicType"
+                    >
+                    <span class="HfilesVideo-card-tag-text">{{ videoData.mosaicText }}</span>
+                    </el-tag>
+                    <el-tag
+                    class="HfilesVideoPlayer-category-tag"
+                    effect="plain"
+                    :type="videoData.categoryType"
+                    round
+                    >
+                    <span class="HfilesVideo-card-tag-text">{{ videoData.categoryText }}</span>
+                    </el-tag>
+                    <p class="HfilesVideoPlayer-title">TAGS:</p>
+                    <el-tag
+                    v-for="(item,i) in videoData.hvideoTagList"
+                    :key="i"
+                    class="HfilesVideoPlayer-tag"
+                    effect="dark"
+                    type="info"
+                    size="small"
+                    >
+                        <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
+                    </el-tag>
+                </el-aside>
+                <el-main>
+                    <div id="dplayer"></div>
+                </el-main>
             </el-container>
-        </el-col>
-        <el-col :span="1"></el-col>
-    </el-row>
+        </el-container>
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -76,9 +72,8 @@ const initPlayer = () =>
     });
 }
 
-onMounted(async () => 
+const getHVideoData = async () =>
 {
-    initPlayer()
     const resp = await getHVideoById({id:route.query.video})
     videoData.value = resp.data
     if(videoData.value.mosaic == 1)
@@ -112,10 +107,23 @@ onMounted(async () =>
         videoData.value.categoryType = "warning"
         videoData.value.categoryText = "2D"
     }
+    else
+    {
+        videoData.value.mosaicType = "info"
+        videoData.value.mosaicText = "分类类别错误"
+    }
+}
+
+onMounted(async () => 
+{
+    initPlayer()
+    getHVideoData()
 })
 </script>
 
 <style>
+@import '@/css/common.css';
+
 .HfilesVideoPlayer-header-name
 {
     margin-left: 50px;
@@ -139,10 +147,12 @@ onMounted(async () =>
 .HfilesVideoPlayer-category-tag
 {
     margin: 10px 0px 0px 10px;
+    font-weight: bold;
 }
 
 .HfilesVideoPlayer-tag
 {
     margin: 10px 0px 0px 10px;
+    font-weight: bold;
 }
 </style>

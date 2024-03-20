@@ -13,6 +13,6 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter //静态资源映
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //registry.addResourceHandler("/videoCover/**").addResourceLocations("file:" + filesPath + "/videoCover/");
+        registry.addResourceHandler("/comic/**").addResourceLocations("file:" + filesPath + "/comic/");
     }
 }

@@ -22,4 +22,10 @@ public class hComicController
         hComicResponse.setTotal(hComicService.getHComicCount());
         return hComicResponse;
     }
+
+    @GetMapping("/getHComicById")
+    public hComicData getHComicById(int id)
+    {
+        return hComicService.getHComicById(id);
+    }
 }

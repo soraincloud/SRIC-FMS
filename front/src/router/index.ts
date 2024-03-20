@@ -45,6 +45,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'HfilesVideoPlayer',
     component: () => import('@/views/H-files/HfilesVideoPlayer.vue')
   },
+  {
+    path: '/HfilesComicReader',
+    name: 'HfilesComicReader',
+    component: () => import('@/views/H-files/HfilesComicReader.vue')
+  },
 ]
 
 const router = createRouter({
