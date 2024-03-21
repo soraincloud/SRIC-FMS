@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 20/03/2024 09:01:26
+ Date: 21/03/2024 18:19:29
 */
 
 SET NAMES utf8mb4;
@@ -29,11 +29,13 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_h_comic
 -- ----------------------------
+INSERT INTO `data_h_comic` VALUES (1, '天天拘束箱', '1', 18, 1, 1);
+INSERT INTO `data_h_comic` VALUES (2, '魔法触手CG', '2', 11, 2, 1);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
@@ -43,7 +45,7 @@ CREATE TABLE `data_h_comic_tags`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_h_comic_tags
@@ -117,9 +119,6 @@ CREATE TABLE `data_h_video_tags`  (
 -- ----------------------------
 -- Records of data_h_video_tags
 -- ----------------------------
-INSERT INTO `data_h_video_tags` VALUES (1, 'tag1');
-INSERT INTO `data_h_video_tags` VALUES (2, 'tag2');
-INSERT INTO `data_h_video_tags` VALUES (3, 'tag3');
 
 -- ----------------------------
 -- Table structure for relation_h_comic_tag
@@ -130,7 +129,7 @@ CREATE TABLE `relation_h_comic_tag`  (
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
   `comicid` int UNSIGNED NOT NULL COMMENT '对应comic的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of relation_h_comic_tag
@@ -150,8 +149,5 @@ CREATE TABLE `relation_h_video_tag`  (
 -- ----------------------------
 -- Records of relation_h_video_tag
 -- ----------------------------
-INSERT INTO `relation_h_video_tag` VALUES (1, 1, 1);
-INSERT INTO `relation_h_video_tag` VALUES (2, 2, 1);
-INSERT INTO `relation_h_video_tag` VALUES (3, 3, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

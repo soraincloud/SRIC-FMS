@@ -37,6 +37,23 @@
                     >
                         <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
                     </el-tag>
+                    <p class="HfilesVideoPlayer-title">操作:</p>
+                    <el-select class="HfilesVideoPlayer-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
+                        <el-option
+                        v-for="(item,i) in videoTagData"
+                        :key="i"
+                        :value="item.id"
+                        :label="item.name"
+                        ></el-option>
+                    </el-select>
+                    <el-popconfirm title="确定添加?" @confirm="addButtonConfirm">
+                        <template #reference>
+                            <el-button class="HfilesVideoPlayer-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
+                                <el-icon><Plus /></el-icon>
+                                <span class="HfilesVideoPlayer-add-button-text">添加此 tag</span>
+                            </el-button>
+                        </template>
+                    </el-popconfirm>
                 </el-aside>
                 <el-main>
                     <div id="dplayer"></div>
@@ -51,13 +68,17 @@ import axios from 'axios';
 import DPlayer from 'dplayer';
 import { onMounted,ref } from 'vue';
 import { useRoute } from 'vue-router'
-import { getHVideoById } from "@/axios/api/hVideo"
+import { ElMessage } from 'element-plus'
+import { getHVideoById,getHVideoTagList,addHVideoTag } from "@/axios/api/hVideo"
 
 const route = useRoute()
 
 let dp:any;
 const videoUrl = axios.defaults.baseURL + "/h/playHVideo?video=" + route.query.video //设置播放视频所需url
 let videoData:any = ref({})
+let videoTagData:any = ref({})
+let addButtonDisabled:any = ref(true) //添加按钮是否禁用
+let addSelectValue:any = ref() //选择栏值
 
 const initPlayer = () =>
 {
@@ -114,11 +135,62 @@ const getHVideoData = async () =>
     }
 }
 
+const getHVideoTagData = async () =>
+{
+    const resp = await getHVideoTagList({})
+    videoTagData.value = resp.data
+}
+
+const submitHVideoTag = async () =>
+{
+    const params = 
+    {
+        videoId: videoData.value.id,
+        tagId: addSelectValue.value
+    }
+    const resp = await addHVideoTag(params)
+    if(resp.data.code == 200)
+    {
+        ElMessage({
+            message: '添加成功',
+            type: 'success',
+        })
+    }
+    else if(resp.data.code == 201)
+    {
+        ElMessage({
+            message: '已有此tag',
+            type: 'warning',
+        })
+    }
+    else
+    {
+        ElMessage({
+            message: '参数异常',
+            type: 'error',
+        })
+    }
+    addSelectValue.value = ""
+    addButtonDisabled.value = true
+    getHVideoData()
+}
+
 onMounted(async () => 
 {
     initPlayer()
     getHVideoData()
+    getHVideoTagData()
 })
+
+const addSelectValueChange = () => //tag选项改变 启用添加按钮
+{
+    addButtonDisabled.value = false
+}
+
+const addButtonConfirm = () => //确定添加tag
+{
+    submitHVideoTag()
+}
 </script>
 
 <style>
@@ -153,6 +225,21 @@ onMounted(async () =>
 .HfilesVideoPlayer-tag
 {
     margin: 10px 0px 0px 10px;
+    font-weight: bold;
+}
+
+.HfilesVideoPlayer-add-select
+{
+    margin-top: 10px;
+}
+
+.HfilesVideoPlayer-add-button
+{
+    margin-top: 10px;
+}
+
+.HfilesVideoPlayer-add-button-text
+{
     font-weight: bold;
 }
 </style>

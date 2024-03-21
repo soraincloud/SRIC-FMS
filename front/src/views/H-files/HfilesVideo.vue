@@ -17,12 +17,12 @@
                     </el-input>
                 </el-col>
                 <el-col :span="12">
-                    <el-select v-model="mosaicSelect" class="HfilesVideo-search-select">
+                    <el-select v-model="mosaicSelect" class="HfilesVideo-search-select" @change="reloadData">
                         <el-option label="所有修正" value="0" />
                         <el-option label="无修正" value="1" />
                         <el-option label="有修正" value="2" />
                     </el-select>
-                    <el-select v-model="categorySelect" class="HfilesVideo-search-select">
+                    <el-select v-model="categorySelect" class="HfilesVideo-search-select" @change="reloadData">
                         <el-option label="所有类型" value="0" />
                         <el-option label="REAL" value="1" />
                         <el-option label="3D MMD" value="2" />
@@ -207,6 +207,11 @@ const clickSearch = () =>
 }
 
 const pageChange = () =>
+{
+    getHVideoListData()
+}
+
+const reloadData = () => //选择分类时刷新数据
 {
     getHVideoListData()
 }

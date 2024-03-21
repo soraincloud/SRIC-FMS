@@ -17,12 +17,12 @@
                     </el-input>
                 </el-col>
                 <el-col :span="12">
-                    <el-select v-model="mosaicSelect" class="HfilesComic-search-select">
+                    <el-select v-model="mosaicSelect" class="HfilesComic-search-select" @change="reloadData">
                         <el-option label="所有修正" value="0" />
                         <el-option label="无修正" value="1" />
                         <el-option label="有修正" value="2" />
                     </el-select>
-                    <el-select v-model="categorySelect" class="HfilesComic-search-select">
+                    <el-select v-model="categorySelect" class="HfilesComic-search-select" @change="reloadData">
                         <el-option label="所有类型" value="0" />
                         <el-option label="短篇" value="1" />
                         <el-option label="单本" value="2" />
@@ -124,7 +124,7 @@ const getHComicListData = async () =>
             }
             else if(element.mosaic == 2)
             {
-                element.mosaicType = "info"
+                element.mosaicType = "warning"
                 element.mosaicText = "有修正"
             }
             else
@@ -197,6 +197,11 @@ const clickSearch = () =>
 }
 
 const pageChange = () =>
+{
+    getHComicListData()
+}
+
+const reloadData = () => //选择分类时刷新数据
 {
     getHComicListData()
 }
