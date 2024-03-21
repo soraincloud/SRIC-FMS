@@ -9,16 +9,28 @@
                 router
                 >
                     <el-menu-item index="HfilesVideo">
-                        <span class="H-files-index-menu-item-span">video</span>
+                        <el-icon :size="25"><VideoPlay /></el-icon>
+                        <template #title>
+                            <span class="H-files-index-menu-item-span">video</span>
+                        </template>
                     </el-menu-item>
                     <el-menu-item index="HfilesComic">
-                        <span class="H-files-index-menu-item-span">comic</span>
+                        <el-icon :size="25"><Monitor /></el-icon>
+                        <template #title>
+                            <span class="H-files-index-menu-item-span">comic</span>
+                        </template>
                     </el-menu-item>
                     <el-menu-item index="HfilesPicture">
-                        <span class="H-files-index-menu-item-span">picture</span>
+                        <el-icon :size="25"><Picture /></el-icon>
+                        <template #title>
+                            <span class="H-files-index-menu-item-span">picture</span>
+                        </template>
                     </el-menu-item>
                     <el-menu-item index="HfilesPackage">
-                        <span class="H-files-index-menu-item-span">package</span>
+                        <el-icon :size="25"><Camera /></el-icon>
+                        <template #title>
+                            <span class="H-files-index-menu-item-span">package</span>
+                        </template>
                     </el-menu-item>
                 </el-menu>
             </el-aside>
