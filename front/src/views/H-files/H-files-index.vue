@@ -1,11 +1,12 @@
 <template>
       <div class="common-body-set-width">
         <el-container>
-            <el-aside width="200px">
+            <el-aside :width="asideWidth">
                 <el-menu
                 :style="minHeight"
                 :default-active="deafultActiveMenu"
                 :ellipsis="false"
+                :collapse="isCollapse"
                 router
                 >
                     <el-menu-item index="HfilesVideo">
@@ -48,13 +49,27 @@ import { ref,computed } from 'vue'
 let route = useRoute()
 const deafultActiveMenu = computed( () => { return route.name })//访问页面时默认菜单选项
 let minHeight = ref("min-height:" + (window.innerHeight - 100) + "px;")//设置菜单栏高度
+let isCollapse = ref(false)
+let asideWidth = ref("200px")
 
-const resetMinHeight = () => ////重置菜单栏高度(适应窗口大小)
+const resetMinHeightAndMenu = () =>
 {
-    minHeight.value = "min-height:" + (window.innerHeight - 100) + "px;"
+    minHeight.value = "min-height:" + (window.innerHeight - 100) + "px;" //重置菜单栏高度(适应窗口大小)
+    if(window.innerWidth < 800) //在窗口过小时折叠菜单栏
+    {
+        isCollapse.value = true
+        asideWidth.value = "75px"
+    }
+    else
+    {
+        isCollapse.value = false
+        asideWidth.value = "200px"
+    }
 }
 
-window.addEventListener('resize',resetMinHeight) //监听窗口变动
+resetMinHeightAndMenu()
+
+window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 </script>
 
 <style>
