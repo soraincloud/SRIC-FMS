@@ -5,61 +5,113 @@
                 <span class="HfilesVideoPlayer-header-name">{{ videoData.name }}</span>
             </el-header>
             <el-container>
-                <el-aside width="200px">
-                    <p class="HfilesVideoPlayer-title">番号:</p>
-                    <p class="HfilesVideoPlayer-text">{{ videoData.number }}</p>
-                    <p class="HfilesVideoPlayer-title">文件名称:</p>
-                    <p class="HfilesVideoPlayer-text">{{ videoData.filename }}</p>
-                    <p class="HfilesVideoPlayer-title">类别:</p>
-                    <el-tag
-                    class="HfilesVideoPlayer-category-tag"
-                    effect="plain"
-                    :type="videoData.mosaicType"
-                    >
-                    <span class="HfilesVideo-card-tag-text">{{ videoData.mosaicText }}</span>
-                    </el-tag>
-                    <el-tag
-                    class="HfilesVideoPlayer-category-tag"
-                    effect="plain"
-                    :type="videoData.categoryType"
-                    round
-                    >
-                    <span class="HfilesVideo-card-tag-text">{{ videoData.categoryText }}</span>
-                    </el-tag>
-                    <p class="HfilesVideoPlayer-title">TAGS:</p>
-                    <el-tag
-                    v-for="(item,i) in videoData.hvideoTagList"
-                    :key="i"
-                    class="HfilesVideoPlayer-tag"
-                    effect="dark"
-                    type="info"
-                    size="small"
-                    >
-                        <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
-                    </el-tag>
-                    <p class="HfilesVideoPlayer-title">操作:</p>
-                    <el-select class="HfilesVideoPlayer-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
-                        <el-option
-                        v-for="(item,i) in videoTagData"
+                <el-aside :width="asideWidth">
+                    <div>
+                        <p class="HfilesVideoPlayer-title">番号:</p>
+                        <p class="HfilesVideoPlayer-text">{{ videoData.number }}</p>
+                        <p class="HfilesVideoPlayer-title">文件名称:</p>
+                        <p class="HfilesVideoPlayer-text">{{ videoData.filename }}</p>
+                        <p class="HfilesVideoPlayer-title">类别:</p>
+                        <el-tag
+                        class="HfilesVideoPlayer-category-tag"
+                        effect="plain"
+                        :type="videoData.mosaicType"
+                        >
+                        <span class="HfilesVideo-card-tag-text">{{ videoData.mosaicText }}</span>
+                        </el-tag>
+                        <el-tag
+                        class="HfilesVideoPlayer-category-tag"
+                        effect="plain"
+                        :type="videoData.categoryType"
+                        round
+                        >
+                        <span class="HfilesVideo-card-tag-text">{{ videoData.categoryText }}</span>
+                        </el-tag>
+                        <p class="HfilesVideoPlayer-title">TAGS:</p>
+                        <el-tag
+                        v-for="(item,i) in videoData.hvideoTagList"
                         :key="i"
-                        :value="item.id"
-                        :label="item.name"
-                        ></el-option>
-                    </el-select>
-                    <el-popconfirm title="确定添加?" @confirm="addButtonConfirm">
-                        <template #reference>
-                            <el-button class="HfilesVideoPlayer-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
-                                <el-icon><Plus /></el-icon>
-                                <span class="HfilesVideoPlayer-add-button-text">添加此 tag</span>
-                            </el-button>
-                        </template>
-                    </el-popconfirm>
+                        class="HfilesVideoPlayer-tag"
+                        effect="dark"
+                        type="info"
+                        size="small"
+                        >
+                            <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
+                        </el-tag>
+                        <p class="HfilesVideoPlayer-title">操作:</p>
+                        <el-select class="HfilesVideoPlayer-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
+                            <el-option
+                            v-for="(item,i) in videoTagData"
+                            :key="i"
+                            :value="item.id"
+                            :label="item.name"
+                            ></el-option>
+                        </el-select>
+                        <el-popconfirm title="确定添加?" @confirm="addButtonConfirm">
+                            <template #reference>
+                                <el-button class="HfilesVideoPlayer-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
+                                    <el-icon><Plus /></el-icon>
+                                    <span class="HfilesVideoPlayer-add-button-text">添加此 tag</span>
+                                </el-button>
+                            </template>
+                        </el-popconfirm>
+                    </div>
                 </el-aside>
                 <el-main>
                     <div id="dplayer"></div>
                 </el-main>
             </el-container>
         </el-container>
+        <div v-if="isMobile"> <!-- 一个重复的信息菜单 用于在页面过于狭窄时使用 -->
+            <p class="HfilesVideoPlayer-title">番号:</p>
+            <p class="HfilesVideoPlayer-text">{{ videoData.number }}</p>
+            <p class="HfilesVideoPlayer-title">文件名称:</p>
+            <p class="HfilesVideoPlayer-text">{{ videoData.filename }}</p>
+            <p class="HfilesVideoPlayer-title">类别:</p>
+            <el-tag
+            class="HfilesVideoPlayer-category-tag"
+            effect="plain"
+            :type="videoData.mosaicType"
+            >
+            <span class="HfilesVideo-card-tag-text">{{ videoData.mosaicText }}</span>
+            </el-tag>
+            <el-tag
+            class="HfilesVideoPlayer-category-tag"
+            effect="plain"
+            :type="videoData.categoryType"
+            round
+            >
+            <span class="HfilesVideo-card-tag-text">{{ videoData.categoryText }}</span>
+            </el-tag>
+            <p class="HfilesVideoPlayer-title">TAGS:</p>
+            <el-tag
+            v-for="(item,i) in videoData.hvideoTagList"
+            :key="i"
+            class="HfilesVideoPlayer-tag"
+            effect="dark"
+            type="info"
+            size="small"
+            >
+                <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
+            </el-tag>
+            <p class="HfilesVideoPlayer-title">操作:</p>
+            <el-select class="HfilesVideoPlayer-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
+                <el-option
+                v-for="(item,i) in videoTagData"
+                :key="i"
+                :value="item.id"
+                :label="item.name"
+                ></el-option>
+            </el-select>
+            <el-popconfirm title="确定添加?" @confirm="addButtonConfirm">
+                <template #reference>
+                    <el-button class="HfilesVideoPlayer-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
+                        <el-icon><Plus /></el-icon>
+                        <span class="HfilesVideoPlayer-add-button-text">添加此 tag</span>
+                    </el-button>
+                </template>
+            </el-popconfirm>
+        </div>
     </div>
 </template>
 
@@ -79,6 +131,8 @@ let videoData:any = ref({})
 let videoTagData:any = ref({})
 let addButtonDisabled:any = ref(true) //添加按钮是否禁用
 let addSelectValue:any = ref() //选择栏值
+let asideWidth:any = ref("200px") //左侧显示信息栏的宽度
+let isMobile:any = ref(false) //窗口是否过小（移动端视角）
 
 const initPlayer = () =>
 {
@@ -191,6 +245,24 @@ const addButtonConfirm = () => //确定添加tag
 {
     submitHVideoTag()
 }
+
+const windowSizeChanged = () => //窗口大小改变
+{
+    if(window.innerWidth < 800) //在窗口过小时折叠菜单栏
+    {
+        isMobile.value = true
+        asideWidth.value = "0px"
+    }
+    else
+    {
+        isMobile.value = false
+        asideWidth.value = "200px"
+    }
+}
+
+windowSizeChanged()
+
+window.addEventListener('resize',windowSizeChanged) //监听窗口变动
 </script>
 
 <style>
