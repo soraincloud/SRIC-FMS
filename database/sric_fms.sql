@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 24/03/2024 04:25:26
+ Date: 24/03/2024 04:30:11
 */
 
 SET NAMES utf8mb4;
@@ -54,6 +54,8 @@ INSERT INTO `data_h_comic` VALUES (17, '绝命狼师', '17', 21, 1, 1);
 INSERT INTO `data_h_comic` VALUES (18, '性教育系列总集篇1', '18', 155, 1, 2);
 INSERT INTO `data_h_comic` VALUES (19, '想要和你变大人', '19', 179, 1, 2);
 INSERT INTO `data_h_comic` VALUES (20, '与人外娘完成契约!', '20', 168, 1, 2);
+INSERT INTO `data_h_comic` VALUES (21, 'EYEING THE HOT ELF IN ANOTHER WORLD', '21', 242, 1, 2);
+INSERT INTO `data_h_comic` VALUES (22, 'APP作用中', '22', 17, 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
