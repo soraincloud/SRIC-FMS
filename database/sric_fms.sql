@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 25/03/2024 20:13:36
+ Date: 26/03/2024 02:01:09
 */
 
 SET NAMES utf8mb4;
@@ -74,6 +74,16 @@ INSERT INTO `data_h_comic` VALUES (37, '播种欧吉桑的JK生小孩SEX', '37',
 INSERT INTO `data_h_comic` VALUES (38, 'linked mirror', '38', 28, 1, 1);
 INSERT INTO `data_h_comic` VALUES (39, 'MUTOU MATO', '39', 197, 1, 2);
 INSERT INTO `data_h_comic` VALUES (40, 'Captured Princess', '40', 33, 1, 1);
+INSERT INTO `data_h_comic` VALUES (41, 'Re:Drive 4', '41', 19, 1, 1);
+INSERT INTO `data_h_comic` VALUES (42, 'Reco羞耻与兴奋摇于车内', '42', 23, 1, 1);
+INSERT INTO `data_h_comic` VALUES (43, 'saber 泳装直播', '43', 27, 1, 1);
+INSERT INTO `data_h_comic` VALUES (44, 'SSSDI', '44', 55, 1, 1);
+INSERT INTO `data_h_comic` VALUES (45, 'Theresa’Apocalypse', '45', 17, 1, 1);
+INSERT INTO `data_h_comic` VALUES (46, 'Tiny Evil 2', '46', 32, 1, 1);
+INSERT INTO `data_h_comic` VALUES (47, 'UMA诱拐', '47', 17, 1, 1);
+INSERT INTO `data_h_comic` VALUES (48, 'UniformSister2', '48', 18, 1, 1);
+INSERT INTO `data_h_comic` VALUES (49, 'URAHARA Bind', '49', 26, 1, 1);
+INSERT INTO `data_h_comic` VALUES (50, '阿能的入职体检', '50', 24, 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
