@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 31/03/2024 03:45:04
+ Date: 31/03/2024 03:50:40
 */
 
 SET NAMES utf8mb4;
@@ -103,7 +103,7 @@ INSERT INTO `data_h_comic` VALUES (66, '橙色日光', '66', 19, 1, 1);
 INSERT INTO `data_h_comic` VALUES (67, '初恋 森万平', '67', 45, 1, 1);
 INSERT INTO `data_h_comic` VALUES (68, '除了二次元 其他我爱不了', '68', 20, 1, 1);
 INSERT INTO `data_h_comic` VALUES (69, 'Istand Festival', '69', 14, 1, 1);
-INSERT INTO `data_h_comic` VALUES (70, '穿越变成幼女', '70', 149, 1, 2);
+INSERT INTO `data_h_comic` VALUES (70, '穿越变成幼女', '70', 258, 1, 2);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
