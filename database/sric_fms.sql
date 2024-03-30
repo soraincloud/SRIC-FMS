@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 26/03/2024 02:01:09
+ Date: 31/03/2024 03:45:04
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic
@@ -84,6 +84,26 @@ INSERT INTO `data_h_comic` VALUES (47, 'UMA诱拐', '47', 17, 1, 1);
 INSERT INTO `data_h_comic` VALUES (48, 'UniformSister2', '48', 18, 1, 1);
 INSERT INTO `data_h_comic` VALUES (49, 'URAHARA Bind', '49', 26, 1, 1);
 INSERT INTO `data_h_comic` VALUES (50, '阿能的入职体检', '50', 24, 1, 1);
+INSERT INTO `data_h_comic` VALUES (51, '爱的人造人', '51', 16, 1, 1);
+INSERT INTO `data_h_comic` VALUES (52, '爱如液流不止 新片段！', '52', 189, 1, 2);
+INSERT INTO `data_h_comic` VALUES (53, '芭芭拉star！dush！', '53', 22, 1, 1);
+INSERT INTO `data_h_comic` VALUES (54, '把jk的眼角舔到褪色', '54', 17, 1, 1);
+INSERT INTO `data_h_comic` VALUES (55, '背德的味道 甘甜又苦涩', '55', 22, 1, 1);
+INSERT INTO `data_h_comic` VALUES (56, '笨蛋兄妹', '56', 31, 1, 1);
+INSERT INTO `data_h_comic` VALUES (57, '笨蛋兄妹2', '57', 18, 1, 1);
+INSERT INTO `data_h_comic` VALUES (58, '强制失神绝顶 彼女缚', '58', 21, 1, 1);
+INSERT INTO `data_h_comic` VALUES (59, '不存在的声音', '59', 25, 1, 1);
+INSERT INTO `data_h_comic` VALUES (60, '不请自来狐嫁太阳雨', '60', 201, 1, 2);
+INSERT INTO `data_h_comic` VALUES (61, '厕所萝莉', '61', 21, 1, 1);
+INSERT INTO `data_h_comic` VALUES (62, '常识改变活动记录', '62', 153, 1, 2);
+INSERT INTO `data_h_comic` VALUES (63, 'GAL再快感露出FUCK', '63', 42, 1, 1);
+INSERT INTO `data_h_comic` VALUES (64, '超大阴蒂', '64', 22, 1, 1);
+INSERT INTO `data_h_comic` VALUES (65, '超失败援助交际', '65', 19, 1, 1);
+INSERT INTO `data_h_comic` VALUES (66, '橙色日光', '66', 19, 1, 1);
+INSERT INTO `data_h_comic` VALUES (67, '初恋 森万平', '67', 45, 1, 1);
+INSERT INTO `data_h_comic` VALUES (68, '除了二次元 其他我爱不了', '68', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (69, 'Istand Festival', '69', 14, 1, 1);
+INSERT INTO `data_h_comic` VALUES (70, '穿越变成幼女', '70', 149, 1, 2);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
@@ -93,7 +113,7 @@ CREATE TABLE `data_h_comic_tags`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic_tags
@@ -111,7 +131,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -162,7 +182,7 @@ CREATE TABLE `data_h_video_tags`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video_tags
@@ -177,7 +197,7 @@ CREATE TABLE `relation_h_comic_tag`  (
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
   `comicid` int UNSIGNED NOT NULL COMMENT '对应comic的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of relation_h_comic_tag
@@ -192,7 +212,7 @@ CREATE TABLE `relation_h_video_tag`  (
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
   `videoid` int UNSIGNED NOT NULL COMMENT '对应视频的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of relation_h_video_tag
