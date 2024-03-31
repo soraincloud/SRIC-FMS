@@ -15,5 +15,4 @@ public class hComic
     private int mosaic;
     private int category;
     private List<hComicTag> hComicTagList;
-    private String comicCover;
 }

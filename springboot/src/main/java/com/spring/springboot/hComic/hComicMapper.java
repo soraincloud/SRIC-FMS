@@ -19,6 +19,9 @@ public interface hComicMapper
     @Select(value = "SELECT * FROM `data_h_comic` WHERE ID = #{id}")
     hComic getHComicById(@Param(value = "id")int id);
 
-    @Select(value = "SELECT COUNT(*) FROM `data_h_comic`")
-    int getHComicCount();
+    @Select(value = "SELECT COUNT(*) FROM `data_h_comic` WHERE " +
+            "( NAME LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
+            "AND ( MOSAIC = #{mosaicSelect} OR #{mosaicSelect} = '0' )" +
+            "AND ( CATEGORY = #{categorySelect} OR #{categorySelect} = '0' )")
+    int getHComicCount(hComicRequestPojo pojo);
 }

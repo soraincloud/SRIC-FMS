@@ -58,8 +58,8 @@ public class hVideoServiceImpl implements hVideoService
     }
 
     @Override
-    public int getHVideoCount()
+    public int getHVideoCount(hVideoRequestPojo pojo)
     {
-        return hVideoMapper.getHVideoCount();
+        return hVideoMapper.getHVideoCount(pojo);
     }
 }

@@ -83,6 +83,7 @@
 </template>
 
 <script lang="ts" setup>
+import axios from 'axios';
 import { getHComicList } from "@/axios/api/hComic"
 import { ref,onMounted } from "vue";
 import { useRouter } from "vue-router";
@@ -149,7 +150,9 @@ const getHComicListData = async () =>
                 element.mosaicText = "分类类别错误"
             }
             element.background = ""
+            element.comicCover = axios.defaults.baseURL + "/comic/" + element.fileName + "/00001.webp"
         });
+        console.log(hComicList)
     }
     catch (error) 
     {

@@ -19,7 +19,7 @@ public class hComicController
     {
         hComicResponsePojo hComicResponse = new hComicResponsePojo();
         hComicResponse.setHComicList(hComicService.getHComicList(hComicRequest));
-        hComicResponse.setTotal(hComicService.getHComicCount());
+        hComicResponse.setTotal(hComicService.getHComicCount(hComicRequest));
         return hComicResponse;
     }
 

@@ -30,9 +30,6 @@ public class hComicServiceImpl implements hComicService
         for(int i = 0;i < hComicList.size();i++)//遍历获取tag
         {
             hComicList.get(i).setHComicTagList(hComicTagMapper.getHComicTagsByComicId(hComicList.get(i).getId()));
-            String coverPath = filesPath + "/comic/" + hComicList.get(i).getId() + "/00001.webp";
-            String imageData = imageToBase64(coverPath);
-            hComicList.get(i).setComicCover("data:image/webp;base64," + imageData);
         }
         return hComicList;
     }
@@ -54,8 +51,8 @@ public class hComicServiceImpl implements hComicService
     }
 
     @Override
-    public int getHComicCount()
+    public int getHComicCount(hComicRequestPojo pojo)
     {
-        return hComicMapper.getHComicCount();
+        return hComicMapper.getHComicCount(pojo);
     }
 }

@@ -22,6 +22,9 @@ public interface hVideoMapper
     @Select(value = "SELECT * FROM `data_h_video` WHERE ID = #{id}")
     hVideo getHVideoById(@Param(value = "id")int id);
 
-    @Select(value = "SELECT COUNT(*) FROM `data_h_video`")
-    int getHVideoCount();
+    @Select(value = "SELECT COUNT(*) FROM `data_h_video` WHERE " +
+            "( ( NAME LIKE concat('%',#{searchInput},'%') or NUMBER LIKE concat('%',#{searchInput},'%') ) OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
+            "AND ( MOSAIC = #{mosaicSelect} OR #{mosaicSelect} = '0' )" +
+            "AND ( CATEGORY = #{categorySelect} OR #{categorySelect} = '0' )")
+    int getHVideoCount(hVideoRequestPojo pojo);
 }

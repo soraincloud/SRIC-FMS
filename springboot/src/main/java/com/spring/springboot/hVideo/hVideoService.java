@@ -8,5 +8,5 @@ public interface hVideoService
     String getFilenameById(int id);
 
     hVideo getHVideoById(int id);
-    int getHVideoCount();
+    int getHVideoCount(hVideoRequestPojo pojo);
 }

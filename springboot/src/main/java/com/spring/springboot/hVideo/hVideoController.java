@@ -29,7 +29,7 @@ public class hVideoController
     {
         hVideoResponsePojo hVideoResponse = new hVideoResponsePojo();
         hVideoResponse.setHVideoList(hVideoService.getHVideoList(hVideoRequest));
-        hVideoResponse.setTotal(hVideoService.getHVideoCount());
+        hVideoResponse.setTotal(hVideoService.getHVideoCount(hVideoRequest));
         return hVideoResponse;
     }
 

@@ -6,5 +6,5 @@ public interface hComicService
 {
     List<hComic> getHComicList(hComicRequestPojo hComicRequestPojo);
     hComicData getHComicById(int id);
-    int getHComicCount();
+    int getHComicCount(hComicRequestPojo pojo);
 }
