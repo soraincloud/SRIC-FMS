@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 31/03/2024 03:50:40
+ Date: 31/03/2024 18:16:07
 */
 
 SET NAMES utf8mb4;
@@ -104,6 +104,26 @@ INSERT INTO `data_h_comic` VALUES (67, '初恋 森万平', '67', 45, 1, 1);
 INSERT INTO `data_h_comic` VALUES (68, '除了二次元 其他我爱不了', '68', 20, 1, 1);
 INSERT INTO `data_h_comic` VALUES (69, 'Istand Festival', '69', 14, 1, 1);
 INSERT INTO `data_h_comic` VALUES (70, '穿越变成幼女', '70', 258, 1, 2);
+INSERT INTO `data_h_comic` VALUES (71, '船长的挑战公开直播', '71', 25, 1, 1);
+INSERT INTO `data_h_comic` VALUES (72, '船长的幼女生活的说', '72', 25, 1, 1);
+INSERT INTO `data_h_comic` VALUES (73, '船长尼莫与中出大乱交', '73', 48, 1, 1);
+INSERT INTO `data_h_comic` VALUES (74, '床上的小猫', '74', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (75, '催眠术太厉害啦', '75', 49, 1, 1);
+INSERT INTO `data_h_comic` VALUES (76, '催眠新闻', '76', 26, 1, 1);
+INSERT INTO `data_h_comic` VALUES (77, '打架谁怕谁 真刀真枪4P', '77', 21, 1, 1);
+INSERT INTO `data_h_comic` VALUES (78, '大切部下', '78', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (79, '德克萨斯的发情期', '79', 33, 1, 1);
+INSERT INTO `data_h_comic` VALUES (80, '德克萨斯感官共享', '80', 40, 1, 1);
+INSERT INTO `data_h_comic` VALUES (81, '地雷系女子', '81', 38, 1, 1);
+INSERT INTO `data_h_comic` VALUES (82, '调教开发无知的魅魔', '82', 31, 1, 1);
+INSERT INTO `data_h_comic` VALUES (83, '毒品性爱', '83', 15, 1, 1);
+INSERT INTO `data_h_comic` VALUES (84, '独角兽', '84', 16, 1, 1);
+INSERT INTO `data_h_comic` VALUES (85, '堕天计划1', '85', 44, 1, 1);
+INSERT INTO `data_h_comic` VALUES (86, '二怀妊', '86', 193, 1, 2);
+INSERT INTO `data_h_comic` VALUES (87, '二手飞机杯', '87', 19, 1, 1);
+INSERT INTO `data_h_comic` VALUES (88, '发情？加油啊芭芭拉酱', '88', 27, 1, 1);
+INSERT INTO `data_h_comic` VALUES (89, '反正都是杂鱼肉棒对吧', '89', 23, 1, 1);
+INSERT INTO `data_h_comic` VALUES (90, '枫与铃', '90', 159, 1, 2);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
