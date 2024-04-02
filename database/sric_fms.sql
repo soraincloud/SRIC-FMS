@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 02/04/2024 23:40:21
+ Date: 03/04/2024 02:37:58
 */
 
 SET NAMES utf8mb4;
@@ -374,6 +374,11 @@ INSERT INTO `data_h_video` VALUES (34, '麻花辫JK', '34.mp4', 'FC2-PPV-1851398
 INSERT INTO `data_h_video` VALUES (35, '无名的男-女仆-1', '35.mp4', 'FC2-PPV-2549115-1', 1, 1);
 INSERT INTO `data_h_video` VALUES (36, '无名的男-女仆-2', '36.mp4', 'FC2-PPV-2549115-2', 1, 1);
 INSERT INTO `data_h_video` VALUES (37, '无名的男-女仆-3', '37.mp4', 'FC2-PPV-2549115-3', 1, 1);
+INSERT INTO `data_h_video` VALUES (38, 'BlueCrow42-1', '38.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (39, 'BlueCrow42-2', '39.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (40, 'FortuneCuttie-裙子', '40.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (41, 'FortuneCuttie-电话', '41.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (42, '卖东西', '42.mp4', 'heyzo-1031-C', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
