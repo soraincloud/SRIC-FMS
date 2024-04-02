@@ -77,7 +77,7 @@
             </el-card>
         </el-scrollbar>
         <div class="HfilesComic-pagination-div">
-            <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" background />
+            <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="4" background />
         </div>
     </div>
 </template>

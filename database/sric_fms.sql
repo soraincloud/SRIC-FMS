@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 02/04/2024 02:35:09
+ Date: 02/04/2024 23:40:21
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 137 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 186 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic
@@ -219,6 +219,92 @@ INSERT INTO `data_h_comic` VALUES (182, '睡着的小文西', '182', 41, 1, 1);
 INSERT INTO `data_h_comic` VALUES (183, '索米爱的使命', '183', 30, 1, 1);
 INSERT INTO `data_h_comic` VALUES (184, '她，依旧在壳之中', '184', 34, 1, 1);
 INSERT INTO `data_h_comic` VALUES (185, '桃华之恋', '185', 25, 1, 1);
+INSERT INTO `data_h_comic` VALUES (186, '桃子碳', '186', 17, 1, 1);
+INSERT INTO `data_h_comic` VALUES (187, '田舍娱乐', '187', 139, 1, 2);
+INSERT INTO `data_h_comic` VALUES (188, '兔女郎发情中', '188', 175, 1, 2);
+INSERT INTO `data_h_comic` VALUES (189, '兔女郎特别服务', '189', 17, 1, 1);
+INSERT INTO `data_h_comic` VALUES (190, '兔女郎直播', '190', 8, 1, 1);
+INSERT INTO `data_h_comic` VALUES (191, '鸵鸟 妮娜', '191', 16, 1, 1);
+INSERT INTO `data_h_comic` VALUES (192, '玩具少女在无限高潮中哭泣', '192', 107, 1, 2);
+INSERT INTO `data_h_comic` VALUES (193, '妄想', '193', 28, 1, 1);
+INSERT INTO `data_h_comic` VALUES (194, '妄想彼女', '194', 203, 1, 2);
+INSERT INTO `data_h_comic` VALUES (195, '为什么医生你!?', '195', 35, 1, 1);
+INSERT INTO `data_h_comic` VALUES (196, '喂我吃吧老师', '196', 34, 1, 1);
+INSERT INTO `data_h_comic` VALUES (197, '我的妹妹说要成为叔叔的新娘', '197', 32, 1, 1);
+INSERT INTO `data_h_comic` VALUES (198, '我的秘密老师的秘密', '198', 225, 1, 2);
+INSERT INTO `data_h_comic` VALUES (199, '我跟你说喔 抓到镜华了', '199', 22, 1, 1);
+INSERT INTO `data_h_comic` VALUES (200, '无家可归的兔子与雨与我', '200', 23, 1, 1);
+INSERT INTO `data_h_comic` VALUES (201, '无口彼女', '201', 24, 1, 1);
+INSERT INTO `data_h_comic` VALUES (202, '无人机重口', '202', 50, 1, 1);
+INSERT INTO `data_h_comic` VALUES (203, '下级魔术师淫纹染', '203', 57, 1, 1);
+INSERT INTO `data_h_comic` VALUES (204, '夏 旅馆 借金取', '204', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (205, '小孩子气的华凛', '205', 24, 1, 1);
+INSERT INTO `data_h_comic` VALUES (206, '小猫 不断流淌着的幸福', '206', 18, 1, 1);
+INSERT INTO `data_h_comic` VALUES (207, '小天使2', '207', 27, 1, 1);
+INSERT INTO `data_h_comic` VALUES (208, '小小甜心1', '208', 15, 1, 1);
+INSERT INTO `data_h_comic` VALUES (209, '小小甜心2', '209', 34, 1, 1);
+INSERT INTO `data_h_comic` VALUES (210, '小优宝可梦援助交际', '210', 25, 1, 1);
+INSERT INTO `data_h_comic` VALUES (211, '小梓 日步美', '211', 42, 1, 1);
+INSERT INTO `data_h_comic` VALUES (212, '心体交融 人造人所献 爱的幽会', '212', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (213, '新干员能天使', '213', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (214, '新芽摘取', '214', 205, 1, 2);
+INSERT INTO `data_h_comic` VALUES (215, '性爱骑士2', '215', 8, 1, 1);
+INSERT INTO `data_h_comic` VALUES (216, '性欲旺盛贞操锻炼', '216', 22, 1, 1);
+INSERT INTO `data_h_comic` VALUES (217, '性转成为女学生偶像', '217', 19, 1, 1);
+INSERT INTO `data_h_comic` VALUES (218, '训练员先生', '218', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (219, '阳向从今天开始学习', '219', 18, 1, 1);
+INSERT INTO `data_h_comic` VALUES (220, '要不要再爱一次', '220', 225, 1, 2);
+INSERT INTO `data_h_comic` VALUES (221, '野原柚花', '221', 35, 1, 1);
+INSERT INTO `data_h_comic` VALUES (222, '夜血交姬', '222', 58, 1, 1);
+INSERT INTO `data_h_comic` VALUES (223, '伊甸条约的善后处理', '223', 90, 1, 1);
+INSERT INTO `data_h_comic` VALUES (224, '以前明明那么可爱', '224', 46, 1, 1);
+INSERT INTO `data_h_comic` VALUES (225, '以前明明那么可爱2', '225', 46, 1, 1);
+INSERT INTO `data_h_comic` VALUES (226, '异世界调教', '226', 18, 1, 1);
+INSERT INTO `data_h_comic` VALUES (227, '异世界魔王', '227', 25, 1, 1);
+INSERT INTO `data_h_comic` VALUES (228, '异形', '228', 49, 1, 1);
+INSERT INTO `data_h_comic` VALUES (229, '因果报应jk痴汉强健', '229', 34, 1, 1);
+INSERT INTO `data_h_comic` VALUES (230, '淫魔', '230', 29, 1, 1);
+INSERT INTO `data_h_comic` VALUES (231, '淫弱令媛', '231', 260, 1, 2);
+INSERT INTO `data_h_comic` VALUES (232, '映镜mirroring girl', '232', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (233, '悠久的娼女精灵', '233', 148, 1, 2);
+INSERT INTO `data_h_comic` VALUES (234, '犹如玩具的人生', '234', 245, 1, 2);
+INSERT INTO `data_h_comic` VALUES (235, '游戏开发部', '235', 15, 1, 1);
+INSERT INTO `data_h_comic` VALUES (236, '有预谋的暧昧之心', '236', 22, 1, 1);
+INSERT INTO `data_h_comic` VALUES (237, '又师生本', '237', 30, 1, 1);
+INSERT INTO `data_h_comic` VALUES (238, '又师生本2', '238', 38, 1, 1);
+INSERT INTO `data_h_comic` VALUES (239, '幼 莫纳', '239', 12, 1, 1);
+INSERT INTO `data_h_comic` VALUES (240, '诱惑性爱', '240', 55, 1, 1);
+INSERT INTO `data_h_comic` VALUES (241, '与偶像的秘密关系', '241', 30, 1, 1);
+INSERT INTO `data_h_comic` VALUES (242, '雨雪', '242', 200, 1, 2);
+INSERT INTO `data_h_comic` VALUES (243, '御宅公主萝莉啪啪', '243', 193, 1, 2);
+INSERT INTO `data_h_comic` VALUES (244, '援交，见面就开啪', '244', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (245, '月兔女郎', '245', 29, 1, 1);
+INSERT INTO `data_h_comic` VALUES (246, '云吞芽央', '246', 187, 1, 2);
+INSERT INTO `data_h_comic` VALUES (247, '在随心所欲的异世界里', '247', 30, 1, 1);
+INSERT INTO `data_h_comic` VALUES (248, '在网上约到的女孩子说不定会是淫魔', '248', 17, 1, 1);
+INSERT INTO `data_h_comic` VALUES (249, '早已消失的现实之触感', '249', 21, 1, 1);
+INSERT INTO `data_h_comic` VALUES (250, '占星术', '250', 37, 1, 1);
+INSERT INTO `data_h_comic` VALUES (251, '战术人型 超长', '251', 29, 1, 1);
+INSERT INTO `data_h_comic` VALUES (252, '战术人型 体内', '252', 17, 1, 1);
+INSERT INTO `data_h_comic` VALUES (253, '战术人型 体位', '253', 28, 1, 1);
+INSERT INTO `data_h_comic` VALUES (254, '战术人型 玩具店', '254', 18, 1, 1);
+INSERT INTO `data_h_comic` VALUES (255, '战术人型 早上的厨房', '255', 16, 1, 1);
+INSERT INTO `data_h_comic` VALUES (256, '这就是家政吗？', '256', 24, 1, 1);
+INSERT INTO `data_h_comic` VALUES (257, '珍爱着我', '257', 202, 1, 2);
+INSERT INTO `data_h_comic` VALUES (258, '真爱满溢', '258', 194, 1, 2);
+INSERT INTO `data_h_comic` VALUES (259, '真的非常抱歉主人2', '259', 44, 1, 1);
+INSERT INTO `data_h_comic` VALUES (260, '真的非常抱歉主人3', '260', 32, 1, 1);
+INSERT INTO `data_h_comic` VALUES (261, '真拿主人没办法呢', '261', 32, 1, 1);
+INSERT INTO `data_h_comic` VALUES (262, '诊疗所', '262', 35, 1, 1);
+INSERT INTO `data_h_comic` VALUES (263, '震惊 指挥官居然会对我如此下手', '263', 29, 1, 1);
+INSERT INTO `data_h_comic` VALUES (264, '直面本心的堕落皇女', '264', 30, 1, 1);
+INSERT INTO `data_h_comic` VALUES (265, '指挥官的宠物', '265', 28, 1, 1);
+INSERT INTO `data_h_comic` VALUES (266, '指于外 心溶', '266', 44, 1, 1);
+INSERT INTO `data_h_comic` VALUES (267, '紫音恋结', '267', 133, 1, 2);
+INSERT INTO `data_h_comic` VALUES (268, '紫之梦', '268', 40, 1, 1);
+INSERT INTO `data_h_comic` VALUES (269, '自慰套教室', '269', 195, 1, 2);
+INSERT INTO `data_h_comic` VALUES (270, '自慰套教室 新学期', '270', 209, 1, 2);
+INSERT INTO `data_h_comic` VALUES (271, '宗教 事情', '271', 28, 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
