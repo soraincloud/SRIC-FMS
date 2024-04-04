@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 03/04/2024 02:37:58
+ Date: 05/04/2024 04:41:27
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 186 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 272 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic
@@ -332,7 +332,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -379,6 +379,28 @@ INSERT INTO `data_h_video` VALUES (39, 'BlueCrow42-2', '39.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (40, 'FortuneCuttie-裙子', '40.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (41, 'FortuneCuttie-电话', '41.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (42, '卖东西', '42.mp4', 'heyzo-1031-C', 1, 1);
+INSERT INTO `data_h_video` VALUES (43, 'hotshot', '43.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (44, 'xoxo_juri', '44.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (45, 'LegsJapan', '45.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (46, 'MasukuChan', '46.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (47, 'Milk 补帧 稳定镜头', '47.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (48, 'Mistress_fucks_Sissy_Bitch_anal_doggystyle', '48.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (49, 'nana_taipei-律师', '49.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (50, 'nana_taipei-修女', '50.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (51, 'Naomii', '51.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (52, 'nicole.high.temperature', '52.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (53, 'nikia.doing.the.nasty', '53.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (54, 'pue_Peachpie', '54.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (55, 'pinkloving', '55.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (56, 'slrabbit', '56.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (57, 'DNCC', '57.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (58, 'Yasmin - Boar_JAdore', '58.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (59, 'Yasmin - Sophisticated Bitch', '59.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (60, 'YuaHentai 白丝水手服', '60.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (61, 'YueHentai 按摩', '61.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (62, 'YueHentai 原神', '62.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (63, '白虎萝莉', '63.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (64, '白丝 阳光 纱裙', '64.mp4', '', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
