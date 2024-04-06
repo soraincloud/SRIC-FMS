@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 05/04/2024 04:41:27
+ Date: 07/04/2024 06:17:45
 */
 
 SET NAMES utf8mb4;
@@ -332,7 +332,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -401,6 +401,40 @@ INSERT INTO `data_h_video` VALUES (61, 'YueHentai 按摩', '61.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (62, 'YueHentai 原神', '62.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (63, '白虎萝莉', '63.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (64, '白丝 阳光 纱裙', '64.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (65, '白丝女仆play肛塞尿道棒', '65.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (66, '悲伤小姐', '66.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (67, '不是童车', '67.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (68, 'HENTAIED触手', '68.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (69, '果冻传媒 歌舞妓町', '69.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (70, '和服 捆绑', '70.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (71, '和宫雪', '71.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (72, '懒懒睡不醒Cos酒馆脱衣舞女郎莫娜 ', '72.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (73, '日本萝莉-1', '73.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (74, '日本萝莉-2', '74.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (75, '麦当劳兼职', '75.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (76, '梅朵儿', '76.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (77, '糖心nana_taipei', '77.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (78, '唐伯虎-1', '78.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (79, '唐伯虎-2', '79.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (80, '唐伯虎-3', '80.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (81, '捅主任 白丝', '81.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (82, '捅主任 双脚离地', '82.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (83, '玩偶姐姐-02', '83.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (84, '玩偶姐姐-jk', '84.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (85, '玩偶姐姐-黑丝jk室友', '85.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (86, '玩偶姐姐-穹妹', '86.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (87, '玩偶姐姐-森林-0', '87.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (88, '玩偶姐姐-森林-1', '88.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (89, '玩偶姐姐-森林-2', '89.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (90, '玩偶姐姐-森林-3', '90.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (91, '玩偶姐姐-蛇喰梦子的陨落', '91.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (92, '玩偶姐姐-她的秘密', '92.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (93, '玩偶姐姐-甜美游戏-1', '93.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (94, '玩偶姐姐-甜美游戏-2', '94.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (95, '玩偶姐姐-甜美游戏-3', '95.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (96, '玩偶姐姐-一日女友', '96.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (97, '下面有跟棒棒糖 出轨已婚女上司', '97.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (98, '小鹿酱 奶油粉', '98.mp4', '', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
