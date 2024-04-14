@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 08/04/2024 04:02:30
+ Date: 14/04/2024 18:38:07
 */
 
 SET NAMES utf8mb4;
@@ -332,7 +332,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 127 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -454,6 +454,29 @@ INSERT INTO `data_h_video` VALUES (114, '柚木', '114.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (115, '中华田园兔龙王的工作', '115.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (116, '中华田园兔-COS阿米娅', '116.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (117, '中华田园兔-刻晴', '117.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (118, '柚子猫-G0110', '118.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (119, '柚子猫-黑丝', '119.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (120, '柚子猫-黑丝板鞋', '120.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (121, '柚子猫-刻晴JK', '121.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (122, '柚子猫-捆绑', '122.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (123, '柚子猫-万圣节小僵尸', '123.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (124, '柚子猫-淫荡修女の忏悔', '124.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (125, 'cos-X-阿米娅-1', '125.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (126, 'cos-X-阿米娅-2', '126.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (127, 'cos-X-416-1', '127.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (128, 'cos-X-416-2', '128.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (129, 'cos-X-AR15-1', '129.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (130, 'cos-X-AR15-2', '130.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (131, 'cos-X-和泉纱雾-1', '131.mp4', 'FC2PPV-985469-1', 1, 1);
+INSERT INTO `data_h_video` VALUES (132, 'cos-X-和泉纱雾-2', '132.mp4', 'FC2PPV-985469-2', 1, 1);
+INSERT INTO `data_h_video` VALUES (133, 'cos-X-山田妖精-2', '133.mp4', 'FC2-PPV-1418531', 1, 1);
+INSERT INTO `data_h_video` VALUES (134, 'cos-X- 七七-1', '134.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (135, 'cos-X-七七-2', '135.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (136, 'cos-X-UMP45-1', '136.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (137, 'cos-X-UMP45-2', '137.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (138, 'cos-X-UMP45-3', '138.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (139, 'cos-X-UMP45-4', '139.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (140, 'cos-X-WA2000', '140.mp4', '', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
