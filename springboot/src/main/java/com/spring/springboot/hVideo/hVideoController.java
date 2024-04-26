@@ -40,7 +40,7 @@ public class hVideoController
 
         try
         {
-            String path = filesPath + "/video/" + hVideoService.getFilenameById(video);
+            String path = filesPath + "/hVideo/" + hVideoService.getFilenameById(video);
             File file = new File(path);
             if(file.exists())
             {

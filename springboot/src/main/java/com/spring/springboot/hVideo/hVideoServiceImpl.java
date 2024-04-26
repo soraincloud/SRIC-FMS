@@ -28,7 +28,7 @@ public class hVideoServiceImpl implements hVideoService
         for(int i = 0;i < hVideoList.size();i++)//遍历获取tag
         {
             hVideoList.get(i).setHVideoTagList(hVideoTagMapper.getHVideoTagsByVideoId(hVideoList.get(i).getId()));
-            String coverPath = filesPath + "/videoCover/" + hVideoList.get(i).getId() + ".webp";
+            String coverPath = filesPath + "/hVideoCover/" + hVideoList.get(i).getId() + ".webp";
             String imageData = imageToBase64(coverPath);
             if(imageData.isEmpty())
             {

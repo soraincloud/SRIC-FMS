@@ -150,7 +150,7 @@ const getHComicListData = async () =>
                 element.mosaicText = "分类类别错误"
             }
             element.background = ""
-            element.comicCover = axios.defaults.baseURL + "/comic/" + element.fileName + "/00001.webp"
+            element.comicCover = axios.defaults.baseURL + "/hComic/" + element.fileName + "/00001.webp"
         });
         console.log(hComicList)
     }

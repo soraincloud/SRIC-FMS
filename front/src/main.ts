@@ -9,7 +9,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'//element图标
 import axios from 'axios'//ajax请求通信
 import VueAxios from 'vue-axios'
 
-axios.defaults.baseURL = 'http://192.168.1.6:8088'
+axios.defaults.baseURL = 'http://192.168.1.7:8088'
 
 const app = createApp(App)
 
