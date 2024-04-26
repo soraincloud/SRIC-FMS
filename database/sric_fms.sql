@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 23/04/2024 03:20:53
+ Date: 27/04/2024 01:09:38
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 272 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 271 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic
@@ -314,7 +314,7 @@ CREATE TABLE `data_h_comic_tags`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic_tags
@@ -332,7 +332,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 144 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 143 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -474,12 +474,14 @@ INSERT INTO `data_h_video` VALUES (134, 'cos-X- 七七-1', '134.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (135, 'cos-X-七七-2', '135.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (136, 'cos-X-UMP45-1', '136.mp4', 'FC2PPV-1102946', 1, 1);
 INSERT INTO `data_h_video` VALUES (137, 'cos-X-UMP45-2', '137.mp4', 'FC2PPV-1102946', 1, 1);
-INSERT INTO `data_h_video` VALUES (138, 'cos-X-UMP45-3', '138.mp4', '', 1, 1);
-INSERT INTO `data_h_video` VALUES (139, 'cos-X-UMP45-4', '139.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (138, 'cos-X-UMP45-3', '138.mp4', 'FC2PPV-1128561', 1, 1);
+INSERT INTO `data_h_video` VALUES (139, 'cos-X-UMP45-4', '139.mp4', 'FC2PPV-1128561', 1, 1);
 INSERT INTO `data_h_video` VALUES (140, 'cos-X-WA2000', '140.mp4', 'FC2PPV-1084878', 1, 1);
 INSERT INTO `data_h_video` VALUES (141, '白袜伪娘束缚椅炮机飞机杯榨精', '141.mp4', '', 1, 1);
 INSERT INTO `data_h_video` VALUES (142, '魅魔利兹', '142.mp4', 'RAS-0179', 1, 1);
 INSERT INTO `data_h_video` VALUES (143, '覚醒！踊り子穂乃果ちゃんとトイレで生二回戦！狭い個室でもいたしちゃいまし？', '143.mp4', 'FC2PPV-624857', 1, 1);
+INSERT INTO `data_h_video` VALUES (144, 'Ｈ大好きミクを生ハメ調律！パイパンレイヤーの汁だくエロま◯こにどっぷり中出し！', '144.mp4', 'FC2PPV-643167', 1, 1);
+INSERT INTO `data_h_video` VALUES (145, 'ミクレイヤー生ハメ調律part2！もっと中出ししても許されるよね！', '145.mp4', 'FC2PPV-647819', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
@@ -489,7 +491,7 @@ CREATE TABLE `data_h_video_tags`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video_tags
@@ -504,7 +506,7 @@ CREATE TABLE `relation_h_comic_tag`  (
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
   `comicid` int UNSIGNED NOT NULL COMMENT '对应comic的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of relation_h_comic_tag
@@ -519,7 +521,7 @@ CREATE TABLE `relation_h_video_tag`  (
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
   `videoid` int UNSIGNED NOT NULL COMMENT '对应视频的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of relation_h_video_tag
