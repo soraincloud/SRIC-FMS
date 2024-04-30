@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 29/04/2024 03:31:36
+ Date: 01/05/2024 02:52:29
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 271 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 272 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic
@@ -314,7 +314,7 @@ CREATE TABLE `data_h_comic_tags`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic_tags
@@ -332,7 +332,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 152 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 173 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -494,6 +494,21 @@ INSERT INTO `data_h_video` VALUES (154, 'お兄ちゃん、もっと出して！
 INSERT INTO `data_h_video` VALUES (155, 'ミクレイヤー調教３雪ミクさんとエッチなレッスン！オナニー見学してきました', '155.mp4', 'FC2PPV-727725', 1, 1);
 INSERT INTO `data_h_video` VALUES (156, 'ミクレイヤー生ハメ調教３＋ 雪ミクさんにあっへぇピースさせてきました！', '156.mp4', 'FC2PPV-735797', 1, 1);
 INSERT INTO `data_h_video` VALUES (157, 'ミクレイヤーさん生ハメ調教４ ご褒美中出し！RQミクさんに、えっちしちゃってきました', '157.mp4', 'FC2PPV-764213', 1, 1);
+INSERT INTO `data_h_video` VALUES (158, '甘えっち電ママ編-中に出ちゃったら、お掃除フェラしてくれました！', '158.mp4', 'FC2PPV-816899', 1, 1);
+INSERT INTO `data_h_video` VALUES (159, 'ミクレイヤーさん生ハメ調教４ぷらす RQミクさんにまたまた中出ししちゃいました！', '159.mp4', 'FC2PPV-826168', 1, 1);
+INSERT INTO `data_h_video` VALUES (160, '19歳新人レイヤーさんと中出し種付けえっち！兄さん…の…大好きっ！', '160.mp4', 'FC2PPV-869600', 1, 1);
+INSERT INTO `data_h_video` VALUES (161, 'エッチしたらコレ舐めるのがれでぃ？！ホントなの？司令官', '161.mp4', 'FC2PPV-879712', 1, 1);
+INSERT INTO `data_h_video` VALUES (162, '中出しえっち編-おはよー！こんちわー！こんばんはー！Ｈするよー！', '162.mp4', 'FC2PPV-884956', 1, 1);
+INSERT INTO `data_h_video` VALUES (163, '雷ママと♪Part2 横になってたので、下のお口と上のお口で遊んじゃいました♡', '163.mp4', 'FC2PPV-966827', 1, 1);
+INSERT INTO `data_h_video` VALUES (164, '雷ママと♪司令官っ！私に頼っていいのよ！-中出しえっち編', '164.mp4', 'FC2PPV-935845', 1, 1);
+INSERT INTO `data_h_video` VALUES (165, '杏と中出し！19歳JD2回生ちゃんとデレステ杏ステージ衣装でラブえっちちゃいました♪', '165.mp4', 'FC2PPV-946561', 1, 1);
+INSERT INTO `data_h_video` VALUES (166, 'ぐったり！中出し編-山風コスで本気汁垂れ流しエッチしちゃいました！', '166.mp4', 'FC2PPV-963665', 1, 1);
+INSERT INTO `data_h_video` VALUES (167, 'JD2回生ちゃんとエロマンガ先生コス生中えっち！兄さん…アナルパール…買ってみたの♡', '167.mp4', 'FC2PPV-970408', 1, 1);
+INSERT INTO `data_h_video` VALUES (168, 'ＧっぱいさんでオイゲンさんPart3 普通のエッチに飽きてない？トイレ行こっ♪', '168.mp4', 'FC2PPV-991433', 1, 1);
+INSERT INTO `data_h_video` VALUES (169, '杏と中出し-Part2-！19歳JD2回生ちゃんとデレステ杏ステージ衣装でラブラブえちえちしゃいました♪', '169.mp4', 'FC2PPV-995497', 1, 1);
+INSERT INTO `data_h_video` VALUES (170, 'JD2回ちゃんと神官ちゃん種付けっくすPart2。ゴブリンじゃなくても襲っちゃうぞ♪', '170.mp4', 'FC2PPV-1032803', 1, 1);
+INSERT INTO `data_h_video` VALUES (171, '司令官に色々（意味深）されちゃう！G11ちゃんをJD2回ちゃんで！-中出し編', '171.mp4', 'FC2PPV-1042805', 1, 1);
+INSERT INTO `data_h_video` VALUES (172, '日常幸子コスでえちえち！JD2回ちゃんでボクかわ幸子に「おら！幸子！孕めぇぇぇぇ！」', '172.mp4', 'FC2PPV-1046668', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
@@ -518,7 +533,7 @@ CREATE TABLE `relation_h_comic_tag`  (
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
   `comicid` int UNSIGNED NOT NULL COMMENT '对应comic的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of relation_h_comic_tag
