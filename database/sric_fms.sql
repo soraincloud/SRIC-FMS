@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 03/05/2024 18:15:56
+ Date: 05/05/2024 22:59:10
 */
 
 SET NAMES utf8mb4;
@@ -321,6 +321,31 @@ CREATE TABLE `data_h_comic_tags`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for data_h_picture
+-- ----------------------------
+DROP TABLE IF EXISTS `data_h_picture`;
+CREATE TABLE `data_h_picture`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文件名称',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of data_h_picture
+-- ----------------------------
+INSERT INTO `data_h_picture` VALUES (1, '1.webp');
+INSERT INTO `data_h_picture` VALUES (2, '2.webp');
+INSERT INTO `data_h_picture` VALUES (3, '3.webp');
+INSERT INTO `data_h_picture` VALUES (4, '4.webp');
+INSERT INTO `data_h_picture` VALUES (5, '5.webp');
+INSERT INTO `data_h_picture` VALUES (6, '6.webp');
+INSERT INTO `data_h_picture` VALUES (7, '7.webp');
+INSERT INTO `data_h_picture` VALUES (8, '8.webp');
+INSERT INTO `data_h_picture` VALUES (9, '9.webp');
+INSERT INTO `data_h_picture` VALUES (10, '10.webp');
+INSERT INTO `data_h_picture` VALUES (11, '11.webp');
+
+-- ----------------------------
 -- Table structure for data_h_video
 -- ----------------------------
 DROP TABLE IF EXISTS `data_h_video`;
@@ -332,7 +357,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 209 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 225 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video

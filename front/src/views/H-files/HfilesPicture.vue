@@ -1,3 +1,145 @@
 <template>
-    
+    <div>
+        <el-scrollbar @scroll="handleScroll($event)" :height="scrollbarHeight">
+            <el-row>
+                <el-col :span="12">
+                    <div id="hPictureLeftImage">
+                        <el-card v-for="(item,i) in urlLeft" :key="i" class="HFilesPictuire-card">
+                            <el-image :src="item"></el-image>  
+                        </el-card>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div id="hPictureRightImage">
+                        <el-card v-for="(item,i) in urlRight" :key="i" class="HFilesPictuire-card">
+                            <el-image :src="item"></el-image>
+                        </el-card>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-card v-if="!isPictureAllLoad" class="HFilesPictuire-load-button-card" @click="loadMorePicture">
+                <p class="HFilesPictuire-load-button-p">点击加载更多</p>
+            </el-card>
+            <el-card v-if="isPictureAllLoad" class="HFilesPictuire-load-button-card">
+                <p class="HFilesPictuire-load-button-p">没有更多了</p>
+            </el-card>
+        </el-scrollbar>
+    </div>
 </template>
+
+<script lang="ts" setup>
+    import axios from 'axios';
+    import { nextTick,onMounted,ref } from 'vue';
+    import { getHPictureRandomList } from "@/axios/api/hPicture"
+
+    let urlLeft:any = ref([ //左侧图片数据
+        
+    ])
+    let urlRight:any = ref([ //右侧图片数据
+        
+    ])
+    let scrollbarHeight = ref((window.innerHeight - 140) + "px") //设置滚动条高度
+    let hPictureData = ref([]) //图片名称数组
+    let hPictureNumber = ref() //图片总数
+    let hPictureLoadNow = ref(-1) //当前加载到图片的位置
+    let isPictureAllLoad = ref(false) //图片是否全部被加载
+
+    const addPicture = async (filename:any) => //向高度更小的一边添加名为filename的图片
+    {
+        nextTick( () => {
+            const leftContainer = document.getElementById("hPictureLeftImage");
+            const rightContainer = document.getElementById("hPictureRightImage");
+            if (leftContainer && rightContainer)
+            {
+                const leftHeight = leftContainer.offsetHeight;
+                const rightHeight = rightContainer.offsetHeight;
+                if(leftHeight > rightHeight)
+                {
+                    urlRight.value.push(axios.defaults.baseURL + "/hPicture/" + filename)
+                }
+                else
+                {
+                    urlLeft.value.push(axios.defaults.baseURL + "/hPicture/" + filename)
+                }
+            }
+        } )
+        await nextTick()
+    }
+
+    const getHPictureDara = async () => //获取随机排列的图片数组
+    {
+        const resp = await getHPictureRandomList({})
+        hPictureData.value = resp.data
+        hPictureNumber.value = resp.data.length - 1
+    }
+
+    const loadData = async (start:any,end:any) => //加载从start到end的图片 （end >= start）
+    {
+        for(let i = start;i <= end;i++)
+        {
+            await addPicture(hPictureData.value[i].filename)
+        }
+    }
+
+    const loadMorePicture = async () => //加载更多图片
+    {
+        if(hPictureLoadNow.value + 10 <= hPictureNumber.value) //默认加载10张
+        {
+            await loadData(hPictureLoadNow.value + 1,hPictureLoadNow.value + 10)
+            hPictureLoadNow.value = hPictureLoadNow.value + 10
+        }
+        else //不足十张时全部加载
+        {
+            await loadData(hPictureLoadNow.value + 1,hPictureNumber.value)
+            hPictureLoadNow.value = hPictureNumber.value
+        }
+
+        if(hPictureLoadNow.value >= hPictureNumber.value) //判断是否已经全部加载（在这里判断是因为有可能总数为10的倍数 不会触发不足十张的全部加载）(大于等于避免溢出)
+        {
+            isPictureAllLoad.value = true
+        }
+    }
+
+    onMounted( async () => 
+    {
+        await getHPictureDara()
+        await loadMorePicture()
+    })
+
+    const handleScroll = (e:any) => //滚动事件（返回滚动条当前位置）
+    {
+        
+    }
+
+    const windowSizeChanged = () => //重置滚动条高度(适应窗口大小)
+    {
+        scrollbarHeight.value = (window.innerHeight - 140) + "px"
+    }
+
+windowSizeChanged()
+
+window.addEventListener('resize',windowSizeChanged) //监听窗口变动
+</script>
+
+<style>
+.HFilesPictuire-card .el-card__body
+{
+    padding: 10px 10px 5px 10px;
+}
+
+.HFilesPictuire-load-button-card
+{
+    margin-top: 10px;
+}
+
+.HFilesPictuire-load-button-card .el-card__body
+{
+    padding: 0;
+}
+
+.HFilesPictuire-load-button-p
+{
+    text-align: center;
+    font-weight: bold;
+}
+</style>
