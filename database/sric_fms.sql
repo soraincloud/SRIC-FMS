@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 05/05/2024 22:59:10
+ Date: 06/05/2024 01:53:47
 */
 
 SET NAMES utf8mb4;
@@ -344,6 +344,17 @@ INSERT INTO `data_h_picture` VALUES (8, '8.webp');
 INSERT INTO `data_h_picture` VALUES (9, '9.webp');
 INSERT INTO `data_h_picture` VALUES (10, '10.webp');
 INSERT INTO `data_h_picture` VALUES (11, '11.webp');
+INSERT INTO `data_h_picture` VALUES (12, '12.webp');
+INSERT INTO `data_h_picture` VALUES (13, '13.webp');
+INSERT INTO `data_h_picture` VALUES (14, '14.webp');
+INSERT INTO `data_h_picture` VALUES (15, '15.webp');
+INSERT INTO `data_h_picture` VALUES (16, '16.webp');
+INSERT INTO `data_h_picture` VALUES (17, '17.webp');
+INSERT INTO `data_h_picture` VALUES (18, '18.webp');
+INSERT INTO `data_h_picture` VALUES (19, '19.webp');
+INSERT INTO `data_h_picture` VALUES (20, '20.webp');
+INSERT INTO `data_h_picture` VALUES (21, '21.webp');
+INSERT INTO `data_h_picture` VALUES (22, '22.webp');
 
 -- ----------------------------
 -- Table structure for data_h_video

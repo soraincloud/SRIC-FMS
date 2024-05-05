@@ -17,7 +17,7 @@
                     </div>
                 </el-col>
             </el-row>
-            <el-card v-if="!isPictureAllLoad" class="HFilesPictuire-load-button-card" @click="loadMorePicture">
+            <el-card v-if="!isPictureAllLoad" class="HFilesPictuire-load-button-card" @click="clickLoadMore">
                 <p class="HFilesPictuire-load-button-p">点击加载更多</p>
             </el-card>
             <el-card v-if="isPictureAllLoad" class="HFilesPictuire-load-button-card">
@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
     import axios from 'axios';
-    import { nextTick,onMounted,ref } from 'vue';
+    import { onMounted,ref } from 'vue';
     import { getHPictureRandomList } from "@/axios/api/hPicture"
 
     let urlLeft:any = ref([ //左侧图片数据
@@ -44,27 +44,29 @@
     let hPictureLoadNow = ref(-1) //当前加载到图片的位置
     let isPictureAllLoad = ref(false) //图片是否全部被加载
 
-    const addPicture = async (filename:any) => //向高度更小的一边添加名为filename的图片
+    const addPicture = (filename:any) => //向高度更小的一边添加名为filename的图片
     {
-        nextTick( () => {
-            const leftContainer = document.getElementById("hPictureLeftImage");
-            const rightContainer = document.getElementById("hPictureRightImage");
-            if (leftContainer && rightContainer)
-            {
-                const leftHeight = leftContainer.offsetHeight;
-                const rightHeight = rightContainer.offsetHeight;
-                if(leftHeight > rightHeight)
-                {
-                    urlRight.value.push(axios.defaults.baseURL + "/hPicture/" + filename)
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                const leftContainer = document.getElementById("hPictureLeftImage");
+                const rightContainer = document.getElementById("hPictureRightImage");
+                if (leftContainer && rightContainer) {
+                    const leftHeight = leftContainer.offsetHeight;
+                    const rightHeight = rightContainer.offsetHeight;
+                    if (leftHeight > rightHeight) {
+                        urlRight.value.push(axios.defaults.baseURL + "/hPicture/" + filename);
+                    } else {
+                        urlLeft.value.push(axios.defaults.baseURL + "/hPicture/" + filename);
+                    }
+                    resolve(); // 图片加载完成后 resolve
+                } else {
+                    reject(new Error("Container not found")); // 可能的错误处理
                 }
-                else
-                {
-                    urlLeft.value.push(axios.defaults.baseURL + "/hPicture/" + filename)
-                }
-            }
-        } )
-        await nextTick()
-    }
+            };
+            img.src = axios.defaults.baseURL + "/hPicture/" + filename;
+        });
+    };
 
     const getHPictureDara = async () => //获取随机排列的图片数组
     {
@@ -98,6 +100,11 @@
         {
             isPictureAllLoad.value = true
         }
+    }
+
+    const clickLoadMore = () =>
+    {
+        loadMorePicture()
     }
 
     onMounted( async () => 
