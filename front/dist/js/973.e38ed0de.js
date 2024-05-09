@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkfront"]=self["webpackChunkfront"]||[]).push([[973],{1241:function(n,t){t.A=(n,t)=>{const r=n.__vccOpts||n;for(const[u,c]of t)r[u]=c;return r}},7973:function(n,t,r){function u(n,t){return null}r.r(t),r.d(t,{default:function(){return o}});var c=r(1241);const e={},f=(0,c.A)(e,[["render",u]]);var o=f}}]);
+//# sourceMappingURL=973.e38ed0de.js.map

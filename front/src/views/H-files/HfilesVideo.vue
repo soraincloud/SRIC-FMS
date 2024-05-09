@@ -81,7 +81,7 @@
             </el-card>
         </el-scrollbar>
         <div class="HfilesVideo-pagination-div">
-            <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="4" background />
+            <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
         </div>
     </div>
 </template>
@@ -97,8 +97,8 @@ let scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条�
 let searchInput = ref() //搜索输入内容
 let mosaicSelect = ref("0") //修正类型
 let categorySelect = ref("0") //类别
-let page = ref("1") //页数
-let pageTotal = ref("0") //总条数
+let page = ref(1) //页数
+let pageTotal = ref(0) //总条数
 let showVideoCover = ref(false)
 
 onMounted( () => 
