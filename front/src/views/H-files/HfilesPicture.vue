@@ -44,7 +44,7 @@
     let hPictureLoadNow = ref(-1) //当前加载到图片的位置
     let isPictureAllLoad = ref(false) //图片是否全部被加载
 
-    const addPicture = (filename:any) => //向高度更小的一边添加名为filename的图片
+    const addPicture = (id:any,filename:any) => //向高度更小的一边添加名为filename的图片
     {
         return new Promise((resolve, reject) => {
             const img = new Image();
@@ -55,16 +55,16 @@
                     const leftHeight = leftContainer.offsetHeight;
                     const rightHeight = rightContainer.offsetHeight;
                     if (leftHeight > rightHeight) {
-                        urlRight.value.push(axios.defaults.baseURL + "/hPicture/" + filename);
+                        urlRight.value.push(axios.defaults.baseURL + "/hPicture/" + id + "." + filename);
                     } else {
-                        urlLeft.value.push(axios.defaults.baseURL + "/hPicture/" + filename);
+                        urlLeft.value.push(axios.defaults.baseURL + "/hPicture/" + id + "." + filename);
                     }
                     resolve(); // 图片加载完成后 resolve
                 } else {
                     reject(new Error("Container not found")); // 可能的错误处理
                 }
             };
-            img.src = axios.defaults.baseURL + "/hPicture/" + filename;
+            img.src = axios.defaults.baseURL + "/hPicture/" + id + "." + filename;
         });
     };
 
@@ -79,7 +79,7 @@
     {
         for(let i = start;i <= end;i++)
         {
-            await addPicture(hPictureData.value[i].filename)
+            await addPicture(hPictureData.value[i].id,hPictureData.value[i].filename)
         }
     }
 
