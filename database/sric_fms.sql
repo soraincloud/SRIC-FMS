@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 14/05/2024 15:25:58
+ Date: 14/05/2024 15:42:25
 */
 
 SET NAMES utf8mb4;
@@ -305,6 +305,14 @@ INSERT INTO `data_h_comic` VALUES (268, '紫之梦', '268', 40, 1, 1);
 INSERT INTO `data_h_comic` VALUES (269, '自慰套教室', '269', 195, 1, 2);
 INSERT INTO `data_h_comic` VALUES (270, '自慰套教室 新学期', '270', 209, 1, 2);
 INSERT INTO `data_h_comic` VALUES (271, '宗教 事情', '271', 28, 1, 1);
+INSERT INTO `data_h_comic` VALUES (272, '人类保存计划', '272', 4, 1, 1);
+INSERT INTO `data_h_comic` VALUES (273, '束缚成为马娘', '273', 11, 2, 1);
+INSERT INTO `data_h_comic` VALUES (274, '东条希の木枷自缚教程', '274', 14, 1, 1);
+INSERT INTO `data_h_comic` VALUES (275, '落穴感觉遮断魔法', '275', 44, 1, 1);
+INSERT INTO `data_h_comic` VALUES (276, '不让妹妹怀孕的话就离不开的岛', '276', 47, 1, 1);
+INSERT INTO `data_h_comic` VALUES (277, '桃娘奇谭', '277', 31, 1, 1);
+INSERT INTO `data_h_comic` VALUES (278, '反向催眠实验', '278', 206, 1, 2);
+INSERT INTO `data_h_comic` VALUES (279, '始色', '279', 241, 1, 2);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
