@@ -17,12 +17,14 @@
                     </div>
                 </el-col>
             </el-row>
-            <el-card v-if="!isPictureAllLoad" class="HFilesPictuire-load-button-card" @click="clickLoadMore">
-                <p class="HFilesPictuire-load-button-p">点击加载更多</p>
-            </el-card>
-            <el-card v-if="isPictureAllLoad" class="HFilesPictuire-load-button-card">
-                <p class="HFilesPictuire-load-button-p">没有更多了</p>
-            </el-card>
+            <div v-loading="loading">
+                <el-card v-if="!isPictureAllLoad" class="HFilesPictuire-load-button-card" @click="clickLoadMore">
+                    <p class="HFilesPictuire-load-button-p">点击加载更多</p>
+                </el-card>
+                <el-card v-if="isPictureAllLoad" class="HFilesPictuire-load-button-card">
+                    <p class="HFilesPictuire-load-button-p">没有更多了</p>
+                </el-card>
+            </div>
         </el-scrollbar>
     </div>
 </template>
@@ -43,6 +45,7 @@
     let hPictureNumber = ref() //图片总数
     let hPictureLoadNow = ref(-1) //当前加载到图片的位置
     let isPictureAllLoad = ref(false) //图片是否全部被加载
+    let loading = ref(false) //加载更多按钮的loading
 
     const addPicture = (id:any,filename:any) => //向高度更小的一边添加名为filename的图片
     {
@@ -102,9 +105,11 @@
         }
     }
 
-    const clickLoadMore = () =>
+    const clickLoadMore = async () =>
     {
-        loadMorePicture()
+        loading.value = true
+        await loadMorePicture()
+        loading.value = false
     }
 
     onMounted( async () => 
