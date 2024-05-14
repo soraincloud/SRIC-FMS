@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 12/05/2024 23:45:11
+ Date: 14/05/2024 15:25:58
 */
 
 SET NAMES utf8mb4;
@@ -328,7 +328,7 @@ CREATE TABLE `data_h_picture`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'webp' COMMENT '文件名称(后缀)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1009 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1009 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_picture
@@ -1339,7 +1339,88 @@ INSERT INTO `data_h_picture` VALUES (1003, 'webp');
 INSERT INTO `data_h_picture` VALUES (1004, 'webp');
 INSERT INTO `data_h_picture` VALUES (1005, 'webp');
 INSERT INTO `data_h_picture` VALUES (1006, 'webp');
+INSERT INTO `data_h_picture` VALUES (1007, 'gif');
 INSERT INTO `data_h_picture` VALUES (1008, 'gif');
+INSERT INTO `data_h_picture` VALUES (1009, 'gif');
+INSERT INTO `data_h_picture` VALUES (1010, 'gif');
+INSERT INTO `data_h_picture` VALUES (1011, 'gif');
+INSERT INTO `data_h_picture` VALUES (1012, 'gif');
+INSERT INTO `data_h_picture` VALUES (1013, 'gif');
+INSERT INTO `data_h_picture` VALUES (1014, 'gif');
+INSERT INTO `data_h_picture` VALUES (1015, 'gif');
+INSERT INTO `data_h_picture` VALUES (1016, 'gif');
+INSERT INTO `data_h_picture` VALUES (1017, 'gif');
+INSERT INTO `data_h_picture` VALUES (1018, 'gif');
+INSERT INTO `data_h_picture` VALUES (1019, 'gif');
+INSERT INTO `data_h_picture` VALUES (1020, 'gif');
+INSERT INTO `data_h_picture` VALUES (1021, 'gif');
+INSERT INTO `data_h_picture` VALUES (1022, 'gif');
+INSERT INTO `data_h_picture` VALUES (1023, 'gif');
+INSERT INTO `data_h_picture` VALUES (1024, 'gif');
+INSERT INTO `data_h_picture` VALUES (1025, 'gif');
+INSERT INTO `data_h_picture` VALUES (1026, 'gif');
+INSERT INTO `data_h_picture` VALUES (1027, 'gif');
+INSERT INTO `data_h_picture` VALUES (1028, 'gif');
+INSERT INTO `data_h_picture` VALUES (1029, 'gif');
+INSERT INTO `data_h_picture` VALUES (1030, 'gif');
+INSERT INTO `data_h_picture` VALUES (1031, 'gif');
+INSERT INTO `data_h_picture` VALUES (1032, 'gif');
+INSERT INTO `data_h_picture` VALUES (1033, 'gif');
+INSERT INTO `data_h_picture` VALUES (1034, 'gif');
+INSERT INTO `data_h_picture` VALUES (1035, 'gif');
+INSERT INTO `data_h_picture` VALUES (1036, 'gif');
+INSERT INTO `data_h_picture` VALUES (1037, 'gif');
+INSERT INTO `data_h_picture` VALUES (1038, 'gif');
+INSERT INTO `data_h_picture` VALUES (1039, 'gif');
+INSERT INTO `data_h_picture` VALUES (1040, 'gif');
+INSERT INTO `data_h_picture` VALUES (1041, 'gif');
+INSERT INTO `data_h_picture` VALUES (1042, 'gif');
+INSERT INTO `data_h_picture` VALUES (1043, 'gif');
+INSERT INTO `data_h_picture` VALUES (1044, 'gif');
+INSERT INTO `data_h_picture` VALUES (1045, 'gif');
+INSERT INTO `data_h_picture` VALUES (1046, 'gif');
+INSERT INTO `data_h_picture` VALUES (1047, 'gif');
+INSERT INTO `data_h_picture` VALUES (1048, 'gif');
+INSERT INTO `data_h_picture` VALUES (1049, 'gif');
+INSERT INTO `data_h_picture` VALUES (1050, 'gif');
+INSERT INTO `data_h_picture` VALUES (1051, 'gif');
+INSERT INTO `data_h_picture` VALUES (1052, 'gif');
+INSERT INTO `data_h_picture` VALUES (1053, 'gif');
+INSERT INTO `data_h_picture` VALUES (1054, 'gif');
+INSERT INTO `data_h_picture` VALUES (1055, 'gif');
+INSERT INTO `data_h_picture` VALUES (1056, 'gif');
+INSERT INTO `data_h_picture` VALUES (1057, 'gif');
+INSERT INTO `data_h_picture` VALUES (1058, 'gif');
+INSERT INTO `data_h_picture` VALUES (1059, 'gif');
+INSERT INTO `data_h_picture` VALUES (1060, 'gif');
+INSERT INTO `data_h_picture` VALUES (1061, 'gif');
+INSERT INTO `data_h_picture` VALUES (1062, 'gif');
+INSERT INTO `data_h_picture` VALUES (1063, 'gif');
+INSERT INTO `data_h_picture` VALUES (1064, 'gif');
+INSERT INTO `data_h_picture` VALUES (1065, 'gif');
+INSERT INTO `data_h_picture` VALUES (1066, 'gif');
+INSERT INTO `data_h_picture` VALUES (1067, 'gif');
+INSERT INTO `data_h_picture` VALUES (1068, 'gif');
+INSERT INTO `data_h_picture` VALUES (1069, 'gif');
+INSERT INTO `data_h_picture` VALUES (1070, 'gif');
+INSERT INTO `data_h_picture` VALUES (1071, 'gif');
+INSERT INTO `data_h_picture` VALUES (1072, 'gif');
+INSERT INTO `data_h_picture` VALUES (1073, 'gif');
+INSERT INTO `data_h_picture` VALUES (1074, 'gif');
+INSERT INTO `data_h_picture` VALUES (1075, 'gif');
+INSERT INTO `data_h_picture` VALUES (1076, 'gif');
+INSERT INTO `data_h_picture` VALUES (1077, 'gif');
+INSERT INTO `data_h_picture` VALUES (1078, 'gif');
+INSERT INTO `data_h_picture` VALUES (1079, 'gif');
+INSERT INTO `data_h_picture` VALUES (1080, 'gif');
+INSERT INTO `data_h_picture` VALUES (1081, 'gif');
+INSERT INTO `data_h_picture` VALUES (1082, 'gif');
+INSERT INTO `data_h_picture` VALUES (1083, 'gif');
+INSERT INTO `data_h_picture` VALUES (1084, 'webp');
+INSERT INTO `data_h_picture` VALUES (1085, 'webp');
+INSERT INTO `data_h_picture` VALUES (1086, 'webp');
+INSERT INTO `data_h_picture` VALUES (1087, 'webp');
+INSERT INTO `data_h_picture` VALUES (1088, 'webp');
 
 -- ----------------------------
 -- Table structure for data_h_video
