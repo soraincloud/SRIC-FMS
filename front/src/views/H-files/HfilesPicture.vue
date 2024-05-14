@@ -68,7 +68,7 @@
         });
     };
 
-    const getHPictureDara = async () => //获取随机排列的图片数组
+    const getHPictureData = async () => //获取随机排列的图片数组
     {
         const resp = await getHPictureRandomList({})
         hPictureData.value = resp.data
@@ -109,7 +109,7 @@
 
     onMounted( async () => 
     {
-        await getHPictureDara()
+        await getHPictureData()
         await loadMorePicture()
     })
 
