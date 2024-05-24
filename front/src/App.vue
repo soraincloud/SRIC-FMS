@@ -35,6 +35,9 @@
         <router-view/>
       </el-main>
     </el-container>
+    <el-card class="app-user-message-card" :style="[ userMessageStyleLeft,userMessageStyleTop ]">
+      123
+    </el-card>
   </div>
 </template>
 
@@ -51,11 +54,15 @@ if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设
 {
   isDarkModeOpen.value = true
 }
+const userMessageLeft = ref(10)
+const userMessageTop = ref(window.innerHeight - 100)
+const userMessageStyleLeft = ref("left: " + userMessageLeft.value + "px;") //个人信息浮动卡片的左侧位置
+const userMessageStyleTop = ref("top: " + userMessageTop.value + "px;") //个人信息浮动卡片的右侧位置
 
 
 const changeDarkMode = () => //改变模式
 {
-  setTimeout( () => 
+  setTimeout( () => //延时是为了按钮切换动画能够完整播放
   {
     const toggleDark = useToggle(isDark)
     toggleDark()
@@ -63,6 +70,21 @@ const changeDarkMode = () => //改变模式
   150
   )
 }
+
+const loadUserMessagePosition = () => //重新加载个人信息卡片位置
+{
+  userMessageStyleLeft.value = "left: " + userMessageLeft.value + "px;"
+  userMessageStyleTop.value = "top: " + userMessageTop.value + "px;"
+}
+
+const windowSizeChange = () => 
+{
+  userMessageLeft.value = 10
+  userMessageTop.value = window.innerHeight - 100
+  loadUserMessagePosition()
+}
+ 
+window.addEventListener('resize',windowSizeChange) //监听窗口变动
 </script>
 
 <style>
@@ -105,5 +127,10 @@ const changeDarkMode = () => //改变模式
   margin-left: 10px;
   margin-top: 10px;
   --el-switch-on-color: #555555 !important;
+}
+
+.app-user-message-card
+{
+  position: fixed;
 }
 </style>

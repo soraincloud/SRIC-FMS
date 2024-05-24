@@ -50,6 +50,20 @@ const routes: Array<RouteRecordRaw> = [
     name: 'HfilesComicReader',
     component: () => import('@/views/H-files/HfilesComicReader.vue')
   },
+  {
+    path: '/Manage',
+    name: 'Manage',
+    redirect: '/Usermanage',
+    component: () => import('@/views/manage/ManageIndex.vue'),
+    children:
+    [
+      {
+        path: '/UserManage',
+        name: 'UserManage',
+        component: () => import('@/views/manage/UserManage.vue'),
+      }
+    ]
+  },
 ]
 
 const router = createRouter({
