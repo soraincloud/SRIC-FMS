@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 14/05/2024 15:42:25
+ Date: 24/05/2024 17:00:57
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 272 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 280 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic
@@ -336,7 +336,7 @@ CREATE TABLE `data_h_picture`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'webp' COMMENT '文件名称(后缀)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1009 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1089 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_picture
@@ -1670,7 +1670,11 @@ INSERT INTO `data_h_video` VALUES (220, '雪歩でおまとめっ！輝き○向
 INSERT INTO `data_h_video` VALUES (221, '雪歩でおまとめっ！輝き○向こう側へ♪衣装コスをまとめちゃいましたよっ！-4', '221.mp4', 'FC2PPV-1144070', 1, 1);
 INSERT INTO `data_h_video` VALUES (222, 'オマケ別アングルフル画面動画-1', '222.mp4', 'FC2PPV-1636767', 1, 1);
 INSERT INTO `data_h_video` VALUES (223, 'オマケ別アングルフル画面動画-2', '223.mp4', 'FC2PPV-1636767', 1, 1);
-INSERT INTO `data_h_video` VALUES (224, 'オマケ別アングルフル画面動画-3', '224.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (224, 'オマケ別アングルフル画面動画-3', '224.mp4', 'FC2PPV-1636767', 1, 1);
+INSERT INTO `data_h_video` VALUES (225, '一脸清纯的白丝JK小妹妹在家学习被入室强干，娇嫩菊花捅入巨大肉棒 被颜射后一脸懵', '225.mp4', '', 1, 1);
+INSERT INTO `data_h_video` VALUES (226, '逃出大英博物馆第一集', '226.mp4', 'SPJH001', 1, 1);
+INSERT INTO `data_h_video` VALUES (227, '逃出大英博物馆第二集', '227.mp4', 'SPJH002', 1, 1);
+INSERT INTO `data_h_video` VALUES (228, '逃出大英博物馆第三集', '228.mp4', 'SPJH003', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
