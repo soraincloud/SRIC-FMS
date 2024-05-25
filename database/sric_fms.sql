@@ -3,15 +3,15 @@
 
  Source Server         : SRIC
  Source Server Type    : MySQL
- Source Server Version : 80036
+ Source Server Version : 80037
  Source Host           : localhost:3306
  Source Schema         : sric_fms
 
  Target Server Type    : MySQL
- Target Server Version : 80036
+ Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 24/05/2024 17:00:57
+ Date: 25/05/2024 23:34:42
 */
 
 SET NAMES utf8mb4;
@@ -1442,7 +1442,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 225 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 229 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_video
@@ -1675,6 +1675,7 @@ INSERT INTO `data_h_video` VALUES (225, '一脸清纯的白丝JK小妹妹在家�
 INSERT INTO `data_h_video` VALUES (226, '逃出大英博物馆第一集', '226.mp4', 'SPJH001', 1, 1);
 INSERT INTO `data_h_video` VALUES (227, '逃出大英博物馆第二集', '227.mp4', 'SPJH002', 1, 1);
 INSERT INTO `data_h_video` VALUES (228, '逃出大英博物馆第三集', '228.mp4', 'SPJH003', 1, 1);
+INSERT INTO `data_h_video` VALUES (229, '精主TV  极品Cos性爱花火女主の调教 淫语玉足挑逗玩弄 又滑又嫩白虎小穴 榨汁中出劲射太爽了', '229.mp4', '', 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
