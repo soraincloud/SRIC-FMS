@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 29/05/2024 05:18:24
+ Date: 09/06/2024 21:29:08
 */
 
 SET NAMES utf8mb4;
@@ -1701,12 +1701,14 @@ CREATE TABLE `data_user`  (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
   `mail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '邮箱',
   `createtime` datetime NOT NULL COMMENT '注册时间',
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL.webp' COMMENT '头像文件名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_user
 -- ----------------------------
+INSERT INTO `data_user` VALUES (1, 'soraincloud', 'test', 'soraincloud@gmail.com', '2024-05-29 21:12:09', 'NULL.webp');
 
 -- ----------------------------
 -- Table structure for relation_h_comic_tag
