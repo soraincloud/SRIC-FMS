@@ -21,34 +21,39 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/HfilesVideo',
         name: 'HfilesVideo',
-        component: () => import('@/views/H-files/HfilesVideo.vue')
+        component: () => import('@/views/H-files/HfilesVideo.vue'),
       },
       {
         path: '/HfilesComic',
         name: 'HfilesComic',
-        component: () => import('@/views/H-files/HfilesComic.vue')
+        component: () => import('@/views/H-files/HfilesComic.vue'),
       },
       {
         path: '/HfilesPicture',
         name: 'HfilesPicture',
-        component: () => import('@/views/H-files/HfilesPicture.vue')
-      },
-      {
-        path: '/HfilesPackage',
-        name: 'HfilesPackage',
-        component: () => import('@/views/H-files/HfilesPackage.vue')
+        component: () => import('@/views/H-files/HfilesPicture.vue'),
       },
     ]
   },
   {
     path: '/HfilesVideoPlayer',
     name: 'HfilesVideoPlayer',
-    component: () => import('@/views/H-files/HfilesVideoPlayer.vue')
+    component: () => import('@/views/H-files/HfilesVideoPlayer.vue'),
   },
   {
     path: '/HfilesComicReader',
     name: 'HfilesComicReader',
-    component: () => import('@/views/H-files/HfilesComicReader.vue')
+    component: () => import('@/views/H-files/HfilesComicReader.vue'),
+  },
+  {
+    path: '/SignIn',
+    name: 'SignIn',
+    component: () => import('@/views/user/SignIn.vue'),
+  },
+  {
+    path: '/SignUp',
+    name: 'SignUp',
+    component: () => import('@/views/user/SignUp.vue'),
   },
   {
     path: '/Manage',

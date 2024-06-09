@@ -85,10 +85,31 @@ const windowSizeChange = () =>
 }
  
 window.addEventListener('resize',windowSizeChange) //监听窗口变动
+
+//下面的内容为解决使用el-table时报错ResizeObserver loop completed with undelivered notifications
+const debounce = (fn, delay) => {
+  let timer
+   return (...args) => {
+     if (timer) {
+       clearTimeout(timer)
+     }
+     timer = setTimeout(() => {
+       fn(...args)
+     }, delay)
+   }
+}
+  
+const _ResizeObserver = window.ResizeObserver;
+window.ResizeObserver = class ResizeObserver extends _ResizeObserver{
+   constructor(callback) {
+     callback = debounce(callback, 200);
+     super(callback);
+   }
+}
 </script>
 
 <style>
-.app .el-header
+.app .el-header  
 {
   padding: 0;
 }

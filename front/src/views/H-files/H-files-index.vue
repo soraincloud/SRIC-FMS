@@ -12,25 +12,19 @@
                     <el-menu-item index="HfilesVideo">
                         <el-icon :size="25"><VideoPlay /></el-icon>
                         <template #title>
-                            <span class="H-files-index-menu-item-span">video</span>
+                            <span class="H-files-index-menu-item-span">{{ $t("menu.video") }}</span>
                         </template>
                     </el-menu-item>
                     <el-menu-item index="HfilesComic">
                         <el-icon :size="25"><Monitor /></el-icon>
                         <template #title>
-                            <span class="H-files-index-menu-item-span">comic</span>
+                            <span class="H-files-index-menu-item-span">{{ $t("menu.comic") }}</span>
                         </template>
                     </el-menu-item>
                     <el-menu-item index="HfilesPicture">
                         <el-icon :size="25"><Picture /></el-icon>
                         <template #title>
-                            <span class="H-files-index-menu-item-span">picture</span>
-                        </template>
-                    </el-menu-item>
-                    <el-menu-item index="HfilesPackage">
-                        <el-icon :size="25"><Camera /></el-icon>
-                        <template #title>
-                            <span class="H-files-index-menu-item-span">package</span>
+                            <span class="H-files-index-menu-item-span">{{ $t("menu.picture") }}</span>
                         </template>
                     </el-menu-item>
                 </el-menu>

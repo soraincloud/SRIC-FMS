@@ -1,4 +1,4 @@
-package com.spring.springboot.hPicture;
+package com.spring.springboot.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,15 +10,15 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/h")
-public class HPictureController
+@RequestMapping("/user")
+public class UserController
 {
     @Autowired
-    HPictureService hPictureService;
+    UserService userService;
 
-    @GetMapping("/getHPictureRandomList")
-    public List<HPicture> getHPictureRandomList()
+    @GetMapping("/getUserMessageList")
+    public List<User> getUserMessageList()
     {
-        return hPictureService.getHPictureRandomList();
+        return userService.getUserMessageList();
     }
 }
