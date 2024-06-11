@@ -50,9 +50,14 @@ const loadTableData = async () =>
     tableData.value = resp.data
 }
 
-const clickEdit = (row) =>
+const clickEdit = (row :any) =>
 {
     isDrawerOpen.value = true
+}
+
+const clickDelete = (row :any) =>
+{
+
 }
 </script>
 

@@ -58,21 +58,37 @@
           <el-button type="primary" class="app-user-message-card-sign-button" text>{{ $t("common.signup") }}</el-button>
         </div>
         <div>
-          <el-button class="app-user-message-card-setting-button" text circle >
-            <el-icon>
-              <Collection />
-            </el-icon>
-          </el-button>
-          <el-button class="app-user-message-card-setting-button" text circle >
-            <el-icon>
-              <Operation />
-            </el-icon>
-          </el-button>
-          <el-button class="app-user-message-card-setting-button" text circle >
-            <el-icon>
-              <SetUp />
-            </el-icon>
-          </el-button>
+          <el-tooltip placement="top" effect="light">
+            <template #content>
+              <div>{{ $t("common.language") }}</div>
+              
+              <el-radio-group v-model="language" @change="languageChange">
+                <el-radio value="zh" size="small" class="app-user-message-card-language-radio">中文</el-radio>
+                <el-radio value="en" size="small" class="app-user-message-card-language-radio">english</el-radio>
+              </el-radio-group>
+            </template>
+            <el-button class="app-user-message-card-setting-button" text circle >
+              <el-icon>
+                <Collection />
+              </el-icon>
+            </el-button>
+          </el-tooltip>
+          <el-tooltip placement="top" effect="light">
+            <template #content>{{ $t("common.line") }}</template>
+            <el-button class="app-user-message-card-setting-button" text circle >
+              <el-icon>
+                <Operation />
+              </el-icon>
+            </el-button>
+          </el-tooltip>
+          <el-tooltip placement="top" effect="light">
+            <template #content>{{ $t("common.management") }}</template>
+            <el-button class="app-user-message-card-setting-button" text circle >
+              <el-icon>
+                <SetUp />
+              </el-icon>
+            </el-button>
+          </el-tooltip>
         </div>
       </div>
     </el-card>
@@ -84,6 +100,9 @@ import { useDark, useToggle } from '@vueuse/core'
 import { useRoute } from 'vue-router'
 import { ref,computed } from 'vue'
 import axios from 'axios';
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
 
 const isDark = useDark()//黑暗模式所需变量
 let route = useRoute()
@@ -101,6 +120,7 @@ const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像
 const username = ref("null") //用户名显示
 const isSign = ref(false) //是否已经登录
 const isHide = ref(false) //个人信息浮动卡片是否隐藏
+const language = ref("en")
 
 const changeDarkMode = () => //改变模式
 {
@@ -123,6 +143,12 @@ const clickShow = () => //点击显示个人信息卡片
 {
   isHide.value = false
   loadUserMessagePosition()
+}
+
+const languageChange = (lang :any) => //语言改变
+{
+  locale.value = lang
+  localStorage.setItem("language",lang)
 }
 
 const setUserMessagePosition = () => //重新加载个人信息卡片位置
@@ -151,7 +177,7 @@ const computeUserMessagePosition = () => //根据是否登录计算个人信息�
 
 const checkSignLocalStorage = () => //检查是否登录的localStorage
 {
-  if(localStorage.getItem("isLogin") ||false) //没有值即为false
+  if(localStorage.getItem("isLogin") || false) //没有值即为false
   {
     isSign.value = true
   }
@@ -160,6 +186,18 @@ const checkSignLocalStorage = () => //检查是否登录的localStorage
     isSign.value = false
   }
   loadUserMessagePosition()
+}
+
+const checkLanguageLocalStorage = () => //检查当前语言的localStorage
+{
+  if(localStorage.getItem("language") == "zh")
+  {
+    language.value = "zh"
+  }
+  else
+  {
+    language.value = "en"
+  }
 }
 
 const loadUserMessagePosition = () => //计算并加载个人信息卡片
@@ -174,6 +212,7 @@ const windowSizeChange = () => //窗口大小变化时重新计算并设置个�
 }
 
 checkSignLocalStorage() //初始化时检查一次登录状态
+checkLanguageLocalStorage() //初始化时获取当前语言
  
 window.addEventListener('resize',windowSizeChange) //监听窗口变动
 
@@ -279,8 +318,29 @@ window.ResizeObserver = class ResizeObserver extends _ResizeObserver{
   margin: 0px !important;
 }
 
+.app-user-message-card-language-radio
+
+{
+  width: 100%;
+}
+
 .app-user-message-card-setting-button
 {
   margin: 0px !important;
+}
+
+.app-user-message-setting-card
+{
+  position: fixed;
+}
+
+:deep(.el-radio-group)
+{
+  display: block;
+}
+
+:deep(.el-radio)
+{
+  display: block;
 }
 </style>

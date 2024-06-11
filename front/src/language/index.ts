@@ -5,6 +5,7 @@ import en from '@/language/en'
 
 const i18n = createI18n
 ({
+  legacy: false, // 不使用 legacy 模式
   messages: 
   {
     zh,

@@ -9,6 +9,9 @@ export default
         no: "No",
         signin: "SignIn",
         signup: "SignUp",
+        language: "language",
+        line: "line",
+        management: "management",
     },
     menu:
     {

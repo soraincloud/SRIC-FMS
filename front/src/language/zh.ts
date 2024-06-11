@@ -9,6 +9,9 @@ export default
         no: "取消",
         signin: "登录",
         signup: "注册",
+        language: "语言",
+        line: "线路",
+        management: "管理",
     },
     menu:
     {
