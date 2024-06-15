@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 09/06/2024 21:29:08
+ Date: 15/06/2024 21:55:00
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 280 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 279 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic
@@ -322,7 +322,7 @@ CREATE TABLE `data_h_comic_tags`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tag名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic_tags
@@ -336,7 +336,7 @@ CREATE TABLE `data_h_picture`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'webp' COMMENT '文件名称(后缀)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1089 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1088 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_picture
@@ -1429,6 +1429,40 @@ INSERT INTO `data_h_picture` VALUES (1085, 'webp');
 INSERT INTO `data_h_picture` VALUES (1086, 'webp');
 INSERT INTO `data_h_picture` VALUES (1087, 'webp');
 INSERT INTO `data_h_picture` VALUES (1088, 'webp');
+INSERT INTO `data_h_picture` VALUES (1089, 'webp');
+INSERT INTO `data_h_picture` VALUES (1090, 'webp');
+INSERT INTO `data_h_picture` VALUES (1091, 'webp');
+INSERT INTO `data_h_picture` VALUES (1092, 'webp');
+INSERT INTO `data_h_picture` VALUES (1093, 'webp');
+INSERT INTO `data_h_picture` VALUES (1094, 'webp');
+INSERT INTO `data_h_picture` VALUES (1095, 'webp');
+INSERT INTO `data_h_picture` VALUES (1096, 'webp');
+INSERT INTO `data_h_picture` VALUES (1097, 'webp');
+INSERT INTO `data_h_picture` VALUES (1098, 'webp');
+INSERT INTO `data_h_picture` VALUES (1099, 'webp');
+INSERT INTO `data_h_picture` VALUES (1100, 'webp');
+INSERT INTO `data_h_picture` VALUES (1101, 'webp');
+INSERT INTO `data_h_picture` VALUES (1102, 'webp');
+INSERT INTO `data_h_picture` VALUES (1103, 'webp');
+INSERT INTO `data_h_picture` VALUES (1104, 'webp');
+INSERT INTO `data_h_picture` VALUES (1105, 'webp');
+INSERT INTO `data_h_picture` VALUES (1106, 'webp');
+INSERT INTO `data_h_picture` VALUES (1107, 'webp');
+INSERT INTO `data_h_picture` VALUES (1108, 'webp');
+INSERT INTO `data_h_picture` VALUES (1109, 'webp');
+INSERT INTO `data_h_picture` VALUES (1110, 'webp');
+INSERT INTO `data_h_picture` VALUES (1111, 'webp');
+INSERT INTO `data_h_picture` VALUES (1112, 'webp');
+INSERT INTO `data_h_picture` VALUES (1113, 'webp');
+INSERT INTO `data_h_picture` VALUES (1114, 'webp');
+INSERT INTO `data_h_picture` VALUES (1115, 'webp');
+INSERT INTO `data_h_picture` VALUES (1116, 'webp');
+INSERT INTO `data_h_picture` VALUES (1117, 'webp');
+INSERT INTO `data_h_picture` VALUES (1118, 'webp');
+INSERT INTO `data_h_picture` VALUES (1119, 'webp');
+INSERT INTO `data_h_picture` VALUES (1120, 'webp');
+INSERT INTO `data_h_picture` VALUES (1121, 'webp');
+INSERT INTO `data_h_picture` VALUES (1122, 'webp');
 
 -- ----------------------------
 -- Table structure for data_h_video
@@ -1719,7 +1753,7 @@ CREATE TABLE `relation_h_comic_tag`  (
   `tagid` int UNSIGNED NOT NULL COMMENT '对应tag的id',
   `comicid` int UNSIGNED NOT NULL COMMENT '对应comic的id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of relation_h_comic_tag
