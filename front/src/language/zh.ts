@@ -18,5 +18,6 @@ export default
         video: "视频",
         comic: "漫画",
         picture: "图片",
+        user: "用户",
     },
 }

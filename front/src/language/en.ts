@@ -18,5 +18,6 @@ export default
         video: "video",
         comic: "comic",
         picture: "picture",
+        user: "user",
     },
 }

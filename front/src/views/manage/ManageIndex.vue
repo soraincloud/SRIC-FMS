@@ -12,7 +12,7 @@
                   <el-menu-item index="UserManage">
                       <el-icon :size="25"><VideoPlay /></el-icon>
                       <template #title>
-                          <span class="H-files-index-menu-item-span">user</span>
+                          <span class="H-files-index-menu-item-span">{{ $t("menu.user") }}</span>
                       </template>
                   </el-menu-item>
               </el-menu>
