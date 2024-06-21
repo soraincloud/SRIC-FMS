@@ -13,11 +13,20 @@ export default
         line: "line",
         management: "management",
     },
+    static:
+    {
+        signinTitle: "Sign in to SRIC-FMS",
+    },
     menu:
     {
         video: "video",
         comic: "comic",
         picture: "picture",
         user: "user",
+    },
+    sign:
+    {
+        username: "username",
+        password: "password",
     },
 }

@@ -13,11 +13,20 @@ export default
         line: "线路",
         management: "管理",
     },
+    static:
+    {
+        signinTitle: "登录 SRIC-FMS",
+    },
     menu:
     {
         video: "视频",
         comic: "漫画",
         picture: "图片",
         user: "用户",
+    },
+    sign:
+    {
+        username: "用户名",
+        password: "密码",
     },
 }

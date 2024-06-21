@@ -54,8 +54,8 @@
           <span class="app-user-message-card-avatar-span">{{ username }}</span>
         </div>
         <div v-if="!isSign">
-          <el-button type="primary" class="app-user-message-card-sign-button" text>{{ $t("common.signin") }}</el-button>
-          <el-button type="primary" class="app-user-message-card-sign-button" text>{{ $t("common.signup") }}</el-button>
+          <el-button type="primary" class="app-user-message-card-sign-button" @click="clickSignIn" text>{{ $t("common.signin") }}</el-button>
+          <el-button type="primary" class="app-user-message-card-sign-button" @click="clickSignUp" text>{{ $t("common.signup") }}</el-button>
         </div>
         <div>
           <el-tooltip placement="top" effect="light">
@@ -97,7 +97,7 @@
 
 <script lang="ts" setup>
 import { useDark, useToggle } from '@vueuse/core'
-import { useRoute } from 'vue-router'
+import { useRoute,useRouter } from 'vue-router'
 import { ref,computed } from 'vue'
 import axios from 'axios';
 import { useI18n } from 'vue-i18n'
@@ -106,6 +106,7 @@ const { locale } = useI18n()
 
 const isDark = useDark()//黑暗模式所需变量
 let route = useRoute()
+let router = useRouter()
 const defaultActiveMenu = computed( () => { return route.name })//访问页面时默认菜单选项
 const isDarkModeOpen = ref(false)//当前是否为黑暗模式
 if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设置开关状态
@@ -143,6 +144,22 @@ const clickShow = () => //点击显示个人信息卡片
 {
   isHide.value = false
   loadUserMessagePosition()
+}
+
+const clickSignIn = () => //点击登录
+{
+  const url = router.resolve
+  ({
+    name: 'SignIn',
+    path: '/SignIn',
+  })
+
+  window.open(url.href,'_blank')
+}
+
+const clickSignUp = () => //点击注册
+{
+
 }
 
 const languageChange = (lang :any) => //语言改变

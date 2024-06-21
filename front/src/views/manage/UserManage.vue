@@ -46,7 +46,7 @@ onMounted( () =>
 
 const loadTableData = async () =>
 {
-    const resp = await getUserMessageList();
+    const resp = await getUserMessageList({});
     tableData.value = resp.data
 }
 
