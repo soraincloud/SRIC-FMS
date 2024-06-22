@@ -16,6 +16,7 @@ export default
     static:
     {
         signinTitle: "Sign in to SRIC-FMS",
+        newTo: "New to SRIC-FMS?",
     },
     menu:
     {
@@ -28,5 +29,6 @@ export default
     {
         username: "username",
         password: "password",
+        forgotPassword: "forgot password",
     },
 }

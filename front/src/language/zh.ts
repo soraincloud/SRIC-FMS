@@ -16,6 +16,7 @@ export default
     static:
     {
         signinTitle: "登录 SRIC-FMS",
+        newTo: "新用户？",
     },
     menu:
     {
@@ -28,5 +29,6 @@ export default
     {
         username: "用户名",
         password: "密码",
+        forgotPassword: "忘记密码",
     },
 }
