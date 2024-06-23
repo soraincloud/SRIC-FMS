@@ -201,7 +201,7 @@ const submitHComicTag = async () =>
             type: 'success',
         })
     }
-    else if(resp.data.code == 201)
+    else if(resp.data.code == 400)
     {
         ElMessage({
             message: '已有此tag',

@@ -7,6 +7,7 @@ export default
         edit: "编辑",
         yes: "确认",
         no: "取消",
+        submit: "提交",
         signin: "登录",
         signup: "注册",
         language: "语言",
@@ -30,5 +31,9 @@ export default
         username: "用户名",
         password: "密码",
         forgotPassword: "忘记密码",
+    },
+    manage: 
+    {
+        editForced: "强制修改",
     },
 }

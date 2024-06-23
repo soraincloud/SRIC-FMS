@@ -83,7 +83,7 @@
           </el-tooltip>
           <el-tooltip placement="top" effect="light">
             <template #content>{{ $t("common.management") }}</template>
-            <el-button class="app-user-message-card-setting-button" text circle >
+            <el-button @click="clickManagement" class="app-user-message-card-setting-button" text circle >
               <el-icon>
                 <SetUp />
               </el-icon>
@@ -121,7 +121,7 @@ const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像
 const username = ref("null") //用户名显示
 const isSign = ref(false) //是否已经登录
 const isHide = ref(false) //个人信息浮动卡片是否隐藏
-const language = ref("en")
+const language = ref("en") //切换按钮绑定的语言
 
 const changeDarkMode = () => //改变模式
 {
@@ -160,6 +160,21 @@ const clickSignIn = () => //点击登录
 const clickSignUp = () => //点击注册
 {
 
+}
+
+const clickManagement = () => //点击管理
+{
+  const isManage = localStorage.getItem("isManage") == "1"
+  if(isManage)
+  {
+    router.push('home')
+    localStorage.setItem("isManage","0")
+  }
+  else
+  {
+    router.push('Manage')
+    localStorage.setItem("isManage","1")
+  }
 }
 
 const languageChange = (lang :any) => //语言改变

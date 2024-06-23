@@ -7,6 +7,7 @@ export default
         edit: "Edit",
         yes: "Yes",
         no: "No",
+        submit: "Submit",
         signin: "SignIn",
         signup: "SignUp",
         language: "language",
@@ -30,5 +31,9 @@ export default
         username: "username",
         password: "password",
         forgotPassword: "forgot password",
+    },
+    manage: 
+    {
+        editForced: "edit forced",
     },
 }

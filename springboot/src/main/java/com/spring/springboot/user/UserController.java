@@ -1,10 +1,8 @@
 package com.spring.springboot.user;
 
+import com.spring.springboot.response.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,21 @@ public class UserController
     public List<User> getUserMessageList()
     {
         return userService.getUserMessageList();
+    }
+
+    @PostMapping("/updateUsernameById")
+    public ResponseCode updateUsernameById(@RequestBody User user)
+    {
+        boolean isSuccess =  userService.updateUsernameById(user);
+        ResponseCode responseCode = new ResponseCode();
+        if(isSuccess)
+        {
+            responseCode.setCode(200);
+        }
+        else
+        {
+            responseCode.setCode(400);
+        }
+        return responseCode;
     }
 }

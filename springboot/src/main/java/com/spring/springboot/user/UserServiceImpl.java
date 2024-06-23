@@ -36,4 +36,18 @@ public class UserServiceImpl implements UserService
         }
         return userList;
     }
+
+    @Override
+    public boolean updateUsernameById(User user)
+    {
+        int updateNum = userMapper.updateUsernameById(user.getId(), user.getUsername());
+        return updateNum > 0;
+    }
+
+    @Override
+    public boolean updatePasswordById(User user)
+    {
+        int updateNum = userMapper.updatePasswordById(user.getId(), user.getPassword());
+        return updateNum > 0;
+    }
 }

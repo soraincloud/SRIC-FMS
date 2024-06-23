@@ -30,7 +30,7 @@ public class HVideoTagServiceImpl implements HVideoTagService
         }
         else //有数据则返回错误状态码
         {
-            code.setCode(201);
+            code.setCode(400);
         }
         return code;
     }
