@@ -19,12 +19,11 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public List<User> getUserMessageList() //将用户信息封装为 名称 邮箱 时间
+    public List<User> getUserMessageList() //将用户信息封装为 id 名称 邮箱 时间
     {
         List<User> userList = userMapper.getUserList();
         for(int i = 0;i < userList.size();i++)
         {
-            userList.get(i).setId(0);
             userList.get(i).setPassword("");
             String mail = userList.get(i).getMail();
             int length = mail.length();
@@ -49,5 +48,16 @@ public class UserServiceImpl implements UserService
     {
         int updateNum = userMapper.updatePasswordById(user.getId(), user.getPassword());
         return updateNum > 0;
+    }
+
+    @Override
+    public int signIn(User user)
+    {
+        User userSignIn = userMapper.getUserByUsername(user.getUsername()); //通过用户名获取用户信息
+        if(userSignIn == null)
+        {
+            return 1;
+        }
+        return 2;
     }
 }

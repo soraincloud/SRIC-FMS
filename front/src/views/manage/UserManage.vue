@@ -2,10 +2,30 @@
     <div>
         <el-card>
             <el-table :data="tableData">
-                <el-table-column prop="username" label="username" />
-                <el-table-column prop="mail" label="mail" />
-                <el-table-column prop="createTime" label="sign up time" />
+                <el-table-column prop="id">
+                    <template #header>
+                        UID
+                    </template>
+                </el-table-column>
+                <el-table-column prop="username">
+                    <template #header>
+                        {{ $t("user.username") }}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="mail" label="mail">
+                    <template #header>
+                        {{ $t("user.mail") }}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="createTime">
+                    <template #header>
+                        {{ $t("user.signUpTime") }}
+                    </template>
+                </el-table-column>
                 <el-table-column fixed="right" label="Operations" width="120">
+                    <template #header>
+                        {{ $t("common.operations") }}
+                    </template>
                     <template #default="scope">
                         <el-button link type="primary" @click="clickEdit(scope.row)">{{ $t("common.edit") }}</el-button>
                         <el-popconfirm title="Sure to delete?" icon-color="#F56C6C">
@@ -17,18 +37,20 @@
                 </el-table-column>
             </el-table>
         </el-card>
-        <el-drawer v-model="isDrawerOpen" title="edit/add user" @close="drawerClose">
-            <h1>username</h1>
-            <el-input v-model="usernameInput" :disabled="usernameDisabled"></el-input>
+        <el-drawer v-model="isDrawerOpen" title="edit/add user" @close="drawerClose" ref="drawer">
+            <h1>{{ $t("sign.username") }}</h1>
+            <el-input v-model="usernameInput" :disabled="usernameDisabled" clearable></el-input>
             <div class="UserManage-drawer-button-div">
                 <el-button v-if="usernameDisabled" @click="clickEditUsername" link type="danger" class="UserManage-drawer-button">{{ $t("manage.editForced") }}</el-button>
-                <el-button v-if="!usernameDisabled" @click="clickEditUsernameSubmit" link type="success" class="UserManage-drawer-button">{{ $t("common.submit") }}</el-button>
+                <el-button v-if="!usernameDisabled" @click="clickEditUsernameSubmit" link type="success" class="UserManage-drawer-button-submit">{{ $t("common.submit") }}</el-button>
+                <el-button v-if="!usernameDisabled" @click="clickEditUsernameCancel" link class="UserManage-drawer-button-submit">{{ $t("common.cancel") }}</el-button>
             </div>
-            <h1>password</h1>
-            <el-input v-model="passwordInput" :disabled="passwordDisabled"></el-input>
+            <h1>{{ $t("sign.password") }}</h1>
+            <el-input v-model="passwordInput" :disabled="passwordDisabled" type="password" show-password clearable></el-input>
             <div class="UserManage-drawer-button-div">
                 <el-button v-if="passwordDisabled" @click="clickEditPassword" link type="danger" class="UserManage-drawer-button">{{ $t("manage.editForced") }}</el-button>
-                <el-button v-if="!passwordDisabled" @click="clickEditPasswordSubmit" link type="success" class="UserManage-drawer-button">{{ $t("common.submit") }}</el-button>
+                <el-button v-if="!passwordDisabled" @click="clickEditPasswordSubmit" link type="success" class="UserManage-drawer-button-submit">{{ $t("common.submit") }}</el-button>
+                <el-button v-if="!passwordDisabled" @click="clickEditPasswordCancel" link class="UserManage-drawer-button-submit">{{ $t("common.cancel") }}</el-button>
             </div>
         </el-drawer>
     </div>
@@ -37,6 +59,9 @@
 <script lang="ts" setup>
 import { ref,onMounted } from 'vue'
 import { getUserMessageList } from '@/axios/api/user'
+import CryptoJS from 'crypto-js' //SHA-256加密
+import { updateUsernameById,updatePasswordById } from '@/axios/api/user';
+import { ElMessage } from 'element-plus' //element消息
 
 const tableData = ref([]) //主页面表表格数据
 const isDrawerOpen = ref(false) //EDIT的抽屉是否打开
@@ -44,6 +69,8 @@ const usernameDisabled = ref(true) //用户名输入框是否被禁用
 const passwordDisabled = ref(true) //密码输入框是否被禁用
 const usernameInput = ref("") //用户名输入框内容
 const passwordInput = ref("") //密码输入框内容
+const editUsernameNow = ref("") //当前正在编辑的用户名初始值
+const editUserId = ref("") //当前正在编辑的用户的UID
 
 onMounted( () =>
 {
@@ -59,6 +86,8 @@ const loadTableData = async () => //加载列表数据
 const clickEdit = (row :any) => //点击编辑
 {
     isDrawerOpen.value = true
+    editUserId.value = row.id
+    editUsernameNow.value = row.username
     usernameInput.value = row.username
     passwordInput.value = "*****"
 }
@@ -84,14 +113,84 @@ const drawerClose = () => //抽屉关闭时重置输入框状态为不可用
     passwordDisabled.value = true
 }
 
-const clickEditUsernameSubmit = () => //提交对用户名的强制更改
+const clickEditUsernameSubmit = async () => //提交对用户名的强制更改
 {
-    
+    const params =
+    {
+        id: editUserId.value,
+        username: usernameInput.value,
+    }
+    const resp = await updateUsernameById(params)
+    if(resp.data.code == 200)
+    {
+        ElMessage({
+            message: '成功',
+            type: 'success',
+        })
+    }
+    else if(resp.data.code == 400)
+    {
+        ElMessage({
+            message: '失败',
+            type: 'warning',
+        })
+    }
+    else
+    {
+        ElMessage({
+            message: '参数异常',
+            type: 'error',
+        })
+    }
+    loadTableData()
+    isDrawerOpen.value = false
 }
 
-const clickEditPasswordSubmit = () => //提交对密码的强制更改
+const clickEditPasswordSubmit = async () => //提交对密码的强制更改
 {
+    let passwordHash = CryptoJS.HmacSHA256(passwordInput,"SRIC") //使用SHA-256进行哈希运算
+    let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
+    const params = 
+    {
+        id: editUserId.value,
+        password: passwordHashString
+    }
+    const resp = await updatePasswordById(params)
+    if(resp.data.code == 200)
+    {
+        ElMessage({
+            message: '成功',
+            type: 'success',
+        })
+    }
+    else if(resp.data.code == 400)
+    {
+        ElMessage({
+            message: '失败',
+            type: 'warning',
+        })
+    }
+    else
+    {
+        ElMessage({
+            message: '参数异常',
+            type: 'error',
+        })
+    }
+    loadTableData()
+    isDrawerOpen.value = false
+}
 
+const clickEditUsernameCancel = () => //取消强制更改用户名
+{
+    usernameInput.value = editUsernameNow.value
+    usernameDisabled.value = true
+}
+
+const clickEditPasswordCancel = () => //取消强制更改密码
+{
+    passwordInput.value = "*****"
+    passwordDisabled.value = true
 }
 </script>
 
@@ -104,6 +203,12 @@ const clickEditPasswordSubmit = () => //提交对密码的强制更改
 .UserManage-drawer-button
 {
     margin-left: auto;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.UserManage-drawer-button-submit
+{
     margin-top: 10px;
     font-size: 15px;
 }

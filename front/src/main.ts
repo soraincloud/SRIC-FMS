@@ -10,7 +10,7 @@ import axios from 'axios'//ajax请求通信
 import VueAxios from 'vue-axios'
 import i18n from './language'//多语言
 
-axios.defaults.baseURL = 'http://192.168.196.0:5000'
+axios.defaults.baseURL = 'http://192.168.196.0:50'
 
 const app = createApp(App)
 

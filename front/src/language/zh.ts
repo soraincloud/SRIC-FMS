@@ -8,11 +8,13 @@ export default
         yes: "确认",
         no: "取消",
         submit: "提交",
+        cancel: "取消",
         signin: "登录",
         signup: "注册",
         language: "语言",
         line: "线路",
         management: "管理",
+        operations: "操作",
     },
     static:
     {
@@ -31,6 +33,13 @@ export default
         username: "用户名",
         password: "密码",
         forgotPassword: "忘记密码",
+    },
+    user:
+    {
+        username: "用户名",
+        password: "密码",
+        mail: "邮箱",
+        signUpTime: "注册时间",
     },
     manage: 
     {

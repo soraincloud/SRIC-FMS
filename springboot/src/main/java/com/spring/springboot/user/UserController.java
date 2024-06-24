@@ -35,4 +35,27 @@ public class UserController
         }
         return responseCode;
     }
+
+    @PostMapping("/updatePasswordById")
+    public ResponseCode updatePasswordById(@RequestBody User user)
+    {
+        boolean isSuccess = userService.updatePasswordById(user);
+        ResponseCode responseCode = new ResponseCode();
+        if(isSuccess)
+        {
+            responseCode.setCode(200);
+        }
+        else
+        {
+            responseCode.setCode(400);
+        }
+        return responseCode;
+    }
+
+    @PostMapping("/signIn")
+    public ResponseCode signIn(@RequestBody User user)
+    {
+        ResponseCode responseCode = new ResponseCode();
+        return responseCode;
+    }
 }

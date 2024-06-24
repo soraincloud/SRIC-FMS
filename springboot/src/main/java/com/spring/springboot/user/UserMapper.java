@@ -14,8 +14,11 @@ public interface UserMapper
     List<User> getUserList();
 
     @Update(value = "UPDATE `data_user` SET USERNAME = #{username} WHERE ID = #{id}")
-    int updateUsernameById(@Param("id") long id, @Param("username") String username);
+    int updateUsernameById(@Param("id") int id, @Param("username") String username);
 
     @Update(value = "UPDATE `data_user` SET PASSWORD = #{password} WHERE ID = #{id}")
     int updatePasswordById(@Param("id") int id, @Param("password") String password);
+
+    @Select(value = "SELECT * FROM `data_user` WHERE USERNAME = #{username}")
+    User getUserByUsername(@Param("username") String username);
 }

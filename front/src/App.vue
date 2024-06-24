@@ -148,13 +148,7 @@ const clickShow = () => //点击显示个人信息卡片
 
 const clickSignIn = () => //点击登录
 {
-  const url = router.resolve
-  ({
-    name: 'SignIn',
-    path: '/SignIn',
-  })
-
-  window.open(url.href,'_blank')
+  router.push("Signin")
 }
 
 const clickSignUp = () => //点击注册
