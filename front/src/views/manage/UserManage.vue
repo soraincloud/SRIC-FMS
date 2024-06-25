@@ -148,7 +148,7 @@ const clickEditUsernameSubmit = async () => //提交对用户名的强制更改
 
 const clickEditPasswordSubmit = async () => //提交对密码的强制更改
 {
-    let passwordHash = CryptoJS.HmacSHA256(passwordInput,"SRIC") //使用SHA-256进行哈希运算
+    let passwordHash = CryptoJS.HmacSHA256(passwordInput.value,"SRIC") //使用SHA-256进行哈希运算
     let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
     const params = 
     {

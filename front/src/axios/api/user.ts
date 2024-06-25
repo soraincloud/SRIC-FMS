@@ -14,3 +14,8 @@ export function updatePasswordById(params:any)
 {
     return post('/user/updatePasswordById',params)
 }
+
+export function signIn(params:any)
+{
+    return post('/user/signIn',params)
+}

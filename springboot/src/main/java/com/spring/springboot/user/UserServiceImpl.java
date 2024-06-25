@@ -51,13 +51,26 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public int signIn(User user)
+    public SignInCode signIn(User user)
     {
         User userSignIn = userMapper.getUserByUsername(user.getUsername()); //通过用户名获取用户信息
+        SignInCode signInCode = new SignInCode();
         if(userSignIn == null)
         {
-            return 1;
+            signInCode.setCode(404); //查无此用户
         }
-        return 2;
+        else
+        {
+            if(userSignIn.getPassword().equals(user.getPassword()))
+            {
+                signInCode.setCode(200); //用户名密码匹配
+                signInCode.setId(userSignIn.getId());
+            }
+            else
+            {
+                signInCode.setCode(400); //密码错误
+            }
+        }
+        return signInCode;
     }
 }

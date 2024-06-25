@@ -8,5 +8,5 @@ public interface UserService
     List<User> getUserMessageList();
     boolean updateUsernameById(User user);
     boolean updatePasswordById(User user);
-    int signIn(User user);
+    SignInCode signIn(User user);
 }

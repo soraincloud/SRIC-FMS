@@ -1,6 +1,9 @@
 package com.spring.springboot.user;
 
+import cn.dev33.satoken.stp.SaTokenInfo;
+import cn.dev33.satoken.stp.StpUtil;
 import com.spring.springboot.response.ResponseCode;
+import com.spring.springboot.response.SignInResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,9 +56,17 @@ public class UserController
     }
 
     @PostMapping("/signIn")
-    public ResponseCode signIn(@RequestBody User user)
+    public SignInResponse signIn(@RequestBody User user)
     {
-        ResponseCode responseCode = new ResponseCode();
-        return responseCode;
+        SignInResponse signInResponse = new SignInResponse();
+        SignInCode signInCode = userService.signIn(user);
+        if(signInCode.getCode() == 200)
+        {
+            StpUtil.login(signInCode.getId());
+        }
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+        signInResponse.setCode(signInCode.getCode());
+        signInResponse.setToken(tokenInfo.tokenValue);
+        return signInResponse;
     }
 }

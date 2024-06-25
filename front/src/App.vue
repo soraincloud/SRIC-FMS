@@ -189,15 +189,19 @@ const computeUserMessagePosition = () => //根据是否登录计算个人信息�
   {
     userMessageLeft.value = 10
     userMessageTop.value = window.innerHeight - 90
+    if(isHide.value)
+    {
+      userMessageTop.value += 65
+    }
   }
   else //未登录
   {
     userMessageLeft.value = 10
     userMessageTop.value = window.innerHeight - 80
-  }
-  if(isHide.value)
-  {
-    userMessageTop.value += 50
+    if(isHide.value)
+    {
+      userMessageTop.value += 50
+    }
   }
 }
 
@@ -336,7 +340,8 @@ window.ResizeObserver = class ResizeObserver extends _ResizeObserver{
 
 .app-user-message-card-avatar-span
 {
-  margin-left: 10px
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .app-user-message-card-sign-button
