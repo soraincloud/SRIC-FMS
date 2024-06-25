@@ -97,7 +97,7 @@
 
 <script lang="ts" setup>
 import { useDark, useToggle } from '@vueuse/core'
-import { useRoute,useRouter } from 'vue-router'
+import { useRoute,useRouter,onBeforeRouteUpdate } from 'vue-router'
 import { ref,computed } from 'vue'
 import axios from 'axios';
 import { useI18n } from 'vue-i18n'
@@ -245,6 +245,10 @@ checkSignLocalStorage() //初始化时检查一次登录状态
 checkLanguageLocalStorage() //初始化时获取当前语言
  
 window.addEventListener('resize',windowSizeChange) //监听窗口变动
+
+onBeforeRouteUpdate(to => { //监听路由变动
+  
+})
 
 //下面的内容为解决使用el-table时报错ResizeObserver loop completed with undelivered notifications
 const debounce = (fn :any, delay :any) => {

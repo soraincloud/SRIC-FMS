@@ -33,6 +33,9 @@ import { ref,reactive } from 'vue'
 import { signIn } from '@/axios/api/user';
 import { ElMessage } from 'element-plus'
 import CryptoJS from 'crypto-js' //SHA-256加密
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 const form = reactive //登录信息表单
 ({
@@ -58,6 +61,7 @@ const clickSignIn = async () => //点击登录
             message: '登录成功',
             type: 'success',
         })
+        router.push("home")
     }
     else if(resp.data.code == 400) //密码错误
     {
