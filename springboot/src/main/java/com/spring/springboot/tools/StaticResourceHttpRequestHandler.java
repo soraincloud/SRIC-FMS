@@ -1,8 +1,8 @@
 package com.spring.springboot.tools;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.core.io.Resource;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
