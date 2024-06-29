@@ -19,7 +19,9 @@ export default
     static:
     {
         signinTitle: "登录 SRIC-FMS",
+        signupTitle: "注册 SRIC-FMS",
         newTo: "新用户？",
+        alreadyHave: "已有账户？",
     },
     menu:
     {
@@ -32,7 +34,10 @@ export default
     {
         username: "用户名",
         password: "密码",
+        repeatPassword: "重复密码",
         forgotPassword: "忘记密码",
+        code: "验证码",
+        sendCode: "发送验证码",
     },
     user:
     {

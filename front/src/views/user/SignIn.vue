@@ -1,19 +1,19 @@
 <template>
     <div v-if="!isHide">
         <el-row>
-            <el-col :span="2"></el-col>
-            <el-col :span="9">
+            <el-col :span="4"></el-col>
+            <el-col :span="7">
                 <div :style="textMarginTop">
                     <h1>{{ $t("static.signinTitle") }}</h1>
                 </div>
             </el-col>
             <el-col :span="2"></el-col>
-            <el-col :span="9">
+            <el-col :span="8">
                 <div :style="cardMarginTop">
                     <sign-in-card></sign-in-card>
                 </div>
             </el-col>
-            <el-col :span="2"></el-col>
+            <el-col :span="3"></el-col>
         </el-row>
     </div>
     <div v-if="isHide">

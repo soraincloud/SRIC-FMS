@@ -23,7 +23,7 @@
         <el-divider></el-divider>
         <div>
             <span class="SignInCard-new-alarm-span">{{ $t("static.newTo") }}</span>
-            <el-button class="SignInCard-more-button" type="primary" link>{{ $t("common.signup") }}</el-button>
+            <el-button @click="clickSignUp" class="SignInCard-more-button" type="primary" link>{{ $t("common.signup") }}</el-button>
         </div>
     </el-card>
 </template>
@@ -84,6 +84,11 @@ const clickSignIn = async () => //点击登录
             type: 'error',
         })
     }
+}
+
+const clickSignUp = () => //点击跳转到注册
+{
+    router.push("SignUp")
 }
 </script>
 

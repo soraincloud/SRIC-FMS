@@ -19,7 +19,9 @@ export default
     static:
     {
         signinTitle: "Sign in to SRIC-FMS",
+        signupTitle: "Sign up to SRIC-FMS",
         newTo: "New to SRIC-FMS?",
+        alreadyHave: "Already have an account?",
     },
     menu:
     {
@@ -32,7 +34,10 @@ export default
     {
         username: "username",
         password: "password",
+        repeatPassword: "repeat your password",
         forgotPassword: "forgot password",
+        code: "verification code",
+        sendCode: "send code",
     },
     user:
     {
