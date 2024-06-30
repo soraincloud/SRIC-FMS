@@ -15,6 +15,7 @@ export default
         line: "line",
         management: "management",
         operations: "Operations",
+        noties: "noties",
     },
     static:
     {
@@ -22,6 +23,7 @@ export default
         signupTitle: "Sign up to SRIC-FMS",
         newTo: "New to SRIC-FMS?",
         alreadyHave: "Already have an account?",
+        paramsError: "Params error",
     },
     menu:
     {
@@ -38,6 +40,11 @@ export default
         forgotPassword: "forgot password",
         code: "verification code",
         sendCode: "send code",
+        successMessage: "success",
+        wrongMessage: "wrong password",
+        notfoundMessage: "account not found",
+        tokenTimeOut: "Your sign in has expired",
+        signout: "SignOut",
     },
     user:
     {

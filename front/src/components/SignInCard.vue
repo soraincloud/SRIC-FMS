@@ -34,6 +34,9 @@ import { signIn } from '@/axios/api/user';
 import { ElMessage } from 'element-plus'
 import CryptoJS from 'crypto-js' //SHA-256加密
 import { useRouter } from "vue-router";
+import i18n from '@/language';
+
+const { t } = i18n.global
 
 const router = useRouter()
 
@@ -56,9 +59,9 @@ const clickSignIn = async () => //点击登录
     if(resp.data.code == 200) //登录成功
     {
         localStorage.setItem("token",resp.data.token)
-        localStorage.setItem("isLogin","true")
+        localStorage.setItem("isSignIn","true")
         ElMessage({
-            message: '登录成功',
+            message: t("sign.successMessage"),
             type: 'success',
         })
         router.push("home")
@@ -66,21 +69,21 @@ const clickSignIn = async () => //点击登录
     else if(resp.data.code == 400) //密码错误
     {
         ElMessage({
-            message: '密码错误',
+            message: t("sign.wrongMessage"),
             type: 'warning',
         })
     }
     else if(resp.data.code == 404) //查无用户
     {
         ElMessage({
-            message: '查无此用户',
+            message: t("sign.notfoundMessage"),
             type: 'warning',
         })
     }
     else //参数错误
     {
         ElMessage({
-            message: '参数错误',
+            message: t("static.paramsError"),
             type: 'error',
         })
     }

@@ -1,0 +1,41 @@
+package com.spring.springboot.interceptor;
+
+import cn.dev33.satoken.stp.StpUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+@Component
+public class intercept implements HandlerInterceptor
+{
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception
+    {
+        String requestUrl = request.getRequestURI();
+        System.out.println("请求URL : " + requestUrl);
+        String tokenValue = request.getHeader("Authorization");
+        if (tokenValue == null) //未登录 无token
+        {
+            response.setStatus(201);
+            System.out.println("状态 : 未登录");
+            return true;
+        }
+        else //登录过 有token
+        {
+            Object loginId = StpUtil.getLoginIdByToken(tokenValue);
+            if(loginId == null) //token过期
+            {
+                response.setStatus(202);
+                System.out.println("状态 : token过期");
+                return true;
+            }
+            else //正常的登录状态
+            {
+                response.setStatus(200);
+                System.out.println("状态 : 已登录");
+                return true;
+            }
+        }
+    }
+}

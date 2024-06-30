@@ -15,6 +15,7 @@ export default
         line: "线路",
         management: "管理",
         operations: "操作",
+        noties: "通知",
     },
     static:
     {
@@ -22,6 +23,7 @@ export default
         signupTitle: "注册 SRIC-FMS",
         newTo: "新用户？",
         alreadyHave: "已有账户？",
+        paramsError: "参数错误",
     },
     menu:
     {
@@ -38,6 +40,12 @@ export default
         forgotPassword: "忘记密码",
         code: "验证码",
         sendCode: "发送验证码",
+        successMessage: "登录成功",
+        wrongMessage: "密码错误",
+        notfoundMessage: "查无此用户",
+        tokenTimeOut: "您的登录已过期",
+        signout: "退出登录",
+
     },
     user:
     {

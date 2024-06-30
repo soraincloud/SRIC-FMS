@@ -62,7 +62,7 @@
               </el-tooltip>
             </div>
             <div v-if="isSign" class="app-user-message-avatar-div">
-              <el-avatar :src="avatarUrl"></el-avatar>
+              <el-avatar :src="avatarUrl" @click="clickAvatar"></el-avatar>
             </div>
             <div v-if="!isSign">
               <el-button type="primary" class="app-user-message-sign-button" @click="clickSignIn" text>{{ $t("common.signin") }}</el-button>
@@ -75,6 +75,20 @@
         <router-view/>
       </el-main>
     </el-container>
+    <el-drawer v-model="personalMenuDrawer">
+      <template #header>
+        <div class="app-user-message-avatar-div">
+          <el-avatar :src="avatarUrl" @click="clickAvatar"></el-avatar>
+          <p class="app-user-message-name">{{ username }}</p>
+        </div>
+      </template>
+      <el-button @click="clickSignOut" class="app-user-message-menu-button" text>
+        <el-icon class="app-user-message-menu-icon">
+          <SwitchButton />
+        </el-icon>
+        {{ $t("sign.signout") }}
+      </el-button>
+    </el-drawer>
   </div>
 </template>
 
@@ -101,6 +115,7 @@ const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像
 const username = ref("null") //用户名显示
 const isSign = ref(false) //是否已经登录
 const language = ref("en") //切换按钮绑定的语言
+const personalMenuDrawer = ref(false) //个人菜单抽屉状态
 
 const changeDarkMode = () => //改变模式
 {
@@ -134,9 +149,19 @@ const languageChange = (lang :any) => //语言改变
   localStorage.setItem("language",lang)
 }
 
+const clickAvatar = () => //点击头像
+{
+  personalMenuDrawer.value = true
+}
+
+const clickSignOut = () => //点击登出
+{
+
+}
+
 const checkSignLocalStorage = () => //检查是否登录的localStorage
 {
-  if(localStorage.getItem("isLogin") == "true" || false) //没有值即为false
+  if(localStorage.getItem("isSignIn") == "true" || false) //没有值即为false
   {
     isSign.value = true
   }
@@ -158,6 +183,11 @@ const checkLanguageLocalStorage = () => //检查当前语言的localStorage
   }
 }
 
+router.beforeEach((to, from, next) => { //路由变动
+  checkSignLocalStorage()
+  next()
+})
+
 const windowSizeChange = () => //窗口大小变化时重新计算并设置个人信息卡片位置
 {
   
@@ -167,7 +197,6 @@ checkSignLocalStorage() //初始化时检查一次登录状态
 checkLanguageLocalStorage() //初始化时获取当前语言
  
 window.addEventListener('resize',windowSizeChange) //监听窗口变动
-
 
 </script>
 
@@ -229,6 +258,28 @@ window.addEventListener('resize',windowSizeChange) //监听窗口变动
   display: flex;
   align-items: center;
   margin-left: 10px;
+  margin-right: 10px;
+}
+
+.app-user-message-name
+{
+  margin-left: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+html.dark .app-user-message-name
+{
+  color: white;
+}
+
+.app-user-message-menu-button
+{
+  width: 100%;
+}
+
+.app-user-message-menu-icon
+{
   margin-right: 10px;
 }
 
