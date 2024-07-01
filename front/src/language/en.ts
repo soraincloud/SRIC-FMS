@@ -8,7 +8,8 @@ export default
         yes: "Yes",
         no: "No",
         submit: "Submit",
-        cancel: "cancel",
+        confirm: "Confirm",
+        cancel: "Cancel",
         signin: "SignIn",
         signup: "SignUp",
         language: "language",
@@ -16,6 +17,7 @@ export default
         management: "management",
         operations: "Operations",
         noties: "noties",
+        tips: "tips",
     },
     static:
     {
@@ -24,6 +26,7 @@ export default
         newTo: "New to SRIC-FMS?",
         alreadyHave: "Already have an account?",
         paramsError: "Params error",
+        signOutConfirm: "sure to sign out ?",
     },
     menu:
     {
@@ -44,7 +47,7 @@ export default
         wrongMessage: "wrong password",
         notfoundMessage: "account not found",
         tokenTimeOut: "Your sign in has expired",
-        signout: "SignOut",
+        signout: "Sign out",
     },
     user:
     {

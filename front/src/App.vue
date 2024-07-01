@@ -75,7 +75,7 @@
         <router-view/>
       </el-main>
     </el-container>
-    <el-drawer v-model="personalMenuDrawer">
+    <el-drawer v-model="personalMenuDrawer" size="300">
       <template #header>
         <div class="app-user-message-avatar-div">
           <el-avatar :src="avatarUrl" @click="clickAvatar"></el-avatar>
@@ -89,6 +89,18 @@
         {{ $t("sign.signout") }}
       </el-button>
     </el-drawer>
+    <el-dialog v-model="signOutDialogVisible" width="500">
+      <template #header>{{ $t("common.tips") }}</template>
+      {{ $t("static.signOutConfirm") }}
+      <template #footer>
+        <el-button @click="signOutDialogVisible = false" text bg>
+          {{ $t("common.cancel") }}
+        </el-button>
+        <el-button type="danger" @click="clickConfirmSignOut">
+          {{ $t("common.confirm") }}
+        </el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -116,6 +128,7 @@ const username = ref("null") //用户名显示
 const isSign = ref(false) //是否已经登录
 const language = ref("en") //切换按钮绑定的语言
 const personalMenuDrawer = ref(false) //个人菜单抽屉状态
+const signOutDialogVisible = ref(false) //退出登录对话框状态
 
 const changeDarkMode = () => //改变模式
 {
@@ -156,7 +169,17 @@ const clickAvatar = () => //点击头像
 
 const clickSignOut = () => //点击登出
 {
+  signOutDialogVisible.value = true
+}
 
+const clickConfirmSignOut = () => //点击确认登出
+{
+  localStorage.setItem("isSignIn","false")
+  localStorage.removeItem("token")
+  isSign.value = false
+  signOutDialogVisible.value = false
+  personalMenuDrawer.value = false
+  router.push("SignIn")
 }
 
 const checkSignLocalStorage = () => //检查是否登录的localStorage

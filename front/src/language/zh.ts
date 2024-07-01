@@ -7,6 +7,7 @@ export default
         edit: "编辑",
         yes: "确认",
         no: "取消",
+        confirm: "确认",
         submit: "提交",
         cancel: "取消",
         signin: "登录",
@@ -16,14 +17,16 @@ export default
         management: "管理",
         operations: "操作",
         noties: "通知",
+        tips: "提示",
     },
     static:
     {
         signinTitle: "登录 SRIC-FMS",
         signupTitle: "注册 SRIC-FMS",
         newTo: "新用户？",
-        alreadyHave: "已有账户？",
+        alreadyHave: "已有账户 ?",
         paramsError: "参数错误",
+        signOutConfirm: "确认退出登录 ?",
     },
     menu:
     {
@@ -45,7 +48,6 @@ export default
         notfoundMessage: "查无此用户",
         tokenTimeOut: "您的登录已过期",
         signout: "退出登录",
-
     },
     user:
     {
