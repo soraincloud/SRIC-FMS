@@ -8,6 +8,7 @@ import java.util.Date;
 public class User
 {
     private int id;
+    private int uid;
     private String username;
     private String password;
     private String mail;

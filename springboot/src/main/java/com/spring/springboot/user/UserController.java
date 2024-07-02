@@ -3,7 +3,6 @@ package com.spring.springboot.user;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.spring.springboot.response.ResponseCode;
-import com.spring.springboot.response.SignInResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,13 +59,16 @@ public class UserController
     {
         SignInResponse signInResponse = new SignInResponse();
         SignInCode signInCode = userService.signIn(user);
-        if(signInCode.getCode() == 200)
+        if(signInCode.getCode() == 200) //登录成功
         {
-            StpUtil.login(signInCode.getId());
+            StpUtil.login(signInCode.getId()); //通过id登录
+            SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+            signInResponse.setToken(tokenInfo.tokenValue); //添加token
+            signInResponse.setUid(signInCode.getUid()); //添加uid
+            signInResponse.setUsername(signInCode.getUsername()); //添加用户名
+            signInResponse.setAvatar(signInCode.getAvatar()); //添加头像
         }
-        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         signInResponse.setCode(signInCode.getCode());
-        signInResponse.setToken(tokenInfo.tokenValue);
         return signInResponse;
     }
 }

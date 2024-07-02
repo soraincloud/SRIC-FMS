@@ -1,4 +1,4 @@
-package com.spring.springboot.response;
+package com.spring.springboot.user;
 
 import lombok.Data;
 
@@ -10,4 +10,7 @@ public class SignInResponse
 {
     private int code;
     private String token;
+    private int uid;
+    private String username;
+    private String avatar;
 }

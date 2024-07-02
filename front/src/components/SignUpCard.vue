@@ -101,6 +101,11 @@ const clickSendCode = () => //点击发送验证码
     
 }
 
+const doSignUpRequest = () => //发送注册请求
+{
+
+}
+
 const clickSignUp = async (formEl: FormInstance | undefined) => //点击注册
 {
     if (!formEl) return
@@ -108,7 +113,7 @@ const clickSignUp = async (formEl: FormInstance | undefined) => //点击注册
         if (valid) {
             if(signUpForm.password == signUpForm.passwordRepeat)
             {
-
+                doSignUpRequest()
             }
             else
             {

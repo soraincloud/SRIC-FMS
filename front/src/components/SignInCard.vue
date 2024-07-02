@@ -61,7 +61,7 @@ const signInFormRules = reactive //登录信息表单的rule
     ],
 })
 
-const doSignInRequest = async () =>
+const doSignInRequest = async () => //发送登录请求
 {
     let passwordHash = CryptoJS.HmacSHA256(signInForm.password,"SRIC") //使用SHA-256进行哈希运算
     let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
@@ -75,6 +75,9 @@ const doSignInRequest = async () =>
     {
         localStorage.setItem("token",resp.data.token)
         localStorage.setItem("isSignIn","true")
+        localStorage.setItem("uid",resp.data.uid)
+        localStorage.setItem("username",resp.data.username)
+        localStorage.setItem("avatar",resp.data.avatar)
         ElMessage({
             message: t("sign.successMessage"),
             type: 'success',

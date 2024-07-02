@@ -77,9 +77,12 @@
     </el-container>
     <el-drawer v-model="personalMenuDrawer" size="300">
       <template #header>
-        <div class="app-user-message-avatar-div">
-          <el-avatar :src="avatarUrl" @click="clickAvatar"></el-avatar>
-          <p class="app-user-message-name">{{ username }}</p>
+        <div class="app-user-message">
+          <div class="app-user-message-avatar-div">
+            <el-avatar :src="avatarUrl" @click="clickAvatar"></el-avatar>
+            <p class="app-user-message-name">{{ username }}</p>
+          </div>
+          <div class="app-user-message-uid">UID : 114514</div>
         </div>
       </template>
       <el-button @click="clickSignOut" class="app-user-message-menu-button" text>
@@ -124,7 +127,7 @@ if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设
 }
 
 const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像URL
-const username = ref("null") //用户名显示
+const username = ref("NULL") //用户名显示
 const isSign = ref(false) //是否已经登录
 const language = ref("en") //切换按钮绑定的语言
 const personalMenuDrawer = ref(false) //个人菜单抽屉状态
@@ -187,6 +190,8 @@ const checkSignLocalStorage = () => //检查是否登录的localStorage
   if(localStorage.getItem("isSignIn") == "true" || false) //没有值即为false
   {
     isSign.value = true
+    avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + localStorage.getItem("avatar")
+    username.value = localStorage.getItem("username") || "NULL"
   }
   else
   {
@@ -276,6 +281,13 @@ window.addEventListener('resize',windowSizeChange) //监听窗口变动
   margin-left: 10px;
 }
 
+.app-user-message
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .app-user-message-avatar-div
 {
   display: flex;
@@ -288,10 +300,24 @@ window.addEventListener('resize',windowSizeChange) //监听窗口变动
 {
   margin-left: 20px;
   font-weight: bold;
+  font-size: 20px;
   color: black;
 }
 
 html.dark .app-user-message-name
+{
+  color: white;
+}
+
+.app-user-message-uid
+{
+  margin-left: 70px;
+  font-weight: bold;
+  font-size: 12px;
+  color: black;
+}
+
+html.dark .app-user-message-uid
 {
   color: white;
 }
@@ -335,5 +361,10 @@ html.dark .app-user-message-name
 :deep(.el-radio)
 {
   display: block;
+}
+
+.el-drawer__header
+{
+  margin-bottom: 0px !important;
 }
 </style>

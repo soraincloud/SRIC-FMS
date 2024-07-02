@@ -64,7 +64,9 @@ public class UserServiceImpl implements UserService
             if(userSignIn.getPassword().equals(user.getPassword()))
             {
                 signInCode.setCode(200); //用户名密码匹配
-                signInCode.setId(userSignIn.getId());
+                signInCode.setUid(userSignIn.getUid());
+                signInCode.setUsername(userSignIn.getUsername());
+                signInCode.setAvatar(userSignIn.getAvatar());
             }
             else
             {
