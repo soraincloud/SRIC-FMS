@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,reactive } from 'vue'
+import { ref,reactive,h } from 'vue'
 import { signIn } from '@/axios/api/user';
 import { ElMessage } from 'element-plus'
 import CryptoJS from 'crypto-js' //SHA-256加密
@@ -53,11 +53,11 @@ const signInFormRules = reactive //登录信息表单的rule
 ({
     username:
     [
-        { required: true, message: 'Please input username', trigger: 'blur' },
+        { required: true, message: t("rules.username"), trigger: 'blur' },
     ],
     password:
     [
-        { required: true, message: 'Please input password', trigger: 'blur' },
+        { required: true, message: t("rules.password"), trigger: 'blur' },
     ],
 })
 

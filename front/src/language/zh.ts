@@ -60,4 +60,13 @@ export default
     {
         editForced: "强制修改",
     },
+    rules:
+    {
+        username: "请输入用户名",
+        password: "请输入密码",
+        passwordRepeat: "请重复密码",
+        mail: "请输入邮箱",
+        mailConfirm: "请输入正确的邮箱地址",
+        code: "请输入验证码",
+    },
 }

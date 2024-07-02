@@ -48,6 +48,7 @@ export default
         notfoundMessage: "account not found",
         tokenTimeOut: "Your sign in has expired",
         signout: "Sign out",
+        passwordCommon: "Passwords do not match",
     },
     user:
     {
@@ -59,5 +60,14 @@ export default
     manage: 
     {
         editForced: "edit forced",
+    },
+    rules:
+    {
+        "username": "Please input username",
+        "password": "Please input password",
+        "passwordRepeat": "Please repeat password",
+        "mail": "Please input email",
+        "mailConfirm": "Please input a valid email address",
+        "code": "Please input verification code",
     },
 }
