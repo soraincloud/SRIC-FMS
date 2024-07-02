@@ -148,7 +148,7 @@ const clickSignIn = () => //点击登录
 
 const clickSignUp = () => //点击注册
 {
-
+  router.push("Signup")
 }
 
 const clickManagement = () => //点击管理

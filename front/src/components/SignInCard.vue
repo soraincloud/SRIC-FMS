@@ -1,20 +1,20 @@
 <template>
     <el-card>
-        <el-form :module="form">
-            <el-form-item>
+        <el-form ref="signInFormRef" :model="signInForm" :rules="signInFormRules">
+            <el-form-item prop="username">
                 <span slot="label">
                     {{ $t("sign.username") }}
                 </span>
-                <el-input v-model="form.username" clearable></el-input>
+                <el-input v-model="signInForm.username" clearable></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="password">
                 <span slot="label">
                     {{ $t("sign.password") }}
                 </span>
-                <el-input v-model="form.password" type="password" show-password clearable></el-input>
+                <el-input v-model="signInForm.password" type="password" show-password clearable></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button @click="clickSignIn" type="success" style="width: 100%;">{{ $t("common.signin") }}</el-button>
+                <el-button @click="clickSignIn(signInFormRef)" type="success" style="width: 100%;">{{ $t("common.signin") }}</el-button>
             </el-form-item>
         </el-form>
         <div>
@@ -35,24 +35,39 @@ import { ElMessage } from 'element-plus'
 import CryptoJS from 'crypto-js' //SHA-256加密
 import { useRouter } from "vue-router";
 import i18n from '@/language';
+import type { FormInstance } from 'element-plus'
 
 const { t } = i18n.global
 
 const router = useRouter()
 
-const form = reactive //登录信息表单
+const signInForm = reactive //登录信息表单
 ({
     username: '',
     password: '',
 })
 
-const clickSignIn = async () => //点击登录
+const signInFormRef = ref<FormInstance>() //登录信息表单的ref
+
+const signInFormRules = reactive //登录信息表单的rule
+({
+    username:
+    [
+        { required: true, message: 'Please input username', trigger: 'blur' },
+    ],
+    password:
+    [
+        { required: true, message: 'Please input password', trigger: 'blur' },
+    ],
+})
+
+const doSignInRequest = async () =>
 {
-    let passwordHash = CryptoJS.HmacSHA256(form.password,"SRIC") //使用SHA-256进行哈希运算
+    let passwordHash = CryptoJS.HmacSHA256(signInForm.password,"SRIC") //使用SHA-256进行哈希运算
     let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
     const params = 
     {
-        username: form.username,
+        username: signInForm.username,
         password: passwordHashString,
     }
     const resp = await signIn(params)
@@ -87,6 +102,18 @@ const clickSignIn = async () => //点击登录
             type: 'error',
         })
     }
+}
+
+const clickSignIn = async (formEl: FormInstance | undefined) => //点击登录
+{
+    if (!formEl) return
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            doSignInRequest()
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
 }
 
 const clickSignUp = () => //点击跳转到注册
