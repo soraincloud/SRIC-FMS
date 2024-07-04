@@ -21,4 +21,7 @@ public interface UserMapper
 
     @Select(value = "SELECT * FROM `data_user` WHERE USERNAME = #{username}")
     User getUserByUsername(@Param("username") String username);
+
+    @Select(value = "SELECT * FROM `data_user` WHERE UID = #{uid}")
+    User getUserByUid(@Param("uid") int uid);
 }

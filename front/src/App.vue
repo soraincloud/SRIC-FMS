@@ -113,6 +113,11 @@ import { useRoute,useRouter } from 'vue-router'
 import { ref,computed } from 'vue'
 import axios from 'axios';
 import { useI18n } from 'vue-i18n'
+import { getUserMessage } from '@/axios/api/user'
+import { ElNotification } from 'element-plus'
+import { h } from 'vue'
+import i18n from '@/language';
+const { t } = i18n.global
 
 const { locale } = useI18n()
 
@@ -185,21 +190,39 @@ const clickConfirmSignOut = () => //点击确认登出
   router.push("SignIn")
 }
 
+
+const checkUserMessage = async () => //更新用户信息(用户名，头像)
+{
+  const resp = await getUserMessage({ uid: localStorage.getItem("uid") })
+  username.value = resp.data.username
+  avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
+  if(resp.data.signCode == 500) //token过期
+  {
+    ElNotification({
+      title: t("common.noties"),
+      message: h('i', { style: 'color: teal' }, t("sign.tokenTimeOut")),
+      
+    })
+    localStorage.setItem("isSignIn","false")
+    localStorage.removeItem("token")
+    isSign.value = false
+  }
+}
+
 const checkSignLocalStorage = () => //检查是否登录的localStorage
 {
-  if(localStorage.getItem("isSignIn") == "true" || false) //没有值即为false
+  if(localStorage.getItem("isSignIn") == "true" || false) //已登录 (没有值即为false)
   {
     isSign.value = true
-    avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + localStorage.getItem("avatar")
-    username.value = localStorage.getItem("username") || "NULL"
+    checkUserMessage() //更新用户信息(用户名，头像)
   }
-  else
+  else //未登录
   {
     isSign.value = false
   }
 }
 
-const checkLanguageLocalStorage = () => //检查当前语言的localStorage
+const checkLanguageLocalStorage = () => //检查当前语言的localStorage 更新用户信息(用户名，头像)
 {
   if(localStorage.getItem("language") == "zh")
   {
@@ -212,7 +235,7 @@ const checkLanguageLocalStorage = () => //检查当前语言的localStorage
 }
 
 router.beforeEach((to, from, next) => { //路由变动
-  checkSignLocalStorage()
+  checkSignLocalStorage()//检查是否登录的localStorage 
   next()
 })
 

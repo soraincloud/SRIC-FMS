@@ -13,11 +13,11 @@ public class intercept implements HandlerInterceptor
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception
     {
         String requestUrl = request.getRequestURI();
+        System.out.println("- - - - -  Q w Q  - - - - -");
         System.out.println("请求URL : " + requestUrl);
         String tokenValue = request.getHeader("Authorization");
         if (tokenValue == null) //未登录 无token
         {
-            response.setStatus(201);
             System.out.println("状态 : 未登录");
             return true;
         }
@@ -26,13 +26,11 @@ public class intercept implements HandlerInterceptor
             Object loginId = StpUtil.getLoginIdByToken(tokenValue);
             if(loginId == null) //token过期
             {
-                response.setStatus(202);
                 System.out.println("状态 : token过期");
                 return true;
             }
             else //正常的登录状态
             {
-                response.setStatus(200);
                 System.out.println("状态 : 已登录");
                 return true;
             }

@@ -48,6 +48,7 @@ export default
         notfoundMessage: "查无此用户",
         tokenTimeOut: "您的登录已过期",
         signout: "退出登录",
+        passwordCommon: "两次输入密码不相同",
     },
     user:
     {

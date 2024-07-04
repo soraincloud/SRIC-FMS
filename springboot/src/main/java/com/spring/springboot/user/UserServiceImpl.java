@@ -75,4 +75,15 @@ public class UserServiceImpl implements UserService
         }
         return signInCode;
     }
+
+    @Override
+    public UserMessageResponse getUserByUid(int uid)
+    {
+        User user = userMapper.getUserByUid(uid);
+        UserMessageResponse userMessage = new UserMessageResponse();
+        userMessage.setUid(user.getUid());
+        userMessage.setUsername(user.getUsername());
+        userMessage.setAvatar(user.getAvatar());
+        return userMessage;
+    }
 }

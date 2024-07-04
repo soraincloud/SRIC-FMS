@@ -71,4 +71,27 @@ public class UserController
         signInResponse.setCode(signInCode.getCode());
         return signInResponse;
     }
+
+    @GetMapping("/getUserMessage")
+    public UserMessageResponse getUserMessage(@RequestParam int uid,@RequestHeader("Authorization") String tokenValue)
+    {
+        UserMessageResponse userMessage = userService.getUserByUid(uid);
+        if (tokenValue == null) //未登录 无token
+        {
+            userMessage.setSignCode(400);
+        }
+        else //登录过 有token
+        {
+            Object loginId = StpUtil.getLoginIdByToken(tokenValue);
+            if(loginId == null) //token过期
+            {
+                userMessage.setSignCode(500);
+            }
+            else //正常的登录状态
+            {
+                userMessage.setSignCode(200);
+            }
+        }
+        return userMessage;
+    }
 }

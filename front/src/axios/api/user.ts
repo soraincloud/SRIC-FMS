@@ -19,3 +19,8 @@ export function signIn(params:any)
 {
     return post('/user/signIn',params)
 }
+
+export function getUserMessage(params:any)
+{
+    return get('/user/getUserMessage',params)
+}
