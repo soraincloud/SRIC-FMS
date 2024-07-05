@@ -23,17 +23,18 @@
                 <span slot="label">
                     {{ $t("user.mail") }}
                 </span>
-                <el-input v-model="signUpForm.mail" clearable>
-                    <template #append>
-                        <el-button @click="clickSendCode">{{ $t("sign.sendCode") }}</el-button>
-                    </template>
-                </el-input>
+                <el-input v-model="signUpForm.mail" clearable></el-input>
             </el-form-item>
             <el-form-item prop="code">
                 <span slot="label">
                     {{ $t("sign.code") }}
                 </span>
-                <el-input v-model="signUpForm.code" clearable></el-input>
+                <el-input v-model="signUpForm.code" clearable>
+                    <template #append>
+                        <el-button v-if="!isDisabled" @click="clickSendCode">{{ $t("sign.sendCode") }}</el-button>
+                        <el-button v-if="isDisabled" disabled>{{ timeCounting }} S</el-button>
+                    </template>
+                </el-input>
             </el-form-item>
             <el-form-item>
                 <el-button @click="clickSignUp(signUpFormRef)" type="success" style="width: 100%;">{{ $t("common.signup") }}</el-button>
@@ -59,6 +60,9 @@ import i18n from '@/language';
 const { t } = i18n.global
 
 const router = useRouter()
+
+const isDisabled = ref(false)
+const timeCounting = ref("60")
 
 const signUpForm = reactive //登录信息表单
 ({
@@ -96,9 +100,46 @@ const signUpFormRules = reactive //注册信息表单的rule
     ],
 })
 
+const doSendCodeRequest = () => //发送验证码请求
+{
+
+}
+
+const setMailTimeout = () => //设置按钮冷却时间
+{
+    let timeLeft = 60
+    isDisabled.value = true
+    timeCounting.value = `${timeLeft}`
+
+    const timer = setInterval(() => 
+    {
+        timeLeft--
+        timeCounting.value = `${timeLeft}`
+        if(timeLeft <= 0)
+        {
+            clearInterval(timer)
+            isDisabled.value = false
+            timeCounting.value = "60"
+        }
+    }, 1000)
+}
+
 const clickSendCode = () => //点击发送验证码
 {
-    
+    const mailCheck = /^([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
+    if(mailCheck.test(signUpForm.mail)) //邮箱合法
+    {
+        doSendCodeRequest()
+        isDisabled.value = true
+        setMailTimeout()
+    }
+    else
+    {
+        ElMessage({
+            message: t("rules.mailConfirm"),
+            type: 'warning',
+        })
+    }
 }
 
 const doSignUpRequest = () => //发送注册请求
