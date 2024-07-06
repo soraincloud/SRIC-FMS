@@ -50,6 +50,7 @@ export default
         signout: "退出登录",
         passwordCommon: "两次输入密码不相同",
         sendSuccess: "发送成功",
+        mailHasBeenUsed: "邮箱已被注册",
     },
     user:
     {

@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService
         List<User> userList = userMapper.getUserList();
         for(int i = 0;i < userList.size();i++)
         {
+            userList.get(i).setId("");
             userList.get(i).setPassword("");
             String mail = userList.get(i).getMail();
             int length = mail.length();
@@ -48,16 +49,16 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public boolean updateUsernameById(User user)
+    public boolean updateUsernameByUid(User user)
     {
-        int updateNum = userMapper.updateUsernameById(user.getId(), user.getUsername());
+        int updateNum = userMapper.updateUsernameByUid(user.getUid(), user.getUsername());
         return updateNum > 0;
     }
 
     @Override
-    public boolean updatePasswordById(User user)
+    public boolean updatePasswordByUid(User user)
     {
-        int updateNum = userMapper.updatePasswordById(user.getId(), user.getPassword());
+        int updateNum = userMapper.updatePasswordByUid(user.getUid(), user.getPassword());
         return updateNum > 0;
     }
 
@@ -101,6 +102,11 @@ public class UserServiceImpl implements UserService
     @Override
     public int getCodeByMail(String mail)
     {
+        User user = userMapper.getUserByMail(mail);
+        if(user != null) //邮箱已被注册
+        {
+            return 400;
+        }
         String code = String.valueOf(new Random().nextInt(900000) + 100000); //生成六位数验证码
         redisTemplate.opsForValue().set(mail, code, 10, TimeUnit.MINUTES); //在redis中添加记录 保持十分钟
         System.out.println("邮箱 : " + mail);
@@ -109,5 +115,22 @@ public class UserServiceImpl implements UserService
         String text = "Here is your verification code:\n\n" + code + "\n\n\n\n\n" + "SRIC-FMS team";
         mailService.sendEmail(mail,subject,text);
         return 200;
+    }
+
+    @Override
+    public int signUp(SignUpRequest signUpRequest)
+    {
+        User userByUsername = userMapper.getUserByUsername(signUpRequest.getUsername()); //通过输入的用户名查找是否有用户
+        if(userByUsername != null) //用户名已被注册
+        {
+            return 400;
+        }
+        String code = redisTemplate.opsForValue().get(signUpRequest.getMail()); //通过邮箱获取验证码
+        if(code.equals(signUpRequest.getCode()))
+        {
+            
+            return 200;
+        }
+        return 401;
     }
 }

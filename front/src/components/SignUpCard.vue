@@ -110,6 +110,13 @@ const doSendCodeRequest = async () => //发送验证码请求
             type: 'success',
         })
     }
+    else if(resp.data.code == 400)
+    {
+        ElMessage({
+            message: t("sign.mailHasBeenUsed"),
+            type: 'warning',
+        })
+    }
     else
     {
         ElMessage({

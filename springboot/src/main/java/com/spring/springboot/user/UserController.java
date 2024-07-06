@@ -4,11 +4,9 @@ import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.spring.springboot.response.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
 
 @CrossOrigin
 @RestController
@@ -24,10 +22,10 @@ public class UserController
         return userService.getUserMessageList();
     }
 
-    @PostMapping("/updateUsernameById")
-    public ResponseCode updateUsernameById(@RequestBody User user)
+    @PostMapping("/updateUsernameByUid")
+    public ResponseCode updateUsernameByUid(@RequestBody User user)
     {
-        boolean isSuccess =  userService.updateUsernameById(user);
+        boolean isSuccess =  userService.updateUsernameByUid(user);
         ResponseCode responseCode = new ResponseCode();
         if(isSuccess)
         {
@@ -40,10 +38,10 @@ public class UserController
         return responseCode;
     }
 
-    @PostMapping("/updatePasswordById")
-    public ResponseCode updatePasswordById(@RequestBody User user)
+    @PostMapping("/updatePasswordByUid")
+    public ResponseCode updatePasswordByUid(@RequestBody User user)
     {
-        boolean isSuccess = userService.updatePasswordById(user);
+        boolean isSuccess = userService.updatePasswordByUid(user);
         ResponseCode responseCode = new ResponseCode();
         if(isSuccess)
         {
@@ -102,6 +100,14 @@ public class UserController
     {
         ResponseCode responseCode = new ResponseCode();
         responseCode.setCode(userService.getCodeByMail(mail));
+        return responseCode;
+    }
+
+    @PostMapping("/signUp")
+    public ResponseCode signIn(@RequestBody SignUpRequest signUpRequest)
+    {
+        ResponseCode responseCode = new ResponseCode();
+
         return responseCode;
     }
 }

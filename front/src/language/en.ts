@@ -50,6 +50,7 @@ export default
         signout: "Sign out",
         passwordCommon: "Passwords do not match",
         sendSuccess: "sending successful",
+        mailHasBeenUsed: "mail has been used",
     },
     user:
     {
