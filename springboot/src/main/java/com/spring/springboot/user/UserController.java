@@ -4,9 +4,11 @@ import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.spring.springboot.response.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @CrossOrigin
 @RestController
@@ -93,5 +95,13 @@ public class UserController
             }
         }
         return userMessage;
+    }
+
+    @GetMapping("/getCodeByMail")
+    public ResponseCode getCodeByMail(@RequestParam String mail)
+    {
+        ResponseCode responseCode = new ResponseCode();
+        responseCode.setCode(userService.getCodeByMail(mail));
+        return responseCode;
     }
 }

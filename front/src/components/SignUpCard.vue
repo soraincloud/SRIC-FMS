@@ -50,7 +50,7 @@
 
 <script lang="ts" setup>
 import { ref,reactive } from 'vue'
-import { signIn } from '@/axios/api/user';
+import { getCodeByMail } from '@/axios/api/user';
 import { ElMessage } from 'element-plus'
 import CryptoJS from 'crypto-js' //SHA-256加密
 import { useRouter } from "vue-router";
@@ -100,9 +100,23 @@ const signUpFormRules = reactive //注册信息表单的rule
     ],
 })
 
-const doSendCodeRequest = () => //发送验证码请求
+const doSendCodeRequest = async () => //发送验证码请求
 {
-
+    const resp = await getCodeByMail({ mail: signUpForm.mail })
+    if(resp.data.code == 200)
+    {
+        ElMessage({
+            message: t("sign.sendSuccess"),
+            type: 'success',
+        })
+    }
+    else
+    {
+        ElMessage({
+            message: t("static.paramsError"),
+            type: 'error',
+        })
+    }
 }
 
 const setMailTimeout = () => //设置按钮冷却时间

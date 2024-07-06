@@ -24,3 +24,8 @@ export function getUserMessage(params:any)
 {
     return get('/user/getUserMessage',params)
 }
+
+export function getCodeByMail(params:any)
+{
+    return get('/user/getCodeByMail',params)
+}

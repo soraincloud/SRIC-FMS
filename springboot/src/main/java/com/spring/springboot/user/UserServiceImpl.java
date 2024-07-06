@@ -1,16 +1,27 @@
 package com.spring.springboot.user;
 
+import com.spring.springboot.tools.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserServiceImpl implements UserService
 {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
+    private MailService mailService;
 
     @Override
     public List<User> getUserList()
@@ -85,5 +96,18 @@ public class UserServiceImpl implements UserService
         userMessage.setUsername(user.getUsername());
         userMessage.setAvatar(user.getAvatar());
         return userMessage;
+    }
+
+    @Override
+    public int getCodeByMail(String mail)
+    {
+        String code = String.valueOf(new Random().nextInt(900000) + 100000); //生成六位数验证码
+        redisTemplate.opsForValue().set(mail, code, 10, TimeUnit.MINUTES); //在redis中添加记录 保持十分钟
+        System.out.println("邮箱 : " + mail);
+        System.out.println("验证码 : " + code);
+        String subject = "SRIC-FMS: E-mail verification";
+        String text = "Here is your verification code:\n\n" + code + "\n\n\n\n\n" + "SRIC-FMS team";
+        mailService.sendEmail(mail,subject,text);
+        return 200;
     }
 }

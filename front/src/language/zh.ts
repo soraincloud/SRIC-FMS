@@ -49,6 +49,7 @@ export default
         tokenTimeOut: "您的登录已过期",
         signout: "退出登录",
         passwordCommon: "两次输入密码不相同",
+        sendSuccess: "发送成功",
     },
     user:
     {

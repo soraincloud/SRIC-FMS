@@ -49,6 +49,7 @@ export default
         tokenTimeOut: "Your sign in has expired",
         signout: "Sign out",
         passwordCommon: "Passwords do not match",
+        sendSuccess: "sending successful",
     },
     user:
     {

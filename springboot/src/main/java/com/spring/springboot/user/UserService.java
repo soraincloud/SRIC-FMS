@@ -12,4 +12,5 @@ public interface UserService
     boolean updatePasswordById(User user);
     SignInCode signIn(User user);
     UserMessageResponse getUserByUid(int uid);
+    int getCodeByMail(String mail);
 }
