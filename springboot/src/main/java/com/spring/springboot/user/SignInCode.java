@@ -6,8 +6,6 @@ import lombok.Data;
 public class SignInCode
 {
     private int code;
-    private String id;
+    private String uuid;
     private int uid;
-    private String username;
-    private String avatar;
 }

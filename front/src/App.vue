@@ -184,6 +184,8 @@ const clickConfirmSignOut = () => //点击确认登出
 {
   localStorage.setItem("isSignIn","false")
   localStorage.removeItem("token")
+  localStorage.removeItem("uuid")
+  localStorage.removeItem("uid")
   isSign.value = false
   signOutDialogVisible.value = false
   personalMenuDrawer.value = false
@@ -193,7 +195,7 @@ const clickConfirmSignOut = () => //点击确认登出
 
 const checkUserMessage = async () => //更新用户信息(用户名，头像)
 {
-  const resp = await getUserMessage({ uid: localStorage.getItem("uid") })
+  const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
   username.value = resp.data.username
   avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
   if(resp.data.signCode == 500) //token过期
@@ -205,6 +207,8 @@ const checkUserMessage = async () => //更新用户信息(用户名，头像)
     })
     localStorage.setItem("isSignIn","false")
     localStorage.removeItem("token")
+    localStorage.removeItem("uuid")
+    localStorage.removeItem("uid")
     isSign.value = false
   }
 }

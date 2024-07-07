@@ -5,14 +5,14 @@ export function getUserMessageList(params:any)
     return get('/user/getUserMessageList',params)
 }
 
-export function updateUsernameByUid(params:any)
+export function updateUsernameByUuid(params:any)
 {
-    return post('/user/updateUsernameByUid',params)
+    return post('/user/updateUsernameByUuid',params)
 }
 
-export function updatePasswordByUid(params:any)
+export function updatePasswordByUuid(params:any)
 {
-    return post('/user/updatePasswordByUid',params)
+    return post('/user/updatePasswordByUuid',params)
 }
 
 export function signIn(params:any)

@@ -30,12 +30,11 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public List<User> getUserMessageList() //将用户信息封装为 id 名称 邮箱 时间
+    public List<User> getUserMessageList() //将用户信息封装为 uuid UID 名称 邮箱 时间
     {
         List<User> userList = userMapper.getUserList();
         for(int i = 0;i < userList.size();i++)
         {
-            userList.get(i).setId("");
             userList.get(i).setPassword("");
             String mail = userList.get(i).getMail();
             int length = mail.length();
@@ -49,49 +48,48 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public boolean updateUsernameByUid(User user)
+    public boolean updateUsernameByUuid(User user)
     {
-        int updateNum = userMapper.updateUsernameByUid(user.getUid(), user.getUsername());
+        int updateNum = userMapper.updateUsernameByUuid(user.getUuid(), user.getUsername());
         return updateNum > 0;
     }
 
     @Override
-    public boolean updatePasswordByUid(User user)
+    public boolean updatePasswordByUuid(User user)
     {
-        int updateNum = userMapper.updatePasswordByUid(user.getUid(), user.getPassword());
+        int updateNum = userMapper.updatePasswordByUuid(user.getUuid(), user.getPassword());
         return updateNum > 0;
     }
 
     @Override
-    public SignInCode signIn(User user)
+    public SignInResponse signIn(User user)
     {
         User userSignIn = userMapper.getUserByUsername(user.getUsername()); //通过用户名获取用户信息
-        SignInCode signInCode = new SignInCode();
+        SignInResponse signInResponse = new SignInResponse();
         if(userSignIn == null)
         {
-            signInCode.setCode(404); //查无此用户
+            signInResponse.setCode(404); //查无此用户
         }
         else
         {
-            if(userSignIn.getPassword().equals(user.getPassword()))
+            if(userSignIn.getPassword().equals(user.getPassword())) //用户名密码匹配
             {
-                signInCode.setCode(200); //用户名密码匹配
-                signInCode.setUid(userSignIn.getUid());
-                signInCode.setUsername(userSignIn.getUsername());
-                signInCode.setAvatar(userSignIn.getAvatar());
+                signInResponse.setCode(200);
+                signInResponse.setUuid(userSignIn.getUuid());
+                signInResponse.setUid(userSignIn.getUid());
             }
             else
             {
-                signInCode.setCode(400); //密码错误
+                signInResponse.setCode(400); //密码错误
             }
         }
-        return signInCode;
+        return signInResponse;
     }
 
     @Override
-    public UserMessageResponse getUserByUid(int uid)
+    public UserMessageResponse getUserByUuid(String uuid)
     {
-        User user = userMapper.getUserByUid(uid);
+        User user = userMapper.getUserByUuid(uuid);
         UserMessageResponse userMessage = new UserMessageResponse();
         userMessage.setUid(user.getUid());
         userMessage.setUsername(user.getUsername());

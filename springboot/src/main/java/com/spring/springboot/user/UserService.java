@@ -8,10 +8,10 @@ public interface UserService
 {
     List<User> getUserList();
     List<User> getUserMessageList();
-    boolean updateUsernameByUid(User user);
-    boolean updatePasswordByUid(User user);
-    SignInCode signIn(User user);
-    UserMessageResponse getUserByUid(int uid);
+    boolean updateUsernameByUuid(User user);
+    boolean updatePasswordByUuid(User user);
+    SignInResponse signIn(User user);
+    UserMessageResponse getUserByUuid(String uuid);
     int getCodeByMail(String mail);
     int signUp(SignUpRequest signUpRequest);
 }

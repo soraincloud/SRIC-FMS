@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 07/07/2024 02:43:39
+ Date: 07/07/2024 15:35:04
 */
 
 SET NAMES utf8mb4;
@@ -1730,21 +1730,21 @@ CREATE TABLE `data_h_video_tags`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `data_user`;
 CREATE TABLE `data_user`  (
-  `id` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '主键',
+  `uuid` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '主键',
   `UID` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户UID',
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名',
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
   `mail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '邮箱',
   `createtime` datetime NOT NULL COMMENT '注册时间',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL.webp' COMMENT '头像文件名称',
-  PRIMARY KEY (`id`) USING BTREE,
+  PRIMARY KEY (`uuid`) USING BTREE,
   INDEX `uidkey`(`UID` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_user
 -- ----------------------------
-INSERT INTO `data_user` VALUES ('1', 1, 'soraincloud', '22c0c074cfd376c78740955d63eee99e168228b71c0d01eb1053bcc8a52939de', 'soraincloud@gmail.com', '2024-05-29 21:12:09', 'NULL.webp');
+INSERT INTO `data_user` VALUES ('igdaguduigsdatugasof', 1, 'soraincloud', 'b9ef37275960bd289f066ec496520d5aa6181939a31d774bdb305868663e9b81', 'soraincloud@gmail.com', '2024-05-29 21:12:09', 'NULL.webp');
 
 -- ----------------------------
 -- Table structure for relation_h_comic_tag

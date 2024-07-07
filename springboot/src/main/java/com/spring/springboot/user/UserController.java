@@ -22,10 +22,10 @@ public class UserController
         return userService.getUserMessageList();
     }
 
-    @PostMapping("/updateUsernameByUid")
-    public ResponseCode updateUsernameByUid(@RequestBody User user)
+    @PostMapping("/updateUsernameByUuid")
+    public ResponseCode updateUsernameByUuid(@RequestBody User user)
     {
-        boolean isSuccess =  userService.updateUsernameByUid(user);
+        boolean isSuccess =  userService.updateUsernameByUuid(user);
         ResponseCode responseCode = new ResponseCode();
         if(isSuccess)
         {
@@ -38,10 +38,10 @@ public class UserController
         return responseCode;
     }
 
-    @PostMapping("/updatePasswordByUid")
-    public ResponseCode updatePasswordByUid(@RequestBody User user)
+    @PostMapping("/updatePasswordByUuid")
+    public ResponseCode updatePasswordByUuid(@RequestBody User user)
     {
-        boolean isSuccess = userService.updatePasswordByUid(user);
+        boolean isSuccess = userService.updatePasswordByUuid(user);
         ResponseCode responseCode = new ResponseCode();
         if(isSuccess)
         {
@@ -57,25 +57,20 @@ public class UserController
     @PostMapping("/signIn")
     public SignInResponse signIn(@RequestBody User user)
     {
-        SignInResponse signInResponse = new SignInResponse();
-        SignInCode signInCode = userService.signIn(user);
-        if(signInCode.getCode() == 200) //登录成功
+        SignInResponse signInResponse = userService.signIn(user);
+        if(signInResponse.getCode() == 200) //登录成功
         {
-            StpUtil.login(signInCode.getId()); //通过id登录
+            StpUtil.login(signInResponse.getUuid()); //通过uuid登录
             SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
             signInResponse.setToken(tokenInfo.tokenValue); //添加token
-            signInResponse.setUid(signInCode.getUid()); //添加uid
-            signInResponse.setUsername(signInCode.getUsername()); //添加用户名
-            signInResponse.setAvatar(signInCode.getAvatar()); //添加头像
         }
-        signInResponse.setCode(signInCode.getCode());
         return signInResponse;
     }
 
     @GetMapping("/getUserMessage")
-    public UserMessageResponse getUserMessage(@RequestParam int uid,@RequestHeader("Authorization") String tokenValue)
+    public UserMessageResponse getUserMessage(@RequestParam String uuid,@RequestHeader("Authorization") String tokenValue)
     {
-        UserMessageResponse userMessage = userService.getUserByUid(uid);
+        UserMessageResponse userMessage = userService.getUserByUuid(uuid);
         if (tokenValue == null) //未登录 无token
         {
             userMessage.setSignCode(400);

@@ -2,12 +2,10 @@ package com.spring.springboot.user;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 public class User
 {
-    private String id;
+    private String uuid;
     private int uid;
     private String username;
     private String password;

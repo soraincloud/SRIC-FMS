@@ -60,7 +60,7 @@
 import { ref,onMounted } from 'vue'
 import { getUserMessageList } from '@/axios/api/user'
 import CryptoJS from 'crypto-js' //SHA-256加密
-import { updateUsernameByUid,updatePasswordByUid } from '@/axios/api/user';
+import { updateUsernameByUuid,updatePasswordByUuid } from '@/axios/api/user';
 import { ElMessage } from 'element-plus' //element消息
 
 const tableData = ref([]) //主页面表表格数据
@@ -70,7 +70,7 @@ const passwordDisabled = ref(true) //密码输入框是否被禁用
 const usernameInput = ref("") //用户名输入框内容
 const passwordInput = ref("") //密码输入框内容
 const editUsernameNow = ref("") //当前正在编辑的用户名初始值
-const editUserUid = ref("") //当前正在编辑的用户的UID
+const editUserUuid = ref("") //当前正在编辑的用户的uuid
 
 onMounted( () =>
 {
@@ -85,8 +85,9 @@ const loadTableData = async () => //加载列表数据
 
 const clickEdit = (row :any) => //点击编辑
 {
+    console.log(row)
     isDrawerOpen.value = true
-    editUserUid.value = row.uid
+    editUserUuid.value = row.uuid
     editUsernameNow.value = row.username
     usernameInput.value = row.username
     passwordInput.value = "*****"
@@ -117,10 +118,10 @@ const clickEditUsernameSubmit = async () => //提交对用户名的强制更改
 {
     const params =
     {
-        uid: editUserUid.value,
+        uuid: editUserUuid.value,
         username: usernameInput.value,
     }
-    const resp = await updateUsernameByUid(params)
+    const resp = await updateUsernameByUuid(params)
     if(resp.data.code == 200)
     {
         ElMessage({
@@ -152,10 +153,10 @@ const clickEditPasswordSubmit = async () => //提交对密码的强制更改
     let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
     const params = 
     {
-        uid: editUserUid.value,
+        uuid: editUserUuid.value,
         password: passwordHashString
     }
-    const resp = await updatePasswordByUid(params)
+    const resp = await updatePasswordByUuid(params)
     if(resp.data.code == 200)
     {
         ElMessage({

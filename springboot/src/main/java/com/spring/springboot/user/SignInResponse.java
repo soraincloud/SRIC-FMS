@@ -10,7 +10,6 @@ public class SignInResponse
 {
     private int code;
     private String token;
+    private String uuid;
     private int uid;
-    private String username;
-    private String avatar;
 }
