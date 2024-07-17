@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 07/07/2024 15:35:04
+ Date: 17/07/2024 23:43:31
 */
 
 SET NAMES utf8mb4;
@@ -1744,7 +1744,7 @@ CREATE TABLE `data_user`  (
 -- ----------------------------
 -- Records of data_user
 -- ----------------------------
-INSERT INTO `data_user` VALUES ('igdaguduigsdatugasof', 1, 'soraincloud', 'b9ef37275960bd289f066ec496520d5aa6181939a31d774bdb305868663e9b81', 'soraincloud@gmail.com', '2024-05-29 21:12:09', 'NULL.webp');
+INSERT INTO `data_user` VALUES ('3e9f30bc-4453-11ef-adaf-38f3abddbccf', 1, 'soraincloud', 'b9ef37275960bd289f066ec496520d5aa6181939a31d774bdb305868663e9b81', 'soraincloud@gmail.com', '2024-07-17 23:42:59', 'NULL.webp');
 
 -- ----------------------------
 -- Table structure for relation_h_comic_tag

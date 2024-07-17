@@ -82,7 +82,7 @@
             <el-avatar :src="avatarUrl" @click="clickAvatar"></el-avatar>
             <p class="app-user-message-name">{{ username }}</p>
           </div>
-          <div class="app-user-message-uid">UID : 114514</div>
+          <div class="app-user-message-uid">UID : {{ userUid }}</div>
         </div>
       </template>
       <el-button @click="clickSignOut" class="app-user-message-menu-button" text>
@@ -133,6 +133,7 @@ if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设
 
 const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像URL
 const username = ref("NULL") //用户名显示
+const userUid = ref("0")
 const isSign = ref(false) //是否已经登录
 const language = ref("en") //切换按钮绑定的语言
 const personalMenuDrawer = ref(false) //个人菜单抽屉状态
@@ -197,6 +198,7 @@ const checkUserMessage = async () => //更新用户信息(用户名，头像)
 {
   const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
   username.value = resp.data.username
+  userUid.value = resp.data.uid
   avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
   if(resp.data.signCode == 500) //token过期
   {

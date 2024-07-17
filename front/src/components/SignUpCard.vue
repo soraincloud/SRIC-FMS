@@ -31,7 +31,7 @@
                 </span>
                 <el-input v-model="signUpForm.code" clearable>
                     <template #append>
-                        <el-button v-if="!isDisabled" @click="clickSendCode">{{ $t("sign.sendCode") }}</el-button>
+                        <el-button v-if="!isDisabled" @click="clickSendCode" :loading="isSendCodeLoading">{{ $t("sign.sendCode") }}</el-button>
                         <el-button v-if="isDisabled" disabled>{{ timeCounting }} S</el-button>
                     </template>
                 </el-input>
@@ -50,7 +50,7 @@
 
 <script lang="ts" setup>
 import { ref,reactive } from 'vue'
-import { getCodeByMail } from '@/axios/api/user';
+import { getCodeByMail,signUp } from '@/axios/api/user';
 import { ElMessage } from 'element-plus'
 import CryptoJS from 'crypto-js' //SHA-256加密
 import { useRouter } from "vue-router";
@@ -61,8 +61,9 @@ const { t } = i18n.global
 
 const router = useRouter()
 
-const isDisabled = ref(false)
-const timeCounting = ref("60")
+const isSendCodeLoading = ref(false) //发送验证码按钮是否正在加载
+const isDisabled = ref(false) //发送验证码按钮是否为倒计时
+const timeCounting = ref("60") //发送验证码倒计时初始值
 
 const signUpForm = reactive //登录信息表单
 ({
@@ -109,6 +110,8 @@ const doSendCodeRequest = async () => //发送验证码请求
             message: t("sign.sendSuccess"),
             type: 'success',
         })
+        setMailTimeout()
+        isSendCodeLoading.value = false
     }
     else if(resp.data.code == 400)
     {
@@ -151,8 +154,7 @@ const clickSendCode = () => //点击发送验证码
     if(mailCheck.test(signUpForm.mail)) //邮箱合法
     {
         doSendCodeRequest()
-        isDisabled.value = true
-        setMailTimeout()
+        isSendCodeLoading.value = true
     }
     else
     {
@@ -163,9 +165,47 @@ const clickSendCode = () => //点击发送验证码
     }
 }
 
-const doSignUpRequest = () => //发送注册请求
+const doSignUpRequest = async () => //发送注册请求
 {
-
+    let passwordHash = CryptoJS.HmacSHA256(signUpForm.password,"SRIC") //使用SHA-256进行哈希运算
+    let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
+    const params =
+    {
+        username: signUpForm.username,
+        password: passwordHashString,
+        mail: signUpForm.mail,
+        code: signUpForm.code,
+    }
+    const resp = await signUp(params)
+    if(resp.data.code == 200) //注册成功
+    {
+        ElMessage({
+            message: t("sign.successSignUpMessage"),
+            type: 'success',
+        })
+        router.push("SignIn")
+    }
+    else if(resp.data.code == 400) //用户名已被注册
+    {
+        ElMessage({
+            message: t("sign.usernameHasBeenUsedMessage"),
+            type: 'warning',
+        })
+    }
+    else if(resp.data.code == 401) //验证码错误
+    {
+        ElMessage({
+            message: t("sign.wrongCodeMessage"),
+            type: 'warning',
+        })
+    }
+    else
+    {
+        ElMessage({
+            message: t("static.paramsError"),
+            type: 'error',
+        })
+    }
 }
 
 const clickSignUp = async (formEl: FormInstance | undefined) => //点击注册

@@ -51,6 +51,9 @@ export default
         passwordCommon: "两次输入密码不相同",
         sendSuccess: "发送成功",
         mailHasBeenUsed: "邮箱已被注册",
+        successSignUpMessage: "注册成功",
+        usernameHasBeenUsedMessage: "用户名已被注册",
+        wrongCodeMessage: "验证码错误或已过期",
     },
     user:
     {

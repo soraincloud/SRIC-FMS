@@ -1,9 +1,6 @@
 package com.spring.springboot.user;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -27,4 +24,7 @@ public interface UserMapper
 
     @Select(value = "SELECT * FROM `data_user` WHERE MAIL = #{mail}")
     User getUserByMail(@Param("mail") String mail);
+
+    @Insert(value = "INSERT INTO `data_user` (uuid, UID, username, password, mail, createtime) VALUES(UUID(),null,#{username},#{password},#{mail},NOW())")
+    int insertUser(SignUpRequest signUpRequest);
 }

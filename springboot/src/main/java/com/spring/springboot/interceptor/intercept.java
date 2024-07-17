@@ -13,6 +13,7 @@ public class intercept implements HandlerInterceptor
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception
     {
         String requestUrl = request.getRequestURI();
+        System.out.println("\n");
         System.out.println("- - - - -  Q w Q  - - - - -");
         System.out.println("请求URL : " + requestUrl);
         String tokenValue = request.getHeader("Authorization");

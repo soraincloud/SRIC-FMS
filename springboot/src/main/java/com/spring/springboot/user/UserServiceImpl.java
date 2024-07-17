@@ -124,11 +124,11 @@ public class UserServiceImpl implements UserService
             return 400;
         }
         String code = redisTemplate.opsForValue().get(signUpRequest.getMail()); //通过邮箱获取验证码
-        if(code.equals(signUpRequest.getCode()))
+        if(code.equals(signUpRequest.getCode())) //验证码正确
         {
-            
+            userMapper.insertUser(signUpRequest);
             return 200;
         }
-        return 401;
+        return 401; //验证码错误
     }
 }

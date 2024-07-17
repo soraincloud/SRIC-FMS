@@ -102,7 +102,7 @@ public class UserController
     public ResponseCode signIn(@RequestBody SignUpRequest signUpRequest)
     {
         ResponseCode responseCode = new ResponseCode();
-
+        responseCode.setCode(userService.signUp(signUpRequest));
         return responseCode;
     }
 }

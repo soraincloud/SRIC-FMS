@@ -51,6 +51,9 @@ export default
         passwordCommon: "Passwords do not match",
         sendSuccess: "sending successful",
         mailHasBeenUsed: "mail has been used",
+        successSignUpMessage: "sign up success",
+        usernameHasBeenUsedMessage: "username has been used",
+        wrongCodeMessage: "wrong verification or time out",
     },
     user:
     {

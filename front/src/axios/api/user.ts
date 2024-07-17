@@ -29,3 +29,8 @@ export function getCodeByMail(params:any)
 {
     return get('/user/getCodeByMail',params)
 }
+
+export function signUp(params:any)
+{
+    return post ('/user/signUp',params)
+}
