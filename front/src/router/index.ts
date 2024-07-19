@@ -56,6 +56,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/user/SignUp.vue'),
   },
   {
+    path: '/UserProfile',
+    name: 'UserProfile',
+    component: () => import('@/views/user/UserProfile.vue'),
+  },
+  {
     path: '/Manage',
     name: 'Manage',
     redirect: '/Usermanage',

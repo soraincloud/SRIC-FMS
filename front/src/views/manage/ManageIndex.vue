@@ -12,7 +12,7 @@
                   <el-menu-item index="UserManage">
                       <el-icon :size="25"><VideoPlay /></el-icon>
                       <template #title>
-                          <span class="H-files-index-menu-item-span">{{ $t("menu.user") }}</span>
+                          <span class="manage-index-menu-item-span">{{ $t("menu.user") }}</span>
                       </template>
                   </el-menu-item>
               </el-menu>
@@ -57,7 +57,7 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 <style>
 @import '@/css/common.css';
 
-.H-files-index-menu-item-span
+.manage-index-menu-item-span
 {
   font-size: 20px;
   font-weight: bold;

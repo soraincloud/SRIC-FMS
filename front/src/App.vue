@@ -85,6 +85,14 @@
           <div class="app-user-message-uid">UID : {{ userUid }}</div>
         </div>
       </template>
+      <el-divider></el-divider>
+      <el-button @click="clickUserProfile" class="app-user-message-menu-button" text>
+        <el-icon class="app-user-message-menu-icon">
+          <User />
+        </el-icon>
+        {{ $t("menu.userProfile") }}
+      </el-button>
+      <el-divider></el-divider>
       <el-button @click="clickSignOut" class="app-user-message-menu-button" text>
         <el-icon class="app-user-message-menu-icon">
           <SwitchButton />
@@ -133,7 +141,7 @@ if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设
 
 const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像URL
 const username = ref("NULL") //用户名显示
-const userUid = ref("0")
+const userUid = ref("0") //用户UID
 const isSign = ref(false) //是否已经登录
 const language = ref("en") //切换按钮绑定的语言
 const personalMenuDrawer = ref(false) //个人菜单抽屉状态
@@ -174,6 +182,12 @@ const languageChange = (lang :any) => //语言改变
 const clickAvatar = () => //点击头像
 {
   personalMenuDrawer.value = true
+}
+
+const clickUserProfile = () => //点击用户信息
+{
+  personalMenuDrawer.value = false
+  router.push("UserProfile")
 }
 
 const clickSignOut = () => //点击登出

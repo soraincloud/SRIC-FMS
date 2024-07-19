@@ -34,6 +34,7 @@ export default
         comic: "comic",
         picture: "picture",
         user: "user",
+        userProfile: "user profile",
     },
     sign:
     {
