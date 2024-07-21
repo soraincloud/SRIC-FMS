@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 21/07/2024 17:21:00
+ Date: 22/07/2024 01:25:43
 */
 
 SET NAMES utf8mb4;
@@ -313,6 +313,20 @@ INSERT INTO `data_h_comic` VALUES (276, '不让妹妹怀孕的话就离不开的
 INSERT INTO `data_h_comic` VALUES (277, '桃娘奇谭', '277', 31, 1, 1);
 INSERT INTO `data_h_comic` VALUES (278, '反向催眠实验', '278', 206, 1, 2);
 INSERT INTO `data_h_comic` VALUES (279, '始色', '279', 241, 1, 2);
+INSERT INTO `data_h_comic` VALUES (280, '舒服直播', '280', 4, 1, 1);
+INSERT INTO `data_h_comic` VALUES (281, 'EVA关键任务', '281', 38, 1, 1);
+INSERT INTO `data_h_comic` VALUES (282, '戴着遥控按摩棒从鬼身边逃走', '282', 20, 1, 1);
+INSERT INTO `data_h_comic` VALUES (283, '拘束少女-没有那么过分', '283', 18, 2, 1);
+INSERT INTO `data_h_comic` VALUES (284, '暴碧家庭教师', '284', 33, 2, 1);
+INSERT INTO `data_h_comic` VALUES (285, '管理人', '285', 28, 2, 1);
+INSERT INTO `data_h_comic` VALUES (286, '放课后的自缚', '286', 39, 2, 1);
+INSERT INTO `data_h_comic` VALUES (287, '我操原批', '287', 44, 1, 1);
+INSERT INTO `data_h_comic` VALUES (288, '关谷', '288', 206, 1, 2);
+INSERT INTO `data_h_comic` VALUES (289, '异世界也要灌注永雏塔菲', '289', 21, 1, 1);
+INSERT INTO `data_h_comic` VALUES (290, 'DessertSyndrome', '290', 43, 1, 1);
+INSERT INTO `data_h_comic` VALUES (291, '家庭教师离去的原因', '291', 71, 1, 1);
+INSERT INTO `data_h_comic` VALUES (292, '800年的约定', '292', 39, 1, 1);
+INSERT INTO `data_h_comic` VALUES (293, '中招的芙莉莲', '293', 47, 1, 1);
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
@@ -1737,7 +1751,7 @@ CREATE TABLE `data_user`  (
   `mail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '邮箱',
   `createtime` datetime NOT NULL COMMENT '注册时间',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL.webp' COMMENT '头像文件名称',
-  `mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL' COMMENT '个人签名',
+  `mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL MARK' COMMENT '个人签名',
   PRIMARY KEY (`uuid`) USING BTREE,
   INDEX `uidkey`(`UID` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -1745,7 +1759,7 @@ CREATE TABLE `data_user`  (
 -- ----------------------------
 -- Records of data_user
 -- ----------------------------
-INSERT INTO `data_user` VALUES ('3e9f30bc-4453-11ef-adaf-38f3abddbccf', 1, 'soraincloud', 'b9ef37275960bd289f066ec496520d5aa6181939a31d774bdb305868663e9b81', 'soraincloud@gmail.com', '2024-07-17 23:42:59', 'NULL.webp', 'NULL MARK');
+INSERT INTO `data_user` VALUES ('3e9f30bc-4453-11ef-adaf-38f3abddbccf', 1, 'soraincloud', 'b9ef37275960bd289f066ec496520d5aa6181939a31d774bdb305868663e9b81', 'soraincloud@gmail.com', '2024-07-17 23:42:59', 'NULL.webp', '这是一段SRIC的个人介绍，介绍就是这样，我也不知道该写点什么，但是感觉还是应该写点什么，那就随便写点什么吧。');
 
 -- ----------------------------
 -- Table structure for relation_h_comic_tag
