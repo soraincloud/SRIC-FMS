@@ -12,4 +12,5 @@ public class User
     private String mail;
     private String createTime;
     private String avatar;
+    private String mark;
 }

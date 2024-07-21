@@ -94,6 +94,7 @@ public class UserServiceImpl implements UserService
         userMessage.setUid(user.getUid());
         userMessage.setUsername(user.getUsername());
         userMessage.setAvatar(user.getAvatar());
+        userMessage.setMark(user.getMark());
         return userMessage;
     }
 

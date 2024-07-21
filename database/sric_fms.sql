@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 17/07/2024 23:43:31
+ Date: 21/07/2024 17:21:00
 */
 
 SET NAMES utf8mb4;
@@ -1737,6 +1737,7 @@ CREATE TABLE `data_user`  (
   `mail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '邮箱',
   `createtime` datetime NOT NULL COMMENT '注册时间',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL.webp' COMMENT '头像文件名称',
+  `mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL' COMMENT '个人签名',
   PRIMARY KEY (`uuid`) USING BTREE,
   INDEX `uidkey`(`UID` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
@@ -1744,7 +1745,7 @@ CREATE TABLE `data_user`  (
 -- ----------------------------
 -- Records of data_user
 -- ----------------------------
-INSERT INTO `data_user` VALUES ('3e9f30bc-4453-11ef-adaf-38f3abddbccf', 1, 'soraincloud', 'b9ef37275960bd289f066ec496520d5aa6181939a31d774bdb305868663e9b81', 'soraincloud@gmail.com', '2024-07-17 23:42:59', 'NULL.webp');
+INSERT INTO `data_user` VALUES ('3e9f30bc-4453-11ef-adaf-38f3abddbccf', 1, 'soraincloud', 'b9ef37275960bd289f066ec496520d5aa6181939a31d774bdb305868663e9b81', 'soraincloud@gmail.com', '2024-07-17 23:42:59', 'NULL.webp', 'NULL MARK');
 
 -- ----------------------------
 -- Table structure for relation_h_comic_tag

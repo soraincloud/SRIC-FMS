@@ -27,6 +27,7 @@ export default
         alreadyHave: "已有账户 ?",
         paramsError: "参数错误",
         signOutConfirm: "确认退出登录 ?",
+        lineChangeTo: "线路已更改为 ",
     },
     menu:
     {

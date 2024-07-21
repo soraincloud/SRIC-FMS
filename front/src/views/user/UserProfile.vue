@@ -2,8 +2,14 @@
     <div class="user-profile-body-div">
         <el-avatar :src="avatarUrl" :size="100"></el-avatar>
         <div class="user-profile-details-div">
-            <span class="user-profile-details-username">{{ username }}</span>
-            <span class="user-profile-details-uid">UID : {{ userUid }}</span>
+            <div>
+                <span class="user-profile-details-username">{{ username }}</span>
+                <span class="user-profile-details-uid">UID : {{ userUid }}</span>
+            </div>
+            <div>
+                <span>{{ mark }}</span>
+            </div>
+
         </div>
     </div>
     <el-divider></el-divider>
@@ -16,13 +22,15 @@ import { ref } from 'vue'
 const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像URL
 const username = ref("NULL") //用户名显示
 const userUid = ref("0") //用户UID
+const mark = ref("个人介绍")
 </script>
 
 <style scoped>
 .user-profile-body-div
 {
     display: flex;
-    align-items: center;
+    align-items: end;
+    margin-left: 20px;
 }
 
 .user-profile-details-div
@@ -40,6 +48,6 @@ const userUid = ref("0") //用户UID
 
 .user-profile-details-uid
 {
-
+    margin-left: 20px;
 }
 </style>

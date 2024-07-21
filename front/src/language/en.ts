@@ -27,6 +27,7 @@ export default
         alreadyHave: "Already have an account?",
         paramsError: "Params error",
         signOutConfirm: "sure to sign out ?",
+        lineChangeTo: "line has changed to ",
     },
     menu:
     {
