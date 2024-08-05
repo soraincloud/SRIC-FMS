@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 22/07/2024 01:25:43
+ Date: 05/08/2024 23:25:22
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 280 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 294 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of data_h_comic

@@ -55,7 +55,7 @@ checkUserMessage()
 .user-profile-body-div
 {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     margin-left: 20px;
 }
 

@@ -8,7 +8,11 @@
         mode="horizontal"
         router
         >
-          <div class="flex-grow-1"></div>
+          <el-menu-item @click="clickMenu">
+            <el-icon :size="25">
+              <Menu />
+            </el-icon>
+          </el-menu-item>
           <el-menu-item index="home">
             <el-icon size="100px">
               <Management />
@@ -29,42 +33,8 @@
             @change="changeDarkMode"
           />
           <div class="app-user-message-div">
-            <div class="app-user-message-setting-button-div">
-              <el-tooltip placement="top" effect="light">
-                <template #content>
-                  <div>{{ $t("common.language") }}</div>
-                  <el-radio-group v-model="language" @change="languageChange">
-                    <div class="app-user-message-language-radio-group-div">
-                      <el-radio value="zh" size="small" class="app-user-message-language-radio">中文</el-radio>
-                      <el-radio value="en" size="small" class="app-user-message-language-radio">english</el-radio>
-                    </div>
-                  </el-radio-group>
-                </template>
-                <el-button class="app-user-message-setting-button" text circle >
-                  <el-icon>
-                    <Collection />
-                  </el-icon>
-                </el-button>
-              </el-tooltip>
-              <el-tooltip placement="top" effect="light">
-                <template #content>
-                  <div>{{ $t("common.line") }}</div>
-                  <line-select-radio></line-select-radio>
-                </template>
-                <el-button class="app-user-message-setting-button" text circle >
-                  <el-icon>
-                    <Operation />
-                  </el-icon>
-                </el-button>
-              </el-tooltip>
-              <el-tooltip placement="top" effect="light">
-                <template #content>{{ $t("common.management") }}</template>
-                <el-button @click="clickManagement" class="app-user-message-setting-button" text circle >
-                  <el-icon>
-                    <SetUp />
-                  </el-icon>
-                </el-button>
-              </el-tooltip>
+            <div v-if="!isMenuClosed">
+              <menu-setting-buttons></menu-setting-buttons>
             </div>
             <div v-if="isSign" class="app-user-message-avatar-div">
               <el-avatar :src="avatarUrl" @click="clickAvatar"></el-avatar>
@@ -80,6 +50,11 @@
         <router-view/>
       </el-main>
     </el-container>
+
+    <el-drawer v-model="menuDrawer" size="300" direction="ltr">
+
+    </el-drawer>
+
     <el-drawer v-model="personalMenuDrawer" size="300">
       <template #header>
         <div class="app-user-message">
@@ -90,6 +65,10 @@
           <div class="app-user-message-uid">UID : {{ userUid }}</div>
         </div>
       </template>
+      <div v-if="isMenuClosed">
+        <el-divider></el-divider>
+        <menu-setting-buttons></menu-setting-buttons>
+      </div>
       <el-divider></el-divider>
       <el-button @click="clickUserProfile" class="app-user-message-menu-button" text>
         <el-icon class="app-user-message-menu-icon">
@@ -125,15 +104,12 @@ import { useDark, useToggle } from '@vueuse/core'
 import { useRoute,useRouter } from 'vue-router'
 import { ref,computed } from 'vue'
 import axios from 'axios';
-import { useI18n } from 'vue-i18n'
 import { getUserMessage } from '@/axios/api/user'
 import { ElNotification } from 'element-plus'
-import LineSelectRadio from '@/components/LineSelectRadio.vue'
+import MenuSettingButtons from './components/MenuSettingButtons.vue';
 import { h } from 'vue'
 import i18n from '@/language';
 const { t } = i18n.global
-
-const { locale } = useI18n()
 
 const isDark = useDark()//黑暗模式所需变量
 let route = useRoute()
@@ -149,9 +125,15 @@ const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像
 const username = ref("NULL") //用户名显示
 const userUid = ref("0") //用户UID
 const isSign = ref(false) //是否已经登录
-const language = ref("en") //切换按钮绑定的语言
+const menuDrawer = ref(false) //菜单抽屉状态
 const personalMenuDrawer = ref(false) //个人菜单抽屉状态
 const signOutDialogVisible = ref(false) //退出登录对话框状态
+const isMenuClosed = ref(false)
+
+const clickMenu = () =>
+{
+  menuDrawer.value = true
+}
 
 const changeDarkMode = () => //改变模式
 {
@@ -172,17 +154,6 @@ const clickSignIn = () => //点击登录
 const clickSignUp = () => //点击注册
 {
   router.push("Signup")
-}
-
-const clickManagement = () => //点击管理
-{
-  router.push('Manage')
-}
-
-const languageChange = (lang :any) => //语言改变
-{
-  locale.value = lang
-  localStorage.setItem("language",lang)
 }
 
 const clickAvatar = () => //点击头像
@@ -248,30 +219,25 @@ const checkSignLocalStorage = () => //检查是否登录的localStorage
   }
 }
 
-const checkLanguageLocalStorage = () => //检查当前语言的localStorage 更新用户信息(用户名，头像)
-{
-  if(localStorage.getItem("language") == "zh")
-  {
-    language.value = "zh"
-  }
-  else
-  {
-    language.value = "en"
-  }
-}
-
 router.beforeEach((to, from, next) => { //路由变动
   checkSignLocalStorage()//检查是否登录的localStorage 
   next()
 })
 
-const windowSizeChange = () => //窗口大小变化时重新计算并设置个人信息卡片位置
+const windowSizeChange = () => //窗口大小变化时检测
 {
-  
+  if(window.innerWidth < 800) //在窗口过小时折叠菜单栏
+  {
+    isMenuClosed.value = true
+  }
+  else
+  {
+    isMenuClosed.value = false
+  }
 }
 
 checkSignLocalStorage() //初始化时检查一次登录状态
-checkLanguageLocalStorage() //初始化时获取当前语言
+windowSizeChange() //初始化时检查窗口大小
  
 window.addEventListener('resize',windowSizeChange) //监听窗口变动
 
@@ -281,11 +247,6 @@ window.addEventListener('resize',windowSizeChange) //监听窗口变动
 .app .el-header  
 {
   padding: 0;
-}
-
-.flex-grow-1
-{
-  flex-grow: 1;
 }
 
 .flex-grow-10
@@ -323,11 +284,6 @@ window.addEventListener('resize',windowSizeChange) //监听窗口变动
 {
   display: flex;
   align-items: center;
-}
-
-.app-user-message-setting-button-div
-{
-  margin-left: 10px;
 }
 
 .app-user-message
@@ -382,22 +338,6 @@ html.dark .app-user-message-uid
 }
 
 .app-user-message-sign-button
-{
-  margin: 0px !important;
-}
-
-.app-user-message-language-radio-group-div
-{
-  display: flex;
-  flex-direction: column;
-}
-
-.app-user-message-language-radio
-{
-  width: 100%;
-}
-
-.app-user-message-setting-button
 {
   margin: 0px !important;
 }
