@@ -1,5 +1,13 @@
 <template>
     <div class="app-user-message-setting-button-div">
+        <el-switch
+            v-model="isDarkModeOpen"
+            active-action-icon="MoonNight"
+            inactive-action-icon="Sunrise"
+            class="app-menu-switch"
+            size="large"
+            @change="changeDarkMode"
+        />
         <el-tooltip placement="top" effect="light">
         <template #content>
             <div>{{ $t("common.language") }}</div>
@@ -40,16 +48,37 @@
 
 <script lang="ts" setup>
     import LineSelectRadio from '@/components/LineSelectRadio.vue'
+    import { useDark, useToggle } from '@vueuse/core'
     import { ref } from 'vue'
     import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
     import i18n from '@/language';
-    const { t } = i18n.global
 
+    const { t } = i18n.global
+    const isDark = useDark()//黑暗模式所需变量
     let router = useRouter()
     const { locale } = useI18n()
 
+    const emit = defineEmits(['toManage']) //获取父组件方法
+
+    const isDarkModeOpen = ref(false)//当前是否为黑暗模式
     const language = ref("en") //切换按钮绑定的语言
+
+    if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设置开关状态
+    {
+        isDarkModeOpen.value = true
+    }
+
+    const changeDarkMode = () => //改变模式
+    {
+        setTimeout( () => //延时是为了按钮切换动画能够完整播放
+        {
+            const toggleDark = useToggle(isDark)
+            toggleDark()
+        },
+            150
+        )
+    }
 
     const languageChange = (lang :any) => //语言改变
     {
@@ -59,6 +88,7 @@
 
     const clickManagement = () => //点击管理
     {
+        emit("toManage")
         router.push('Manage')
     }
 
@@ -97,5 +127,11 @@
 .app-user-message-setting-button
 {
   margin: 0px !important;
+}
+
+.app-menu-switch
+{
+  margin-right: 10px;
+  --el-switch-on-color: #555555 !important;
 }
 </style>

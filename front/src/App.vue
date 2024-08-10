@@ -21,17 +21,6 @@
             <span class="app-menu-title-span-small">FMS</span>
           </el-menu-item>
           <div class="flex-grow-10"></div>
-          <el-menu-item index="Hfiles">
-            <span class="app-menu-item-span">H-files</span>
-          </el-menu-item>
-          <el-switch
-            v-model="isDarkModeOpen"
-            active-action-icon="MoonNight"
-            inactive-action-icon="Sunrise"
-            class="app-menu-switch"
-            size="large"
-            @change="changeDarkMode"
-          />
           <div class="app-user-message-div">
             <div v-if="!isMenuClosed">
               <menu-setting-buttons></menu-setting-buttons>
@@ -53,6 +42,22 @@
 
     <el-drawer v-model="menuDrawer" size="300" direction="ltr">
 
+      <el-menu
+      :default-active="defaultActiveMenu"
+      :ellipsis="false"
+      router
+      @select="selectMenu"
+      >
+        <el-scrollbar :height="menuScrollHeight">
+          <el-menu-item index="Hfiles">
+            <span class="app-menu-item-span">H-files</span>
+          </el-menu-item>
+        </el-scrollbar>
+      </el-menu>
+      <div v-if="isMenuClosed">
+        <el-divider></el-divider>
+        <menu-setting-buttons @toManage="selectMenu"></menu-setting-buttons>
+      </div>
     </el-drawer>
 
     <el-drawer v-model="personalMenuDrawer" size="300">
@@ -65,10 +70,6 @@
           <div class="app-user-message-uid">UID : {{ userUid }}</div>
         </div>
       </template>
-      <div v-if="isMenuClosed">
-        <el-divider></el-divider>
-        <menu-setting-buttons></menu-setting-buttons>
-      </div>
       <el-divider></el-divider>
       <el-button @click="clickUserProfile" class="app-user-message-menu-button" text>
         <el-icon class="app-user-message-menu-icon">
@@ -100,7 +101,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useDark, useToggle } from '@vueuse/core'
 import { useRoute,useRouter } from 'vue-router'
 import { ref,computed } from 'vue'
 import axios from 'axios';
@@ -111,15 +111,9 @@ import { h } from 'vue'
 import i18n from '@/language';
 const { t } = i18n.global
 
-const isDark = useDark()//黑暗模式所需变量
 let route = useRoute()
 let router = useRouter()
 const defaultActiveMenu = computed( () => { return route.name })//访问页面时默认菜单选项
-const isDarkModeOpen = ref(false)//当前是否为黑暗模式
-if(localStorage.getItem('vueuse-color-scheme') == 'auto')//通过当前模式设置开关状态
-{
-  isDarkModeOpen.value = true
-}
 
 const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像URL
 const username = ref("NULL") //用户名显示
@@ -128,22 +122,17 @@ const isSign = ref(false) //是否已经登录
 const menuDrawer = ref(false) //菜单抽屉状态
 const personalMenuDrawer = ref(false) //个人菜单抽屉状态
 const signOutDialogVisible = ref(false) //退出登录对话框状态
-const isMenuClosed = ref(false)
+const isMenuClosed = ref(false) //菜单是否折叠
+const menuScrollHeight = ref((window.innerHeight - 175) + "px") //菜单滑动高度
 
-const clickMenu = () =>
+const clickMenu = () => //打开菜单
 {
   menuDrawer.value = true
 }
 
-const changeDarkMode = () => //改变模式
+const selectMenu = () => //选择菜单 需要关闭菜单弹窗
 {
-  setTimeout( () => //延时是为了按钮切换动画能够完整播放
-  {
-    const toggleDark = useToggle(isDark)
-    toggleDark()
-  },
-  150
-  )
+  menuDrawer.value = false
 }
 
 const clickSignIn = () => //点击登录
@@ -234,6 +223,7 @@ const windowSizeChange = () => //窗口大小变化时检测
   {
     isMenuClosed.value = false
   }
+  menuScrollHeight.value = (window.innerHeight - 175) + "px"
 }
 
 checkSignLocalStorage() //初始化时检查一次登录状态
@@ -271,13 +261,6 @@ window.addEventListener('resize',windowSizeChange) //监听窗口变动
 {
   font-size: 15px;
   font-weight: 900;
-}
-
-.app-menu-switch
-{
-  margin-left: 10px;
-  margin-top: 10px;
-  --el-switch-on-color: #555555 !important;
 }
 
 .app-user-message-div
