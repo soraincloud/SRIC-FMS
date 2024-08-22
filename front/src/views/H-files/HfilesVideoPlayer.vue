@@ -2,7 +2,7 @@
     <div class="common-body-set-width">
         <el-container>
             <el-header>
-                <span class="HfilesVideoPlayer-header-name">{{ videoData.name }}</span>
+                <p class="HfilesVideoPlayer-header-name">{{ videoData.name }}</p>
             </el-header>
             <el-container>
                 <el-aside :width="asideWidth">
@@ -270,9 +270,13 @@ window.addEventListener('resize',windowSizeChanged) //监听窗口变动
 
 .HfilesVideoPlayer-header-name
 {
+    margin: 0;
     margin-left: 50px;
     font-weight: bold;
     font-size: 40px;
+    white-space: nowrap; /* 防止换行 */
+    overflow: hidden;    /* 隐藏溢出的文本 */
+    text-overflow: ellipsis; /* 显示省略号 */
 }
 
 .HfilesVideoPlayer-title
@@ -314,4 +318,18 @@ window.addEventListener('resize',windowSizeChanged) //监听窗口变动
 {
     font-weight: bold;
 }
+
+#dplayer {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    position: relative;
+}
+
+.dplayer-video-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 </style>
