@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-import { ref } from 'vue'
+import { ref,inject } from 'vue'
 import axios from 'axios';
 import i18n from '@/language';
 import { useRouter } from 'vue-router'
@@ -19,13 +19,17 @@ const { t } = i18n.global
 
 const router = useRouter()
 
+const VLANurl = inject('VLANurl')
+const LANurl = inject('LANurl')
+const NETurl = inject('NETurl')
+
 const lineNow = ref("VLAN")
 
 const lineChange = (line:any) => //更改线路
 {
     if(line == "VLAN") //虚拟局域网后端地址
     {
-        axios.defaults.baseURL = 'http://192.168.196.0:45565';
+        axios.defaults.baseURL = VLANurl as string
         localStorage.setItem("line","VLAN")
         router.push("home")
         ElMessage({
@@ -35,7 +39,7 @@ const lineChange = (line:any) => //更改线路
     }
     else if(line == "LAN") //局域网后端地址
     {
-        axios.defaults.baseURL = 'http://192.168.1.140:45565';
+        axios.defaults.baseURL = LANurl as string
         localStorage.setItem("line","LAN")
         router.push("home")
         ElMessage({
@@ -45,7 +49,9 @@ const lineChange = (line:any) => //更改线路
     }
     else if(line == "NET") //在线后端地址
     {
+        axios.defaults.baseURL = NETurl as string
         localStorage.setItem("line","NET")
+        router.push("home")
         ElMessage({
             message: t("static.lineChangeTo") + "NET",
             type: 'success',
