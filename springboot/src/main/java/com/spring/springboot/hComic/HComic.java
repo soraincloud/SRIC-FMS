@@ -5,6 +5,13 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * - - - - - - - - - -
+ * H Comic 实体类
+ * 用于从数据库获取 H Comic 并且记录 Tag
+ * - - - - - - - - - -
+ */
+
 @Data
 public class HComic
 {

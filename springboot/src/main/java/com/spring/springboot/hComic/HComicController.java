@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * - - - - - - - - - -
+ * H Comic 控制类
+ * - - - - - - - - - -
+ */
+
 @CrossOrigin
 @RestController
 @RequestMapping("/h")
@@ -14,6 +20,10 @@ public class HComicController
     @Autowired
     HComicService hComicService;
 
+    /**
+     * 获取 H Comic 分页列表
+     * 调用 Service 获取数据和数据数量
+     */
     @GetMapping("/getHComicList")
     public HComicResponsePojo getHComicList(HComicRequestPojo hComicRequest)
     {
@@ -23,6 +33,9 @@ public class HComicController
         return hComicResponse;
     }
 
+    /**
+     * 通过 id 获取 comic
+     */
     @GetMapping("/getHComicById")
     public HComicData getHComicById(int id)
     {

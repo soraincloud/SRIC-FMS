@@ -7,6 +7,12 @@ import com.spring.springboot.hComicTag.HComicTagMapper;
 
 import java.util.*;
 
+/**
+ * - - - - - - - - - -
+ * H Comic 服务类
+ * - - - - - - - - - -
+ */
+
 @Service
 public class HComicServiceImpl implements HComicService
 {
@@ -18,6 +24,11 @@ public class HComicServiceImpl implements HComicService
     @Autowired
     HComicTagMapper hComicTagMapper;
 
+    /**
+     * 获取 comic 列表数据
+     * 获取列表数据并且查询每一条数据的 tag 数据
+     * 设置空缺是为了方便 sql 语句进行查询
+     */
     @Override
     public List<HComic> getHComicList(HComicRequestPojo hComicRequest)
     {
@@ -31,6 +42,11 @@ public class HComicServiceImpl implements HComicService
         return hComicList;
     }
 
+    /**
+     * 根据 id 获取 comic
+     * 根据 id 查询 comic 已经对应的 tag 列表
+     * 根据 comic 的页数 创建一个 list 储存每一张图片的名称 url
+     */
     @Override
     public HComicData getHComicById(int id)
     {
@@ -47,6 +63,9 @@ public class HComicServiceImpl implements HComicService
         return data;
     }
 
+    /**
+     * 获取符合条件的 comic 的条数 用于分页显示传入 total
+     */
     @Override
     public int getHComicCount(HComicRequestPojo pojo)
     {

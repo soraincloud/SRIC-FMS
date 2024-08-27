@@ -2,6 +2,13 @@ package com.spring.springboot.hComic;
 
 import lombok.Data;
 
+/**
+ * - - - - - - - - - -
+ * H Comic Request 实体类
+ * 获取 H Comic 列表的请求参数
+ * - - - - - - - - - -
+ */
+
 @Data
 public class HComicRequestPojo
 {
