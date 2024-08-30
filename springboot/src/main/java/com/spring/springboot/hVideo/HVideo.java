@@ -5,6 +5,13 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * - - - - - - - - - -
+ * video 实体类
+ * 用于获取 video 的数据
+ * - - - - - - - - - -
+ */
+
 @Data
 public class HVideo
 {

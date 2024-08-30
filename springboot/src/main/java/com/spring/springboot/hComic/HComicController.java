@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * - - - - - - - - - -
- * H Comic 控制类
+ * comic 控制类
  * - - - - - - - - - -
  */
 

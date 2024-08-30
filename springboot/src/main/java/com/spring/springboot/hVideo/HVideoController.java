@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * - - - - - - - - - -
+ * video 控制类
+ * - - - - - - - - - -
+ */
+
 @CrossOrigin
 @RestController
 @RequestMapping("/h")
