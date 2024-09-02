@@ -15,6 +15,8 @@ import java.util.List;
 public interface HPictureMapper
 {
     /**
+     * @author SRIC
+     *
      * 获取 picture 列表
      */
     @Select(value = "SELECT * FROM `data_h_picture`")

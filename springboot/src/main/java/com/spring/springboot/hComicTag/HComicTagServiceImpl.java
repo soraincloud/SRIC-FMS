@@ -19,6 +19,8 @@ public class HComicTagServiceImpl implements HComicTagService
     HComicTagMapper hComicTagMapper;
 
     /**
+     * @author SRIC
+     *
      * 获取 comic tag 列表
      */
     @Override
@@ -28,6 +30,8 @@ public class HComicTagServiceImpl implements HComicTagService
     }
 
     /**
+     * @author SRIC
+     *
      * 添加 comic tag
      * 先获取一次 tag 避免重复添加
      * 未重复时 添加 tag

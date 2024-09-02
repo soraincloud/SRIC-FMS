@@ -6,9 +6,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+/**
+ * 请求拦截器
+ */
+
 @Component
 public class intercept implements HandlerInterceptor
 {
+    /**
+     * @author SRIC
+     *
+     * 拦截每一次请求
+     * 记录请求 url
+     * 判断 登录 状态和 token 状态
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception
     {

@@ -6,18 +6,36 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * - - - - - - - - - -
+ * video tag 服务类
+ * - - - - - - - - - -
+ */
+
 @Service
 public class HVideoTagServiceImpl implements HVideoTagService
 {
     @Autowired
     HVideoTagMapper hVideoTagMapper;
 
+    /**
+     * @author SRIC
+     *
+     * 获取 video tag 列表
+     */
     @Override
     public List<HVideoTag> getHVideoTagList()
     {
         return hVideoTagMapper.getHVideoTagList();
     }
 
+    /**
+     * @author SRIC
+     *
+     * 添加 video tag
+     * 先获取一次 tag 避免重复添加
+     * 未重复时 添加 tag
+     */
     @Override
     public ResponseCode addHVideoTag(AddHVideoTagRequestPojo addHVideoTagRequest)
     {

@@ -8,6 +8,12 @@ import static com.spring.springboot.tools.ImageToBase64.imageToBase64;
 
 import java.util.List;
 
+/**
+ * - - - - - - - - - -
+ * video 服务类
+ * - - - - - - - - - -
+ */
+
 @Service
 public class HVideoServiceImpl implements HVideoService
 {
@@ -19,6 +25,14 @@ public class HVideoServiceImpl implements HVideoService
     @Autowired
     HVideoTagMapper hVideoTagMapper;
 
+    /**
+     * @author SRIC
+     *
+     * 获取 video 列表
+     * 获取 20 条 video 数据
+     * 并且为每一条 video 数据获取 tag 列表
+     * 设置空缺是为了方便 sql 语句进行查询
+     */
     @Override
     public List<HVideo> getHVideoList(HVideoRequestPojo hVideoRequest)
     {
@@ -43,12 +57,11 @@ public class HVideoServiceImpl implements HVideoService
         return hVideoList;
     }
 
-    @Override
-    public String getFilenameById(int id)
-    {
-        return hVideoMapper.getFilenameById(id);
-    }
-
+    /**
+     * @author SRIC
+     *
+     * 通过 id 获取 video
+     */
     @Override
     public HVideo getHVideoById(int id)
     {
@@ -57,6 +70,11 @@ public class HVideoServiceImpl implements HVideoService
         return video;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 获取 符合条件的 video 数据条数
+     */
     @Override
     public int getHVideoCount(HVideoRequestPojo pojo)
     {

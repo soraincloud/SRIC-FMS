@@ -3,13 +3,17 @@ package com.spring.springboot.user;
 import com.spring.springboot.tools.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+/**
+ * - - - - - - - - - -
+ * user 服务类
+ * - - - - - - - - - -
+ */
 
 @Service
 public class UserServiceImpl implements UserService
@@ -23,14 +27,26 @@ public class UserServiceImpl implements UserService
     @Autowired
     private MailService mailService;
 
+    /**
+     * @author SRIC
+     *
+     * 获取 user 数据列表
+     */
     @Override
     public List<User> getUserList()
     {
         return userMapper.getUserList();
     }
 
+    /**
+     * @author SRIC
+     *
+     * 获取用户信息列表
+     * 将用户信息封装为 uuid UID 名称 邮箱 时间
+     * 将邮箱内容隐藏
+     */
     @Override
-    public List<User> getUserMessageList() //将用户信息封装为 uuid UID 名称 邮箱 时间
+    public List<User> getUserMessageList()
     {
         List<User> userList = userMapper.getUserList();
         for(int i = 0;i < userList.size();i++)
@@ -47,6 +63,12 @@ public class UserServiceImpl implements UserService
         return userList;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 根据 uuid 修改 username
+     * 若修改数据条数不为 0 则修改成功
+     */
     @Override
     public boolean updateUsernameByUuid(User user)
     {
@@ -54,6 +76,12 @@ public class UserServiceImpl implements UserService
         return updateNum > 0;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 根据 uuid 修改 password
+     * 若修改数据条数不为 0 则修改成功
+     */
     @Override
     public boolean updatePasswordByUuid(User user)
     {
@@ -61,6 +89,13 @@ public class UserServiceImpl implements UserService
         return updateNum > 0;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 登录
+     * 根据用户名获取用户信息 并进行密码匹配
+     * 返回状态码 200成功 404无此用户 400密码错误
+     */
     @Override
     public SignInResponse signIn(User user)
     {
@@ -86,6 +121,12 @@ public class UserServiceImpl implements UserService
         return signInResponse;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 根据 uuid 获取 用户信息
+     * 仅获取部分展示信息
+     */
     @Override
     public UserMessageResponse getUserByUuid(String uuid)
     {
@@ -98,6 +139,16 @@ public class UserServiceImpl implements UserService
         return userMessage;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 获取验证码
+     * 检查邮箱是否被注册
+     * 若未被注册
+     * 生成一个随机的六位数验证码
+     * 并且在 redis 中添加一条记录 包含 (邮箱,验证码)
+     * 并且调用邮件服务类 向目标邮箱发送一封包含验证码的邮件
+     */
     @Override
     public int getCodeByMail(String mail)
     {
@@ -116,6 +167,15 @@ public class UserServiceImpl implements UserService
         return 200;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 注册
+     * 查找用户名是否已经被注册
+     * 若未被注册
+     * 从 redis 中通过邮箱查找验证码并且与用户输入的验证码进行匹配
+     * 返回状态码 200成功 400已被注册 401验证码错误
+     */
     @Override
     public int signUp(SignUpRequest signUpRequest)
     {

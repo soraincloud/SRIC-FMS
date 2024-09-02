@@ -21,6 +21,8 @@ public class HComicController
     HComicService hComicService;
 
     /**
+     * @author SRIC
+     *
      * 获取 H Comic 分页列表
      * 调用 Service 获取数据和数据数量
      */
@@ -34,6 +36,8 @@ public class HComicController
     }
 
     /**
+     * @author SRIC
+     *
      * 通过 id 获取 comic
      */
     @GetMapping("/getHComicById")

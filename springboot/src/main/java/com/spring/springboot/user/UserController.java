@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * - - - - - - - - - -
+ * user 控制类
+ * - - - - - - - - - -
+ */
+
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
@@ -16,12 +22,23 @@ public class UserController
     @Autowired
     UserService userService;
 
+    /**
+     * @author SRIC
+     *
+     * 获取 user 数据列表
+     */
     @GetMapping("/getUserMessageList")
     public List<User> getUserMessageList()
     {
         return userService.getUserMessageList();
     }
 
+    /**
+     * @author SRIC
+     *
+     * 根据 uuid 修改 用户名
+     * 返回状态码 200成功 400失败
+     */
     @PostMapping("/updateUsernameByUuid")
     public ResponseCode updateUsernameByUuid(@RequestBody User user)
     {
@@ -38,6 +55,12 @@ public class UserController
         return responseCode;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 根据 uuid 修改 密码
+     * 返回状态码 200成功 400失败
+     */
     @PostMapping("/updatePasswordByUuid")
     public ResponseCode updatePasswordByUuid(@RequestBody User user)
     {
@@ -54,6 +77,13 @@ public class UserController
         return responseCode;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 登录
+     * 若登录成功 在 sa token 中通过 uuid 注册用户信息
+     * 返回 token
+     */
     @PostMapping("/signIn")
     public SignInResponse signIn(@RequestBody User user)
     {
@@ -67,6 +97,13 @@ public class UserController
         return signInResponse;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 获取用户信息
+     * 通过传入的 uuid 与 请求头中的 token 数据 获取用户信息
+     * 通过 token 判断用户登录状态 并做出对应操作
+     */
     @GetMapping("/getUserMessage")
     public UserMessageResponse getUserMessage(@RequestParam String uuid,@RequestHeader("Authorization") String tokenValue)
     {
@@ -90,6 +127,11 @@ public class UserController
         return userMessage;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 通过传入的电子邮箱 发送动态验证码
+     */
     @GetMapping("/getCodeByMail")
     public ResponseCode getCodeByMail(@RequestParam String mail)
     {
@@ -98,6 +140,11 @@ public class UserController
         return responseCode;
     }
 
+    /**
+     * @author SRIC
+     *
+     * 注册
+     */
     @PostMapping("/signUp")
     public ResponseCode signIn(@RequestBody SignUpRequest signUpRequest)
     {

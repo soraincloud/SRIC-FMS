@@ -6,6 +6,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+/**
+ * 工具类
+ * 使用邮箱发送验证邮件
+ */
+
 @Service
 public class MailService
 {

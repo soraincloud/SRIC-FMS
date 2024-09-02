@@ -19,6 +19,8 @@ public class HPictureServiceImpl implements HPictureService
     HPictureMapper hPictureMapper;
 
     /**
+     * @author SRIC
+     *
      * 获取 picture 列表并且进行随机顺序打乱
      */
     @Override

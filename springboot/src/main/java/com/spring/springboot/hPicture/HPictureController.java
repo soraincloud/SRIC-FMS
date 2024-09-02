@@ -23,6 +23,8 @@ public class HPictureController
     HPictureService hPictureService;
 
     /**
+     * @author SRIC
+     *
      * 获取 picture 随机列表
      */
     @GetMapping("/getHPictureRandomList")

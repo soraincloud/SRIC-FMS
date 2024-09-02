@@ -2,6 +2,11 @@ package com.spring.springboot.user;
 
 import lombok.Data;
 
+/**
+ * user 实体类
+ * 用于获取和操作 user 数据
+ */
+
 @Data
 public class User
 {

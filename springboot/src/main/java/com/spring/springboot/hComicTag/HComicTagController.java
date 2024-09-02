@@ -21,6 +21,8 @@ public class HComicTagController
     HComicTagService hComicTagService;
 
     /**
+     * @author SRIC
+     *
      * 获取 comic tag 列表
      */
     @GetMapping("/getHComicTagList")
@@ -30,6 +32,8 @@ public class HComicTagController
     }
 
     /**
+     * @author SRIC
+     *
      * 添加 comic tag
      */
     @PostMapping("/addHComicTag")

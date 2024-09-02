@@ -1,8 +1,6 @@
 package com.spring.springboot.hVideo;
 
 import com.spring.springboot.tools.StaticResourceHttpRequestHandler;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +27,12 @@ public class HVideoController
     @Autowired
     StaticResourceHttpRequestHandler StaticResourceHttpRequestHandler;
 
+    /**
+     * @author SRIC
+     *
+     * 获取 video 列表
+     * 获取分页列表并且获取总数
+     */
     @GetMapping("/getHVideoList")
     public HVideoResponsePojo getHVideoList(HVideoRequestPojo hVideoRequest)
     {
@@ -38,32 +42,11 @@ public class HVideoController
         return hVideoResponse;
     }
 
-    @GetMapping("/playHVideo")
-    public void playHVideo(int video, HttpServletRequest request, HttpServletResponse response)
-    {
-
-
-        try
-        {
-            String path = filesPath + "/hVideo/" + hVideoService.getFilenameById(video);
-            File file = new File(path);
-            if(file.exists())
-            {
-                request.setAttribute(StaticResourceHttpRequestHandler.ATTR_FILE, path);
-                StaticResourceHttpRequestHandler.handleRequest(request, response);
-            }
-            else
-            {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-            }
-        }
-        catch(Exception e)
-        {
-
-        }
-    }
-
+    /**
+     * @author SRIC
+     *
+     * 通过 id 获取 video
+     */
     @GetMapping("/getHVideoById")
     public HVideo getHVideoById(int id)
     {
