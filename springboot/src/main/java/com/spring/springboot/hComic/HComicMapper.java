@@ -30,7 +30,7 @@ HComicMapper
             "AND ( MOSAIC = #{mosaicSelect} OR #{mosaicSelect} = '0' )" +
             "AND ( CATEGORY = #{categorySelect} OR #{categorySelect} = '0' )" +
             "LIMIT #{limitBefore} , #{limitSize}")
-    List<HComic> getHComicList(HComicRequestPojo pojo);
+    List<HComic> getHComicList(HComicRequestPojo hComicRequest);
 
     /**
      * @author SRIC
@@ -52,5 +52,5 @@ HComicMapper
             "( NAME LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
             "AND ( MOSAIC = #{mosaicSelect} OR #{mosaicSelect} = '0' )" +
             "AND ( CATEGORY = #{categorySelect} OR #{categorySelect} = '0' )")
-    int getHComicCount(HComicRequestPojo pojo);
+    int getHComicCount(HComicRequestPojo hComicRequest);
 }

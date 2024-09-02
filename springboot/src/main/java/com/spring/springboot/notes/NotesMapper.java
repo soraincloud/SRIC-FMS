@@ -12,5 +12,5 @@ public interface NotesMapper
             "( NAME LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
             "AND ( MOSAIC = #{mosaicSelect} OR #{mosaicSelect} = '0' )" +
             "LIMIT #{limitBefore} , #{limitSize}")
-    List<Notes> getNotesList();
+    List<Notes> getNotesList(NotesRequestPojo notesRequest);
 }
