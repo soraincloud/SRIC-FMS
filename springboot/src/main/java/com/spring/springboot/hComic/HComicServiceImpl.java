@@ -73,8 +73,8 @@ public class HComicServiceImpl implements HComicService
      * 获取符合条件的 comic 的条数 用于分页显示传入 total
      */
     @Override
-    public int getHComicCount(HComicRequestPojo pojo)
+    public int getHComicCount(HComicRequestPojo hComicRequest)
     {
-        return hComicMapper.getHComicCount(pojo);
+        return hComicMapper.getHComicCount(hComicRequest);
     }
 }
