@@ -85,9 +85,9 @@ public class UserController
      * 返回 token
      */
     @PostMapping("/signIn")
-    public SignInResponse signIn(@RequestBody User user)
+    public SignInResponsePojo signIn(@RequestBody User user)
     {
-        SignInResponse signInResponse = userService.signIn(user);
+        SignInResponsePojo signInResponse = userService.signIn(user);
         if(signInResponse.getCode() == 200) //登录成功
         {
             StpUtil.login(signInResponse.getUuid()); //通过uuid登录
@@ -105,9 +105,9 @@ public class UserController
      * 通过 token 判断用户登录状态 并做出对应操作
      */
     @GetMapping("/getUserMessage")
-    public UserMessageResponse getUserMessage(@RequestParam String uuid,@RequestHeader("Authorization") String tokenValue)
+    public UserMessageResponsePojo getUserMessage(@RequestParam String uuid, @RequestHeader("Authorization") String tokenValue)
     {
-        UserMessageResponse userMessage = userService.getUserByUuid(uuid);
+        UserMessageResponsePojo userMessage = userService.getUserByUuid(uuid);
         if (tokenValue == null) //未登录 无token
         {
             userMessage.setSignCode(400);
@@ -146,7 +146,7 @@ public class UserController
      * 注册
      */
     @PostMapping("/signUp")
-    public ResponseCode signIn(@RequestBody SignUpRequest signUpRequest)
+    public ResponseCode signIn(@RequestBody SignUpRequestPojo signUpRequest)
     {
         ResponseCode responseCode = new ResponseCode();
         responseCode.setCode(userService.signUp(signUpRequest));

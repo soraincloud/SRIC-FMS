@@ -9,7 +9,7 @@ import lombok.Data;
  */
 
 @Data
-public class SignInResponse
+public class SignInResponsePojo
 {
     private int code;
     private String token;

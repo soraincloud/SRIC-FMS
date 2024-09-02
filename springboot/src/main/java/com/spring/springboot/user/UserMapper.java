@@ -65,5 +65,5 @@ public interface UserMapper
      * 添加一条 user 数据
      */
     @Insert(value = "INSERT INTO `data_user` (uuid, UID, username, password, mail, createtime) VALUES(UUID(),null,#{username},#{password},#{mail},NOW())")
-    int insertUser(SignUpRequest signUpRequest);
+    int insertUser(SignUpRequestPojo signUpRequest);
 }

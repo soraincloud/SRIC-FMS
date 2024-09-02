@@ -97,10 +97,10 @@ public class UserServiceImpl implements UserService
      * 返回状态码 200成功 404无此用户 400密码错误
      */
     @Override
-    public SignInResponse signIn(User user)
+    public SignInResponsePojo signIn(User user)
     {
         User userSignIn = userMapper.getUserByUsername(user.getUsername()); //通过用户名获取用户信息
-        SignInResponse signInResponse = new SignInResponse();
+        SignInResponsePojo signInResponse = new SignInResponsePojo();
         if(userSignIn == null)
         {
             signInResponse.setCode(404); //查无此用户
@@ -128,10 +128,10 @@ public class UserServiceImpl implements UserService
      * 仅获取部分展示信息
      */
     @Override
-    public UserMessageResponse getUserByUuid(String uuid)
+    public UserMessageResponsePojo getUserByUuid(String uuid)
     {
         User user = userMapper.getUserByUuid(uuid);
-        UserMessageResponse userMessage = new UserMessageResponse();
+        UserMessageResponsePojo userMessage = new UserMessageResponsePojo();
         userMessage.setUid(user.getUid());
         userMessage.setUsername(user.getUsername());
         userMessage.setAvatar(user.getAvatar());
@@ -177,7 +177,7 @@ public class UserServiceImpl implements UserService
      * 返回状态码 200成功 400已被注册 401验证码错误
      */
     @Override
-    public int signUp(SignUpRequest signUpRequest)
+    public int signUp(SignUpRequestPojo signUpRequest)
     {
         User userByUsername = userMapper.getUserByUsername(signUpRequest.getUsername()); //通过输入的用户名查找是否有用户
         if(userByUsername != null) //用户名已被注册

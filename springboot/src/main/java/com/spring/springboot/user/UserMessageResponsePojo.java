@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserMessageResponse
+public class UserMessageResponsePojo
 {
     private int uid;
     private String username;

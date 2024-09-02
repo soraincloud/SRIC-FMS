@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-public class SignUpRequest
+public class SignUpRequestPojo
 {
     private String username;
     private String password;

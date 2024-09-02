@@ -1,7 +1,5 @@
 package com.spring.springboot.user;
 
-import org.apache.logging.log4j.message.Message;
-
 import java.util.List;
 
 public interface UserService
@@ -10,8 +8,8 @@ public interface UserService
     List<User> getUserMessageList();
     boolean updateUsernameByUuid(User user);
     boolean updatePasswordByUuid(User user);
-    SignInResponse signIn(User user);
-    UserMessageResponse getUserByUuid(String uuid);
+    SignInResponsePojo signIn(User user);
+    UserMessageResponsePojo getUserByUuid(String uuid);
     int getCodeByMail(String mail);
-    int signUp(SignUpRequest signUpRequest);
+    int signUp(SignUpRequestPojo signUpRequest);
 }
