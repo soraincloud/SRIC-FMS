@@ -18,6 +18,7 @@ export default
         operations: "操作",
         noties: "通知",
         tips: "提示",
+        all: "全部",
     },
     static:
     {
@@ -28,6 +29,10 @@ export default
         paramsError: "参数错误",
         signOutConfirm: "确认退出登录 ?",
         lineChangeTo: "线路已更改为 ",
+    },
+    mainMenu:
+    {
+        notes: "笔记",
     },
     menu:
     {

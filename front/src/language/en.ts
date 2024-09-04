@@ -18,6 +18,7 @@ export default
         operations: "Operations",
         noties: "noties",
         tips: "tips",
+        all: "ALL",
     },
     static:
     {
@@ -28,6 +29,10 @@ export default
         paramsError: "Params error",
         signOutConfirm: "sure to sign out ?",
         lineChangeTo: "line has changed to ",
+    },
+    mainMenu:
+    {
+        notes: "NOTES",
     },
     menu:
     {

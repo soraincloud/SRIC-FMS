@@ -1,10 +1,15 @@
 package com.spring.springboot.notes;
 
-import com.spring.springboot.hComic.HComicRequestPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+/**
+ * - - - - - - - - - -
+ * notes 服务类
+ * - - - - - - - - - -
+ */
 
 @Service
 public class NotesServiceImpl implements NotesService

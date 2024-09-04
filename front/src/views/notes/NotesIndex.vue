@@ -7,41 +7,32 @@
                 :default-active="deafultActiveMenu"
                 :ellipsis="false"
                 :collapse="isCollapse"
-                router
                 >
-                    <el-menu-item index="HfilesVideo">
-                        <el-icon :size="25"><VideoPlay /></el-icon>
+                    <el-menu-item index="all">
+                        <el-icon :size="25"><Menu /></el-icon>
                         <template #title>
-                            <span class="H-files-index-menu-item-span">{{ $t("menu.video") }}</span>
+                            <span class="notes-category-item-span">{{ $t("common.all") }}</span>
                         </template>
                     </el-menu-item>
-                    <el-menu-item index="HfilesComic">
-                        <el-icon :size="25"><Monitor /></el-icon>
+                    <el-menu-item index="1">
+                        <el-icon :size="25"><Folder /></el-icon>
                         <template #title>
-                            <span class="H-files-index-menu-item-span">{{ $t("menu.comic") }}</span>
-                        </template>
-                    </el-menu-item>
-                    <el-menu-item index="HfilesPicture">
-                        <el-icon :size="25"><Picture /></el-icon>
-                        <template #title>
-                            <span class="H-files-index-menu-item-span">{{ $t("menu.picture") }}</span>
+                            <span class="notes-category-item-span">{{ $t("menu.comic") }}</span>
                         </template>
                     </el-menu-item>
                 </el-menu>
             </el-aside>
             <el-main>
-                <router-view></router-view>
+                
             </el-main>
         </el-container>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
-import { ref,computed } from 'vue'
+import { ref } from 'vue'
 
-let route = useRoute()
-const deafultActiveMenu = computed( () => { return route.name })//访问页面时默认菜单选项
+const deafultActiveMenu = "all"//访问页面时默认菜单选项
 let minHeight = ref("min-height:" + (window.innerHeight - 100) + "px;")//设置菜单栏高度
 let isCollapse = ref(false)
 let asideWidth = ref("200px")
@@ -69,7 +60,7 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 <style>
 @import '@/css/common.css';
 
-.H-files-index-menu-item-span
+.notes-category-item-span
 {
     font-size: 20px;
     font-weight: bold;

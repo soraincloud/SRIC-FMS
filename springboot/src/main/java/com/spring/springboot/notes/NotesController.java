@@ -1,7 +1,5 @@
 package com.spring.springboot.notes;
 
-import com.spring.springboot.hComic.HComicRequestPojo;
-import com.spring.springboot.hComic.HComicResponsePojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
