@@ -25,6 +25,20 @@
             </el-aside>
             <el-main>
                 <div>
+                    <div class="notes-search-div">
+                        <el-input
+                        v-model="searchInput"
+                        placeholder="搜索"
+                        >
+                        <template #append>
+                            <el-button @click="clickSearch">
+                                <el-icon>
+                                    <search/>
+                                </el-icon>
+                            </el-button>
+                        </template>
+                        </el-input>
+                    </div>
                     <el-scrollbar :height="scrollbarHeight">
                         <el-card
                             v-for="(item,i) in notesList"
@@ -73,7 +87,7 @@ const asideWidth = ref("200px") //侧边栏宽度
 
 const notesCategory:any = ref([]) //notes 类别数据
 const notesCategorySelected = ref("0") //当前选择的 notes 类别
-const scrollbarHeight = ref((window.innerHeight - 190) + "px") //设置滚动条高度
+const scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
 const searchInput = ref() //搜索输入内容
 const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
@@ -126,6 +140,11 @@ const mouseClick = (i:any) => //点击跳转
 
 }
 
+const clickSearch = () => //点击搜索
+{
+    getNotesData()
+}
+
 const pageChange = () => //翻页
 {
     getNotesData()
@@ -149,7 +168,7 @@ const resetMinHeightAndMenu = () =>
 
 const resetScrollbarHeight = () => //重置滚动条高度(适应窗口大小)
 {
-    scrollbarHeight.value = (window.innerHeight - 190) + "px"
+    scrollbarHeight.value = (window.innerHeight - 225) + "px"
 }
 
 resetMinHeightAndMenu()
@@ -164,6 +183,11 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 {
     font-size: 20px;
     font-weight: bold;
+}
+
+.notes-search-div
+{
+    margin-bottom: 10px;
 }
 
 .notes-card
