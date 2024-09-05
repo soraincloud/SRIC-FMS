@@ -24,8 +24,8 @@ public interface NotesMapper
      * 获取的数据条目为 从 limitBefore 开始 limitSize 条
      */
     @Select(value = "SELECT * FROM `data_notes` WHERE " +
-            "( NAME LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
-            "AND ( MOSAIC = #{category} OR #{category} = '0' )" +
+            "( TITLE LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
+            "AND ( CATEGORY = #{category} OR #{category} = '0' )" +
             "LIMIT #{limitBefore} , #{limitSize}")
     List<Notes> getNotesList(NotesRequestPojo notesRequest);
 
@@ -37,7 +37,7 @@ public interface NotesMapper
      * 若传入 category 不为 0 便进行匹配
      */
     @Select(value = "SELECT COUNT(*) FROM `data_notes` WHERE " +
-            "( NAME LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
-            "AND ( MOSAIC = #{category} OR #{category} = '0' )")
+            "( TITLE LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
+            "AND ( CATEGORY = #{category} OR #{category} = '0' )")
     int getNotesCount(NotesRequestPojo notesRequest);
 }
