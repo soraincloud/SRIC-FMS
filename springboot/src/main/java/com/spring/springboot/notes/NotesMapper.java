@@ -22,11 +22,14 @@ public interface NotesMapper
      * 若传入 searchInput 不为空 便进行匹配
      * 若传入 category 不为 0 便进行匹配
      * 获取的数据条目为 从 limitBefore 开始 limitSize 条
+     *
+     * 从 category_notes 中匹配 categoryName
      */
-    @Select(value = "SELECT * FROM `data_notes` WHERE " +
-            "( TITLE LIKE concat('%',#{searchInput},'%') OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
-            "AND ( CATEGORY = #{category} OR #{category} = '0' )" +
-            "LIMIT #{limitBefore} , #{limitSize}")
+    @Select(value = "SELECT dn.*, cn.name as categoryName FROM `data_notes` dn " +
+            "LEFT JOIN `category_notes` cn ON dn.category = cn.id " +
+            "WHERE (dn.title LIKE concat('%', #{searchInput}, '%') OR #{searchInput} IS NULL OR #{searchInput} = '') " +
+            "AND (dn.category = #{category} OR #{category} = '0') " +
+            "LIMIT #{limitBefore}, #{limitSize}")
     List<Notes> getNotesList(NotesRequestPojo notesRequest);
 
     /**

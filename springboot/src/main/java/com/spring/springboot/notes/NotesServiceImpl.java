@@ -1,5 +1,6 @@
 package com.spring.springboot.notes;
 
+import com.spring.springboot.notesCategory.NotesCategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class NotesServiceImpl implements NotesService
 {
     @Autowired
     NotesMapper notesMapper;
+
+    @Autowired
+    NotesCategoryMapper notesCategoryMapper;
 
     /**
      * @author SRIC

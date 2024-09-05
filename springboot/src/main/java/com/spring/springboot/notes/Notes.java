@@ -16,4 +16,5 @@ public class Notes
     private String title;
     private String filename;
     private int category;
+    private String categoryName;
 }
