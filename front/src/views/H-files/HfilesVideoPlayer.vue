@@ -126,7 +126,7 @@ import { getHVideoById,getHVideoTagList,addHVideoTag } from "@/axios/api/hVideo"
 const route = useRoute()
 
 let dp:any;
-const videoUrl = axios.defaults.baseURL + "/h/playHVideo?video=" + route.query.video //设置播放视频所需url
+const videoUrl = axios.defaults.baseURL + "/hVideo/" + route.query.video + ".mp4" //设置播放视频所需url
 let videoData:any = ref({})
 let videoTagData:any = ref({})
 let addButtonDisabled:any = ref(true) //添加按钮是否禁用
