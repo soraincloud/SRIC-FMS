@@ -79,6 +79,9 @@
 <script lang="ts" setup>
 import { ref,onMounted } from 'vue'
 import { getNotesCategoryList,getNotesList } from '@/axios/api/notes';
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 const deafultActiveMenu = "0" //访问页面时默认菜单选项
 const minHeight = ref("min-height:" + (window.innerHeight - 100) + "px;" )//设置菜单栏高度
@@ -137,7 +140,15 @@ const mouseLeave = (i:any) => //鼠标移出
 
 const mouseClick = (i:any) => //点击跳转
 {
-
+    router.push
+    ({
+        name: 'NotesReader',
+        path: '/NotesReader',
+        query:
+        {
+            notes: notesList.value[i].id
+        },
+    })
 }
 
 const clickSearch = () => //点击搜索

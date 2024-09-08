@@ -9,3 +9,8 @@ export function getNotesList(params:any)
 {
     return get('/notes/getNotesList',params)
 }
+
+export function getNotesById(params:any)
+{
+    return get('/notes/getNotesById',params)
+}

@@ -19,6 +19,7 @@ export default
         noties: "通知",
         tips: "提示",
         all: "全部",
+        back: "返回",
     },
     static:
     {

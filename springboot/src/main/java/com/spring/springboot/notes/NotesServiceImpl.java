@@ -1,9 +1,12 @@
 package com.spring.springboot.notes;
 
 import com.spring.springboot.notesCategory.NotesCategoryMapper;
+import com.spring.springboot.tools.ReadFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,6 +18,12 @@ import java.util.List;
 @Service
 public class NotesServiceImpl implements NotesService
 {
+    @Value("${filesPath}") //获取application.properties中的全局变量
+    private String filesPath;
+
+    @Autowired
+    private ReadFile readFile;
+
     @Autowired
     NotesMapper notesMapper;
 
@@ -45,5 +54,28 @@ public class NotesServiceImpl implements NotesService
     public int getNotesCount(NotesRequestPojo notesRequest)
     {
         return notesMapper.getNotesCount(notesRequest);
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 根据 id 获取 notes
+     * 通过工具类获取文件内容
+     */
+    @Override
+    public NotesDataResponsePojo getNotesById(int id)
+    {
+        NotesDataResponsePojo notesDataResponse = new NotesDataResponsePojo();
+        notesDataResponse.setNotes(notesMapper.getNotesById(id));
+        try
+        {
+            notesDataResponse.setNotesDataText(readFile.readFileToString(filesPath + "/notes/" + id + ".md"));
+        }
+        catch (IOException e)
+        {
+            System.out.println("文件读取：" + e.getMessage());
+            notesDataResponse.setNotesDataText("Get files data error !");
+        }
+        return notesDataResponse;
     }
 }

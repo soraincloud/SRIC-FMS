@@ -19,6 +19,7 @@ export default
         noties: "noties",
         tips: "tips",
         all: "ALL",
+        back: "BACK",
     },
     static:
     {

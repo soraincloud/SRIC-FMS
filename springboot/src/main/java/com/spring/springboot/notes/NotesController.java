@@ -33,4 +33,15 @@ public class NotesController
         notesResponse.setTotal(notesService.getNotesCount(notesRequest));
         return notesResponse;
     }
+
+    /**
+     * @author SRIC
+     *
+     * 根据 id 获取 notes 数据
+     */
+    @GetMapping("/getNotesById")
+    public NotesDataResponsePojo getNotesById(Notes notes)
+    {
+        return notesService.getNotesById(notes.getId());
+    }
 }
