@@ -8,11 +8,38 @@
     <div class="common-body-set-width">
         <div class="notes-read-header">
             <span class="notes-read-name-text">{{ notesData.title }}</span>
-            <el-button type="danger" round>
-                <el-icon size="20">
-                    <Edit/>
-                </el-icon>
-            </el-button>
+            <div>
+                <el-tooltip v-if="!isEdit" placement="bottom" effect="dark">
+                    <template #content>
+                        <span>{{ $t("common.edit") }}</span>
+                    </template>
+                    <el-button type="danger" @click="clickEdit" round>
+                        <el-icon size="20">
+                            <Edit/>
+                        </el-icon>
+                    </el-button>
+                </el-tooltip>
+                <el-tooltip v-if="isEdit" placement="bottom" effect="dark">
+                    <template #content>
+                        <span>{{ $t("common.no") }}</span>
+                    </template>
+                    <el-button type="info" @click="clickEdit" round>
+                        <el-icon size="20">
+                            <RefreshLeft/>
+                        </el-icon>
+                    </el-button>
+                </el-tooltip>
+                <el-tooltip v-if="isEdit" placement="bottom" effect="dark">
+                    <template #content>
+                        <span>{{ $t("common.save") }}</span>
+                    </template>
+                    <el-button type="success" @click="clickEdit" round>
+                        <el-icon size="20">
+                            <MessageBox/>
+                        </el-icon>
+                    </el-button>
+                </el-tooltip>
+            </div>
         </div>
         <div class="notes-read-tags-div">
             <span>{{ notesData.filename }}</span>
@@ -22,13 +49,14 @@
             type="warning"
             size="small"
             >
-            <span class="notes-read-tag-text">{{ notesData.categoryName }}</span>
+                <span class="notes-read-tag-text">{{ notesData.categoryName }}</span>
             </el-tag>
         </div>
         <el-scrollbar :height="scrollbarHeight">
-            <el-card class="notes-reader-text-area-card">
+            <el-card v-if="!isEdit" class="notes-read-text-area-card">
                 <div v-html="notesDataMarkDown" class="markdown-body"></div>
             </el-card>
+            <el-input v-if="isEdit" class="notes-read-text-area-card" v-model="notesDataText" type="textarea" :autosize="{ minRows: 10 }"></el-input>
         </el-scrollbar>
     </div>
 </template>
@@ -46,6 +74,7 @@ const router = useRouter()
 const notesData:any = ref({}) //notes 数据
 const notesDataText:any = ref("") //notes 内容数据
 const scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
+const isEdit = ref(false) //是否处于编辑模式
 
 const getNotesData = async () => //获取 notes 数据与内容数据
 {
@@ -68,6 +97,11 @@ const clickBack = () => //点击返回
         name: 'Notes',
         path: '/Notes',
     })
+}
+
+const clickEdit = () => //点击编辑按钮
+{
+    isEdit.value = true
 }
 
 const windowSizeChanged = () => //窗口变动
@@ -138,7 +172,7 @@ html.dark .markdown-body
     font-weight: bold;
 }
 
-.notes-reader-text-area-card
+.notes-read-text-area-card
 {
     margin-top: 10px;
 }

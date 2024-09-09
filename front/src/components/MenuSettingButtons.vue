@@ -9,39 +9,39 @@
             @change="changeDarkMode"
         />
         <el-tooltip placement="top" effect="light">
-        <template #content>
-            <div>{{ $t("common.language") }}</div>
-            <el-radio-group v-model="language" @change="languageChange">
-            <div class="app-user-message-language-radio-group-div">
-                <el-radio value="zh" size="small" class="app-user-message-language-radio">中文</el-radio>
-                <el-radio value="en" size="small" class="app-user-message-language-radio">english</el-radio>
-            </div>
-            </el-radio-group>
-        </template>
-        <el-button class="app-user-message-setting-button" text circle >
-            <el-icon>
-            <Collection />
-            </el-icon>
-        </el-button>
+            <template #content>
+                <div>{{ $t("common.language") }}</div>
+                <el-radio-group v-model="language" @change="languageChange">
+                <div class="app-user-message-language-radio-group-div">
+                    <el-radio value="zh" size="small" class="app-user-message-language-radio">中文</el-radio>
+                    <el-radio value="en" size="small" class="app-user-message-language-radio">english</el-radio>
+                </div>
+                </el-radio-group>
+            </template>
+            <el-button class="app-user-message-setting-button" text circle >
+                <el-icon>
+                <Collection />
+                </el-icon>
+            </el-button>
         </el-tooltip>
         <el-tooltip placement="top" effect="light">
-        <template #content>
-            <div>{{ $t("common.line") }}</div>
-            <line-select-radio></line-select-radio>
-        </template>
-        <el-button class="app-user-message-setting-button" text circle >
-            <el-icon>
-            <Operation />
-            </el-icon>
-        </el-button>
+            <template #content>
+                <div>{{ $t("common.line") }}</div>
+                <line-select-radio></line-select-radio>
+            </template>
+            <el-button class="app-user-message-setting-button" text circle >
+                <el-icon>
+                <Operation />
+                </el-icon>
+            </el-button>
         </el-tooltip>
         <el-tooltip placement="top" effect="light">
-        <template #content>{{ $t("common.management") }}</template>
-        <el-button @click="clickManagement" class="app-user-message-setting-button" text circle >
-            <el-icon>
-            <SetUp />
-            </el-icon>
-        </el-button>
+            <template #content>{{ $t("common.management") }}</template>
+            <el-button @click="clickManagement" class="app-user-message-setting-button" text circle >
+                <el-icon>
+                <SetUp />
+                </el-icon>
+            </el-button>
         </el-tooltip>
     </div>
 </template>

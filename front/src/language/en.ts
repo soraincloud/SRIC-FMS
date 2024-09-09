@@ -20,6 +20,7 @@ export default
         tips: "tips",
         all: "ALL",
         back: "BACK",
+        save: "Save",
     },
     static:
     {

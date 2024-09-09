@@ -20,6 +20,7 @@ export default
         tips: "提示",
         all: "全部",
         back: "返回",
+        save: "保存",
     },
     static:
     {
