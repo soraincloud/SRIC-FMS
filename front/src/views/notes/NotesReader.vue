@@ -1,5 +1,5 @@
 <template>
-    <el-button type="info" class="notes-read-back-button" @click="clickBack" plain>
+    <el-button v-if="!isEdit" type="info" class="notes-read-back-button" @click="clickBack" plain>
         <el-icon size="20">
             <Back/>
         </el-icon>
@@ -9,26 +9,32 @@
         <div class="notes-read-header">
             <span class="notes-read-name-text">{{ notesData.title }}</span>
             <div>
-                <el-tooltip v-if="!isEdit" placement="bottom" effect="dark">
-                    <template #content>
-                        <span>{{ $t("common.edit") }}</span>
+                <el-button v-if="!isEdit" type="danger" @click="clickEdit" round>
+                    <el-icon size="20">
+                        <Edit/>
+                    </el-icon>
+                </el-button>
+
+                <el-popconfirm v-if="isEdit" :title="cancelConfirmTitle" icon-color="#F56C6C" @confirm="confirmCancel">
+                    <template #reference>
+                        <el-button type="info" @click="clickCancel" round>
+                            <el-icon size="20">
+                                <RefreshLeft/>
+                            </el-icon>
+                        </el-button>
                     </template>
-                    <el-button type="danger" @click="clickEdit" round>
-                        <el-icon size="20">
-                            <Edit/>
-                        </el-icon>
-                    </el-button>
-                </el-tooltip>
-                <el-tooltip v-if="isEdit" placement="bottom" effect="dark">
-                    <template #content>
-                        <span>{{ $t("common.no") }}</span>
+                    <template #actions="{ confirm, cancel }">
+                        <el-button size="small" @click="cancel">{{ $t("common.no") }}</el-button>
+                        <el-button
+                            type="danger"
+                            size="small"
+                            @click="confirm"
+                        >
+                            {{ $t("common.yes") }}
+                        </el-button>
                     </template>
-                    <el-button type="info" @click="clickEdit" round>
-                        <el-icon size="20">
-                            <RefreshLeft/>
-                        </el-icon>
-                    </el-button>
-                </el-tooltip>
+                </el-popconfirm>
+
                 <el-tooltip v-if="isEdit" placement="bottom" effect="dark">
                     <template #content>
                         <span>{{ $t("common.save") }}</span>
@@ -56,7 +62,7 @@
             <el-card v-if="!isEdit" class="notes-read-text-area-card">
                 <div v-html="notesDataMarkDown" class="markdown-body"></div>
             </el-card>
-            <el-input v-if="isEdit" class="notes-read-text-area-card" v-model="notesDataText" type="textarea" :autosize="{ minRows: 10 }"></el-input>
+            <el-input v-if="isEdit" class="notes-read-text-area-card" v-model="notesEditData" type="textarea" :autosize="{ minRows: 10 }"></el-input>
         </el-scrollbar>
     </div>
 </template>
@@ -67,6 +73,8 @@ import { getNotesById } from '@/axios/api/notes';
 import { useRoute,useRouter } from 'vue-router'
 import { marked } from 'marked'
 import 'github-markdown-css/github-markdown.css'
+import i18n from '@/language';
+const { t } = i18n.global
 
 const route = useRoute()
 const router = useRouter()
@@ -75,6 +83,9 @@ const notesData:any = ref({}) //notes 数据
 const notesDataText:any = ref("") //notes 内容数据
 const scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
 const isEdit = ref(false) //是否处于编辑模式
+const notesEditData:any = ref("") //编辑 notes 内容数据
+const cancelConfirmTitle = ref(t("static.cancelConfirmTitle")) //取消编辑确认框文字标题
+const saveConfirmTitle = ref(t("static.saveConfirmTitle")) //保存编辑内容确认框文字标题
 
 const getNotesData = async () => //获取 notes 数据与内容数据
 {
@@ -101,7 +112,18 @@ const clickBack = () => //点击返回
 
 const clickEdit = () => //点击编辑按钮
 {
+    notesEditData.value = notesDataText.value
     isEdit.value = true
+}
+
+const clickCancel = () => //点击取消编辑按钮
+{
+    
+}
+
+const confirmCancel = () => //确定取消编辑
+{
+    isEdit.value = false
 }
 
 const windowSizeChanged = () => //窗口变动

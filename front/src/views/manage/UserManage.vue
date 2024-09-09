@@ -28,9 +28,19 @@
                     </template>
                     <template #default="scope">
                         <el-button link type="primary" @click="clickEdit(scope.row)">{{ $t("common.edit") }}</el-button>
-                        <el-popconfirm title="Sure to delete?" icon-color="#F56C6C">
+                        <el-popconfirm :title="deleteConfirmTitle" icon-color="#F56C6C" @confirm="confirmDelete(scope.row)">
                             <template #reference>
                                 <el-button link type="danger" @click="clickDelete">{{ $t("common.delete") }}</el-button>
+                            </template>
+                            <template #actions="{ confirm, cancel }">
+                                <el-button size="small" @click="cancel">{{ $t("common.no") }}</el-button>
+                                <el-button
+                                    type="danger"
+                                    size="small"
+                                    @click="confirm"
+                                >
+                                    {{ $t("common.yes") }}
+                                </el-button>
                             </template>
                         </el-popconfirm>
                     </template>
@@ -62,6 +72,8 @@ import { getUserMessageList } from '@/axios/api/user'
 import CryptoJS from 'crypto-js' //SHA-256加密
 import { updateUsernameByUuid,updatePasswordByUuid } from '@/axios/api/user';
 import { ElMessage } from 'element-plus' //element消息
+import i18n from '@/language';
+const { t } = i18n.global
 
 const tableData = ref([]) //主页面表表格数据
 const isDrawerOpen = ref(false) //EDIT的抽屉是否打开
@@ -71,6 +83,7 @@ const usernameInput = ref("") //用户名输入框内容
 const passwordInput = ref("") //密码输入框内容
 const editUsernameNow = ref("") //当前正在编辑的用户名初始值
 const editUserUuid = ref("") //当前正在编辑的用户的uuid
+const deleteConfirmTitle = ref(t("static.deleteConfirmTitle")) //删除确认框的标题文字
 
 onMounted( () =>
 {
@@ -93,7 +106,12 @@ const clickEdit = (row :any) => //点击编辑
     passwordInput.value = "*****"
 }
 
-const clickDelete = (row :any) => //点击确认删除
+const clickDelete = () => //点击删除按钮
+{
+    deleteConfirmTitle.value = t("static.deleteConfirmTitle")
+}
+
+const confirmDelete = (row :any) => //点击确认删除
 {
 
 }

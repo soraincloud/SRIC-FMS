@@ -31,6 +31,9 @@ export default
         paramsError: "参数错误",
         signOutConfirm: "确认退出登录 ?",
         lineChangeTo: "线路已更改为 ",
+        deleteConfirmTitle: "确认删除 ?",
+        cancelConfirmTitle: "取消编辑 ?",
+        saveConfirmTitle: "确认保存 ?",
     },
     mainMenu:
     {

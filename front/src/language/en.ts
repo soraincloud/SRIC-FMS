@@ -31,6 +31,9 @@ export default
         paramsError: "Params error",
         signOutConfirm: "sure to sign out ?",
         lineChangeTo: "line has changed to ",
+        deleteConfirmTitle: "Sure to delete ?",
+        cancelConfirmTitle: "Cancel your edit ?",
+        saveConfirmTitle: "Sure to save ?",
     },
     mainMenu:
     {
