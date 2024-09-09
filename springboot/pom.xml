@@ -92,7 +92,6 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.spring.springboot.SpringbootApplication</mainClass>
-                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
