@@ -1,7 +1,7 @@
 package com.spring.springboot.notes;
 
 import com.spring.springboot.notesCategory.NotesCategoryMapper;
-import com.spring.springboot.tools.ReadFile;
+import com.spring.springboot.tools.EditFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class NotesServiceImpl implements NotesService
     private String filesPath;
 
     @Autowired
-    private ReadFile readFile;
+    private EditFile readFile;
 
     @Autowired
     NotesMapper notesMapper;

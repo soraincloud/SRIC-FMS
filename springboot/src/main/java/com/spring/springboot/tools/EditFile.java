@@ -13,7 +13,7 @@ import java.nio.file.Paths;
  */
 
 @Service
-public class ReadFile
+public class EditFile
 {
     public String readFileToString(String filePath) throws IOException
     {
