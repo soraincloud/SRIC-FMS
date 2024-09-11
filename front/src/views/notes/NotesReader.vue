@@ -17,7 +17,7 @@
 
                 <el-popconfirm v-if="isEdit" :title="cancelConfirmTitle" icon-color="#F56C6C" @confirm="confirmCancel">
                     <template #reference>
-                        <el-button type="info" @click="clickCancel" round>
+                        <el-button type="info" round>
                             <el-icon size="20">
                                 <RefreshLeft/>
                             </el-icon>
@@ -35,16 +35,25 @@
                     </template>
                 </el-popconfirm>
 
-                <el-tooltip v-if="isEdit" placement="bottom" effect="dark">
-                    <template #content>
-                        <span>{{ $t("common.save") }}</span>
+                <el-popconfirm v-if="isEdit" :title="saveConfirmTitle" icon-color="#67C23A" @confirm="confirmEdit">
+                    <template #reference>
+                        <el-button type="success" round>
+                            <el-icon size="20">
+                                <MessageBox/>
+                            </el-icon>
+                        </el-button>
                     </template>
-                    <el-button type="success" @click="clickEdit" round>
-                        <el-icon size="20">
-                            <MessageBox/>
-                        </el-icon>
-                    </el-button>
-                </el-tooltip>
+                    <template #actions="{ confirm, cancel }">
+                        <el-button size="small" @click="cancel">{{ $t("common.no") }}</el-button>
+                        <el-button
+                            type="success"
+                            size="small"
+                            @click="confirm"
+                        >
+                            {{ $t("common.yes") }}
+                        </el-button>
+                    </template>
+                </el-popconfirm>
             </div>
         </div>
         <div class="notes-read-tags-div">
@@ -116,14 +125,14 @@ const clickEdit = () => //点击编辑按钮
     isEdit.value = true
 }
 
-const clickCancel = () => //点击取消编辑按钮
-{
-    
-}
-
 const confirmCancel = () => //确定取消编辑
 {
     isEdit.value = false
+}
+
+const confirmEdit = () => //确定保存编辑
+{
+    
 }
 
 const windowSizeChanged = () => //窗口变动
