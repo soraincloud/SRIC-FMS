@@ -40,6 +40,7 @@ export default
         saveFailed: "Save failed",
         addSuccess: "Add successful",
         tagAlready: "Tag has already added",
+        editAndAddUser: "edit/add user",
     },
     mainMenu:
     {

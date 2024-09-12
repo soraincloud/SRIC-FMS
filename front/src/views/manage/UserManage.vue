@@ -47,7 +47,10 @@
                 </el-table-column>
             </el-table>
         </el-card>
-        <el-drawer v-model="isDrawerOpen" title="edit/add user" @close="drawerClose" ref="drawer">
+        <el-drawer v-model="isDrawerOpen" @close="drawerClose" ref="drawer">
+            <template #title>
+                <span>{{ t("static.editAndAddUser") }}</span>
+            </template>
             <h1>{{ $t("sign.username") }}</h1>
             <el-input v-model="usernameInput" :disabled="usernameDisabled" clearable></el-input>
             <div class="UserManage-drawer-button-div">

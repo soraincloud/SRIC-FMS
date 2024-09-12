@@ -26,18 +26,29 @@
             <el-main>
                 <div>
                     <div class="notes-search-div">
-                        <el-input
-                        v-model="searchInput"
-                        placeholder="搜索"
-                        >
-                        <template #append>
-                            <el-button @click="clickSearch">
-                                <el-icon>
-                                    <search/>
-                                </el-icon>
-                            </el-button>
-                        </template>
-                        </el-input>
+                        <el-row>
+                            <el-col :span="20">
+                                <el-input
+                                v-model="searchInput"
+                                placeholder="搜索"
+                                >
+                                <template #append>
+                                    <el-button @click="clickSearch">
+                                        <el-icon>
+                                            <search/>
+                                        </el-icon>
+                                    </el-button>
+                                </template>
+                                </el-input>
+                            </el-col>
+                            <el-col :span="4">
+                                <el-button @click="clickAddNotes" class="notes-add-button" type="danger" plain>
+                                    <el-icon>
+                                        <Plus/>
+                                    </el-icon>
+                                </el-button>
+                            </el-col>
+                        </el-row>
                     </div>
                     <el-scrollbar :height="scrollbarHeight">
                         <el-card
@@ -73,6 +84,13 @@
                 </div>
             </el-main>
         </el-container>
+        <el-drawer
+        v-model="addDialogVisible"
+        >
+            <template #title>
+                <span>123</span>
+            </template>
+        </el-drawer>
     </div>
 </template>
 
@@ -95,6 +113,7 @@ const searchInput = ref() //搜索输入内容
 const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
 const notesList:any = ref([]) //notes 数据列表
+const addDialogVisible = ref(false) //添加 notes 的抽屉是否开启
 
 const getNotesCategoryData = async () => //获取 notes 类别数据
 {
@@ -156,6 +175,11 @@ const clickSearch = () => //点击搜索
     getNotesData()
 }
 
+const clickAddNotes = () => //点击添加 notes
+{
+    addDialogVisible.value = true
+}
+
 const pageChange = () => //翻页
 {
     getNotesData()
@@ -194,6 +218,11 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 {
     font-size: 20px;
     font-weight: bold;
+}
+
+.notes-add-button
+{
+    float: right;
 }
 
 .notes-search-div

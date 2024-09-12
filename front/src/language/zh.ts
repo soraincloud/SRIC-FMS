@@ -40,6 +40,7 @@ export default
         saveFailed: "保存失败",
         addSuccess: "添加成功",
         tagAlready: "已有此标签",
+        editAndAddUser: "编辑 / 添加用户",
     },
     mainMenu:
     {
