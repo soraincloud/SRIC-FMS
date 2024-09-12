@@ -21,6 +21,8 @@ export default
         all: "全部",
         back: "返回",
         save: "保存",
+        success: "成功",
+        fail: "失败",
     },
     static:
     {
@@ -36,6 +38,8 @@ export default
         saveConfirmTitle: "确认保存 ?",
         saveSuccess: "保存成功",
         saveFailed: "保存失败",
+        addSuccess: "添加成功",
+        tagAlready: "已有此标签",
     },
     mainMenu:
     {

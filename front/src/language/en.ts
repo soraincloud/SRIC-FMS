@@ -21,6 +21,8 @@ export default
         all: "ALL",
         back: "BACK",
         save: "Save",
+        success: "SUCCESS",
+        fail: "FAIL",
     },
     static:
     {
@@ -36,6 +38,8 @@ export default
         saveConfirmTitle: "Sure to save ?",
         saveSuccess: "Save successful",
         saveFailed: "Save failed",
+        addSuccess: "Add successful",
+        tagAlready: "Tag has already added",
     },
     mainMenu:
     {

@@ -143,21 +143,21 @@ const clickEditUsernameSubmit = async () => //提交对用户名的强制更改
     if(resp.data.code == 200)
     {
         ElMessage({
-            message: '成功',
+            message: t("common.success"),
             type: 'success',
         })
     }
     else if(resp.data.code == 400)
     {
         ElMessage({
-            message: '失败',
+            message: t("common.fail"),
             type: 'warning',
         })
     }
     else
     {
         ElMessage({
-            message: '参数异常',
+            message: t("static.paramsError"),
             type: 'error',
         })
     }
@@ -178,21 +178,21 @@ const clickEditPasswordSubmit = async () => //提交对密码的强制更改
     if(resp.data.code == 200)
     {
         ElMessage({
-            message: '成功',
+            message: t("common.success"),
             type: 'success',
         })
     }
     else if(resp.data.code == 400)
     {
         ElMessage({
-            message: '失败',
+            message: t("common.fail"),
             type: 'warning',
         })
     }
     else
     {
         ElMessage({
-            message: '参数异常',
+            message: t("static.paramsError"),
             type: 'error',
         })
     }

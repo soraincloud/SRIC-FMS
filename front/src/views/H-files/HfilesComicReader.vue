@@ -126,6 +126,9 @@ import { onMounted,ref } from 'vue';
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { getHComicById,getHComicTagList,addHComicTag } from "@/axios/api/hComic"
+import i18n from '@/language';
+
+const { t } = i18n.global
 
 const route = useRoute()
 
@@ -197,21 +200,21 @@ const submitHComicTag = async () =>
     if(resp.data.code == 200)
     {
         ElMessage({
-            message: '添加成功',
+            message: t("static.addSuccess"),
             type: 'success',
         })
     }
     else if(resp.data.code == 400)
     {
         ElMessage({
-            message: '已有此tag',
+            message: t("static.tagAlready"),
             type: 'warning',
         })
     }
     else
     {
         ElMessage({
-            message: '参数异常',
+            message: t("static.paramsError"),
             type: 'error',
         })
     }
