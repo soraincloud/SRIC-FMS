@@ -1,10 +1,8 @@
 package com.spring.springboot.notes;
 
+import com.spring.springboot.response.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * - - - - - - - - - -
@@ -43,5 +41,26 @@ public class NotesController
     public NotesDataResponsePojo getNotesById(Notes notes)
     {
         return notesService.getNotesById(notes.getId());
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 根据 id 更新 notes 内容数据
+     */
+    @PostMapping("/editNotesData")
+    public ResponseCode editNotesData(@RequestBody NotesEditRequestPojo notesEditRequest)
+    {
+        System.out.println(notesEditRequest);
+        ResponseCode responseCode = new ResponseCode();
+        if(notesService.editNotesData(notesEditRequest))
+        {
+            responseCode.setCode(200);
+        }
+        else
+        {
+            responseCode.setCode(400);
+        }
+        return responseCode;
     }
 }

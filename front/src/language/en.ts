@@ -34,6 +34,8 @@ export default
         deleteConfirmTitle: "Sure to delete ?",
         cancelConfirmTitle: "Cancel your edit ?",
         saveConfirmTitle: "Sure to save ?",
+        saveSuccess: "Save successful",
+        saveFailed: "Save failed",
     },
     mainMenu:
     {

@@ -1,4 +1,4 @@
-import { get } from '@/axios/axios'
+import { get,post } from '@/axios/axios'
 
 export function getNotesCategoryList(params:any)
 {
@@ -13,4 +13,9 @@ export function getNotesList(params:any)
 export function getNotesById(params:any)
 {
     return get('/notes/getNotesById',params)
+}
+
+export function editNotesData(params:any)
+{
+    return post('/notes/editNotesData',params)
 }

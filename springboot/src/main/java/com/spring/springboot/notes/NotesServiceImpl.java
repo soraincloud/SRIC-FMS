@@ -22,7 +22,7 @@ public class NotesServiceImpl implements NotesService
     private String filesPath;
 
     @Autowired
-    private EditFile readFile;
+    private EditFile editFile;
 
     @Autowired
     NotesMapper notesMapper;
@@ -66,10 +66,11 @@ public class NotesServiceImpl implements NotesService
     public NotesDataResponsePojo getNotesById(int id)
     {
         NotesDataResponsePojo notesDataResponse = new NotesDataResponsePojo();
-        notesDataResponse.setNotes(notesMapper.getNotesById(id));
+        Notes notes = notesMapper.getNotesById(id);
+        notesDataResponse.setNotes(notes);
         try
         {
-            notesDataResponse.setNotesDataText(readFile.readFileToString(filesPath + "/notes/" + id + ".md"));
+            notesDataResponse.setNotesDataText(editFile.readFileToString(filesPath + "/notes/" + notes.getFilename()));
         }
         catch (IOException e)
         {
@@ -77,5 +78,16 @@ public class NotesServiceImpl implements NotesService
             notesDataResponse.setNotesDataText("Get files data error !");
         }
         return notesDataResponse;
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 将字符串写入对应 id 的文件
+     */
+    @Override
+    public boolean editNotesData(NotesEditRequestPojo notesEditRequest)
+    {
+        return editFile.writeFile( filesPath + "/notes/" + notesEditRequest.getFilename(),notesEditRequest.getContent());
     }
 }

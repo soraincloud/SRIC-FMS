@@ -78,9 +78,10 @@
 
 <script lang="ts" setup>
 import { ref,onMounted,computed } from 'vue'
-import { getNotesById } from '@/axios/api/notes';
+import { getNotesById,editNotesData } from '@/axios/api/notes';
 import { useRoute,useRouter } from 'vue-router'
 import { marked } from 'marked'
+import { ElMessage } from 'element-plus' //element消息
 import 'github-markdown-css/github-markdown.css'
 import i18n from '@/language';
 const { t } = i18n.global
@@ -130,9 +131,38 @@ const confirmCancel = () => //确定取消编辑
     isEdit.value = false
 }
 
-const confirmEdit = () => //确定保存编辑
+const confirmEdit = async () => //确定保存编辑
 {
-    
+    const params = 
+    {
+        id: notesData.value.id,
+        filename: notesData.value.filename,
+        content: notesEditData.value,
+    }
+    const resp = await editNotesData(params)
+    if(resp.data.code == 200)
+    {
+        ElMessage({
+            message: t("static.saveSuccess"),
+            type: 'success',
+        })
+    }
+    else if(resp.data.code == 400)
+    {
+        ElMessage({
+            message: t("static.saveFailed"),
+            type: 'warning',
+        })
+    }
+    else
+    {
+        ElMessage({
+            message: t("static.paramsError"),
+            type: 'error',
+        })
+    }
+    await getNotesData()
+    isEdit.value = false
 }
 
 const windowSizeChanged = () => //窗口变动

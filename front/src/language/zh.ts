@@ -34,6 +34,8 @@ export default
         deleteConfirmTitle: "确认删除 ?",
         cancelConfirmTitle: "取消编辑 ?",
         saveConfirmTitle: "确认保存 ?",
+        saveSuccess: "保存成功",
+        saveFailed: "保存失败",
     },
     mainMenu:
     {

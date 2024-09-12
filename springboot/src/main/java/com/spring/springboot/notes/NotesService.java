@@ -7,4 +7,5 @@ public interface NotesService
     List<Notes> getNotesList(NotesRequestPojo notesRequest);
     int getNotesCount(NotesRequestPojo notesRequest);
     NotesDataResponsePojo getNotesById(int id);
+    boolean editNotesData(NotesEditRequestPojo notesEditRequest);
 }
