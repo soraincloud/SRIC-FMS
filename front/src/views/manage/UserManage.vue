@@ -49,7 +49,7 @@
         </el-card>
         <el-drawer v-model="isDrawerOpen" @close="drawerClose" ref="drawer">
             <template #title>
-                <span>{{ t("static.editAndAddUser") }}</span>
+                <span class="UserManage-drawer-title">{{ t("static.editAndAddUser") }}</span>
             </template>
             <h1>{{ $t("sign.username") }}</h1>
             <el-input v-model="usernameInput" :disabled="usernameDisabled" clearable></el-input>
@@ -233,5 +233,10 @@ const clickEditPasswordCancel = () => //取消强制更改密码
 {
     margin-top: 10px;
     font-size: 15px;
+}
+
+.UserManage-drawer-title
+{
+    font-weight: bold;
 }
 </style>

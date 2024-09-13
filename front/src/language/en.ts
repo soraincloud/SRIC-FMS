@@ -23,6 +23,8 @@ export default
         save: "Save",
         success: "SUCCESS",
         fail: "FAIL",
+        title: "title",
+        category: "category",
     },
     static:
     {
@@ -41,6 +43,7 @@ export default
         addSuccess: "Add successful",
         tagAlready: "Tag has already added",
         editAndAddUser: "edit/add user",
+        addNotes: "Add note",
     },
     mainMenu:
     {
@@ -87,11 +90,13 @@ export default
     },
     rules:
     {
-        "username": "Please input username",
-        "password": "Please input password",
-        "passwordRepeat": "Please repeat password",
-        "mail": "Please input email",
-        "mailConfirm": "Please input a valid email address",
-        "code": "Please input verification code",
+        username: "Please input username",
+        password: "Please input password",
+        passwordRepeat: "Please repeat password",
+        mail: "Please input email",
+        mailConfirm: "Please input a valid email address",
+        code: "Please input verification code",
+        title: "Please input title",
+        category: "Please pick category",
     },
 }

@@ -23,6 +23,8 @@ export default
         save: "保存",
         success: "成功",
         fail: "失败",
+        title: "标题",
+        category: "类别",
     },
     static:
     {
@@ -41,6 +43,7 @@ export default
         addSuccess: "添加成功",
         tagAlready: "已有此标签",
         editAndAddUser: "编辑 / 添加用户",
+        addNotes: "添加笔记",
     },
     mainMenu:
     {
@@ -93,5 +96,7 @@ export default
         mail: "请输入邮箱",
         mailConfirm: "请输入正确的邮箱地址",
         code: "请输入验证码",
+        title: "请设置标题",
+        category: "请选择类别",
     },
 }

@@ -42,8 +42,8 @@
                                 </el-input>
                             </el-col>
                             <el-col :span="4">
-                                <el-button @click="clickAddNotes" class="notes-add-button" type="danger" plain>
-                                    <el-icon>
+                                <el-button @click="clickAddNotes" class="notes-add-button" type="danger">
+                                    <el-icon size="15">
                                         <Plus/>
                                     </el-icon>
                                 </el-button>
@@ -88,16 +88,37 @@
         v-model="addDialogVisible"
         >
             <template #title>
-                <span>123</span>
+                <span class="notes-drawer-title">{{ $t("static.addNotes") }}</span>
             </template>
+            <el-form ref="notesFormRef" :model="notesForm" :rules="notesFormRules">
+                <el-form-item prop="title">
+                    <h1>{{ $t("common.title") }}</h1>
+                    <el-input v-model="notesForm.title" clearable></el-input>
+                </el-form-item>
+                <el-form-item prop="category">
+                    <h1>{{ $t("common.category") }}</h1> 
+                    <el-input v-model="notesForm.category" clearable></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button @click="clickAddNotesMessage(notesFormRef)" type="success">
+                        <el-icon class="notes-add-button-icon" size="15">
+                            <Plus/>
+                        </el-icon>
+                        {{ $t("common.add") }}
+                    </el-button>
+                </el-form-item>
+            </el-form>
         </el-drawer>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref,onMounted } from 'vue'
+import { ref,onMounted,reactive } from 'vue'
 import { getNotesCategoryList,getNotesList } from '@/axios/api/notes';
 import { useRouter } from "vue-router";
+import type { FormInstance } from 'element-plus'
+import i18n from '@/language';
+const { t } = i18n.global
 
 const router = useRouter()
 
@@ -114,6 +135,23 @@ const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
 const notesList:any = ref([]) //notes 数据列表
 const addDialogVisible = ref(false) //添加 notes 的抽屉是否开启
+const notesForm = reactive //添加 notes 的表单
+({
+    title: "",
+    category: "",
+})
+const notesFormRef = ref<FormInstance>() //添加notes表单的ref
+const notesFormRules = reactive //添加notes表单的rule
+({
+    title:
+    [
+        { required: true, message: t("rules.title"), trigger: 'blur' },
+    ],
+    category:
+    [
+        { required: true, message: t("rules.category"), trigger: 'blur' },
+    ],
+})
 
 const getNotesCategoryData = async () => //获取 notes 类别数据
 {
@@ -183,6 +221,18 @@ const clickAddNotes = () => //点击添加 notes
 const pageChange = () => //翻页
 {
     getNotesData()
+}
+
+const clickAddNotesMessage = async (formEl: FormInstance | undefined) => //添加notes填写基础信息后提交
+{
+    if (!formEl) return
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
 }
 
 const resetMinHeightAndMenu = () =>
@@ -271,5 +321,15 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 .notes-card-tags
 {
     margin: 0px 0px 2px 10px;
+}
+
+.notes-drawer-title
+{
+    font-weight: bold;
+}
+
+.notes-add-button-icon
+{
+    margin-right: 10px;
 }
 </style>
