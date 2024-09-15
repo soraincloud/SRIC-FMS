@@ -41,6 +41,7 @@ export default
         saveSuccess: "Save successful",
         saveFailed: "Save failed",
         addSuccess: "Add successful",
+        nameHasBeenUsed: "Duplicate names",
         tagAlready: "Tag has already added",
         editAndAddUser: "edit/add user",
         addNotes: "Add note",

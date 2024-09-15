@@ -19,3 +19,8 @@ export function editNotesData(params:any)
 {
     return post('/notes/editNotesData',params)
 }
+
+export function addNotes(params:any)
+{
+    return post('/notes/addNotes',params)
+}

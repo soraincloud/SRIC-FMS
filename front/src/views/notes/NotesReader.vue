@@ -109,6 +109,11 @@ const notesDataMarkDown = computed(() => marked(notesDataText.value)) //将 note
 onMounted(async () => 
 {
     await getNotesData()
+    if(route.query.add == "true")
+    {
+        notesEditData.value = notesDataText.value
+        isEdit.value = true
+    }
 })
 
 const clickBack = () => //点击返回

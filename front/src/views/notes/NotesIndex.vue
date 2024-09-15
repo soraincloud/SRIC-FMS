@@ -15,7 +15,7 @@
                             <span class="notes-category-item-span">{{ $t("common.all") }}</span>
                         </template>
                     </el-menu-item>
-                    <el-menu-item v-for="(item,i) in notesCategory" :kay="i" :index="item.id">
+                    <el-menu-item v-for="(item,i) in notesCategory" :key="i" :index="item.id.toString()">
                         <el-icon :size="25"><Menu /></el-icon>
                         <template #title>
                             <span class="notes-category-item-span">{{ item.name }}</span>
@@ -87,7 +87,7 @@
         <el-drawer
         v-model="addDialogVisible"
         >
-            <template #title>
+            <template #header>
                 <span class="notes-drawer-title">{{ $t("static.addNotes") }}</span>
             </template>
             <el-form ref="notesFormRef" :model="notesForm" :rules="notesFormRules">
@@ -97,10 +97,12 @@
                 </el-form-item>
                 <el-form-item prop="category">
                     <h1>{{ $t("common.category") }}</h1> 
-                    <el-input v-model="notesForm.category" clearable></el-input>
+                    <el-select v-model="notesForm.category">
+                        <el-option v-for="(item,i) in notesCategory" :label="item.name" :value="item.id" />
+                    </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button @click="clickAddNotesMessage(notesFormRef)" type="success">
+                    <el-button @click="clickAddNotesFile(notesFormRef)" type="success">
                         <el-icon class="notes-add-button-icon" size="15">
                             <Plus/>
                         </el-icon>
@@ -114,7 +116,8 @@
 
 <script lang="ts" setup>
 import { ref,onMounted,reactive } from 'vue'
-import { getNotesCategoryList,getNotesList } from '@/axios/api/notes';
+import { getNotesCategoryList,getNotesList,addNotes } from '@/axios/api/notes';
+import { ElMessage } from 'element-plus' //element消息
 import { useRouter } from "vue-router";
 import type { FormInstance } from 'element-plus'
 import i18n from '@/language';
@@ -161,13 +164,13 @@ const getNotesCategoryData = async () => //获取 notes 类别数据
 
 const getNotesData = async () =>
 {
-    const requestData = 
+    const params = 
     {
         searchInput: searchInput.value,
         category: notesCategorySelected.value,
         page: page.value,
     }
-    const resp = await getNotesList(requestData)
+    const resp = await getNotesList(params)
     console.log(resp.data)
     pageTotal.value = resp.data.total
     notesList.value = resp.data.notesList
@@ -223,16 +226,58 @@ const pageChange = () => //翻页
     getNotesData()
 }
 
-const clickAddNotesMessage = async (formEl: FormInstance | undefined) => //添加notes填写基础信息后提交
+const clickAddNotesFile = async (formEl: FormInstance | undefined) => //添加notes填写基础信息后提交
 {
     if (!formEl) return
     await formEl.validate((valid, fields) => {
         if (valid) {
-            
+            doAddNotesFile()
         } else {
             console.log('error submit!', fields)
         }
     })
+}
+
+const doAddNotesFile = async () =>
+{
+    const params =
+    {
+        title: notesForm.title,
+        category: notesForm.category,
+    }
+    const resp = await addNotes(params)
+    if(resp.data.code == 200)
+    {
+        ElMessage({
+            message: t("static.addSuccess"),
+            type: 'success',
+        })
+        addDialogVisible.value = false
+        router.push
+        ({
+            name: 'NotesReader',
+            path: '/NotesReader',
+            query:
+            {
+                notes: resp.data.id,
+                add: "true",
+            },
+        })
+    }
+    else if(resp.data.code == 400)
+    {
+        ElMessage({
+            message: t("static.nameHasBeenUsed"),
+            type: 'warning',
+        })
+    }
+    else
+    {
+        ElMessage({
+            message: t("static.paramsError"),
+            type: 'error',
+        })
+    }
 }
 
 const resetMinHeightAndMenu = () =>

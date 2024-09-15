@@ -51,7 +51,6 @@ public class NotesController
     @PostMapping("/editNotesData")
     public ResponseCode editNotesData(@RequestBody NotesEditRequestPojo notesEditRequest)
     {
-        System.out.println(notesEditRequest);
         ResponseCode responseCode = new ResponseCode();
         if(notesService.editNotesData(notesEditRequest))
         {
@@ -62,5 +61,16 @@ public class NotesController
             responseCode.setCode(400);
         }
         return responseCode;
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 添加一条 notes
+     */
+    @PostMapping("/addNotes")
+    public AddNotesResponsePojo addNotes(@RequestBody Notes notes)
+    {
+        return notesService.addNotes(notes);
     }
 }

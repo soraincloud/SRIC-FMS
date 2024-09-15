@@ -1,9 +1,6 @@
 package com.spring.springboot.notes;
 
-import com.spring.springboot.hComic.HComicRequestPojo;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -53,4 +50,24 @@ public interface NotesMapper
      */
     @Select(value = "SELECT dn.*, cn.name as categoryName FROM `data_notes` dn LEFT JOIN `category_notes` cn ON dn.category = cn.id WHERE dn.ID = #{id}")
     Notes getNotesById(@Param(value = "id")int id);
+
+    /**
+     * @author SRIC
+     *
+     * 为 data_notes 添加一条新的数据
+     * id 自增
+     * title 与 category 插入
+     * filename 需要根据 id 生成 所以不在这里处理
+     */
+    @Insert(value = "INSERT INTO `data_notes` values (null, #{title}, null , #{category})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    void addNotes(Notes notes);
+
+    /**
+     * @author SRIC
+     *
+     * 为 data_notes 刚插入的数据更新 filename
+     */
+    @Update(value = "UPDATE `data_notes` SET FILENAME = #{filename} WHERE ID = #{id}")
+    void updateNotesFilename(Notes notes);
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * notes data response 实体类
- * 获取 notes 数据以及内容数据
+ * 返回 notes 数据以及内容数据
  */
 
 @Data

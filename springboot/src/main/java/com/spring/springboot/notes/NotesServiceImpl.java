@@ -1,12 +1,12 @@
 package com.spring.springboot.notes;
 
 import com.spring.springboot.notesCategory.NotesCategoryMapper;
+import com.spring.springboot.response.ResponseCode;
 import com.spring.springboot.tools.EditFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -68,15 +68,7 @@ public class NotesServiceImpl implements NotesService
         NotesDataResponsePojo notesDataResponse = new NotesDataResponsePojo();
         Notes notes = notesMapper.getNotesById(id);
         notesDataResponse.setNotes(notes);
-        try
-        {
-            notesDataResponse.setNotesDataText(editFile.readFileToString(filesPath + "/notes/" + notes.getFilename()));
-        }
-        catch (IOException e)
-        {
-            System.out.println("文件读取：" + e.getMessage());
-            notesDataResponse.setNotesDataText("Get files data error !");
-        }
+        notesDataResponse.setNotesDataText(editFile.readFileToString(filesPath + "/notes/" + notes.getFilename()));
         return notesDataResponse;
     }
 
@@ -89,5 +81,31 @@ public class NotesServiceImpl implements NotesService
     public boolean editNotesData(NotesEditRequestPojo notesEditRequest)
     {
         return editFile.writeFile( filesPath + "/notes/" + notesEditRequest.getFilename(),notesEditRequest.getContent());
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 添加 notes
+     * 先添加一条数据 将 title 与 category 插入
+     * 后根据自增的 id 更新 filename
+     */
+    @Override
+    public AddNotesResponsePojo addNotes(Notes notes)
+    {
+        notesMapper.addNotes(notes);
+        notes.setFilename(notes.getId() + ".md");
+        notesMapper.updateNotesFilename(notes);
+        AddNotesResponsePojo addNotesResponse = new AddNotesResponsePojo();
+        if(editFile.createFile(notes.getId() + ".md",filesPath + "/notes/"))
+        {
+            addNotesResponse.setCode(200);
+            addNotesResponse.setId(notes.getId());
+        }
+        else
+        {
+            addNotesResponse.setCode(400);
+        }
+        return addNotesResponse;
     }
 }

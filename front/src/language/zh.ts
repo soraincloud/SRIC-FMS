@@ -41,6 +41,7 @@ export default
         saveSuccess: "保存成功",
         saveFailed: "保存失败",
         addSuccess: "添加成功",
+        nameHasBeenUsed: "名称重复",
         tagAlready: "已有此标签",
         editAndAddUser: "编辑 / 添加用户",
         addNotes: "添加笔记",
