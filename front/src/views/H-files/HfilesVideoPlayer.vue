@@ -7,11 +7,11 @@
             <el-container>
                 <el-aside :width="asideWidth">
                     <div>
-                        <p class="HfilesVideoPlayer-title">番号:</p>
+                        <p class="HfilesVideoPlayer-title">{{ $t("static.videoCode") }}</p>
                         <p class="HfilesVideoPlayer-text">{{ videoData.number }}</p>
-                        <p class="HfilesVideoPlayer-title">文件名称:</p>
+                        <p class="HfilesVideoPlayer-title">{{ $t("static.filename") }}</p>
                         <p class="HfilesVideoPlayer-text">{{ videoData.filename }}</p>
-                        <p class="HfilesVideoPlayer-title">类别:</p>
+                        <p class="HfilesVideoPlayer-title">{{ $t("static.category") }}</p>
                         <el-tag
                         class="HfilesVideoPlayer-category-tag"
                         effect="plain"
@@ -38,7 +38,7 @@
                         >
                             <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
                         </el-tag>
-                        <p class="HfilesVideoPlayer-title">操作:</p>
+                        <p class="HfilesVideoPlayer-title">{{ $t("static.operate") }}</p>
                         <el-select class="HfilesVideoPlayer-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
                             <el-option
                             v-for="(item,i) in videoTagData"
@@ -51,7 +51,7 @@
                             <template #reference>
                                 <el-button class="HfilesVideoPlayer-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
                                     <el-icon><Plus /></el-icon>
-                                    <span class="HfilesVideoPlayer-add-button-text">添加此 tag</span>
+                                    <span class="HfilesVideoPlayer-add-button-text">{{ $t("static.addThisTag") }}</span>
                                 </el-button>
                             </template>
                         </el-popconfirm>
@@ -63,11 +63,11 @@
             </el-container>
         </el-container>
         <div v-if="isMobile"> <!-- 一个重复的信息菜单 用于在页面过于狭窄时使用 -->
-            <p class="HfilesVideoPlayer-title">番号:</p>
+            <p class="HfilesVideoPlayer-title">{{ $t("static.videoCode") }}</p>
             <p class="HfilesVideoPlayer-text">{{ videoData.number }}</p>
-            <p class="HfilesVideoPlayer-title">文件名称:</p>
+            <p class="HfilesVideoPlayer-title">{{ $t("static.filename") }}</p>
             <p class="HfilesVideoPlayer-text">{{ videoData.filename }}</p>
-            <p class="HfilesVideoPlayer-title">类别:</p>
+            <p class="HfilesVideoPlayer-title">{{ $t("static.category") }}</p>
             <el-tag
             class="HfilesVideoPlayer-category-tag"
             effect="plain"
@@ -94,7 +94,7 @@
             >
                 <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
             </el-tag>
-            <p class="HfilesVideoPlayer-title">操作:</p>
+            <p class="HfilesVideoPlayer-title">{{ $t("static.operate") }}</p>
             <el-select class="HfilesVideoPlayer-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
                 <el-option
                 v-for="(item,i) in videoTagData"
@@ -107,7 +107,7 @@
                 <template #reference>
                     <el-button class="HfilesVideoPlayer-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
                         <el-icon><Plus /></el-icon>
-                        <span class="HfilesVideoPlayer-add-button-text">添加此 tag</span>
+                        <span class="HfilesVideoPlayer-add-button-text">{{ $t("static.addThisTag") }}</span>
                     </el-button>
                 </template>
             </el-popconfirm>

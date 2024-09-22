@@ -30,7 +30,7 @@
                             <el-col :span="20">
                                 <el-input
                                 v-model="searchInput"
-                                placeholder="搜索"
+                                placeholder="search"
                                 >
                                 <template #append>
                                     <el-button @click="clickSearch">

@@ -45,6 +45,14 @@ export default
         tagAlready: "已有此标签",
         editAndAddUser: "编辑 / 添加用户",
         addLibrary: "添加项目",
+        videoCode: "番号 :",
+        filename: "文件名称 :",
+        category: "类别 :",
+        operate: "操作 :",
+        addThisTag: "添加此 TAG",
+        loadMore: "加载更多",
+        noMore: "没有更多了",
+        previewImage: "预览图",
     },
     mainMenu:
     {
@@ -99,5 +107,14 @@ export default
         code: "请输入验证码",
         title: "请设置标题",
         category: "请选择类别",
+    },
+    h:
+    {
+        allMosaic: "所有修正",
+        noMosaic: "无修正",
+        mosaic: "有修正",
+        allCategory: "所有类型",
+        short: "短片",
+        book: "单本",
     },
 }

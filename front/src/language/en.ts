@@ -45,6 +45,14 @@ export default
         tagAlready: "Tag has already added",
         editAndAddUser: "edit/add user",
         addLibrary: "Add library item",
+        videoCode: "CODE :",
+        filename: "filename :",
+        category: "category :",
+        operate: "operate :",
+        addThisTag: "add this TAG",
+        loadMore: "LOAD MORE",
+        noMore: "NO MORE",
+        previewImage: "PREVIEW",
     },
     mainMenu:
     {
@@ -99,5 +107,14 @@ export default
         code: "Please input verification code",
         title: "Please input title",
         category: "Please pick category",
+    },
+    h:
+    {
+        allMosaic: "all mosaic",
+        noMosaic: "no mosaic",
+        mosaic: "mosaic",
+        allCategory: "all category",
+        short: "short",
+        book: "book",
     },
 }

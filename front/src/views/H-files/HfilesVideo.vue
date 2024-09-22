@@ -5,7 +5,7 @@
                 <el-col :span="12">
                     <el-input
                     v-model="searchInput"
-                    placeholder="搜索"
+                    placeholder="search"
                     >
                     <template #append>
                         <el-button @click="clickSearch">
@@ -18,19 +18,19 @@
                 </el-col>
                 <el-col :span="12">
                     <el-select v-model="mosaicSelect" class="HfilesVideo-search-select" @change="reloadData">
-                        <el-option label="所有修正" value="0" />
-                        <el-option label="无修正" value="1" />
-                        <el-option label="有修正" value="2" />
+                        <el-option :label="$t('h.allMosaic')" value="0" />
+                        <el-option :label="$t('h.noMosaic')" value="1" />
+                        <el-option :label="$t('h.mosaic')" value="2" />
                     </el-select>
                     <el-select v-model="categorySelect" class="HfilesVideo-search-select" @change="reloadData">
-                        <el-option label="所有类型" value="0" />
+                        <el-option :label="$t('h.allCategory')" value="0" />
                         <el-option label="REAL" value="1" />
                         <el-option label="3D MMD" value="2" />
                         <el-option label="2D" value="3" />
                     </el-select>
                     <div style="float: right;">
                         <el-switch v-model="showVideoCover" />
-                        <span class="HfilesVideo-showVideoCover-text">预览图</span>
+                        <span class="HfilesVideo-showVideoCover-text">{{ $t("static.previewImage") }}</span>
                     </div>
                 </el-col>
             </el-row>

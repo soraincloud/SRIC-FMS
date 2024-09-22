@@ -7,9 +7,9 @@
             <el-container>
                 <el-aside :width="asideWidth">
                     <div>
-                        <p class="HfilesComicReader-title">文件名称:</p>
+                        <p class="HfilesComicReader-title">{{ $t("static.filename") }}</p>
                         <p class="HfilesComicReader-text">{{ comicData.fileName }}</p>
-                        <p class="HfilesComicReader-title">类别:</p>
+                        <p class="HfilesComicReader-title">{{ $t("static.category") }}</p>
                         <el-tag
                         class="HfilesComicReader-category-tag"
                         effect="plain"
@@ -36,7 +36,7 @@
                         >
                             <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
                         </el-tag>
-                        <p class="HfilesComicReader-title">操作:</p>
+                        <p class="HfilesComicReader-title">{{ $t("static.operate") }}</p>
                         <el-select class="HfilesComicReader-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
                             <el-option
                             v-for="(item,i) in comicTagData"
@@ -49,7 +49,7 @@
                             <template #reference>
                                 <el-button class="HfilesComicReader-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
                                     <el-icon><Plus /></el-icon>
-                                    <span class="HfilesComicReader-add-button-text">添加此 tag</span>
+                                    <span class="HfilesComicReader-add-button-text">{{ $t("static.addThisTag") }}</span>
                                 </el-button>
                             </template>
                         </el-popconfirm>
@@ -66,9 +66,9 @@
                             </el-card>
                         </div>
                         <div v-if="isMobile"> <!-- 一个重复的信息菜单 用于在页面过于狭窄时使用 -->
-                            <p class="HfilesComicReader-title">文件名称:</p>
+                            <p class="HfilesComicReader-title">{{ $t("static.filename") }}</p>
                             <p class="HfilesComicReader-text">{{ comicData.filename }}</p>
-                            <p class="HfilesComicReader-title">类别:</p>
+                            <p class="HfilesComicReader-title">{{ $t("static.category") }}</p>
                             <el-tag
                             class="HfilesComicReader-category-tag"
                             effect="plain"
@@ -95,7 +95,7 @@
                             >
                                 <span class="HfilesVideo-card-tag-text">{{ item.name }}</span>
                             </el-tag>
-                            <p class="HfilesComicReader-title">操作:</p>
+                            <p class="HfilesComicReader-title">{{ $t("static.operate") }}</p>
                             <el-select class="HfilesComicReader-add-select" v-model="addSelectValue" @change="addSelectValueChange" size="small">
                                 <el-option
                                 v-for="(item,i) in comicTagData"
@@ -108,7 +108,7 @@
                                 <template #reference>
                                     <el-button class="HfilesComicReader-add-button" size="small" type="primary" :disabled="addButtonDisabled" plain>
                                         <el-icon><Plus /></el-icon>
-                                        <span class="HfilesComicReader-add-button-text">添加此 tag</span>
+                                        <span class="HfilesComicReader-add-button-text">{{ $t("static.addThisTag") }}</span>
                                     </el-button>
                                 </template>
                             </el-popconfirm>

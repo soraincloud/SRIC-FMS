@@ -19,10 +19,10 @@
             </el-row>
             <div v-loading="loading">
                 <el-card v-if="!isPictureAllLoad" class="HFilesPictuire-load-button-card" @click="clickLoadMore">
-                    <p class="HFilesPictuire-load-button-p">点击加载更多</p>
+                    <p class="HFilesPictuire-load-button-p">{{ $t("static.loadMore") }}</p>
                 </el-card>
                 <el-card v-if="isPictureAllLoad" class="HFilesPictuire-load-button-card">
-                    <p class="HFilesPictuire-load-button-p">没有更多了</p>
+                    <p class="HFilesPictuire-load-button-p">{{ $t("static.noMore") }}</p>
                 </el-card>
             </div>
         </el-scrollbar>
