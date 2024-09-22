@@ -81,7 +81,17 @@ const routes: Array<RouteRecordRaw> = [
         path: '/UserManage',
         name: 'UserManage',
         component: () => import('@/views/manage/UserManage.vue'),
-      }
+      },
+      {
+        path: '/LibraryManage',
+        name: 'LibraryManage',
+        component: () => import('@/views/manage/LibraryManageIndex.vue'),
+      },
+      {
+        path: '/LibraryManageReader',
+        name: 'LibraryManageReader',
+        component: () => import('@/views/manage/LibraryManageReader.vue'),
+      },
     ]
   },
 ]

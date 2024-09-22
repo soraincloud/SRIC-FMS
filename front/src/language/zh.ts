@@ -66,6 +66,7 @@ export default
         picture: "图片",
         user: "用户",
         userProfile: "个人信息",
+        library: "库",
     },
     sign:
     {

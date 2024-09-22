@@ -66,6 +66,7 @@ export default
         picture: "picture",
         user: "user",
         userProfile: "user profile",
+        library: "library",
     },
     sign:
     {

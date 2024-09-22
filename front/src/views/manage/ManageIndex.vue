@@ -10,9 +10,15 @@
               router
               >
                   <el-menu-item index="UserManage">
-                      <el-icon :size="25"><VideoPlay /></el-icon>
+                      <el-icon :size="25"><User /></el-icon>
                       <template #title>
                           <span class="manage-index-menu-item-span">{{ $t("menu.user") }}</span>
+                      </template>
+                  </el-menu-item>
+                  <el-menu-item index="LibraryManage">
+                      <el-icon :size="25"><Collection /></el-icon>
+                      <template #title>
+                          <span class="manage-index-menu-item-span">{{ $t("menu.library") }}</span>
                       </template>
                   </el-menu-item>
               </el-menu>
