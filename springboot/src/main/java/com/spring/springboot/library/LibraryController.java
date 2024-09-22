@@ -21,7 +21,7 @@ public class LibraryController
     /**
      * @author SRIC
      *
-     * 获取 notes 分页列表
+     * 获取 library 分页列表
      */
     @GetMapping("/getLibraryList")
     public LibraryResponsePojo getLibraryList(LibraryRequestPojo libraryRequest)

@@ -57,7 +57,7 @@ public class LibraryServiceImpl implements LibraryService
     /**
      * @author SRIC
      *
-     * 根据 id 获取 notes
+     * 根据 id 获取 library
      * 通过工具类获取文件内容
      */
     @Override

@@ -21,7 +21,7 @@ public interface LibraryMapper
      * 若传入 category 不为 0 便进行匹配
      * 获取的数据条目为 从 limitBefore 开始 limitSize 条
      *
-     * 从 category_notes 中匹配 categoryName
+     * 从 category_library 中匹配 categoryName
      */
     @Select(value = "SELECT dn.*, cn.name as categoryName FROM `data_library` dn " +
             "LEFT JOIN `category_library` cn ON dn.category = cn.id " +

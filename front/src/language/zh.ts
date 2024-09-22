@@ -44,11 +44,11 @@ export default
         nameHasBeenUsed: "名称重复",
         tagAlready: "已有此标签",
         editAndAddUser: "编辑 / 添加用户",
-        addLibrary: "添加智库项",
+        addLibrary: "添加项目",
     },
     mainMenu:
     {
-        library: "智库",
+        library: "库",
     },
     menu:
     {
