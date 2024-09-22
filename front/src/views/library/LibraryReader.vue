@@ -1,13 +1,13 @@
 <template>
-    <el-button v-if="!isEdit" type="info" class="notes-read-back-button" @click="clickBack" plain>
+    <el-button v-if="!isEdit" type="info" class="library-read-back-button" @click="clickBack" plain>
         <el-icon size="20">
             <Back/>
         </el-icon>
-        <p class="notes-read-back-button-text">{{ $t("common.back") }}</p>
+        <p class="library-read-back-button-text">{{ $t("common.back") }}</p>
     </el-button>
     <div class="common-body-set-width">
-        <div class="notes-read-header">
-            <span class="notes-read-name-text">{{ notesData.title }}</span>
+        <div class="library-read-header">
+            <span class="library-read-name-text">{{ libraryData.title }}</span>
             <div>
                 <el-button v-if="!isEdit" type="danger" @click="clickEdit" round>
                     <el-icon size="20">
@@ -56,29 +56,29 @@
                 </el-popconfirm>
             </div>
         </div>
-        <div class="notes-read-tags-div">
-            <span>{{ notesData.filename }}</span>
+        <div class="library-read-tags-div">
+            <span>{{ libraryData.filename }}</span>
             <el-tag
-            class="notes-read-tags"
+            class="library-read-tags"
             effect="dark"
             type="warning"
             size="small"
             >
-                <span class="notes-read-tag-text">{{ notesData.categoryName }}</span>
+                <span class="library-read-tag-text">{{ libraryData.categoryName }}</span>
             </el-tag>
         </div>
         <el-scrollbar :height="scrollbarHeight">
-            <el-card v-if="!isEdit" class="notes-read-text-area-card">
-                <div v-html="notesDataMarkDown" class="markdown-body"></div>
+            <el-card v-if="!isEdit" class="library-read-text-area-card">
+                <div v-html="libraryDataMarkDown" class="markdown-body"></div>
             </el-card>
-            <el-input v-if="isEdit" class="notes-read-text-area-card" v-model="notesEditData" type="textarea" :autosize="{ minRows: 10 }"></el-input>
+            <el-input v-if="isEdit" class="library-read-text-area-card" v-model="libraryEditData" type="textarea" :autosize="{ minRows: 10 }"></el-input>
         </el-scrollbar>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { ref,onMounted,computed } from 'vue'
-import { getNotesById,editNotesData } from '@/axios/api/notes';
+import { getLibraryById,editLibraryData } from '@/axios/api/library';
 import { useRoute,useRouter } from 'vue-router'
 import { marked } from 'marked'
 import { ElMessage } from 'element-plus' //element消息
@@ -89,29 +89,29 @@ const { t } = i18n.global
 const route = useRoute()
 const router = useRouter()
 
-const notesData:any = ref({}) //notes 数据
-const notesDataText:any = ref("") //notes 内容数据
+const libraryData:any = ref({}) //library 数据
+const libraryDataText:any = ref("") //library 内容数据
 const scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
 const isEdit = ref(false) //是否处于编辑模式
-const notesEditData:any = ref("") //编辑 notes 内容数据
+const libraryEditData:any = ref("") //编辑 library 内容数据
 const cancelConfirmTitle = ref(t("static.cancelConfirmTitle")) //取消编辑确认框文字标题
 const saveConfirmTitle = ref(t("static.saveConfirmTitle")) //保存编辑内容确认框文字标题
 
-const getNotesData = async () => //获取 notes 数据与内容数据
+const getLibraryData = async () => //获取 library 数据与内容数据
 {
-    const resp = await getNotesById({id:route.query.notes})
-    notesData.value = resp.data.notes
-    notesDataText.value = resp.data.notesDataText
+    const resp = await getLibraryById({id:route.query.library})
+    libraryData.value = resp.data.library
+    libraryDataText.value = resp.data.libraryDataText
 }
 
-const notesDataMarkDown = computed(() => marked(notesDataText.value)) //将 notes 内容数据 (String) 渲染为 markdown
+const libraryDataMarkDown = computed(() => marked(libraryDataText.value)) //将 library 内容数据 (String) 渲染为 markdown
 
 onMounted(async () => 
 {
-    await getNotesData()
+    await getLibraryData()
     if(route.query.add == "true")
     {
-        notesEditData.value = notesDataText.value
+        libraryEditData.value = libraryDataText.value
         isEdit.value = true
     }
 })
@@ -120,14 +120,14 @@ const clickBack = () => //点击返回
 {
     router.push
     ({
-        name: 'Notes',
-        path: '/Notes',
+        name: 'Library',
+        path: '/Library',
     })
 }
 
 const clickEdit = () => //点击编辑按钮
 {
-    notesEditData.value = notesDataText.value
+    libraryEditData.value = libraryDataText.value
     isEdit.value = true
 }
 
@@ -140,11 +140,11 @@ const confirmEdit = async () => //确定保存编辑
 {
     const params = 
     {
-        id: notesData.value.id,
-        filename: notesData.value.filename,
-        content: notesEditData.value,
+        id: libraryData.value.id,
+        filename: libraryData.value.filename,
+        content: libraryEditData.value,
     }
-    const resp = await editNotesData(params)
+    const resp = await editLibraryData(params)
     if(resp.data.code == 200)
     {
         ElMessage({
@@ -166,7 +166,7 @@ const confirmEdit = async () => //确定保存编辑
             type: 'error',
         })
     }
-    await getNotesData()
+    await getLibraryData()
     isEdit.value = false
 }
 
@@ -197,17 +197,17 @@ html.dark .markdown-body
     color: #dcdcdc;
 }
 
-.notes-read-back-button
+.library-read-back-button
 {
     margin-bottom: 10px;
 }
 
-.notes-read-back-button-text
+.library-read-back-button-text
 {
     margin-left: 5px;
 }
 
-.notes-read-header
+.library-read-header
 {
     display: flex;
     justify-content: space-between;
@@ -216,35 +216,35 @@ html.dark .markdown-body
     margin-bottom: 10px;
 }
 
-.notes-read-name-text
+.library-read-name-text
 {
     font-size: 30px;
     font-weight: bold;
     margin: 0;
 }
 
-.notes-read-tags-div
+.library-read-tags-div
 {
     margin-bottom: 5px;
 }
 
-.notes-read-tags
+.library-read-tags
 {
     margin: 0px 0px 2px 10px;
 }
 
-.notes-read-tag-text
+.library-read-tag-text
 {
     font-weight: bold;
 }
 
-.notes-read-text-area-card
+.library-read-text-area-card
 {
     margin-top: 10px;
 }
 
-.notes-reader-text-area-card .el-card__body
+.library-reader-text-area-card .el-card__body
 {
     padding: 0;
 }
-</style>
+</style>@/axios/api/library

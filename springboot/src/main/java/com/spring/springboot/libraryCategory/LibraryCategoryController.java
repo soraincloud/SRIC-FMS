@@ -1,4 +1,4 @@
-package com.spring.springboot.notesCategory;
+package com.spring.springboot.libraryCategory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,26 +10,26 @@ import java.util.List;
 
 /**
  * - - - - - - - - - -
- * notes category 控制类
+ * library category 控制类
  * - - - - - - - - - -
  */
 
 @CrossOrigin
 @RestController
-@RequestMapping("/notes")
-public class NotesCategoryController
+@RequestMapping("/library")
+public class LibraryCategoryController
 {
     @Autowired
-    NotesCategoryService notesCategoryService;
+    LibraryCategoryService libraryCategoryService;
 
     /**
      * @author SRIC
      *
-     * 获取 notes category 列表
+     * 获取 library category 列表
      */
-    @GetMapping("/getNotesCategoryList")
-    public List<NotesCategory> getNotesCategoryList()
+    @GetMapping("/getLibraryCategoryList")
+    public List<LibraryCategory> getLibraryCategoryList()
     {
-        return notesCategoryService.getNotesCategoryList();
+        return libraryCategoryService.getLibraryCategoryList();
     }
 }

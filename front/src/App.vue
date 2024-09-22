@@ -49,8 +49,8 @@
       @select="selectMenu"
       >
         <el-scrollbar :height="menuScrollHeight">
-          <el-menu-item index="Notes">
-            <span class="app-menu-item-span">{{ $t("mainMenu.notes") }}</span>
+          <el-menu-item index="Library">
+            <span class="app-menu-item-span">{{ $t("mainMenu.library") }}</span>
           </el-menu-item>
           <el-menu-item index="Hfiles">
             <span class="app-menu-item-span">H-files</span>

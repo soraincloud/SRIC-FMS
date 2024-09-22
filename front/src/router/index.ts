@@ -46,14 +46,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/H-files/HfilesComicReader.vue'),
   },
   {
-    path: '/Notes',
-    name: 'Notes',
-    component: () => import('@/views/notes/NotesIndex.vue'),
+    path: '/Library',
+    name: 'Library',
+    component: () => import('@/views/library/LibraryIndex.vue'),
   },
   {
-    path: '/NotesReader',
-    name: 'NotesReader',
-    component: () => import('@/views/notes/NotesReader.vue'),
+    path: '/LibraryReader',
+    name: 'LibraryReader',
+    component: () => import('@/views/library/LibraryReader.vue'),
   },
   {
     path: '/SignIn',

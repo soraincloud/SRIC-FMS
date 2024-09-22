@@ -12,20 +12,20 @@
                     <el-menu-item index="0">
                         <el-icon :size="25"><Coin /></el-icon>
                         <template #title>
-                            <span class="notes-category-item-span">{{ $t("common.all") }}</span>
+                            <span class="library-category-item-span">{{ $t("common.all") }}</span>
                         </template>
                     </el-menu-item>
-                    <el-menu-item v-for="(item,i) in notesCategory" :key="i" :index="item.id.toString()">
+                    <el-menu-item v-for="(item,i) in libraryCategory" :key="i" :index="item.id.toString()">
                         <el-icon :size="25"><Menu /></el-icon>
                         <template #title>
-                            <span class="notes-category-item-span">{{ item.name }}</span>
+                            <span class="library-category-item-span">{{ item.name }}</span>
                         </template>
                     </el-menu-item>
                 </el-menu>
             </el-aside>
             <el-main>
                 <div>
-                    <div class="notes-search-div">
+                    <div class="library-search-div">
                         <el-row>
                             <el-col :span="20">
                                 <el-input
@@ -42,7 +42,7 @@
                                 </el-input>
                             </el-col>
                             <el-col :span="4">
-                                <el-button @click="clickAddNotes" class="notes-add-button" type="danger">
+                                <el-button @click="clickAddLibrary" class="library-add-button" type="danger">
                                     <el-icon size="15">
                                         <Plus/>
                                     </el-icon>
@@ -52,33 +52,33 @@
                     </div>
                     <el-scrollbar :height="scrollbarHeight">
                         <el-card
-                            v-for="(item,i) in notesList"
+                            v-for="(item,i) in libraryList"
                             :key="i"
                             @mouseover="mouseOver(i)"
                             @mouseleave="mouseLeave(i)"
                             @click="mouseClick(i)"
                             :style="item.background"
-                            class="notes-card"
+                            class="library-card"
                             >
-                            <div class="notes-card-content">
-                                <div class="notes-card-details">
-                                    <span class="notes-card-name-text">{{ item.title }}</span>
-                                    <div class="notes-card-tags-div">
+                            <div class="library-card-content">
+                                <div class="library-card-details">
+                                    <span class="library-card-name-text">{{ item.title }}</span>
+                                    <div class="library-card-tags-div">
                                         <span>{{ item.filename }}</span>
                                         <el-tag
-                                        class="notes-card-tags"
+                                        class="library-card-tags"
                                         effect="dark"
                                         type="warning"
                                         size="small"
                                         >
-                                        <span class="notes-card-tag-text">{{ item.categoryName }}</span>
+                                        <span class="library-card-tag-text">{{ item.categoryName }}</span>
                                         </el-tag>
                                     </div>
                                 </div>
                             </div>
                         </el-card>
                     </el-scrollbar>
-                    <div class="notes-pagination-div">
+                    <div class="library-pagination-div">
                         <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
                     </div>
                 </div>
@@ -88,22 +88,22 @@
         v-model="addDialogVisible"
         >
             <template #header>
-                <span class="notes-drawer-title">{{ $t("static.addNotes") }}</span>
+                <span class="library-drawer-title">{{ $t("static.addLibrary") }}</span>
             </template>
-            <el-form ref="notesFormRef" :model="notesForm" :rules="notesFormRules">
+            <el-form ref="libraryFormRef" :model="libraryForm" :rules="libraryFormRules">
                 <el-form-item prop="title">
                     <h1>{{ $t("common.title") }}</h1>
-                    <el-input v-model="notesForm.title" clearable></el-input>
+                    <el-input v-model="libraryForm.title" clearable></el-input>
                 </el-form-item>
                 <el-form-item prop="category">
                     <h1>{{ $t("common.category") }}</h1> 
-                    <el-select v-model="notesForm.category">
-                        <el-option v-for="(item,i) in notesCategory" :label="item.name" :value="item.id" />
+                    <el-select v-model="libraryForm.category">
+                        <el-option v-for="(item,i) in libraryCategory" :label="item.name" :value="item.id" />
                     </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button @click="clickAddNotesFile(notesFormRef)" type="success">
-                        <el-icon class="notes-add-button-icon" size="15">
+                    <el-button @click="clickAddLibraryFile(libraryFormRef)" type="success">
+                        <el-icon class="library-add-button-icon" size="15">
                             <Plus/>
                         </el-icon>
                         {{ $t("common.add") }}
@@ -116,7 +116,7 @@
 
 <script lang="ts" setup>
 import { ref,onMounted,reactive } from 'vue'
-import { getNotesCategoryList,getNotesList,addNotes } from '@/axios/api/notes';
+import { getLibraryCategoryList,getLibraryList,addLibrary } from '@/axios/api/library';
 import { ElMessage } from 'element-plus' //element消息
 import { useRouter } from "vue-router";
 import type { FormInstance } from 'element-plus'
@@ -130,21 +130,21 @@ const minHeight = ref("min-height:" + (window.innerHeight - 100) + "px;" )//设�
 const isCollapse = ref(false) //菜单是否折叠
 const asideWidth = ref("200px") //侧边栏宽度
 
-const notesCategory:any = ref([]) //notes 类别数据
-const notesCategorySelected = ref("0") //当前选择的 notes 类别
+const libraryCategory:any = ref([]) //library 类别数据
+const libraryCategorySelected = ref("0") //当前选择的 library 类别
 const scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
 const searchInput = ref() //搜索输入内容
 const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
-const notesList:any = ref([]) //notes 数据列表
-const addDialogVisible = ref(false) //添加 notes 的抽屉是否开启
-const notesForm = reactive //添加 notes 的表单
+const libraryList:any = ref([]) //library 数据列表
+const addDialogVisible = ref(false) //添加 library 的抽屉是否开启
+const libraryForm = reactive //添加 library 的表单
 ({
     title: "",
     category: "",
 })
-const notesFormRef = ref<FormInstance>() //添加notes表单的ref
-const notesFormRules = reactive //添加notes表单的rule
+const libraryFormRef = ref<FormInstance>() //添加 library 表单的 ref
+const libraryFormRules = reactive //添加 library 表单的 rule
 ({
     title:
     [
@@ -156,96 +156,96 @@ const notesFormRules = reactive //添加notes表单的rule
     ],
 })
 
-const getNotesCategoryData = async () => //获取 notes 类别数据
+const getLibraryCategoryData = async () => //获取 library 类别数据
 {
-    const resp = await getNotesCategoryList({})
-    notesCategory.value = resp.data
+    const resp = await getLibraryCategoryList({})
+    libraryCategory.value = resp.data
 }
 
-const getNotesData = async () =>
+const getLibraryData = async () =>
 {
     const params = 
     {
         searchInput: searchInput.value,
-        category: notesCategorySelected.value,
+        category: libraryCategorySelected.value,
         page: page.value,
     }
-    const resp = await getNotesList(params)
+    const resp = await getLibraryList(params)
     console.log(resp.data)
     pageTotal.value = resp.data.total
-    notesList.value = resp.data.notesList
+    libraryList.value = resp.data.libraryList
 }
 
 onMounted( () =>
 {
-    getNotesCategoryData()
-    getNotesData()
+    getLibraryCategoryData()
+    getLibraryData()
 })
 
 const selectMenu = (key) => //类别菜单选择
 {
-    notesCategorySelected.value = key
-    getNotesData()
+    libraryCategorySelected.value = key
+    getLibraryData()
 }
 
 const mouseOver = (i:any) => //鼠标移入
 {
-    notesList.value[i].background = "border-width: 5px;"
+    libraryList.value[i].background = "border-width: 5px;"
 }
 
 const mouseLeave = (i:any) => //鼠标移出
 {
-    notesList.value[i].background = ""
+    libraryList.value[i].background = ""
 }
 
 const mouseClick = (i:any) => //点击跳转
 {
     router.push
     ({
-        name: 'NotesReader',
-        path: '/NotesReader',
+        name: 'LibraryReader',
+        path: '/LibraryReader',
         query:
         {
-            notes: notesList.value[i].id
+            library: libraryList.value[i].id
         },
     })
 }
 
 const clickSearch = () => //点击搜索
 {
-    getNotesData()
+    getLibraryData()
 }
 
-const clickAddNotes = () => //点击添加 notes
+const clickAddLibrary = () => //点击添加 library
 {
     addDialogVisible.value = true
 }
 
 const pageChange = () => //翻页
 {
-    getNotesData()
+    getLibraryData()
 }
 
-const clickAddNotesFile = async (formEl: FormInstance | undefined) => //添加notes填写基础信息后提交
+const clickAddLibraryFile = async (formEl: FormInstance | undefined) => //添加 library 填写基础信息后提交
 {
     if (!formEl) return
     await formEl.validate((valid, fields) => {
         if (valid) {
-            doAddNotesFile()
+            doAddLibraryFile()
         } else {
             console.log('error submit!', fields)
         }
     })
 }
 
-const doAddNotesFile = async () =>
+const doAddLibraryFile = async () =>
 {
     const params =
     {
-        title: notesForm.title,
-        category: notesForm.category,
+        title: libraryForm.title,
+        category: libraryForm.category,
     }
-    const resp = await addNotes(params)
+    const resp = await addLibrary(params)
     if(resp.data.code == 200)
     {
         ElMessage({
@@ -255,11 +255,11 @@ const doAddNotesFile = async () =>
         addDialogVisible.value = false
         router.push
         ({
-            name: 'NotesReader',
-            path: '/NotesReader',
+            name: 'LibraryReader',
+            path: '/LibraryReader',
             query:
             {
-                notes: resp.data.id,
+                library: resp.data.id,
                 add: "true",
             },
         })
@@ -309,72 +309,72 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 <style>
 @import '@/css/common.css';
 
-.notes-category-item-span
+.library-category-item-span
 {
     font-size: 20px;
     font-weight: bold;
 }
 
-.notes-add-button
+.library-add-button
 {
     float: right;
 }
 
-.notes-search-div
+.library-search-div
 {
     margin-bottom: 10px;
 }
 
-.notes-card
+.library-card
 {
     border-color: #aaaaaa;
     margin-bottom: 10px;
 }
 
-.notes-card-content
+.library-card-content
 {
     display: flex;
 }
 
-.notes-card-details
+.library-card-details
 {
     margin-top: 10px;
 }
 
-.notes-card-name-text
+.library-card-name-text
 {
     font-size: 30px;
     font-weight: bold;
     margin: 0;
 }
 
-.notes-card-tags-div
+.library-card-tags-div
 {
     margin: 10px 0px 0px 0px;
 }
 
-.notes-card-tag-text
+.library-card-tag-text
 {
     font-weight: bold;
 }
 
-.notes-pagination-div
+.library-pagination-div
 {
     margin-top: 10px;
 }
 
-.notes-card-tags
+.library-card-tags
 {
     margin: 0px 0px 2px 10px;
 }
 
-.notes-drawer-title
+.library-drawer-title
 {
     font-weight: bold;
 }
 
-.notes-add-button-icon
+.library-add-button-icon
 {
     margin-right: 10px;
 }
-</style>
+</style>@/axios/api/library

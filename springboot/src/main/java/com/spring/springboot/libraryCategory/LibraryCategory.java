@@ -1,9 +1,9 @@
-package com.spring.springboot.notesCategory;
+package com.spring.springboot.libraryCategory;
 
 import lombok.Data;
 
 @Data
-public class NotesCategory
+public class LibraryCategory
 {
     private int id;
     private String name;

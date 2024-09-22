@@ -1,14 +1,14 @@
-package com.spring.springboot.notes;
+package com.spring.springboot.library;
 
 import lombok.Data;
 
 /**
- * notes request 实体类
- * 获取 notes 列表的请求参数
+ * library request 实体类
+ * 获取 library 列表的请求参数
  */
 
 @Data
-public class NotesRequestPojo
+public class LibraryRequestPojo
 {
     private String searchInput;
     private String category;

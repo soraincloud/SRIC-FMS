@@ -11,7 +11,7 @@ import VueAxios from 'vue-axios'
 import i18n from './language'//多语言
 
 const VLANurl = 'http://192.168.196.0:45565'
-const LANurl = 'http://192.168.1.140:45565'
+const LANurl = 'http://192.168.50.102:45565'
 const NETurl = 'http://localhost:45565'
 
 if(localStorage.getItem("line") == "VLAN" || false)

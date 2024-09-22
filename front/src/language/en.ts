@@ -44,11 +44,11 @@ export default
         nameHasBeenUsed: "Duplicate names",
         tagAlready: "Tag has already added",
         editAndAddUser: "edit/add user",
-        addNotes: "Add note",
+        addLibrary: "Add library item",
     },
     mainMenu:
     {
-        notes: "NOTES",
+        library: "LIBRARY",
     },
     menu:
     {
