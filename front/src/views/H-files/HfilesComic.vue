@@ -211,6 +211,8 @@ const reloadData = () => //选择分类时刷新数据
 </script>
 
 <style>
+@import '@/css/common.css';
+
 .HfilesComic-search-div
 {
     margin-bottom: 10px;

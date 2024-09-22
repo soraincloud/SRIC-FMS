@@ -225,6 +225,8 @@ window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
 </script>
 
 <style>
+@import '@/css/common.css';
+
 .UserManage-drawer-button-div
 {
     display: flex;

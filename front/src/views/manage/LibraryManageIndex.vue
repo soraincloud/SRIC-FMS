@@ -403,9 +403,4 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 {
     margin-right: 10px;
 }
-
-.el-aside {
-    transition: width 0.3s ease;
-}
-
 </style>@/axios/api/library

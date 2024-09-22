@@ -237,6 +237,8 @@ window.addEventListener('resize',windowSizeChange) //监听窗口变动
 </script>
 
 <style>
+@import '@/css/common.css';
+
 .app .el-header  
 {
   padding: 0;

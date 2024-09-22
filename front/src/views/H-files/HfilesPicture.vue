@@ -134,6 +134,8 @@ window.addEventListener('resize',windowSizeChanged) //监听窗口变动
 </script>
 
 <style>
+@import '@/css/common.css';
+
 .HFilesPictuire-card .el-card__body
 {
     padding: 10px 10px 5px 10px;

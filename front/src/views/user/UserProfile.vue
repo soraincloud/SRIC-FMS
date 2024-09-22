@@ -51,7 +51,9 @@ const checkUserMessage = async () => //更新用户信息(用户名，头像)
 checkUserMessage()
 </script>
 
-<style scoped>
+<style>
+@import '@/css/common.css';
+
 .user-profile-body-div
 {
     display: flex;

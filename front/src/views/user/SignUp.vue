@@ -54,6 +54,8 @@ window.addEventListener('resize',windowSizeChanged) //监听窗口变动
 </script>
 
 <style>
+@import '@/css/common.css';
+
 .sign-in-hide-title-div
 {
     margin-bottom: 30px;
