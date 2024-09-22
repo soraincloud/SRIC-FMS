@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-card>
-            <el-table :data="tableData">
+            <el-table :data="tableData" :height="tableHeight">
                 <el-table-column prop="uid">
                     <template #header>
                         UID
@@ -87,6 +87,7 @@ const passwordInput = ref("") //密码输入框内容
 const editUsernameNow = ref("") //当前正在编辑的用户名初始值
 const editUserUuid = ref("") //当前正在编辑的用户的uuid
 const deleteConfirmTitle = ref(t("static.deleteConfirmTitle")) //删除确认框的标题文字
+const tableHeight = ref((window.innerHeight - 190) + "px") //表格高度
 
 onMounted( () =>
 {
@@ -214,6 +215,13 @@ const clickEditPasswordCancel = () => //取消强制更改密码
     passwordInput.value = "*****"
     passwordDisabled.value = true
 }
+
+const onWindowSizeChanged = () =>
+{
+    tableHeight.value = (window.innerHeight - 190) + "px"
+}
+
+window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
 </script>
 
 <style>

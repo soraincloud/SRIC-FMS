@@ -1,89 +1,97 @@
 <template>
     <div class="common-body-set-width">
-        <el-container>
-            <el-aside :width="asideWidth">
-                <el-menu
-                :style="minHeight"
-                :default-active="deafultActiveMenu"
-                :ellipsis="false"
-                :collapse="isCollapse"
-                @select="selectMenu"
-                >
-                    <el-menu-item index="0">
-                        <el-icon :size="25"><Coin /></el-icon>
-                        <template #title>
-                            <span class="library-category-item-span">{{ $t("common.all") }}</span>
-                        </template>
-                    </el-menu-item>
-                    <el-menu-item v-for="(item,i) in libraryCategory" :key="i" :index="item.id.toString()">
-                        <el-icon :size="25"><Menu /></el-icon>
-                        <template #title>
-                            <span class="library-category-item-span">{{ item.name }}</span>
-                        </template>
-                    </el-menu-item>
-                </el-menu>
-            </el-aside>
-            <el-main>
-                <div>
-                    <div class="library-search-div">
-                        <el-row>
-                            <el-col :span="20">
-                                <el-input
-                                v-model="searchInput"
-                                placeholder="search"
-                                >
-                                <template #append>
-                                    <el-button @click="clickSearch">
-                                        <el-icon>
-                                            <search/>
+        <el-card>
+            <el-container>
+                <el-aside :width="asideWidth">
+                    <el-menu
+                    :style="minHeight"
+                    :default-active="deafultActiveMenu"
+                    :ellipsis="false"
+                    :collapse="isCollapse"
+                    @select="selectMenu"
+                    >
+                        <el-menu-item @click="clickCollapse">
+                            <el-icon :size="25"><Switch /></el-icon>
+                            <template #title>
+                                <span class="library-category-item-span">{{ $t("common.collapse") }}</span>
+                            </template>
+                        </el-menu-item>
+                        <el-menu-item index="0">
+                            <el-icon :size="25"><Coin /></el-icon>
+                            <template #title>
+                                <span class="library-category-item-span">{{ $t("common.all") }}</span>
+                            </template>
+                        </el-menu-item>
+                        <el-menu-item v-for="(item,i) in libraryCategory" :key="i" :index="item.id.toString()">
+                            <el-icon :size="25"><Menu /></el-icon>
+                            <template #title>
+                                <span class="library-category-item-span">{{ item.name }}</span>
+                            </template>
+                        </el-menu-item>
+                    </el-menu>
+                </el-aside>
+                <el-main>
+                    <div>
+                        <div class="library-search-div">
+                            <el-row>
+                                <el-col :span="20">
+                                    <el-input
+                                    v-model="searchInput"
+                                    placeholder="search"
+                                    >
+                                    <template #append>
+                                        <el-button @click="clickSearch">
+                                            <el-icon>
+                                                <search/>
+                                            </el-icon>
+                                        </el-button>
+                                    </template>
+                                    </el-input>
+                                </el-col>
+                                <el-col :span="4">
+                                    <el-button @click="clickAddLibrary" class="library-add-button" type="danger">
+                                        <el-icon size="15">
+                                            <Plus/>
                                         </el-icon>
                                     </el-button>
-                                </template>
-                                </el-input>
-                            </el-col>
-                            <el-col :span="4">
-                                <el-button @click="clickAddLibrary" class="library-add-button" type="danger">
-                                    <el-icon size="15">
-                                        <Plus/>
-                                    </el-icon>
-                                </el-button>
-                            </el-col>
-                        </el-row>
-                    </div>
-                    <el-scrollbar :height="scrollbarHeight">
-                        <el-card
-                            v-for="(item,i) in libraryList"
-                            :key="i"
-                            @mouseover="mouseOver(i)"
-                            @mouseleave="mouseLeave(i)"
-                            @click="mouseClick(i)"
-                            :style="item.background"
-                            class="library-card"
-                            >
-                            <div class="library-card-content">
-                                <div class="library-card-details">
-                                    <span class="library-card-name-text">{{ item.title }}</span>
-                                    <div class="library-card-tags-div">
-                                        <span>{{ item.filename }}</span>
-                                        <el-tag
-                                        class="library-card-tags"
-                                        effect="dark"
-                                        type="warning"
-                                        size="small"
-                                        >
-                                        <span class="library-card-tag-text">{{ item.categoryName }}</span>
-                                        </el-tag>
+                                </el-col>
+                            </el-row>
+                        </div>
+                        <el-scrollbar :height="scrollbarHeight">
+                            <el-card
+                                v-for="(item,i) in libraryList"
+                                :key="i"
+                                @mouseover="mouseOver(i)"
+                                @mouseleave="mouseLeave(i)"
+                                @click="mouseClick(i)"
+                                :style="item.background"
+                                class="library-card"
+                                >
+                                <div class="library-card-content">
+                                    <div class="library-card-details">
+                                        <span class="library-card-name-text">{{ item.title }}</span>
+                                        <div class="library-card-tags-div">
+                                            <span>{{ item.filename }}</span>
+                                            <el-tag
+                                            class="library-card-tags"
+                                            effect="dark"
+                                            type="warning"
+                                            size="small"
+                                            >
+                                            <span class="library-card-tag-text">{{ item.categoryName }}</span>
+                                            </el-tag>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </el-card>
-                    </el-scrollbar>
-                    <div class="library-pagination-div">
-                        <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
+                            </el-card>
+                        </el-scrollbar>
+                        <div class="library-pagination-div">
+                            <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
+                        </div>
                     </div>
-                </div>
-            </el-main>
-        </el-container>
+                </el-main>
+            </el-container>
+        </el-card>
         <el-drawer
         v-model="addDialogVisible"
         >
@@ -121,6 +129,7 @@ import { ElMessage } from 'element-plus' //element消息
 import { useRouter } from "vue-router";
 import type { FormInstance } from 'element-plus'
 import i18n from '@/language';
+import { id } from 'element-plus/es/locale';
 const { t } = i18n.global
 
 const router = useRouter()
@@ -132,7 +141,7 @@ const asideWidth = ref("200px") //侧边栏宽度
 
 const libraryCategory:any = ref([]) //library 类别数据
 const libraryCategorySelected = ref("0") //当前选择的 library 类别
-const scrollbarHeight = ref((window.innerHeight - 270) + "px") //设置滚动条高度
+const scrollbarHeight = ref((window.innerHeight - 320) + "px") //设置滚动条高度
 const searchInput = ref() //搜索输入内容
 const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
@@ -280,6 +289,23 @@ const doAddLibraryFile = async () =>
     }
 }
 
+const clickCollapse = () => //点击折叠菜单
+{
+    if(window.innerWidth > 800) //在窗口不被强制折叠时可以使用
+    {
+        if(isCollapse.value)
+        {
+            isCollapse.value = false
+            asideWidth.value = "200px"
+        }
+        else
+        {
+            isCollapse.value = true
+            asideWidth.value = "75px"
+        }
+    }
+}
+
 const resetMinHeightAndMenu = () =>
 {
     minHeight.value = "min-height:" + (window.innerHeight - 200) + "px;" //重置菜单栏高度(适应窗口大小)
@@ -298,7 +324,7 @@ const resetMinHeightAndMenu = () =>
 
 const resetScrollbarHeight = () => //重置滚动条高度(适应窗口大小)
 {
-    scrollbarHeight.value = (window.innerHeight - 270) + "px"
+    scrollbarHeight.value = (window.innerHeight - 310) + "px"
 }
 
 resetMinHeightAndMenu()
@@ -377,4 +403,9 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 {
     margin-right: 10px;
 }
+
+.el-aside {
+    transition: width 0.3s ease;
+}
+
 </style>@/axios/api/library

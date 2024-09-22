@@ -25,6 +25,7 @@ export default
         fail: "FAIL",
         title: "title",
         category: "category",
+        collapse: "collapse",
     },
     static:
     {

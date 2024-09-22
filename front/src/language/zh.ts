@@ -25,6 +25,7 @@ export default
         fail: "失败",
         title: "标题",
         category: "类别",
+        collapse: "折叠",
     },
     static:
     {

@@ -3,3 +3,7 @@
     max-width: 1280px; /* 设置最大宽度为1080px */
     margin: 0 auto; /* 水平居中 */
 }
+
+.el-aside {
+    transition: width 0.3s ease;
+}
