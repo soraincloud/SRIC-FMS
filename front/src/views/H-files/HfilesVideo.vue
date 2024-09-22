@@ -90,6 +90,9 @@
 import { getHVideoList } from "@/axios/api/hVideo"
 import { ref,onMounted } from "vue";
 import { useRouter } from "vue-router";
+import i18n from '@/language';
+
+const { t } = i18n.global
 
 const router = useRouter()
 let hVideoList:any = ref([]) //视频列表数据
@@ -125,17 +128,17 @@ const getHVideoListData = async () =>
             if(element.mosaic == 1)
             {
                 element.mosaicType = "success"
-                element.mosaicText = "无修正"
+                element.mosaicText = t("h.noMosaic")
             }
             else if(element.mosaic == 2)
             {
                 element.mosaicType = "info"
-                element.mosaicText = "有修正"
+                element.mosaicText = t("h.mosaic")
             }
             else
             {
                 element.mosaicType = "info"
-                element.mosaicText = "修正类别错误"
+                element.mosaicText = t("static.categoryError")
             }
 
             if(element.category == 1)
@@ -156,7 +159,7 @@ const getHVideoListData = async () =>
             else
             {
                 element.mosaicType = "warning"
-                element.mosaicText = "分类类别错误"
+                element.mosaicText = t("static.categoryError")
             }
             element.background = ""
         });

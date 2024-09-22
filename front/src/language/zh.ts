@@ -53,6 +53,7 @@ export default
         loadMore: "加载更多",
         noMore: "没有更多了",
         previewImage: "预览图",
+        categoryError: "类别错误",
     },
     mainMenu:
     {

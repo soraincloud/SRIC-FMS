@@ -148,33 +148,33 @@ const getHComicData = async () =>
     if(comicData.value.mosaic == 1)
     {
         comicData.value.mosaicType = "success"
-        comicData.value.mosaicText = "无修正"
+        comicData.value.mosaicText = t("h.noMosaic")
     }
     else if(comicData.value.mosaic == 2)
     {
         comicData.value.mosaicType = "warning"
-        comicData.value.mosaicText = "有修正"
+        comicData.value.mosaicText = t("h.mosaic")
     }
     else
     {
         comicData.value.mosaicType = "info"
-        comicData.value.mosaicText = "修正类别错误"
+        comicData.value.mosaicText = t("static.categoryError")
     }
 
     if(comicData.value.category == 1)
     {
         comicData.value.categoryType = "danger"
-        comicData.value.categoryText = "短篇"
+        comicData.value.categoryText = t("h.short")
     }
     else if(comicData.value.category == 2)
     {
         comicData.value.categoryType = "primary"
-        comicData.value.categoryText = "单本"
+        comicData.value.categoryText = t("h.book")
     }
     else
     {
         comicData.value.mosaicType = "info"
-        comicData.value.mosaicText = "分类类别错误"
+        comicData.value.mosaicText = t("static.categoryError")
     }
     pageData.value = resp.data.hcomicPages
     pageData.value.forEach((element:any,index:any) => 

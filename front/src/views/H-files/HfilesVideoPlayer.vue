@@ -157,17 +157,17 @@ const getHVideoData = async () =>
     if(videoData.value.mosaic == 1)
     {
         videoData.value.mosaicType = "success"
-        videoData.value.mosaicText = "无修正"
+        videoData.value.mosaicText = t("h.noMosaic")
     }
     else if(videoData.value.mosaic == 2)
     {
         videoData.value.mosaicType = "info"
-        videoData.value.mosaicText = "有修正"
+        videoData.value.mosaicText = t("h.mosaic")
     }
     else
     {
         videoData.value.mosaicType = "info"
-        videoData.value.mosaicText = "修正类别错误"
+        videoData.value.mosaicText = t("static.categoryError")
     }
 
     if(videoData.value.category == 1)
@@ -188,7 +188,7 @@ const getHVideoData = async () =>
     else
     {
         videoData.value.mosaicType = "info"
-        videoData.value.mosaicText = "分类类别错误"
+        videoData.value.mosaicText = t("static.categoryError")
     }
 }
 

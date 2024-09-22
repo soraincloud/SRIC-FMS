@@ -87,6 +87,9 @@ import axios from 'axios';
 import { getHComicList } from "@/axios/api/hComic"
 import { ref,onMounted } from "vue";
 import { useRouter } from "vue-router";
+import i18n from '@/language';
+
+const { t } = i18n.global
 
 const router = useRouter()
 let hComicList:any = ref([]) //本子列表数据
@@ -121,33 +124,33 @@ const getHComicListData = async () =>
             if(element.mosaic == 1)
             {
                 element.mosaicType = "success"
-                element.mosaicText = "无修正"
+                element.mosaicText = t("h.noMosaic")
             }
             else if(element.mosaic == 2)
             {
                 element.mosaicType = "warning"
-                element.mosaicText = "有修正"
+                element.mosaicText = t("h.mosaic")
             }
             else
             {
                 element.mosaicType = "info"
-                element.mosaicText = "修正类别错误"
+                element.mosaicText = t("static.categoryError")
             }
 
             if(element.category == 1)
             {
                 element.categoryType = "danger"
-                element.categoryText = "短篇"
+                element.categoryText = t("h.short")
             }
             else if(element.category == 2)
             {
                 element.categoryType = "primary"
-                element.categoryText = "单本"
+                element.categoryText = t("h.book")
             }
             else
             {
                 element.mosaicType = "warning"
-                element.mosaicText = "分类类别错误"
+                element.mosaicText = t("static.categoryError")
             }
             element.background = ""
             element.comicCover = axios.defaults.baseURL + "/hComic/" + element.fileName + "/00001.webp"

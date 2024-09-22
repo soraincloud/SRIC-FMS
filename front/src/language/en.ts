@@ -53,6 +53,7 @@ export default
         loadMore: "LOAD MORE",
         noMore: "NO MORE",
         previewImage: "PREVIEW",
+        categoryError: "CATEGORY ERROR",
     },
     mainMenu:
     {
