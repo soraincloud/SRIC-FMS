@@ -1,15 +1,17 @@
 <template>
-    <div class="user-profile-body-div">
-        <el-avatar :src="avatarUrl" :size="100"></el-avatar>
-        <div class="user-profile-details-div">
-            <span class="user-profile-details-username">{{ username }}</span>
-            <span class="user-profile-details-uid">UID : {{ userUid }}</span>
+    <div class="common-body-set-width">
+        <div class="user-profile-body-div">
+            <el-avatar :src="avatarUrl" :size="100"></el-avatar>
+            <div class="user-profile-details-div">
+                <span class="user-profile-details-username">{{ username }}</span>
+                <span class="user-profile-details-uid">UID : {{ userUid }}</span>
+            </div>
         </div>
+        <div class="user-profile-details-mark">
+            <span>{{ mark }}</span>
+        </div>
+        <el-divider></el-divider>
     </div>
-    <div class="user-profile-details-mark">
-        <span>{{ mark }}</span>
-    </div>
-    <el-divider></el-divider>
 </template>
 
 <script lang="ts" setup>
