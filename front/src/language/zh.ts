@@ -26,6 +26,7 @@ export default
         title: "标题",
         category: "类别",
         collapse: "折叠",
+        name: "名称",
     },
     static:
     {
@@ -58,7 +59,7 @@ export default
     },
     mainMenu:
     {
-        library: "库",
+        library: "文库",
     },
     menu:
     {
@@ -67,7 +68,8 @@ export default
         picture: "图片",
         user: "用户",
         userProfile: "个人信息",
-        library: "库",
+        library: "文库",
+        libraryCategory: "文库-类别",
     },
     sign:
     {

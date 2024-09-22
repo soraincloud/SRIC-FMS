@@ -92,6 +92,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'LibraryManageReader',
         component: () => import('@/views/manage/LibraryManageReader.vue'),
       },
+      {
+        path: '/LibraryCategoryManage',
+        name: 'LibraryCategoryManage',
+        component: () => import('@/views/manage/LibraryCategoryManage.vue'),
+      },
     ]
   },
 ]

@@ -21,6 +21,12 @@
                           <span class="manage-index-menu-item-span">{{ $t("menu.library") }}</span>
                       </template>
                   </el-menu-item>
+                  <el-menu-item index="LibraryCategoryManage">
+                      <el-icon :size="25"><Collection /></el-icon>
+                      <template #title>
+                          <span class="manage-index-menu-item-span">{{ $t("menu.libraryCategory") }}</span>
+                      </template>
+                  </el-menu-item>
               </el-menu>
           </el-aside>
           <el-main>

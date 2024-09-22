@@ -26,6 +26,7 @@ export default
         title: "title",
         category: "category",
         collapse: "collapse",
+        name: "NAME",
     },
     static:
     {
@@ -68,6 +69,7 @@ export default
         user: "user",
         userProfile: "user profile",
         library: "library",
+        libraryCategory: "lib-category",
     },
     sign:
     {

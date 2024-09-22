@@ -216,7 +216,7 @@ const clickEditPasswordCancel = () => //取消强制更改密码
     passwordDisabled.value = true
 }
 
-const onWindowSizeChanged = () =>
+const onWindowSizeChanged = () => //窗口大小变动
 {
     tableHeight.value = (window.innerHeight - 190) + "px"
 }

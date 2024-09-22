@@ -129,7 +129,6 @@ import { ElMessage } from 'element-plus' //element消息
 import { useRouter } from "vue-router";
 import type { FormInstance } from 'element-plus'
 import i18n from '@/language';
-import { id } from 'element-plus/es/locale';
 const { t } = i18n.global
 
 const router = useRouter()
