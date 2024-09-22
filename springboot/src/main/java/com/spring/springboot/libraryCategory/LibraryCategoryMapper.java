@@ -21,4 +21,16 @@ public interface LibraryCategoryMapper
      */
     @Select(value = "SELECT * FROM `category_library`")
     List<LibraryCategory> getLibraryCategoryList();
+
+    /**
+     * @author SRIC
+     *
+     * 从 category_library 中获取数据
+     * 并且查询 category 下 library 的条数
+     */
+    @Select("SELECT cl.id, cl.name, " +
+            "(SELECT COUNT(*) FROM data_library dl WHERE dl.category = cl.id) AS libraryNumber " +
+            "FROM category_library cl")
+    List<LibraryCategoryManageData> getLibraryCategoryManageDataList();
+
 }

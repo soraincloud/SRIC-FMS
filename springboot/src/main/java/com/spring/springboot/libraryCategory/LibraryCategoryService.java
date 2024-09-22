@@ -5,4 +5,5 @@ import java.util.List;
 public interface LibraryCategoryService
 {
     List<LibraryCategory> getLibraryCategoryList();
+    List<LibraryCategoryManageData> getLibraryCategoryManageDataList();
 }

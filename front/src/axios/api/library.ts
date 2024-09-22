@@ -1,5 +1,10 @@
 import { get,post } from '@/axios/axios'
 
+export function getLibraryCategoryManageDataList(params:any)
+{
+    return get('/library/getLibraryCategoryManageDataList',params)
+}
+
 export function getLibraryCategoryList(params:any)
 {
     return get('/library/getLibraryCategoryList',params)

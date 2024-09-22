@@ -11,6 +11,11 @@
                         {{ $t("common.name") }}
                     </template>
                 </el-table-column>
+                <el-table-column prop="libraryNumber">
+                    <template #header>
+                        {{ $t("static.itemNumber") }}
+                    </template>
+                </el-table-column>
                 <el-table-column fixed="right" label="Operations" width="120">
                     <template #header>
                         {{ $t("common.operations") }}
@@ -31,14 +36,14 @@
 
 <script lang="ts" setup>
 import { ref,onMounted } from 'vue'
-import { getLibraryCategoryList } from '@/axios/api/library';
+import { getLibraryCategoryManageDataList } from '@/axios/api/library';
 
 const tableData = ref([]) //主页面表表格数据
 const tableHeight = ref((window.innerHeight - 240) + "px") //表格高度
 
 const getLibraryCategoryData = async () => //获取类别列表
 {
-    const resp = await getLibraryCategoryList({})
+    const resp = await getLibraryCategoryManageDataList({})
     tableData.value = resp.data
 }
 

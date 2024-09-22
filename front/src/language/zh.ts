@@ -56,6 +56,7 @@ export default
         noMore: "没有更多了",
         previewImage: "预览图",
         categoryError: "类别错误",
+        itemNumber: "条目数量",
     },
     mainMenu:
     {

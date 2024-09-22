@@ -26,4 +26,15 @@ public class LibraryCategoryServiceImpl implements LibraryCategoryService
     {
         return libraryCategoryMapper.getLibraryCategoryList();
     }
+
+    /**
+     * @author SRIC
+     *
+     * 获取 library category 列表
+     * 并且获取 category 下 library 的条数
+     */
+    public List<LibraryCategoryManageData> getLibraryCategoryManageDataList()
+    {
+        return libraryCategoryMapper.getLibraryCategoryManageDataList();
+    }
 }

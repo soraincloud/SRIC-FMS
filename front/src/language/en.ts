@@ -56,6 +56,7 @@ export default
         noMore: "NO MORE",
         previewImage: "PREVIEW",
         categoryError: "CATEGORY ERROR",
+        itemNumber: "ITEM NUMBER",
     },
     mainMenu:
     {
