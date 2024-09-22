@@ -26,29 +26,18 @@
             <el-main>
                 <div>
                     <div class="library-search-div">
-                        <el-row>
-                            <el-col :span="20">
-                                <el-input
-                                v-model="searchInput"
-                                placeholder="search"
-                                >
-                                <template #append>
-                                    <el-button @click="clickSearch">
-                                        <el-icon>
-                                            <search/>
-                                        </el-icon>
-                                    </el-button>
-                                </template>
-                                </el-input>
-                            </el-col>
-                            <el-col :span="4">
-                                <el-button @click="clickAddLibrary" class="library-add-button" type="danger">
-                                    <el-icon size="15">
-                                        <Plus/>
-                                    </el-icon>
-                                </el-button>
-                            </el-col>
-                        </el-row>
+                        <el-input
+                        v-model="searchInput"
+                        placeholder="search"
+                        >
+                        <template #append>
+                            <el-button @click="clickSearch">
+                                <el-icon>
+                                    <search/>
+                                </el-icon>
+                            </el-button>
+                        </template>
+                        </el-input>
                     </div>
                     <el-scrollbar :height="scrollbarHeight">
                         <el-card
@@ -64,7 +53,6 @@
                                 <div class="library-card-details">
                                     <span class="library-card-name-text">{{ item.title }}</span>
                                     <div class="library-card-tags-div">
-                                        <span>{{ item.filename }}</span>
                                         <el-tag
                                         class="library-card-tags"
                                         effect="dark"
@@ -84,44 +72,13 @@
                 </div>
             </el-main>
         </el-container>
-        <el-drawer
-        v-model="addDialogVisible"
-        >
-            <template #header>
-                <span class="library-drawer-title">{{ $t("static.addLibrary") }}</span>
-            </template>
-            <el-form ref="libraryFormRef" :model="libraryForm" :rules="libraryFormRules">
-                <el-form-item prop="title">
-                    <h1>{{ $t("common.title") }}</h1>
-                    <el-input v-model="libraryForm.title" clearable></el-input>
-                </el-form-item>
-                <el-form-item prop="category">
-                    <h1>{{ $t("common.category") }}</h1> 
-                    <el-select v-model="libraryForm.category">
-                        <el-option v-for="(item,i) in libraryCategory" :label="item.name" :value="item.id" />
-                    </el-select>
-                </el-form-item>
-                <el-form-item>
-                    <el-button @click="clickAddLibraryFile(libraryFormRef)" type="success">
-                        <el-icon class="library-add-button-icon" size="15">
-                            <Plus/>
-                        </el-icon>
-                        {{ $t("common.add") }}
-                    </el-button>
-                </el-form-item>
-            </el-form>
-        </el-drawer>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref,onMounted,reactive } from 'vue'
-import { getLibraryCategoryList,getLibraryList,addLibrary } from '@/axios/api/library';
-import { ElMessage } from 'element-plus' //element消息
+import { ref,onMounted } from 'vue'
+import { getLibraryCategoryList,getLibraryList } from '@/axios/api/library';
 import { useRouter } from "vue-router";
-import type { FormInstance } from 'element-plus'
-import i18n from '@/language';
-const { t } = i18n.global
 
 const router = useRouter()
 
@@ -137,24 +94,6 @@ const searchInput = ref() //搜索输入内容
 const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
 const libraryList:any = ref([]) //library 数据列表
-const addDialogVisible = ref(false) //添加 library 的抽屉是否开启
-const libraryForm = reactive //添加 library 的表单
-({
-    title: "",
-    category: "",
-})
-const libraryFormRef = ref<FormInstance>() //添加 library 表单的 ref
-const libraryFormRules = reactive //添加 library 表单的 rule
-({
-    title:
-    [
-        { required: true, message: t("rules.title"), trigger: 'blur' },
-    ],
-    category:
-    [
-        { required: true, message: t("rules.category"), trigger: 'blur' },
-    ],
-})
 
 const getLibraryCategoryData = async () => //获取 library 类别数据
 {
@@ -216,68 +155,9 @@ const clickSearch = () => //点击搜索
     getLibraryData()
 }
 
-const clickAddLibrary = () => //点击添加 library
-{
-    addDialogVisible.value = true
-}
-
 const pageChange = () => //翻页
 {
     getLibraryData()
-}
-
-const clickAddLibraryFile = async (formEl: FormInstance | undefined) => //添加 library 填写基础信息后提交
-{
-    if (!formEl) return
-    await formEl.validate((valid, fields) => {
-        if (valid) {
-            doAddLibraryFile()
-        } else {
-            console.log('error submit!', fields)
-        }
-    })
-}
-
-const doAddLibraryFile = async () =>
-{
-    const params =
-    {
-        title: libraryForm.title,
-        category: libraryForm.category,
-    }
-    const resp = await addLibrary(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.addSuccess"),
-            type: 'success',
-        })
-        addDialogVisible.value = false
-        router.push
-        ({
-            name: 'LibraryReader',
-            path: '/LibraryReader',
-            query:
-            {
-                library: resp.data.id,
-                add: "true",
-            },
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.nameHasBeenUsed"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
 }
 
 const resetMinHeightAndMenu = () =>
@@ -365,7 +245,7 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 
 .library-card-tags
 {
-    margin: 0px 0px 2px 10px;
+    margin: 0px 0px 2px 0px;
 }
 
 .library-drawer-title
