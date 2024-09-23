@@ -43,9 +43,10 @@ export default
         saveSuccess: "Save successful",
         saveFailed: "Save failed",
         addSuccess: "Add successful",
+        submitSuccess: "Submit successful",
         nameHasBeenUsed: "Duplicate names",
         tagAlready: "Tag has already added",
-        editAndAddUser: "edit/add user",
+        editAndAddUser: "edit / add user",
         addLibrary: "Add library item",
         videoCode: "CODE :",
         filename: "filename :",
@@ -57,6 +58,7 @@ export default
         previewImage: "PREVIEW",
         categoryError: "CATEGORY ERROR",
         itemNumber: "ITEM NUMBER",
+        editAndAddCategory: "edit / add category",
     },
     mainMenu:
     {
@@ -113,6 +115,7 @@ export default
         code: "Please input verification code",
         title: "Please input title",
         category: "Please pick category",
+        name: "Please input name",
     },
     h:
     {

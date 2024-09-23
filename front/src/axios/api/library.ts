@@ -10,6 +10,11 @@ export function getLibraryCategoryList(params:any)
     return get('/library/getLibraryCategoryList',params)
 }
 
+export function addOrUpdateLibraryCategory(params:any)
+{
+    return post('/library/addOrUpdateLibraryCategory',params)
+}
+
 export function getLibraryList(params:any)
 {
     return get('/library/getLibraryList',params)

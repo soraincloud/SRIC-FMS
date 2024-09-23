@@ -49,7 +49,7 @@
         </el-card>
         <el-drawer v-model="isDrawerOpen" @close="drawerClose" ref="drawer">
             <template #title>
-                <span class="UserManage-drawer-title">{{ t("static.editAndAddUser") }}</span>
+                <span class="UserManage-drawer-title">{{ $t("static.editAndAddUser") }}</span>
             </template>
             <h1>{{ $t("sign.username") }}</h1>
             <el-input v-model="usernameInput" :disabled="usernameDisabled" clearable></el-input>

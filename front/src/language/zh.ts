@@ -43,6 +43,7 @@ export default
         saveSuccess: "保存成功",
         saveFailed: "保存失败",
         addSuccess: "添加成功",
+        submitSuccess: "提交成功",
         nameHasBeenUsed: "名称重复",
         tagAlready: "已有此标签",
         editAndAddUser: "编辑 / 添加用户",
@@ -56,7 +57,8 @@ export default
         noMore: "没有更多了",
         previewImage: "预览图",
         categoryError: "类别错误",
-        itemNumber: "条目数量",
+        itemNumber: "数据数量",
+        editAndAddCategory: "编辑 / 添加类别",
     },
     mainMenu:
     {
@@ -113,6 +115,7 @@ export default
         code: "请输入验证码",
         title: "请设置标题",
         category: "请选择类别",
+        name: "请设置名称",
     },
     h:
     {
