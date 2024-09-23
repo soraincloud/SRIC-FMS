@@ -64,7 +64,7 @@
                     }
                     resolve(); // 图片加载完成后 resolve
                 } else {
-                    reject(new Error("Container not found")); // 可能的错误处理
+                    // 可能的错误处理
                 }
             };
             img.src = axios.defaults.baseURL + "/hPicture/" + id + "." + filename;
