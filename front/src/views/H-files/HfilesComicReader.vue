@@ -62,7 +62,7 @@
                             v-for="(item,i) in pageData"
                             class="HfilesComicReader-comic-card"
                             >
-                            <el-image :src="item" lazy></el-image>
+                            <el-image :src="item" :preview-src-list="pageData" :initial-index="i" lazy></el-image>
                             </el-card>
                         </div>
                         <div v-if="isMobile"> <!-- 一个重复的信息菜单 用于在页面过于狭窄时使用 -->
