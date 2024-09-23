@@ -5,14 +5,14 @@
                 <el-col :span="12">
                     <div id="hPictureLeftImage">
                         <el-card v-for="(item,i) in urlLeft" :key="i" class="HFilesPictuire-card">
-                            <el-image :src="item"></el-image>  
+                            <el-image :src="item" :preview-src-list="urlLeft" :initial-index="i"></el-image>  
                         </el-card>
                     </div>
                 </el-col>
                 <el-col :span="12">
                     <div id="hPictureRightImage">
                         <el-card v-for="(item,i) in urlRight" :key="i" class="HFilesPictuire-card">
-                            <el-image :src="item"></el-image>
+                            <el-image :src="item" :preview-src-list="urlRight" :initial-index="i"></el-image>
                         </el-card>
                     </div>
                 </el-col>
@@ -34,18 +34,14 @@
     import { onMounted,ref } from 'vue';
     import { getHPictureRandomList } from "@/axios/api/hPicture"
 
-    let urlLeft:any = ref([ //左侧图片数据
-        
-    ])
-    let urlRight:any = ref([ //右侧图片数据
-        
-    ])
-    let scrollbarHeight = ref((window.innerHeight - 140) + "px") //设置滚动条高度
-    let hPictureData = ref([]) //图片名称数组
-    let hPictureNumber = ref() //图片总数
-    let hPictureLoadNow = ref(-1) //当前加载到图片的位置
-    let isPictureAllLoad = ref(false) //图片是否全部被加载
-    let loading = ref(false) //加载更多按钮的loading
+    const urlLeft:any = ref([]) //左侧图片数据
+    const urlRight:any = ref([]) //右侧图片数据
+    const scrollbarHeight = ref((window.innerHeight - 140) + "px") //设置滚动条高度
+    const hPictureData = ref([]) //图片名称数组
+    const hPictureNumber = ref() //图片总数
+    const hPictureLoadNow = ref(-1) //当前加载到图片的位置
+    const isPictureAllLoad = ref(false) //图片是否全部被加载
+    const loading = ref(false) //加载更多按钮的loading
 
     const addPicture = (id:any,filename:any) => //向高度更小的一边添加名为filename的图片
     {
@@ -105,7 +101,7 @@
         }
     }
 
-    const clickLoadMore = async () =>
+    const clickLoadMore = async () => //加载更多
     {
         loading.value = true
         await loadMorePicture()
