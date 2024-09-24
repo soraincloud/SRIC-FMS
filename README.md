@@ -127,7 +127,7 @@ npm run serve
 
 ```
 
-npm run serve
+npm run build
 
 ```
 
