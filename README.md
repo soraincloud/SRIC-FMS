@@ -1,5 +1,5 @@
-# SRIC-FMS
-SRIC-files-management-system
+# SRIC-RSP
+SRIC-resources-shared-platform
 
 -----
 
