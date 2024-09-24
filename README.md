@@ -21,6 +21,42 @@ const LANurl = 局域网地址
 const NETurl = 公网地址
 ```
 
+配置结束后 即可在系统中 进行线路切换
+
+若不需要线路切换 可将对应的逻辑删除
+
+还需在 /SRIC-FMS-web/vue.config.js 中配置前端端口
+
+------
+
+### 0.1.2 后端配置
+
+后端需在 /SRIC-FMS-api/src/main/resporces/application.properties 中进行配置
+
+```
+server.port 配置后端 api 端口
+
+spring.datasource.url 配置 mysql 的地址,端口与数据库名称
+
+spring.datasource.username 配置 mysql 数据库访问用户名
+
+spring.datasource.password 配置 mysql 数据库访问密码
+
+spring.data.redis.host 配置 redis 地址
+
+spring.data.redis.port 配置 redis 端口
+
+spring.mail.host 配置邮箱服务
+
+spring.mail.username 配置邮箱地址
+
+spring.mail.password 配置邮箱服务的授权密码
+
+filesPath 配置系统储存文件位置
+```
+
+> 注意 filesPath 的配置需要精确并确保磁盘空间足够 系统所操作的所有文件都会储存在这个位置
+
 ------
 
 ## 0.2 项目开发环境
@@ -37,6 +73,8 @@ intellij idea (后端java)
 --|maven (引入到idea 用于依赖引入)
 
 mysql
+
+redis
 ```
 
 > **注意**  请尽量选择兼容的软件版本或更新的版本
@@ -111,7 +149,7 @@ npm run serve
 
 可以使用本地 或 在线数据库
 
-创建数据库并运行 /SRIC-FMS-database/sric_fms.sql
+创建数据库并运行查询 /SRIC-FMS-database/sric_fms.sql
 
 数据库查询文件包含部分数据 适当删除和修改以正常使用
 
