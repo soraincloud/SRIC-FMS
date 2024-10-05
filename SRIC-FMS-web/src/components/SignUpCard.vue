@@ -111,7 +111,6 @@ const doSendCodeRequest = async () => //发送验证码请求
             type: 'success',
         })
         setMailTimeout()
-        isSendCodeLoading.value = false
     }
     else if(resp.data.code == 400)
     {
@@ -127,6 +126,7 @@ const doSendCodeRequest = async () => //发送验证码请求
             type: 'error',
         })
     }
+    isSendCodeLoading.value = false
 }
 
 const setMailTimeout = () => //设置按钮冷却时间
