@@ -59,7 +59,7 @@
       </el-menu>
       <div v-if="isMenuClosed">
         <el-divider></el-divider>
-        <menu-setting-buttons @toManage="selectMenu"></menu-setting-buttons>
+        <menu-setting-buttons></menu-setting-buttons>
       </div>
     </el-drawer>
 
@@ -80,6 +80,15 @@
         </el-icon>
         {{ $t("menu.userProfile") }}
       </el-button>
+      <div v-if="isManagementShow">
+        <el-divider></el-divider>
+        <el-button @click="clickManagement" class="app-user-message-menu-button" text>
+          <el-icon class="app-user-message-menu-icon">
+            <SetUp />
+          </el-icon>
+          {{ $t("common.management") }}
+        </el-button>
+      </div>
       <el-divider></el-divider>
       <el-button @click="clickSignOut" class="app-user-message-menu-button" text>
         <el-icon class="app-user-message-menu-icon">
@@ -88,6 +97,7 @@
         {{ $t("sign.signout") }}
       </el-button>
     </el-drawer>
+
     <el-dialog v-model="signOutDialogVisible" width="500">
       <template #header>{{ $t("common.tips") }}</template>
       {{ $t("static.signOutConfirm") }}
@@ -122,6 +132,7 @@ const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像
 const username = ref("NULL") //用户名显示
 const userUid = ref("0") //用户UID
 const isSign = ref(false) //是否已经登录
+const isManagementShow = ref(false) //是否显示管理按钮
 const menuDrawer = ref(false) //菜单抽屉状态
 const personalMenuDrawer = ref(false) //个人菜单抽屉状态
 const signOutDialogVisible = ref(false) //退出登录对话框状态
@@ -159,6 +170,12 @@ const clickUserProfile = () => //点击用户信息
   router.push("UserProfile")
 }
 
+const clickManagement = () => //点击管理
+{
+  personalMenuDrawer.value = false
+  router.push('Manage')
+}
+
 const clickSignOut = () => //点击登出
 {
   signOutDialogVisible.value = true
@@ -170,12 +187,12 @@ const clickConfirmSignOut = () => //点击确认登出
   localStorage.removeItem("token")
   localStorage.removeItem("uuid")
   localStorage.removeItem("uid")
+  localStorage.removeItem("userStatus")
   isSign.value = false
   signOutDialogVisible.value = false
   personalMenuDrawer.value = false
   router.push("SignIn")
 }
-
 
 const checkUserMessage = async () => //更新用户信息(用户名，头像)
 {
@@ -194,6 +211,7 @@ const checkUserMessage = async () => //更新用户信息(用户名，头像)
     localStorage.removeItem("token")
     localStorage.removeItem("uuid")
     localStorage.removeItem("uid")
+    localStorage.removeItem("userStatus")
     isSign.value = false
   }
 }
@@ -203,11 +221,20 @@ const checkSignLocalStorage = () => //检查是否登录的localStorage
   if(localStorage.getItem("isSignIn") == "true" || false) //已登录 (没有值即为false)
   {
     isSign.value = true
+    if(Number(localStorage.getItem("userStatus")) < 3) //获取用户的权限等级进行判断 权限等级高于 3 级时显示管理按钮
+    {
+      isManagementShow.value = true
+    }
+    else
+    {
+      isManagementShow.value = false
+    }
     checkUserMessage() //更新用户信息(用户名，头像)
   }
   else //未登录
   {
     isSign.value = false
+    isManagementShow.value = false
   }
 }
 

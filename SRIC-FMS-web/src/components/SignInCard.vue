@@ -77,6 +77,7 @@ const doSignInRequest = async () => //发送登录请求
         localStorage.setItem("isSignIn","true")
         localStorage.setItem("uuid",resp.data.uuid)
         localStorage.setItem("uid",resp.data.uid)
+        localStorage.setItem("userStatus",resp.data.status)
         ElMessage({
             message: t("sign.successMessage"),
             type: 'success',

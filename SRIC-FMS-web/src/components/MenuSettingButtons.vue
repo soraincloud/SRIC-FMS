@@ -35,14 +35,6 @@
                 </el-icon>
             </el-button>
         </el-tooltip>
-        <el-tooltip placement="top" effect="light">
-            <template #content>{{ $t("common.management") }}</template>
-            <el-button @click="clickManagement" class="app-user-message-setting-button" text circle >
-                <el-icon>
-                <SetUp />
-                </el-icon>
-            </el-button>
-        </el-tooltip>
     </div>
 </template>
 
@@ -50,13 +42,9 @@
     import LineSelectRadio from '@/components/LineSelectRadio.vue'
     import { useDark, useToggle } from '@vueuse/core'
     import { ref } from 'vue'
-    import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
-    import i18n from '@/language';
-
-    const { t } = i18n.global
+    
     const isDark = useDark()//黑暗模式所需变量
-    let router = useRouter()
     const { locale } = useI18n()
 
     const emit = defineEmits(['toManage']) //获取父组件方法
@@ -84,12 +72,6 @@
     {
         locale.value = lang
         localStorage.setItem("language",lang)
-    }
-
-    const clickManagement = () => //点击管理
-    {
-        emit("toManage")
-        router.push('Manage')
     }
 
     const checkLanguageLocalStorage = () => //检查当前语言的localStorage 更新用户信息(用户名，头像)
