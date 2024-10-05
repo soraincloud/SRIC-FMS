@@ -26,34 +26,32 @@ public class intercept implements HandlerInterceptor
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception
     {
-        String currentTime = new GetTime().getCurrentTime();
-        String clientIp = getClientIp(request);  // 获取客户端IP
-        String requestUrl = request.getRequestURI();
-        System.out.println("\n");
-        System.out.println("- - - - -  Q w Q  - - - - -");
-        System.out.println("请求时间 : " + currentTime);
-        System.out.println("请求IP : " + clientIp);
-        System.out.println("请求URL : " + requestUrl);
+        LogPojo log = new LogPojo();
+        log.setCurrentTime(new GetTime().getCurrentTime());
+        log.setClientIp(getClientIp(request));
+        log.setRequestUrl(request.getRequestURI());
         String tokenValue = request.getHeader("Authorization");
         if (tokenValue == null) //未登录 无token
         {
-            System.out.println("状态 : 未登录");
-            return true;
+            log.setState("未登录");
+            log.setStateCode(400);
         }
         else //登录过 有token
         {
             Object loginId = StpUtil.getLoginIdByToken(tokenValue);
             if(loginId == null) //token过期
             {
-                System.out.println("状态 : token过期");
-                return true;
+                log.setState("token过期");
+                log.setStateCode(500);
             }
             else //正常的登录状态
             {
-                System.out.println("状态 : 已登录");
-                return true;
+                log.setState("已登录");
+                log.setStateCode(200);
             }
         }
+        showLogs(log);
+        return true;
     }
 
     /**
@@ -71,5 +69,23 @@ public class intercept implements HandlerInterceptor
             ip = request.getRemoteAddr(); // 最后从request中获取IP
         }
         return ip;
+    }
+
+    /**
+     * 显示请求 log 信息
+     */
+    private void showLogs(LogPojo log)
+    {
+        System.out.println("\n"
+                + "- - - - -  Q w Q  - - - - -"
+                + "\n"
+                + "请求时间 : " + log.getCurrentTime()
+                + "\n"
+                + "请求IP : " + log.getClientIp()
+                + "\n"
+                + "请求URL : " + log.getRequestUrl()
+                + "\n"
+                + "状态 : " + log.getState()
+        );
     }
 }
