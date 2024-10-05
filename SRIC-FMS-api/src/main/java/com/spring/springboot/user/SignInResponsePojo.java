@@ -15,4 +15,5 @@ public class SignInResponsePojo
     private String token;
     private String uuid;
     private int uid;
+    private int status;
 }

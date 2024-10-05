@@ -19,7 +19,7 @@ public class LibraryCategoryManageController
 {
     @Autowired
     LibraryCategoryService libraryCategoryService;
-    
+
     /**
      * @author SRIC
      *

@@ -112,6 +112,7 @@ public class UserServiceImpl implements UserService
                 signInResponse.setCode(200);
                 signInResponse.setUuid(userSignIn.getUuid());
                 signInResponse.setUid(userSignIn.getUid());
+                signInResponse.setStatus(userSignIn.getStatus());
             }
             else
             {

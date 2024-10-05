@@ -18,4 +18,5 @@ public class User
     private String createTime;
     private String avatar;
     private String mark;
+    private int status;
 }
