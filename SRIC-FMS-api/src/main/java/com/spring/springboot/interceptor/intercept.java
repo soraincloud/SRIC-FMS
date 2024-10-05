@@ -27,9 +27,12 @@ public class intercept implements HandlerInterceptor
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception
     {
         LogPojo log = new LogPojo();
-        log.setCurrentTime(new GetTime().getCurrentTime());
-        log.setClientIp(getClientIp(request));
-        log.setRequestUrl(request.getRequestURI());
+        log.setCurrentTime(new GetTime().getCurrentTime()); //获取时间
+        log.setClientIp(getClientIp(request)); //获取IP
+        String url = request.getRequestURI();
+        log.setRequestUrl(url); //获取请求url
+        String[] rulParts = url.split("/");
+        log.setUrlModule(rulParts[1]); //获取权限模块
         String tokenValue = request.getHeader("Authorization");
         if (tokenValue == null) //未登录 无token
         {
@@ -84,6 +87,8 @@ public class intercept implements HandlerInterceptor
                 + "请求IP : " + log.getClientIp()
                 + "\n"
                 + "请求URL : " + log.getRequestUrl()
+                + "\n"
+                + "权限模块 : " + log.getUrlModule()
                 + "\n"
                 + "状态 : " + log.getState()
         );
