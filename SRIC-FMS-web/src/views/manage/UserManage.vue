@@ -71,9 +71,8 @@
 
 <script lang="ts" setup>
 import { ref,onMounted } from 'vue'
-import { getUserMessageList } from '@/axios/api/user'
+import { getUserMessageList,updateUsernameByUuid,updatePasswordByUuid } from '@/axios/api/user'
 import CryptoJS from 'crypto-js' //SHA-256加密
-import { updateUsernameByUuid,updatePasswordByUuid } from '@/axios/api/user';
 import { ElMessage } from 'element-plus' //element消息
 import i18n from '@/language';
 const { t } = i18n.global

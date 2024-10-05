@@ -25,61 +25,6 @@ public class UserController
     /**
      * @author SRIC
      *
-     * 获取 user 数据列表
-     */
-    @GetMapping("/getUserMessageList")
-    public List<User> getUserMessageList()
-    {
-        return userService.getUserMessageList();
-    }
-
-    /**
-     * @author SRIC
-     *
-     * 根据 uuid 修改 用户名
-     * 返回状态码 200成功 400失败
-     */
-    @PostMapping("/updateUsernameByUuid")
-    public ResponseCode updateUsernameByUuid(@RequestBody User user)
-    {
-        boolean isSuccess =  userService.updateUsernameByUuid(user);
-        ResponseCode responseCode = new ResponseCode();
-        if(isSuccess)
-        {
-            responseCode.setCode(200);
-        }
-        else
-        {
-            responseCode.setCode(400);
-        }
-        return responseCode;
-    }
-
-    /**
-     * @author SRIC
-     *
-     * 根据 uuid 修改 密码
-     * 返回状态码 200成功 400失败
-     */
-    @PostMapping("/updatePasswordByUuid")
-    public ResponseCode updatePasswordByUuid(@RequestBody User user)
-    {
-        boolean isSuccess = userService.updatePasswordByUuid(user);
-        ResponseCode responseCode = new ResponseCode();
-        if(isSuccess)
-        {
-            responseCode.setCode(200);
-        }
-        else
-        {
-            responseCode.setCode(400);
-        }
-        return responseCode;
-    }
-
-    /**
-     * @author SRIC
-     *
      * 登录
      * 若登录成功 在 sa token 中通过 uuid 注册用户信息
      * 返回 token

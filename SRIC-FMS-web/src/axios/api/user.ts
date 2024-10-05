@@ -2,17 +2,17 @@ import { get,post } from '@/axios/axios'
 
 export function getUserMessageList(params:any)
 {
-    return get('/user/getUserMessageList',params)
+    return get('/userManage/getUserMessageList',params)
 }
 
 export function updateUsernameByUuid(params:any)
 {
-    return post('/user/updateUsernameByUuid',params)
+    return post('/userManage/updateUsernameByUuid',params)
 }
 
 export function updatePasswordByUuid(params:any)
 {
-    return post('/user/updatePasswordByUuid',params)
+    return post('/userManage/updatePasswordByUuid',params)
 }
 
 export function signIn(params:any)

@@ -2,7 +2,7 @@ import { get,post } from '@/axios/axios'
 
 export function getLibraryCategoryManageDataList(params:any)
 {
-    return get('/library/getLibraryCategoryManageDataList',params)
+    return get('/libraryManage/getLibraryCategoryManageDataList',params)
 }
 
 export function getLibraryCategoryList(params:any)
@@ -12,7 +12,7 @@ export function getLibraryCategoryList(params:any)
 
 export function addOrUpdateLibraryCategory(params:any)
 {
-    return post('/library/addOrUpdateLibraryCategory',params)
+    return post('/libraryManage/addOrUpdateLibraryCategory',params)
 }
 
 export function getLibraryList(params:any)
@@ -27,10 +27,10 @@ export function getLibraryById(params:any)
 
 export function editLibraryData(params:any)
 {
-    return post('/library/editLibraryData',params)
+    return post('/libraryManage/editLibraryData',params)
 }
 
 export function addLibrary(params:any)
 {
-    return post('/library/addLibrary',params)
+    return post('/libraryManage/addLibrary',params)
 }
