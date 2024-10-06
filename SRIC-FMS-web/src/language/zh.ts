@@ -27,6 +27,9 @@ export default
         category: "类别",
         collapse: "折叠",
         name: "名称",
+        lan: "局域网",
+        vlan: "虚拟局域网",
+        online: "在线",
     },
     static:
     {

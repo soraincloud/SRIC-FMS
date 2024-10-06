@@ -1,9 +1,9 @@
 <template>
     <el-radio-group v-model="lineNow" @change="lineChange">
         <div class="line-select-radio-group-div">
-            <el-radio value="VLAN" size="small">虚拟局域网</el-radio>
-            <el-radio value="LAN" size="small">局域网</el-radio>
-            <el-radio value="NET" size="small">在线</el-radio>
+            <el-radio value="VLAN" size="small">{{ $t("common.vlan") }}</el-radio>
+            <el-radio value="LAN" size="small">{{ $t("common.lan") }}</el-radio>
+            <el-radio value="NET" size="small">{{ $t("common.online") }}</el-radio>
         </div>
     </el-radio-group>
 </template>

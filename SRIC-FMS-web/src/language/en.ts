@@ -27,6 +27,9 @@ export default
         category: "category",
         collapse: "collapse",
         name: "NAME",
+        lan: "LAN",
+        vlan: "VLAN",
+        online: "ONLINE",
     },
     static:
     {
