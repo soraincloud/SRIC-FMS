@@ -33,7 +33,7 @@
         </el-button>
     </el-card>
     <el-drawer v-model="isDrawerOpen">
-        <template #title>
+        <template #header>
             <span class="UserManage-drawer-title">{{ $t("static.editAndAddCategory") }}</span>
         </template>
         <el-form ref="categoryFormRef" :model="categoryForm" :rules="categoryFormRules">
