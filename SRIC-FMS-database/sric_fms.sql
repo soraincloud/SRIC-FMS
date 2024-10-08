@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 08/10/2024 17:45:31
+ Date: 09/10/2024 01:24:02
 */
 
 SET NAMES utf8mb4;
@@ -123,6 +123,7 @@ CREATE TABLE `permission_request`  (
   `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '主键',
   `request_mapping` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求uri模块',
   `level` int UNSIGNED NULL DEFAULT NULL COMMENT '权限等级',
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`uuid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表\r\n 对后端接口的权限控制' ROW_FORMAT = Dynamic;
 

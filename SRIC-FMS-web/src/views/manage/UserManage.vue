@@ -48,7 +48,7 @@
             </el-table>
         </el-card>
         <el-drawer v-model="isDrawerOpen" @close="drawerClose" ref="drawer">
-            <template #title>
+            <template #header>
                 <span class="UserManage-drawer-title">{{ $t("static.editAndAddUser") }}</span>
             </template>
             <h1>{{ $t("sign.username") }}</h1>

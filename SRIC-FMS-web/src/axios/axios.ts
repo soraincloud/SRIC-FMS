@@ -17,7 +17,7 @@ axios.interceptors.request.use(
 // 添加响应拦截器
 axios.interceptors.response.use(
     (response :any) => {
-        console.log('响应拦截器:', response.data);
+        console.log('响应拦截器:', response);
         return response;
     },
     (error) => {
