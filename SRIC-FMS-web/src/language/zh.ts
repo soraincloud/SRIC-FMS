@@ -30,6 +30,7 @@ export default
         lan: "局域网",
         vlan: "虚拟局域网",
         online: "在线",
+        status: "权限等级",
     },
     static:
     {

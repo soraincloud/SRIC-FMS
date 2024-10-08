@@ -30,6 +30,7 @@ export default
         lan: "LAN",
         vlan: "VLAN",
         online: "ONLINE",
+        status: "STATUS",
     },
     static:
     {

@@ -7,6 +7,16 @@
                         UID
                     </template>
                 </el-table-column>
+                <el-table-column prop="status">
+                    <template #header>
+                        {{ $t("common.status") }}
+                    </template>
+                    <template #default="scope">
+                        <span :style="getStatusColor(scope.row.status)">
+                        {{ scope.row.status }}
+                        </span>
+                    </template>
+                </el-table-column>
                 <el-table-column prop="username">
                     <template #header>
                         {{ $t("user.username") }}
@@ -97,6 +107,23 @@ const loadTableData = async () => //加载列表数据
 {
     const resp = await getUserMessageList({});
     tableData.value = resp.data
+}
+
+const getStatusColor = (tag) =>
+{
+    switch(tag)
+    {
+        case 1: return "color: #c93f38"
+        case 2: return "color: #e56e24"
+        case 3: return "color: #eec400"
+        case 4: return "color: #a59344"
+        case 5: return "color: #76b583"
+        case 6: return "color: #008a60"
+        case 7: return "color: #65a7dd"
+        case 8: return "color: #00035b"
+        case 9: return "color: #7249d6"
+        case 10: return "color: #9c52f2"
+    }
 }
 
 const clickEdit = (row :any) => //点击编辑
