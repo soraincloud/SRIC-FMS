@@ -5,7 +5,8 @@ import java.util.List;
 public interface UserService
 {
     List<User> getUserList();
-    List<User> getUserMessageList();
+    List<User> getUserMessageList(UserManageListRequestPojo userManageListRequest);
+    int getUserMessageCount();
     boolean updateUsernameByUuid(User user);
     boolean updatePasswordByUuid(User user);
     SignInResponsePojo signIn(User user);

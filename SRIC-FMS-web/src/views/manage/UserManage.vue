@@ -56,6 +56,9 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <div class="userManage-pagination-div">
+                <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
+            </div>
         </el-card>
         <el-drawer v-model="isDrawerOpen" @close="drawerClose" ref="drawer">
             <template #header>
@@ -96,7 +99,9 @@ const passwordInput = ref("") //密码输入框内容
 const editUsernameNow = ref("") //当前正在编辑的用户名初始值
 const editUserUuid = ref("") //当前正在编辑的用户的uuid
 const deleteConfirmTitle = ref(t("static.deleteConfirmTitle")) //删除确认框的标题文字
-const tableHeight = ref((window.innerHeight - 190) + "px") //表格高度
+const tableHeight = ref((window.innerHeight - 240) + "px") //表格高度
+const page = ref(1) //页数
+const pageTotal = ref(0) //总条数
 
 onMounted( () =>
 {
@@ -105,8 +110,18 @@ onMounted( () =>
 
 const loadTableData = async () => //加载列表数据
 {
-    const resp = await getUserMessageList({});
-    tableData.value = resp.data
+    const params =
+    {
+        page: page.value,
+    }
+    const resp = await getUserMessageList(params);
+    pageTotal.value = resp.data.total
+    tableData.value = resp.data.userList
+}
+
+const pageChange = () => //翻页
+{
+    loadTableData()
 }
 
 const getStatusColor = (tag) =>
@@ -244,7 +259,7 @@ const clickEditPasswordCancel = () => //取消强制更改密码
 
 const onWindowSizeChanged = () => //窗口大小变动
 {
-    tableHeight.value = (window.innerHeight - 190) + "px"
+    tableHeight.value = (window.innerHeight - 240) + "px"
 }
 
 window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
@@ -274,5 +289,10 @@ window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
 .UserManage-drawer-title
 {
     font-weight: bold;
+}
+
+.userManage-pagination-div
+{
+    margin-top: 20px;
 }
 </style>

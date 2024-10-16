@@ -46,9 +46,11 @@ public class UserServiceImpl implements UserService
      * 将邮箱内容隐藏
      */
     @Override
-    public List<User> getUserMessageList()
+    public List<User> getUserMessageList(UserManageListRequestPojo userManageListRequest)
     {
-        List<User> userList = userMapper.getUserList();
+        userManageListRequest.setLimitSize(20); //一页获取20条数据
+        userManageListRequest.setLimitBefore((userManageListRequest.getPage() - 1) * 20); //当前获取数据之前的空缺 （如第一页空缺0条 第二页空缺20条）
+        List<User> userList = userMapper.getUserManageList(userManageListRequest);
         for(int i = 0;i < userList.size();i++)
         {
             userList.get(i).setPassword("");
@@ -61,6 +63,17 @@ public class UserServiceImpl implements UserService
             userList.get(i).setMail(markEmail);
         }
         return userList;
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 获取用户信息列表数量
+     */
+    @Override
+    public int getUserMessageCount()
+    {
+        return userMapper.getUserManageCount();
     }
 
     /**

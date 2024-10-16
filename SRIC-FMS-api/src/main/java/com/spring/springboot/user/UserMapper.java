@@ -22,6 +22,22 @@ public interface UserMapper
     /**
      * @author SRIC
      *
+     * 获取 user 数据列表 分页
+     */
+    @Select(value = "SELECT * FROM `data_user` LIMIT #{limitBefore}, #{limitSize}")
+    List<User> getUserManageList(UserManageListRequestPojo userManageListRequest);
+
+    /**
+     * @author SRIC
+     *
+     * 获取 user 数据列表总数
+     */
+    @Select(value = "SELECT COUNT(*) FROM `data_user`")
+    int getUserManageCount();
+
+    /**
+     * @author SRIC
+     *
      * 根据 uuid 修改 username
      */
     @Update(value = "UPDATE `data_user` SET USERNAME = #{username} WHERE uuid = #{uuid}")

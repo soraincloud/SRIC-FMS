@@ -27,9 +27,12 @@ public class UserManageController
      * 获取 user 数据列表
      */
     @GetMapping("/getUserMessageList")
-    public List<User> getUserMessageList()
+    public UserManageListResponsePojo getUserMessageList(UserManageListRequestPojo userManageListRequest)
     {
-        return userService.getUserMessageList();
+        UserManageListResponsePojo userManageListResponse = new UserManageListResponsePojo();
+        userManageListResponse.setUserList(userService.getUserMessageList(userManageListRequest));
+        userManageListResponse.setTotal(userService.getUserMessageCount());
+        return userManageListResponse;
     }
 
     /**
