@@ -66,7 +66,7 @@ export default
     },
     mainMenu:
     {
-        library: "文库",
+        library: "知识库",
     },
     menu:
     {
@@ -75,8 +75,8 @@ export default
         picture: "图片",
         user: "用户",
         userProfile: "个人信息",
-        library: "文库",
-        libraryCategory: "文库-类别",
+        library: "知识库",
+        libraryCategory: "知识库-类别",
     },
     sign:
     {
