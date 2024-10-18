@@ -35,7 +35,7 @@ public interface PermissionRequestMapper
      *
      * 添加一条 permissionRequest
      */
-    @Insert(value = "INSERT INTO `permission_request` (uuid, requestMapping, level, description) VALUES(UUID(),#{requestMapping},#{level},#{description})")
+    @Insert(value = "INSERT INTO `permission_request` (uuid, request_mapping, level, description) VALUES(UUID(),#{requestMapping},#{level},#{description})")
     int insertPermissionRequest(PermissionRequest permissionRequest);
 
     /**
@@ -43,7 +43,7 @@ public interface PermissionRequestMapper
      *
      * 添加一条 permissionRequest
      */
-    @Update(value = "UPDATE `permission_request` SET requestMapping = #{requestMapping}, level = #{level}, description = #{description} WHERE uuid = #{uuid}")
+    @Update(value = "UPDATE `permission_request` SET request_mapping = #{requestMapping}, level = #{level}, description = #{description} WHERE uuid = #{uuid}")
     int updatePermissionRequest(PermissionRequest permissionRequest);
 
     /**

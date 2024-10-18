@@ -97,6 +97,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'LibraryCategoryManage',
         component: () => import('@/views/manage/LibraryCategoryManage.vue'),
       },
+      {
+        path: '/PermissionRequestManage',
+        name: 'PermissionRequestManage',
+        component: () => import('@/views/manage/PermissionRequestManage.vue'),
+      },
     ]
   },
 ]

@@ -27,6 +27,12 @@
                           <span class="manage-index-menu-item-span">{{ $t("menu.libraryCategory") }}</span>
                       </template>
                   </el-menu-item>
+                  <el-menu-item index="PermissionRequestManage">
+                      <el-icon :size="25"><Lock /></el-icon>
+                      <template #title>
+                          <span class="manage-index-menu-item-span">{{ $t("menu.permissionRequest") }}</span>
+                      </template>
+                  </el-menu-item>
               </el-menu>
           </el-aside>
           <el-main>

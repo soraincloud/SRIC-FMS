@@ -77,6 +77,7 @@ export default
         userProfile: "user profile",
         library: "library",
         libraryCategory: "lib-category",
+        permissionRequest: "interface",
     },
     sign:
     {

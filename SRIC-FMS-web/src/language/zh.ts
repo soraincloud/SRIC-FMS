@@ -77,6 +77,7 @@ export default
         userProfile: "个人信息",
         library: "知识库",
         libraryCategory: "知识库-类别",
+        permissionRequest: "接口权限",
     },
     sign:
     {

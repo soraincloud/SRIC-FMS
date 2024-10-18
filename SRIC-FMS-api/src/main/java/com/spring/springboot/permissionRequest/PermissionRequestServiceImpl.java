@@ -60,7 +60,7 @@ public class PermissionRequestServiceImpl implements PermissionRequestService
         }
         else
         {
-            if(permissionRequest.getUuid() == null)
+            if(permissionRequest.getUuid().isEmpty())
             {
                 permissionRequestMapper.insertPermissionRequest(permissionRequest);
             }
