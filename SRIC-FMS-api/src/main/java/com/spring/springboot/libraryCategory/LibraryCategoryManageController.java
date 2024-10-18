@@ -32,6 +32,11 @@ public class LibraryCategoryManageController
         return libraryCategoryService.getLibraryCategoryManageDataList();
     }
 
+    /**
+     * @author SRIC
+     *
+     * 添加或修改一条 library category
+     */
     @PostMapping("/addOrUpdateLibraryCategory")
     public ResponseCode addOrUpdateLibraryCategory(@RequestBody LibraryCategory libraryCategory)
     {

@@ -1,5 +1,6 @@
 package com.spring.springboot.permissionRequest;
 
+import com.spring.springboot.response.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,26 +45,31 @@ public class PermissionRequestServiceImpl implements PermissionRequestService
     /**
      * @author SRIC
      *
-     * 添加一条 permission request
+     * 添加或修改一条 permission request
      * 若修改数据条数不为 0 则修改成功
+     * 若传入 id 则为修改
+     * 传入 id 为空则为添加
      */
     @Override
-    public boolean addPermissionRequest(PermissionRequest permissionRequest)
+    public ResponseCode addOrUpdatePermissionRequest(PermissionRequest permissionRequest)
     {
-        int updateNum = permissionRequestMapper.insertPermissionRequest(permissionRequest);
-        return updateNum > 0;
-    }
-
-    /**
-     * @author SRIC
-     *
-     * 根据 uuid 修改 permission request
-     * 若修改数据条数不为 0 则修改成功
-     */
-    @Override
-    public boolean updatePermissionRequest(PermissionRequest permissionRequest)
-    {
-        int updateNum = permissionRequestMapper.updatePermissionRequest(permissionRequest);
-        return updateNum > 0;
+        ResponseCode responseCode = new ResponseCode();
+        if(permissionRequestMapper.getPermissionRequestCountByRequestMapping(permissionRequest) > 0) //若已有重复的名称
+        {
+            responseCode.setCode(400);
+        }
+        else
+        {
+            if(permissionRequest.getUuid() == null)
+            {
+                permissionRequestMapper.insertPermissionRequest(permissionRequest);
+            }
+            else
+            {
+                permissionRequestMapper.updatePermissionRequest(permissionRequest);
+            }
+            responseCode.setCode(200);
+        }
+        return responseCode;
     }
 }

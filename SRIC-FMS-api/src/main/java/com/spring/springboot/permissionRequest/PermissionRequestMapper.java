@@ -1,5 +1,6 @@
 package com.spring.springboot.permissionRequest;
 
+import com.spring.springboot.libraryCategory.LibraryCategory;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -44,4 +45,12 @@ public interface PermissionRequestMapper
      */
     @Update(value = "UPDATE `permission_request` SET requestMapping = #{requestMapping}, level = #{level}, description = #{description} WHERE uuid = #{uuid}")
     int updatePermissionRequest(PermissionRequest permissionRequest);
+
+    /**
+     * @author SRIC
+     *
+     * 在 permission_request 中查询是否有重复名称
+     */
+    @Select(value = "SELECT COUNT(*) FROM `permission_request` WHERE request_mapping = #{requestMapping}")
+    int getPermissionRequestCountByRequestMapping(PermissionRequest permissionRequest);
 }
