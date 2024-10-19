@@ -31,6 +31,8 @@ export default
         vlan: "虚拟局域网",
         online: "在线",
         status: "权限等级",
+        interface: "接口",
+        description: "描述",
     },
     static:
     {
@@ -62,7 +64,9 @@ export default
         previewImage: "预览图",
         categoryError: "类别错误",
         itemNumber: "数据数量",
-        editAndAddCategory: "编辑 / 添加类别",
+        editAndAddCategory: "编辑 / 添加 类别",
+        permissionLevel: "权限等级",
+        editAndAddInterface: "编辑 / 添加 接口",
     },
     mainMenu:
     {

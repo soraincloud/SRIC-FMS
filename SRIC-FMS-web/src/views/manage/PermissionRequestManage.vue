@@ -1,24 +1,29 @@
 <template>
     <el-card>
         <el-table :data="tableData" :height="tableHeight">
-            <el-table-column prop="uuid">
+            <el-table-column prop="uuid" width="300">
                 <template #header>
                     INTERFACE ID
                 </template>
             </el-table-column>
-            <el-table-column prop="requestMapping">
+            <el-table-column prop="requestMapping" width="120">
                 <template #header>
-                    {{ $t("common.name") }}
+                    {{ $t("common.interface") }}
                 </template>
             </el-table-column>
-            <el-table-column prop="level">
+            <el-table-column prop="level" width="120">
                 <template #header>
-                    {{ $t("static.itemNumber") }}
+                    {{ $t("static.permissionLevel") }}
+                </template>
+                <template #default="scope">
+                    <span :style="getStatusColor(scope.row.level)">
+                    {{ scope.row.level }}
+                    </span>
                 </template>
             </el-table-column>
             <el-table-column prop="description">
                 <template #header>
-                    {{ $t("static.itemNumber") }}
+                    {{ $t("common.description") }}
                 </template>
             </el-table-column>
             <el-table-column fixed="right" label="Operations" width="120">
@@ -33,7 +38,7 @@
         <div class="permission-request-manage-pagination-div">
             <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
         </div>
-        <el-button @click="clickAdd()" type="warning" class="library-category-manage-add-button" plain>
+        <el-button @click="clickAdd()" type="warning" class="permission-request-manage-add-button" plain>
             <el-icon>
                 <Plus />
             </el-icon>
@@ -42,20 +47,28 @@
     </el-card>
     <el-drawer v-model="isDrawerOpen">
         <template #header>
-            <span class="UserManage-drawer-title">{{ $t("static.editAndAddCategory") }}</span>
+            <span class="UserManage-drawer-title">{{ $t("static.editAndAddInterface") }}</span>
         </template>
         <el-form ref="permissionRequestFormRef" :model="permissionRequestForm" :rules="permissionRequestFormRules">
             <el-form-item prop="requestMapping">
-                <h1>{{ $t("common.name") }}</h1>
+                <h1>{{ $t("common.interface") }}</h1>
                 <el-input v-model="permissionRequestForm.requestMapping" maxlength="10" show-word-limit clearable></el-input>
             </el-form-item>
             <el-form-item prop="level">
-                <h1>{{ $t("common.name") }}</h1>
-                <el-input v-model="permissionRequestForm.level" maxlength="10" show-word-limit clearable></el-input>
+                <h1>{{ $t("static.permissionLevel") }}</h1>
+                <el-select v-model="permissionRequestForm.level">
+                    <el-option v-for="(item,i) in levels" :key="i" :label="item.label" :value="item.value">
+                        <el-tag :color="item.label" class="permission-request-select-color-tag" size="small" />
+                        <span :style="{ color: item.label }">{{ $t("static.permissionLevel") }} : {{ item.value }}</span>
+                    </el-option>
+                    <template #label="{ label, value }">
+                        <span>{{ $t("static.permissionLevel") }} : {{ value }}</span>
+                    </template>
+                </el-select>
             </el-form-item>
             <el-form-item prop="description">
-                <h1>{{ $t("common.name") }}</h1>
-                <el-input v-model="permissionRequestForm.description" maxlength="10" show-word-limit clearable></el-input>
+                <h1>{{ $t("common.description") }}</h1>
+                <el-input v-model="permissionRequestForm.description" :rows="2" type="textarea" maxlength="25" show-word-limit clearable></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button @click="clickAddOrEditPermissionRequest(permissionRequestFormRef)" type="success">{{ $t("common.submit") }}</el-button>
@@ -67,6 +80,7 @@
 <script lang="ts" setup>
 import { ref,onMounted,reactive } from 'vue'
 import { getPermissionRequestList,addOrUpdatePermissionRequest } from '@/axios/api/permissionRequest';
+import { getStatusColor,getStatusColorCode } from '@/tools/tool'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus' //element消息
 import i18n from '@/language';
@@ -99,6 +113,49 @@ const permissionRequestFormRules = reactive //添加 permissionRequest 表单的
         { required: true, message: t("rules.name"), trigger: 'blur' },
     ],
 })
+const levels = 
+[
+    {
+        value: '1',
+        label: '#c93f38',
+    },
+    {
+        value: '2',
+        label: '#e56e24',
+    },
+    {
+        value: '3',
+        label: '#eec400',
+    },
+    {
+        value: '4',
+        label: '#a59344',
+    },
+    {
+        value: '5',
+        label: '#76b583',
+    },
+    {
+        value: '6',
+        label: '#008a60',
+    },
+    {
+        value: '7',
+        label: '#65a7dd',
+    },
+    {
+        value: '8',
+        label: '#00035b',
+    },
+    {
+        value: '9',
+        label: '#7249d6',
+    },
+    {
+        value: '10',
+        label: '#9c52f2',
+    },
+]
 const permissionRequestEditUuid = ref("") //修改的类别 uuid
 
 const getPermissionRequestData = async () => //获取接口列表
@@ -198,7 +255,7 @@ window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
 <style>
 @import '@/css/common.css';
 
-.library-category-manage-add-button
+.permission-request-manage-add-button
 {
     width: 100%;
     margin-top: 20px;
@@ -207,5 +264,12 @@ window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
 .permission-request-manage-pagination-div
 {
     margin-top: 20px;
+}
+
+.permission-request-select-color-tag
+{
+    margin-right: 8px;
+    border: none;
+    aspect-ratio: 1;
 }
 </style>

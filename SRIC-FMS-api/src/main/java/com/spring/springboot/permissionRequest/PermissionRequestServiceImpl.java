@@ -54,7 +54,7 @@ public class PermissionRequestServiceImpl implements PermissionRequestService
     public ResponseCode addOrUpdatePermissionRequest(PermissionRequest permissionRequest)
     {
         ResponseCode responseCode = new ResponseCode();
-        if(permissionRequestMapper.getPermissionRequestCountByRequestMapping(permissionRequest) > 0) //若已有重复的名称
+        if(permissionRequestMapper.getPermissionRequestCountByRequestMapping(permissionRequest) > 1) //若已有重复的名称
         {
             responseCode.setCode(400);
         }

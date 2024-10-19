@@ -85,6 +85,7 @@
 <script lang="ts" setup>
 import { ref,onMounted } from 'vue'
 import { getUserMessageList,updateUsernameByUuid,updatePasswordByUuid } from '@/axios/api/user'
+import { getStatusColor } from '@/tools/tool'
 import CryptoJS from 'crypto-js' //SHA-256加密
 import { ElMessage } from 'element-plus' //element消息
 import i18n from '@/language';
@@ -122,23 +123,6 @@ const loadTableData = async () => //加载列表数据
 const pageChange = () => //翻页
 {
     loadTableData()
-}
-
-const getStatusColor = (tag) =>
-{
-    switch(tag)
-    {
-        case 1: return "color: #c93f38"
-        case 2: return "color: #e56e24"
-        case 3: return "color: #eec400"
-        case 4: return "color: #a59344"
-        case 5: return "color: #76b583"
-        case 6: return "color: #008a60"
-        case 7: return "color: #65a7dd"
-        case 8: return "color: #00035b"
-        case 9: return "color: #7249d6"
-        case 10: return "color: #9c52f2"
-    }
 }
 
 const clickEdit = (row :any) => //点击编辑

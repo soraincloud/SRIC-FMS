@@ -31,6 +31,8 @@ export default
         vlan: "VLAN",
         online: "ONLINE",
         status: "STATUS",
+        interface: "INTERFACE",
+        description: "DESCRIPTION",
     },
     static:
     {
@@ -63,6 +65,8 @@ export default
         categoryError: "CATEGORY ERROR",
         itemNumber: "ITEM NUMBER",
         editAndAddCategory: "edit / add category",
+        permissionLevel: "PERMISSION",
+        editAndAddInterface: "edit / add interface",
     },
     mainMenu:
     {
