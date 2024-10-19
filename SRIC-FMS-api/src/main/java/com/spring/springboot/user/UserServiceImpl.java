@@ -206,4 +206,16 @@ public class UserServiceImpl implements UserService
         }
         return 401; //验证码错误
     }
+
+    /**
+     * @author SRIC
+     *
+     * 根据 uuid 获取 用户权限信息
+     */
+    @Override
+    public int getUserStatusByUuid(String uuid)
+    {
+        User user = userMapper.getUserByUuid(uuid);
+        return user.getStatus();
+    }
 }

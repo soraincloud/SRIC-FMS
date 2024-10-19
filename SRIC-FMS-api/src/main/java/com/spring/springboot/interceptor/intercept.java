@@ -3,6 +3,7 @@ package com.spring.springboot.interceptor;
 import cn.dev33.satoken.stp.StpUtil;
 import com.spring.springboot.tools.EditFile;
 import com.spring.springboot.tools.GetTime;
+import com.spring.springboot.user.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class intercept implements HandlerInterceptor
 {
+    @Autowired
+    UserService userService;
+
     /**
      * @author SRIC
      *
@@ -38,6 +42,8 @@ public class intercept implements HandlerInterceptor
         {
             log.setState("未登录");
             log.setStateCode(400);
+            log.setLoginId("NULL");
+            log.setPermissionLevel(10); //未登录时 系统权限为最低 10
         }
         else //登录过 有token
         {
@@ -46,11 +52,15 @@ public class intercept implements HandlerInterceptor
             {
                 log.setState("token过期");
                 log.setStateCode(500);
+                log.setLoginId("NULL");
+                log.setPermissionLevel(10); //登录过期时 系统权限为最低 10
             }
             else //正常的登录状态
             {
                 log.setState("已登录");
                 log.setStateCode(200);
+                log.setLoginId(loginId.toString());
+                log.setPermissionLevel(userService.getUserStatusByUuid(loginId.toString()));
             }
         }
         showLogs(log);
@@ -91,6 +101,10 @@ public class intercept implements HandlerInterceptor
                 + "权限模块 : " + log.getUrlModule()
                 + "\n"
                 + "状态 : " + log.getState()
+                + "\n"
+                + "登录ID : " + log.getLoginId()
+                + "\n"
+                + "权限 : " + log.getPermissionLevel()
         );
     }
 }

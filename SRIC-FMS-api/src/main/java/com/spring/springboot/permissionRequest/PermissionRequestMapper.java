@@ -42,7 +42,7 @@ public interface PermissionRequestMapper
     /**
      * @author SRIC
      *
-     * 添加一条 permissionRequest
+     * 修改一条 permissionRequest
      */
     @Update(value = "UPDATE `permission_request` SET request_mapping = #{requestMapping}, level = #{level}, description = #{description} WHERE uuid = #{uuid}")
     int updatePermissionRequest(PermissionRequest permissionRequest);

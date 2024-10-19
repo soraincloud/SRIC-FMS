@@ -14,4 +14,6 @@ public class LogPojo
     private String urlModule; //url前缀权限模块
     private String state; //登录状态
     private int stateCode; //登录状态码
+    private String loginId; //登录id
+    private int permissionLevel; //权限等级
 }

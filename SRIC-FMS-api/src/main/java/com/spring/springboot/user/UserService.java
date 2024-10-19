@@ -13,4 +13,5 @@ public interface UserService
     UserMessageResponsePojo getUserByUuid(String uuid);
     int getCodeByMail(String mail);
     int signUp(SignUpRequestPojo signUpRequest);
+    int getUserStatusByUuid(String uuid);
 }
