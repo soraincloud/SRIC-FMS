@@ -221,7 +221,7 @@ const checkSignLocalStorage = () => //检查是否登录的localStorage
   if(localStorage.getItem("isSignIn") == "true" || false) //已登录 (没有值即为false)
   {
     isSign.value = true
-    if(Number(localStorage.getItem("userStatus")) < 3) //获取用户的权限等级进行判断 权限等级高于 3 级时显示管理按钮
+    if(Number(localStorage.getItem("userStatus")) <= 3) //获取用户的权限等级进行判断 权限等级高于 3 级时显示管理按钮
     {
       isManagementShow.value = true
     }
