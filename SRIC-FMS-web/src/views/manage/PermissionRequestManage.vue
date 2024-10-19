@@ -6,12 +6,12 @@
                     INTERFACE ID
                 </template>
             </el-table-column>
-            <el-table-column prop="requestMapping" width="120">
+            <el-table-column prop="requestMapping" width="180">
                 <template #header>
                     {{ $t("common.interface") }}
                 </template>
             </el-table-column>
-            <el-table-column prop="level" width="120">
+            <el-table-column prop="level" width="80">
                 <template #header>
                     {{ $t("static.permissionLevel") }}
                 </template>
@@ -52,7 +52,7 @@
         <el-form ref="permissionRequestFormRef" :model="permissionRequestForm" :rules="permissionRequestFormRules">
             <el-form-item prop="requestMapping">
                 <h1>{{ $t("common.interface") }}</h1>
-                <el-input v-model="permissionRequestForm.requestMapping" maxlength="10" show-word-limit clearable></el-input>
+                <el-input v-model="permissionRequestForm.requestMapping" maxlength="20" show-word-limit clearable></el-input>
             </el-form-item>
             <el-form-item prop="level">
                 <h1>{{ $t("static.permissionLevel") }}</h1>

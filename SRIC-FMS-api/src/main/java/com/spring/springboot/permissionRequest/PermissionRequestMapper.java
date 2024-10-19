@@ -18,8 +18,9 @@ public interface PermissionRequestMapper
      * @author SRIC
      *
      * 获取 permissionRequest 数据列表 分页
+     * 根据 level 升序排列
      */
-    @Select(value = "SELECT * FROM `permission_request` LIMIT #{limitBefore}, #{limitSize}")
+    @Select(value = "SELECT * FROM `permission_request` ORDER BY level ASC LIMIT #{limitBefore}, #{limitSize}")
     List<PermissionRequest> getPermissionRequestList(PermissionRequestListRequestPojo permissionRequestListRequest);
 
     /**
