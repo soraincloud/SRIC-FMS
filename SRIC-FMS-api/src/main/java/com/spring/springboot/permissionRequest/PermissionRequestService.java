@@ -9,4 +9,5 @@ public interface PermissionRequestService
     List<PermissionRequest> getPErmissionRequestList(PermissionRequestListRequestPojo permissionRequestListRequest);
     int getPermissionRequestCount();
     ResponseCode addOrUpdatePermissionRequest(PermissionRequest permissionRequest);
+    int getInterfacePermissionLevelByRequestMapping(String requestMapping);
 }

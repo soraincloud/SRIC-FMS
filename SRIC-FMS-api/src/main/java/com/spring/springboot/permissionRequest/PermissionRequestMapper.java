@@ -54,4 +54,12 @@ public interface PermissionRequestMapper
      */
     @Select(value = "SELECT COUNT(*) FROM `permission_request` WHERE request_mapping = #{requestMapping}")
     int getPermissionRequestCountByRequestMapping(PermissionRequest permissionRequest);
+
+    /**
+     * @author SRIC
+     *
+     * 通过 request mapping 获取 permission_request 数据
+     */
+    @Select(value = "SELECT * FROM `permission_request` WHERE request_mapping = #{requestMapping}")
+    PermissionRequest getPermissionRequestByRequestMapping(@Param(value = "requestMapping")String requestMapping);
 }

@@ -72,4 +72,14 @@ public class PermissionRequestServiceImpl implements PermissionRequestService
         }
         return responseCode;
     }
+
+    /**
+     * @author SRIC
+     *
+     * 根据 request mapping 获取接口权限等级
+     */
+    public int getInterfacePermissionLevelByRequestMapping(String requestMapping)
+    {
+        return permissionRequestMapper.getPermissionRequestByRequestMapping(requestMapping).getLevel();
+    }
 }

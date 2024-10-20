@@ -15,5 +15,7 @@ public class LogPojo
     private String state; //登录状态
     private int stateCode; //登录状态码
     private String loginId; //登录id
-    private int permissionLevel; //权限等级
+    private int userPermissionLevel; //用户权限等级
+    private int interfacePermissionLevel; //接口权限等级
+    private boolean permissionPassed; //是否拥有权限
 }
