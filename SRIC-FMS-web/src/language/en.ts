@@ -67,6 +67,7 @@ export default
         editAndAddCategory: "edit / add category",
         permissionLevel: "PERMISSION",
         editAndAddInterface: "edit / add interface",
+        permissionDenied: "permission denied",
     },
     mainMenu:
     {

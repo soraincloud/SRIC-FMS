@@ -34,6 +34,12 @@ public class intercept implements HandlerInterceptor
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception
     {
+        if(request.getMethod().equals("OPTIONS")) //对预检请求放行
+        {
+            response.setStatus(HttpServletResponse.SC_OK);
+            return true;
+        }
+
         LogPojo log = new LogPojo();
         log.setCurrentTime(new GetTime().getCurrentTime()); //获取时间
         log.setClientIp(getClientIp(request)); //获取IP
@@ -42,10 +48,10 @@ public class intercept implements HandlerInterceptor
         String[] rulParts = url.split("/");
         log.setUrlModule(rulParts[1]); //获取权限模块
         String tokenValue = request.getHeader("Authorization");
+        log.setTokenData(tokenValue);
         if (tokenValue == null) //未登录 无token
         {
             log.setState("未登录");
-            log.setStateCode(400);
             log.setLoginId("NULL");
             log.setUserPermissionLevel(10); //未登录时 系统权限为最低 10
         }
@@ -55,21 +61,24 @@ public class intercept implements HandlerInterceptor
             if(loginId == null) //token过期
             {
                 log.setState("token过期");
-                log.setStateCode(500);
                 log.setLoginId("NULL");
                 log.setUserPermissionLevel(10); //登录过期时 系统权限为最低 10
             }
             else //正常的登录状态
             {
                 log.setState("已登录");
-                log.setStateCode(200);
                 log.setLoginId(loginId.toString());
                 log.setUserPermissionLevel(userService.getUserStatusByUuid(loginId.toString()));
             }
         }
         log.setInterfacePermissionLevel(permissionRequestService.getInterfacePermissionLevelByRequestMapping(log.getUrlModule())); //根据权限模块获取接口权限等级
-        log.setPermissionPassed(log.getUserPermissionLevel() <= log.getInterfacePermissionLevel());
+        log.setPermissionPassed(log.getUserPermissionLevel() <= log.getInterfacePermissionLevel()); //鉴权是否通过
         showLogs(log);
+        if(!log.isPermissionPassed()) //未通过
+        {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN); // 设置状态码为 403
+            return false;
+        }
         return true;
     }
 
@@ -107,6 +116,8 @@ public class intercept implements HandlerInterceptor
                 + "权限模块 : " + log.getUrlModule()
                 + "\n"
                 + "状态 : " + log.getState()
+                + "\n"
+                + "token内容 : " + log.getTokenData()
                 + "\n"
                 + "登录ID : " + log.getLoginId()
                 + "\n"

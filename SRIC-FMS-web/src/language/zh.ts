@@ -67,6 +67,7 @@ export default
         editAndAddCategory: "编辑 / 添加 类别",
         permissionLevel: "权限等级",
         editAndAddInterface: "编辑 / 添加 接口",
+        permissionDenied: "权限不足",
     },
     mainMenu:
     {
