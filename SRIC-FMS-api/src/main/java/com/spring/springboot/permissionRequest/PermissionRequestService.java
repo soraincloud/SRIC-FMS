@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PermissionRequestService
 {
-    List<PermissionRequest> getPErmissionRequestList(PermissionRequestListRequestPojo permissionRequestListRequest);
+    List<PermissionRequest> getPermissionRequestList(PermissionRequestListRequestPojo permissionRequestListRequest);
     int getPermissionRequestCount();
     ResponseCode addOrUpdatePermissionRequest(PermissionRequest permissionRequest);
     int getInterfacePermissionLevelByRequestMapping(String requestMapping);

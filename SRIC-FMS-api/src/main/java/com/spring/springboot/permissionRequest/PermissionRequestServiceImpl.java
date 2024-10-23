@@ -24,7 +24,7 @@ public class PermissionRequestServiceImpl implements PermissionRequestService
      * 获取 permission request 数据列表 分页
      */
     @Override
-    public List<PermissionRequest> getPErmissionRequestList(PermissionRequestListRequestPojo permissionRequestListRequest)
+    public List<PermissionRequest> getPermissionRequestList(PermissionRequestListRequestPojo permissionRequestListRequest)
     {
         permissionRequestListRequest.setLimitSize(20); //一页获取20条数据
         permissionRequestListRequest.setLimitBefore((permissionRequestListRequest.getPage() - 1) * 20); //当前获取数据之前的空缺 （如第一页空缺0条 第二页空缺20条）

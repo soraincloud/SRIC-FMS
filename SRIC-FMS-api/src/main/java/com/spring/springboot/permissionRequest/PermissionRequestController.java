@@ -27,7 +27,7 @@ public class PermissionRequestController
     public PermissionRequestListResponsePojo getPermissionRequestList(PermissionRequestListRequestPojo permissionRequestListRequest)
     {
         PermissionRequestListResponsePojo permissionRequestListResponse = new PermissionRequestListResponsePojo();
-        permissionRequestListResponse.setPermissionRequestList(permissionRequestService.getPErmissionRequestList(permissionRequestListRequest));
+        permissionRequestListResponse.setPermissionRequestList(permissionRequestService.getPermissionRequestList(permissionRequestListRequest));
         permissionRequestListResponse.setTotal(permissionRequestListResponse.getTotal());
         return permissionRequestListResponse;
     }
