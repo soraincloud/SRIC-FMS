@@ -47,8 +47,8 @@ public class PermissionRequestServiceImpl implements PermissionRequestService
      *
      * 添加或修改一条 permission request
      * 若修改数据条数不为 0 则修改成功
-     * 若传入 id 则为修改
-     * 传入 id 为空则为添加
+     * 若传入 uuid 则为修改
+     * 传入 uuid 为空则为添加
      */
     @Override
     public ResponseCode addOrUpdatePermissionRequest(PermissionRequest permissionRequest)
@@ -80,6 +80,14 @@ public class PermissionRequestServiceImpl implements PermissionRequestService
      */
     public int getInterfacePermissionLevelByRequestMapping(String requestMapping)
     {
-        return permissionRequestMapper.getPermissionRequestByRequestMapping(requestMapping).getLevel();
+        PermissionRequest permissionRequest = permissionRequestMapper.getPermissionRequestByRequestMapping(requestMapping);
+        if(permissionRequest == null) //若未获取到数据 则将其设置为需要最高权限
+        {
+            return 1;
+        }
+        else
+        {
+            return permissionRequest.getLevel();
+        }
     }
 }
