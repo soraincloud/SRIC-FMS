@@ -33,6 +33,7 @@ export default
         status: "STATUS",
         interface: "INTERFACE",
         description: "DESCRIPTION",
+        menu: "NEMU",
     },
     static:
     {
@@ -68,6 +69,7 @@ export default
         permissionLevel: "PERMISSION",
         editAndAddInterface: "edit / add interface",
         permissionDenied: "permission denied",
+        editAndAddMainMenu: "edit / add main menu"
     },
     mainMenu:
     {
@@ -83,6 +85,7 @@ export default
         library: "library",
         libraryCategory: "lib-category",
         permissionRequest: "interface",
+        permissionMainMenu: "main menu",
     },
     sign:
     {

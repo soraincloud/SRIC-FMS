@@ -33,6 +33,7 @@ export default
         status: "权限等级",
         interface: "接口",
         description: "描述",
+        menu: "菜单",
     },
     static:
     {
@@ -68,6 +69,7 @@ export default
         permissionLevel: "权限等级",
         editAndAddInterface: "编辑 / 添加 接口",
         permissionDenied: "权限不足",
+        editAndAddMainMenu: "编辑 / 添加 菜单"
     },
     mainMenu:
     {
@@ -83,6 +85,7 @@ export default
         library: "知识库",
         libraryCategory: "知识库-类别",
         permissionRequest: "接口权限",
+        permissionMainMenu: "菜单权限",
     },
     sign:
     {

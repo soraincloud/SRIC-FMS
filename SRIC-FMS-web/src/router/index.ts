@@ -102,6 +102,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'PermissionRequestManage',
         component: () => import('@/views/manage/PermissionRequestManage.vue'),
       },
+      {
+        path: '/PermissionMainMenuManage',
+        name: 'PermissionMainMenuManage',
+        component: () => import('@/views/manage/PermissionMainMenuManage.vue')
+      }
     ]
   },
 ]
