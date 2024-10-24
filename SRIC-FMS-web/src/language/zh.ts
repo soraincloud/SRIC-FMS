@@ -129,6 +129,9 @@ export default
         title: "请设置标题",
         category: "请选择类别",
         name: "请设置名称",
+        permissionLevel: "请设置权限等级",
+        description: "请输入描述",
+        interface: "请输入接口",
     },
     h:
     {

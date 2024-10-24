@@ -106,11 +106,11 @@ const permissionMainMenuFormRules = reactive //添加 permissionMainMenu 表单�
     ],
     level:
     [
-        { required: true, message: t("rules.name"), trigger: 'blur' },
+        { required: true, message: t("rules.permissionLevel"), trigger: 'blur' },
     ],
     description:
     [
-        { required: true, message: t("rules.name"), trigger: 'blur' },
+        { required: true, message: t("rules.description"), trigger: 'blur' },
     ],
 })
 const levels = 

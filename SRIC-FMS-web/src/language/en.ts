@@ -129,6 +129,9 @@ export default
         title: "Please input title",
         category: "Please pick category",
         name: "Please input name",
+        permissionLevel: "Please pick permission",
+        description: "Please input description",
+        interface: "Please input interface",
     },
     h:
     {

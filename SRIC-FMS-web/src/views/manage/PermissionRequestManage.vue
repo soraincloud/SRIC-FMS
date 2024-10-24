@@ -102,15 +102,15 @@ const permissionRequestFormRules = reactive //添加 permissionRequest 表单的
 ({
     requestMapping:
     [
-        { required: true, message: t("rules.name"), trigger: 'blur' },
+        { required: true, message: t("rules.interface"), trigger: 'blur' },
     ],
     level:
     [
-        { required: true, message: t("rules.name"), trigger: 'blur' },
+        { required: true, message: t("rules.permissionLevel"), trigger: 'blur' },
     ],
     description:
     [
-        { required: true, message: t("rules.name"), trigger: 'blur' },
+        { required: true, message: t("rules.description"), trigger: 'blur' },
     ],
 })
 const levels = 
