@@ -152,84 +152,93 @@ const initPlayer = () =>
 
 const getHVideoData = async () =>
 {
-    const resp = await getHVideoById({id:route.query.video})
-    videoData.value = resp.data
-    if(videoData.value.mosaic == 1)
+    try
     {
-        videoData.value.mosaicType = "success"
-        videoData.value.mosaicText = t("h.noMosaic")
-    }
-    else if(videoData.value.mosaic == 2)
-    {
-        videoData.value.mosaicType = "info"
-        videoData.value.mosaicText = t("h.mosaic")
-    }
-    else
-    {
-        videoData.value.mosaicType = "info"
-        videoData.value.mosaicText = t("static.categoryError")
-    }
+        const resp = await getHVideoById({id:route.query.video})
+        videoData.value = resp.data
+        if(videoData.value.mosaic == 1)
+        {
+            videoData.value.mosaicType = "success"
+            videoData.value.mosaicText = t("h.noMosaic")
+        }
+        else if(videoData.value.mosaic == 2)
+        {
+            videoData.value.mosaicType = "info"
+            videoData.value.mosaicText = t("h.mosaic")
+        }
+        else
+        {
+            videoData.value.mosaicType = "info"
+            videoData.value.mosaicText = t("static.categoryError")
+        }
 
-    if(videoData.value.category == 1)
-    {
-        videoData.value.categoryType = "danger"
-        videoData.value.categoryText = "REAL"
-    }
-    else if(videoData.value.category == 2)
-    {
-        videoData.value.categoryType = "primary"
-        videoData.value.categoryText = "3D MMD"
-    }
-    else if(videoData.value.category == 3)
-    {
-        videoData.value.categoryType = "warning"
-        videoData.value.categoryText = "2D"
-    }
-    else
-    {
-        videoData.value.mosaicType = "info"
-        videoData.value.mosaicText = t("static.categoryError")
-    }
+        if(videoData.value.category == 1)
+        {
+            videoData.value.categoryType = "danger"
+            videoData.value.categoryText = "REAL"
+        }
+        else if(videoData.value.category == 2)
+        {
+            videoData.value.categoryType = "primary"
+            videoData.value.categoryText = "3D MMD"
+        }
+        else if(videoData.value.category == 3)
+        {
+            videoData.value.categoryType = "warning"
+            videoData.value.categoryText = "2D"
+        }
+        else
+        {
+            videoData.value.mosaicType = "info"
+            videoData.value.mosaicText = t("static.categoryError")
+        }
+    } catch {}
 }
 
 const getHVideoTagData = async () =>
 {
-    const resp = await getHVideoTagList({})
-    videoTagData.value = resp.data
+    try
+    {
+        const resp = await getHVideoTagList({})
+        videoTagData.value = resp.data
+    } catch {}
 }
 
 const submitHVideoTag = async () =>
 {
-    const params = 
+    try
     {
-        videoId: videoData.value.id,
-        tagId: addSelectValue.value
-    }
-    const resp = await addHVideoTag(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.addSuccess"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.tagAlready"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    addSelectValue.value = ""
-    addButtonDisabled.value = true
-    getHVideoData()
+        const params = 
+        {
+            videoId: videoData.value.id,
+            tagId: addSelectValue.value
+        }
+        const resp = await addHVideoTag(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.addSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.tagAlready"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        addSelectValue.value = ""
+        addButtonDisabled.value = true
+        getHVideoData()
+    } catch {}
 }
 
 onMounted(async () => 

@@ -143,84 +143,93 @@ let isMobile:any = ref(false) //窗口是否过小（移动端视角）
 
 const getHComicData = async () => 
 {
-    const resp = await getHComicById({id:route.query.comic})
-    comicData.value = resp.data.hcomic
-    if(comicData.value.mosaic == 1)
+    try
     {
-        comicData.value.mosaicType = "success"
-        comicData.value.mosaicText = t("h.noMosaic")
-    }
-    else if(comicData.value.mosaic == 2)
-    {
-        comicData.value.mosaicType = "warning"
-        comicData.value.mosaicText = t("h.mosaic")
-    }
-    else
-    {
-        comicData.value.mosaicType = "info"
-        comicData.value.mosaicText = t("static.categoryError")
-    }
+        const resp = await getHComicById({id:route.query.comic})
+        comicData.value = resp.data.hcomic
+        if(comicData.value.mosaic == 1)
+        {
+            comicData.value.mosaicType = "success"
+            comicData.value.mosaicText = t("h.noMosaic")
+        }
+        else if(comicData.value.mosaic == 2)
+        {
+            comicData.value.mosaicType = "warning"
+            comicData.value.mosaicText = t("h.mosaic")
+        }
+        else
+        {
+            comicData.value.mosaicType = "info"
+            comicData.value.mosaicText = t("static.categoryError")
+        }
 
-    if(comicData.value.category == 1)
-    {
-        comicData.value.categoryType = "danger"
-        comicData.value.categoryText = t("h.short")
-    }
-    else if(comicData.value.category == 2)
-    {
-        comicData.value.categoryType = "primary"
-        comicData.value.categoryText = t("h.book")
-    }
-    else
-    {
-        comicData.value.mosaicType = "info"
-        comicData.value.mosaicText = t("static.categoryError")
-    }
-    pageData.value = resp.data.hcomicPages
-    pageData.value.forEach((element:any,index:any) => 
-    {
-        pageData.value[index] = axios.defaults.baseURL + element
-    });
+        if(comicData.value.category == 1)
+        {
+            comicData.value.categoryType = "danger"
+            comicData.value.categoryText = t("h.short")
+        }
+        else if(comicData.value.category == 2)
+        {
+            comicData.value.categoryType = "primary"
+            comicData.value.categoryText = t("h.book")
+        }
+        else
+        {
+            comicData.value.mosaicType = "info"
+            comicData.value.mosaicText = t("static.categoryError")
+        }
+        pageData.value = resp.data.hcomicPages
+        pageData.value.forEach((element:any,index:any) => 
+        {
+            pageData.value[index] = axios.defaults.baseURL + element
+        });
+    } catch {}
 }
 
 const getHComicTagData = async () =>
 {
-    const resp = await getHComicTagList({})
-    comicTagData.value = resp.data
+    try
+    {
+        const resp = await getHComicTagList({})
+        comicTagData.value = resp.data
+    } catch {}
 }
 
 const submitHComicTag = async () =>
 {
-    const params = 
+    try
     {
-        comicId: comicData.value.id,
-        tagId: addSelectValue.value
-    }
-    const resp = await addHComicTag(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.addSuccess"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.tagAlready"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    addSelectValue.value = ""
-    addButtonDisabled.value = true
-    getHComicData()
+        const params = 
+        {
+            comicId: comicData.value.id,
+            tagId: addSelectValue.value
+        }
+        const resp = await addHComicTag(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.addSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.tagAlready"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        addSelectValue.value = ""
+        addButtonDisabled.value = true
+        getHComicData()
+    } catch {}
 }
 
 onMounted(async () => 

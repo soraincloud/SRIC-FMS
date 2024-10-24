@@ -75,8 +75,11 @@ const categoryEditId = ref(0) //修改的类别 id
 
 const getLibraryCategoryData = async () => //获取类别列表
 {
-    const resp = await getLibraryCategoryManageDataList({})
-    tableData.value = resp.data
+    try
+    {
+        const resp = await getLibraryCategoryManageDataList({})
+        tableData.value = resp.data
+    } catch {}
 }
 
 onMounted( () =>
@@ -100,35 +103,38 @@ const clickAdd = () => //点击新增按钮
 
 const doAddOrEditCategory = async () =>
 {
-    const params =
+    try
     {
-        id: categoryEditId.value,
-        name: categoryForm.name,
-    }
-    const resp = await addOrUpdateLibraryCategory(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.submitSuccess"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.nameHasBeenUsed"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    getLibraryCategoryData()
-    isDrawerOpen.value = false
+        const params =
+        {
+            id: categoryEditId.value,
+            name: categoryForm.name,
+        }
+        const resp = await addOrUpdateLibraryCategory(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.submitSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.nameHasBeenUsed"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        getLibraryCategoryData()
+        isDrawerOpen.value = false
+    } catch {}
 }
 
 const clickAddOrEditCategory = async (formEl: FormInstance | undefined) => //点击添加或修改 libraryCategory 提交

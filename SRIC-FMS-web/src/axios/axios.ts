@@ -31,7 +31,7 @@ axios.interceptors.response.use(
                 title: t("common.noties"),
                 message: h('i', { style: 'color: #c93f38' }, t("static.permissionDenied")),
               })
-            return Promise.resolve({ data: {}, status: 403, message: "权限不足" });
+            return Promise.resolve(error);
         }
         // 处理响应错误
         return Promise.reject(error);

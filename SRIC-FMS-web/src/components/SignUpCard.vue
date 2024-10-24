@@ -103,30 +103,33 @@ const signUpFormRules = reactive //注册信息表单的rule
 
 const doSendCodeRequest = async () => //发送验证码请求
 {
-    const resp = await getCodeByMail({ mail: signUpForm.mail })
-    if(resp.data.code == 200)
+    try
     {
-        ElMessage({
-            message: t("sign.sendSuccess"),
-            type: 'success',
-        })
-        setMailTimeout()
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("sign.mailHasBeenUsed"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    isSendCodeLoading.value = false
+        const resp = await getCodeByMail({ mail: signUpForm.mail })
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("sign.sendSuccess"),
+                type: 'success',
+            })
+            setMailTimeout()
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("sign.mailHasBeenUsed"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        isSendCodeLoading.value = false
+    } catch {}
 }
 
 const setMailTimeout = () => //设置按钮冷却时间
@@ -167,45 +170,48 @@ const clickSendCode = () => //点击发送验证码
 
 const doSignUpRequest = async () => //发送注册请求
 {
-    let passwordHash = CryptoJS.HmacSHA256(signUpForm.password,"SRIC") //使用SHA-256进行哈希运算
-    let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
-    const params =
+    try
     {
-        username: signUpForm.username,
-        password: passwordHashString,
-        mail: signUpForm.mail,
-        code: signUpForm.code,
-    }
-    const resp = await signUp(params)
-    if(resp.data.code == 200) //注册成功
-    {
-        ElMessage({
-            message: t("sign.successSignUpMessage"),
-            type: 'success',
-        })
-        router.push("SignIn")
-    }
-    else if(resp.data.code == 400) //用户名已被注册
-    {
-        ElMessage({
-            message: t("sign.usernameHasBeenUsedMessage"),
-            type: 'warning',
-        })
-    }
-    else if(resp.data.code == 401) //验证码错误
-    {
-        ElMessage({
-            message: t("sign.wrongCodeMessage"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
+        let passwordHash = CryptoJS.HmacSHA256(signUpForm.password,"SRIC") //使用SHA-256进行哈希运算
+        let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
+        const params =
+        {
+            username: signUpForm.username,
+            password: passwordHashString,
+            mail: signUpForm.mail,
+            code: signUpForm.code,
+        }
+        const resp = await signUp(params)
+        if(resp.data.code == 200) //注册成功
+        {
+            ElMessage({
+                message: t("sign.successSignUpMessage"),
+                type: 'success',
+            })
+            router.push("SignIn")
+        }
+        else if(resp.data.code == 400) //用户名已被注册
+        {
+            ElMessage({
+                message: t("sign.usernameHasBeenUsedMessage"),
+                type: 'warning',
+            })
+        }
+        else if(resp.data.code == 401) //验证码错误
+        {
+            ElMessage({
+                message: t("sign.wrongCodeMessage"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+    } catch {}
 }
 
 const clickSignUp = async (formEl: FormInstance | undefined) => //点击注册

@@ -196,24 +196,27 @@ const clickConfirmSignOut = () => //点击确认登出
 
 const checkUserMessage = async () => //更新用户信息(用户名，头像)
 {
-  const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
-  username.value = resp.data.username
-  userUid.value = resp.data.uid
-  avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
-  if(resp.data.signCode == 500) //token过期
+  try
   {
-    ElNotification({
-      title: t("common.noties"),
-      message: h('i', { style: 'color: teal' }, t("sign.tokenTimeOut")),
-      
-    })
-    localStorage.setItem("isSignIn","false")
-    localStorage.removeItem("token")
-    localStorage.removeItem("uuid")
-    localStorage.removeItem("uid")
-    localStorage.removeItem("userStatus")
-    isSign.value = false
-  }
+    const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
+    username.value = resp.data.username
+    userUid.value = resp.data.uid
+    avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
+    if(resp.data.signCode == 500) //token过期
+    {
+      ElNotification({
+        title: t("common.noties"),
+        message: h('i', { style: 'color: teal' }, t("sign.tokenTimeOut")),
+        
+      })
+      localStorage.setItem("isSignIn","false")
+      localStorage.removeItem("token")
+      localStorage.removeItem("uuid")
+      localStorage.removeItem("uid")
+      localStorage.removeItem("userStatus")
+      isSign.value = false
+    }
+  } catch {}
 }
 
 const checkSignLocalStorage = () => //检查是否登录的localStorage

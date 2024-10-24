@@ -160,13 +160,16 @@ const permissionMainMenuEditUuid = ref("") //修改的类别 uuid
 
 const getPermissionMainMenuData = async () => //获取接口列表
 {
-    const params =
+    try
     {
-        page: page.value,
-    }
-    const resp = await getPermissionMainMenuList(params)
-    pageTotal.value = resp.data.total
-    tableData.value = resp.data.permissionMainMenuList
+        const params =
+        {
+            page: page.value,
+        }
+        const resp = await getPermissionMainMenuList(params)
+        pageTotal.value = resp.data.total
+        tableData.value = resp.data.permissionMainMenuList
+    } catch {}
 }
 
 onMounted( () =>
@@ -199,37 +202,40 @@ const clickAdd = () => //点击新增按钮
 
 const doAddOrEditPermissionMainMenu = async () =>
 {
-    const params =
+    try
     {
-        uuid: permissionMainMenuEditUuid.value,
-        name: permissionMainMenuForm.name,
-        level: permissionMainMenuForm.level,
-        description: permissionMainMenuForm.description,
-    }
-    const resp = await addOrUpdatePermissionMainMenu(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.submitSuccess"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.nameHasBeenUsed"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    getPermissionMainMenuData()
-    isDrawerOpen.value = false
+        const params =
+        {
+            uuid: permissionMainMenuEditUuid.value,
+            name: permissionMainMenuForm.name,
+            level: permissionMainMenuForm.level,
+            description: permissionMainMenuForm.description,
+        }
+        const resp = await addOrUpdatePermissionMainMenu(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.submitSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.nameHasBeenUsed"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        getPermissionMainMenuData()
+        isDrawerOpen.value = false
+    } catch {}
 }
 
 const clickAddOrEditPermissionMainMenu = async (formEl: FormInstance | undefined) => //点击添加或修改 permissionMainMenu 提交

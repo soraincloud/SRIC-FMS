@@ -46,9 +46,12 @@ const libraryEditData:any = ref("") //编辑 library 内容数据
 
 const getLibraryData = async () => //获取 library 数据与内容数据
 {
-    const resp = await getLibraryById({id:route.query.library})
-    libraryData.value = resp.data.library
-    libraryDataText.value = resp.data.libraryDataText
+    try
+    {
+        const resp = await getLibraryById({id:route.query.library})
+        libraryData.value = resp.data.library
+        libraryDataText.value = resp.data.libraryDataText
+    } catch {}
 }
 
 const libraryDataMarkDown = computed(() => marked(libraryDataText.value)) //将 library 内容数据 (String) 渲染为 markdown

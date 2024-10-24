@@ -97,22 +97,28 @@ const libraryList:any = ref([]) //library 数据列表
 
 const getLibraryCategoryData = async () => //获取 library 类别数据
 {
-    const resp = await getLibraryCategoryList({})
-    libraryCategory.value = resp.data
+    try
+    {
+        const resp = await getLibraryCategoryList({})
+        libraryCategory.value = resp.data
+    } catch {}
 }
 
 const getLibraryData = async () =>
 {
-    const params = 
+    try
     {
-        searchInput: searchInput.value,
-        category: libraryCategorySelected.value,
-        page: page.value,
-    }
-    const resp = await getLibraryList(params)
-    console.log(resp.data)
-    pageTotal.value = resp.data.total
-    libraryList.value = resp.data.libraryList
+        const params = 
+        {
+            searchInput: searchInput.value,
+            category: libraryCategorySelected.value,
+            page: page.value,
+        }
+        const resp = await getLibraryList(params)
+        console.log(resp.data)
+        pageTotal.value = resp.data.total
+        libraryList.value = resp.data.libraryList
+    } catch {}
 }
 
 onMounted( () =>

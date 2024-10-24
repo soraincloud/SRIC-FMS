@@ -166,21 +166,27 @@ const libraryFormRules = reactive //添加 library 表单的 rule
 
 const getLibraryCategoryData = async () => //获取 library 类别数据
 {
-    const resp = await getLibraryCategoryList({})
-    libraryCategory.value = resp.data
+    try
+    {
+        const resp = await getLibraryCategoryList({})
+        libraryCategory.value = resp.data
+    } catch {}
 }
 
 const getLibraryData = async () =>
 {
-    const params = 
+    try
     {
-        searchInput: searchInput.value,
-        category: libraryCategorySelected.value,
-        page: page.value,
-    }
-    const resp = await getLibraryList(params)
-    pageTotal.value = resp.data.total
-    libraryList.value = resp.data.libraryList
+        const params = 
+        {
+            searchInput: searchInput.value,
+            category: libraryCategorySelected.value,
+            page: page.value,
+        }
+        const resp = await getLibraryList(params)
+        pageTotal.value = resp.data.total
+        libraryList.value = resp.data.libraryList
+    } catch {}
 }
 
 onMounted( () =>
@@ -247,44 +253,47 @@ const clickAddLibraryFile = async (formEl: FormInstance | undefined) => //添加
 
 const doAddLibraryFile = async () =>
 {
-    const params =
+    try
     {
-        title: libraryForm.title,
-        category: libraryForm.category,
-    }
-    const resp = await addLibrary(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.addSuccess"),
-            type: 'success',
-        })
-        addDialogVisible.value = false
-        router.push
-        ({
-            name: 'LibraryManageReader',
-            path: '/LibraryManageReader',
-            query:
-            {
-                library: resp.data.id,
-                add: "true",
-            },
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.nameHasBeenUsed"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
+        const params =
+        {
+            title: libraryForm.title,
+            category: libraryForm.category,
+        }
+        const resp = await addLibrary(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.addSuccess"),
+                type: 'success',
+            })
+            addDialogVisible.value = false
+            router.push
+            ({
+                name: 'LibraryManageReader',
+                path: '/LibraryManageReader',
+                query:
+                {
+                    library: resp.data.id,
+                    add: "true",
+                },
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.nameHasBeenUsed"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+    } catch {}
 }
 
 const clickCollapse = () => //点击折叠菜单

@@ -111,13 +111,16 @@ onMounted( () =>
 
 const loadTableData = async () => //加载列表数据
 {
-    const params =
+    try
     {
-        page: page.value,
-    }
-    const resp = await getUserMessageList(params);
-    pageTotal.value = resp.data.total
-    tableData.value = resp.data.userList
+        const params =
+        {
+            page: page.value,
+        }
+        const resp = await getUserMessageList(params);
+        pageTotal.value = resp.data.total
+        tableData.value = resp.data.userList
+    } catch {}
 }
 
 const pageChange = () => //翻页
@@ -163,70 +166,76 @@ const drawerClose = () => //抽屉关闭时重置输入框状态为不可用
 
 const clickEditUsernameSubmit = async () => //提交对用户名的强制更改
 {
-    const params =
+    try
     {
-        uuid: editUserUuid.value,
-        username: usernameInput.value,
-    }
-    const resp = await updateUsernameByUuid(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("common.success"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("common.fail"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    loadTableData()
-    isDrawerOpen.value = false
+        const params =
+        {
+            uuid: editUserUuid.value,
+            username: usernameInput.value,
+        }
+        const resp = await updateUsernameByUuid(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("common.success"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("common.fail"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        loadTableData()
+        isDrawerOpen.value = false
+    } catch {}
 }
 
 const clickEditPasswordSubmit = async () => //提交对密码的强制更改
 {
-    let passwordHash = CryptoJS.HmacSHA256(passwordInput.value,"SRIC") //使用SHA-256进行哈希运算
-    let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
-    const params = 
+    try
     {
-        uuid: editUserUuid.value,
-        password: passwordHashString
-    }
-    const resp = await updatePasswordByUuid(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("common.success"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("common.fail"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    loadTableData()
-    isDrawerOpen.value = false
+        let passwordHash = CryptoJS.HmacSHA256(passwordInput.value,"SRIC") //使用SHA-256进行哈希运算
+        let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
+        const params = 
+        {
+            uuid: editUserUuid.value,
+            password: passwordHashString
+        }
+        const resp = await updatePasswordByUuid(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("common.success"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("common.fail"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        loadTableData()
+        isDrawerOpen.value = false
+    } catch {}
 }
 
 const clickEditUsernameCancel = () => //取消强制更改用户名

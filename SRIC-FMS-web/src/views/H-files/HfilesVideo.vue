@@ -163,11 +163,7 @@ const getHVideoListData = async () =>
             }
             element.background = ""
         });
-    }
-    catch (error) 
-    {
-        console.error(error);
-    }
+    } catch {}
 }
 
 const mouseOver = (i:any) => //鼠标移入

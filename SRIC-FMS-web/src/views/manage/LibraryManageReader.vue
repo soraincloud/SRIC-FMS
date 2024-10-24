@@ -99,9 +99,12 @@ const saveConfirmTitle = ref(t("static.saveConfirmTitle")) //保存编辑内容�
 
 const getLibraryData = async () => //获取 library 数据与内容数据
 {
-    const resp = await getLibraryById({id:route.query.library})
-    libraryData.value = resp.data.library
-    libraryDataText.value = resp.data.libraryDataText
+    try
+    {
+        const resp = await getLibraryById({id:route.query.library})
+        libraryData.value = resp.data.library
+        libraryDataText.value = resp.data.libraryDataText
+    } catch {}
 }
 
 const libraryDataMarkDown = computed(() => marked(libraryDataText.value)) //将 library 内容数据 (String) 渲染为 markdown
@@ -138,36 +141,39 @@ const confirmCancel = () => //确定取消编辑
 
 const confirmEdit = async () => //确定保存编辑
 {
-    const params = 
+    try
     {
-        id: libraryData.value.id,
-        filename: libraryData.value.filename,
-        content: libraryEditData.value,
-    }
-    const resp = await editLibraryData(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.saveSuccess"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.saveFailed"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    await getLibraryData()
-    isEdit.value = false
+        const params = 
+        {
+            id: libraryData.value.id,
+            filename: libraryData.value.filename,
+            content: libraryEditData.value,
+        }
+        const resp = await editLibraryData(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.saveSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.saveFailed"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        await getLibraryData()
+        isEdit.value = false
+    } catch {}
 }
 
 const windowSizeChanged = () => //窗口变动

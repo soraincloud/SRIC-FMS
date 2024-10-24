@@ -155,11 +155,7 @@ const getHComicListData = async () =>
             element.background = ""
             element.comicCover = axios.defaults.baseURL + "/hComic/" + element.fileName + "/00001.webp"
         });
-    }
-    catch (error) 
-    {
-        console.error(error);
-    }
+    } catch {}
 }
 
 const mouseOver = (i:any) => //鼠标移入

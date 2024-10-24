@@ -63,48 +63,51 @@ const signInFormRules = reactive //登录信息表单的rule
 
 const doSignInRequest = async () => //发送登录请求
 {
-    let passwordHash = CryptoJS.HmacSHA256(signInForm.password,"SRIC") //使用SHA-256进行哈希运算
-    let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
-    const params = 
+    try
     {
-        username: signInForm.username,
-        password: passwordHashString,
-    }
-    const resp = await signIn(params)
-    if(resp.data.code == 200) //登录成功
-    {
-        localStorage.setItem("token",resp.data.token)
-        localStorage.setItem("isSignIn","true")
-        localStorage.setItem("uuid",resp.data.uuid)
-        localStorage.setItem("uid",resp.data.uid)
-        localStorage.setItem("userStatus",resp.data.status)
-        ElMessage({
-            message: t("sign.successMessage"),
-            type: 'success',
-        })
-        router.push("home")
-    }
-    else if(resp.data.code == 400) //密码错误
-    {
-        ElMessage({
-            message: t("sign.wrongMessage"),
-            type: 'warning',
-        })
-    }
-    else if(resp.data.code == 404) //查无用户
-    {
-        ElMessage({
-            message: t("sign.notfoundMessage"),
-            type: 'warning',
-        })
-    }
-    else //参数错误
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
+        let passwordHash = CryptoJS.HmacSHA256(signInForm.password,"SRIC") //使用SHA-256进行哈希运算
+        let passwordHashString = CryptoJS.enc.Hex.stringify(passwordHash) //将哈希运算的结果进行16进制编码
+        const params = 
+        {
+            username: signInForm.username,
+            password: passwordHashString,
+        }
+        const resp = await signIn(params)
+        if(resp.data.code == 200) //登录成功
+        {
+            localStorage.setItem("token",resp.data.token)
+            localStorage.setItem("isSignIn","true")
+            localStorage.setItem("uuid",resp.data.uuid)
+            localStorage.setItem("uid",resp.data.uid)
+            localStorage.setItem("userStatus",resp.data.status)
+            ElMessage({
+                message: t("sign.successMessage"),
+                type: 'success',
+            })
+            router.push("home")
+        }
+        else if(resp.data.code == 400) //密码错误
+        {
+            ElMessage({
+                message: t("sign.wrongMessage"),
+                type: 'warning',
+            })
+        }
+        else if(resp.data.code == 404) //查无用户
+        {
+            ElMessage({
+                message: t("sign.notfoundMessage"),
+                type: 'warning',
+            })
+        }
+        else //参数错误
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+    } catch {}
 }
 
 const clickSignIn = async (formEl: FormInstance | undefined) => //点击登录

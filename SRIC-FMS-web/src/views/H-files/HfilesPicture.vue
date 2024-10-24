@@ -69,9 +69,12 @@
 
     const getHPictureData = async () => //获取随机排列的图片数组
     {
-        const resp = await getHPictureRandomList({})
-        hPictureData.value = resp.data
-        hPictureNumber.value = resp.data.length - 1
+        try
+        {
+            const resp = await getHPictureRandomList({})
+            hPictureData.value = resp.data
+            hPictureNumber.value = resp.data.length - 1
+        } catch {}
     }
 
     const loadData = async (start:any,end:any) => //加载从start到end的图片 （end >= start）

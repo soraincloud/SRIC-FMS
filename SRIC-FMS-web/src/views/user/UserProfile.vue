@@ -31,23 +31,26 @@ const mark = ref("NULL MARK") //
 
 const checkUserMessage = async () => //更新用户信息(用户名，头像)
 {
-  const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
-  username.value = resp.data.username
-  userUid.value = resp.data.uid
-  avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
-  mark.value = resp.data.mark
-  if(resp.data.signCode == 500) //token过期
-  {
-    ElNotification({
-      title: t("common.noties"),
-      message: h('i', { style: 'color: teal' }, t("sign.tokenTimeOut")),
-      
-    })
-    localStorage.setItem("isSignIn","false")
-    localStorage.removeItem("token")
-    localStorage.removeItem("uuid")
-    localStorage.removeItem("uid")
-  }
+    try
+    {
+        const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
+        username.value = resp.data.username
+        userUid.value = resp.data.uid
+        avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
+        mark.value = resp.data.mark
+        if(resp.data.signCode == 500) //token过期
+        {
+            ElNotification({
+            title: t("common.noties"),
+            message: h('i', { style: 'color: teal' }, t("sign.tokenTimeOut")),
+            
+            })
+            localStorage.setItem("isSignIn","false")
+            localStorage.removeItem("token")
+            localStorage.removeItem("uuid")
+            localStorage.removeItem("uid")
+        }
+    } catch {}
 }
 
 checkUserMessage()

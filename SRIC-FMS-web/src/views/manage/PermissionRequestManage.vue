@@ -160,13 +160,16 @@ const permissionRequestEditUuid = ref("") //修改的类别 uuid
 
 const getPermissionRequestData = async () => //获取接口列表
 {
-    const params =
+    try
     {
-        page: page.value,
-    }
-    const resp = await getPermissionRequestList(params)
-    pageTotal.value = resp.data.total
-    tableData.value = resp.data.permissionRequestList
+        const params =
+        {
+            page: page.value,
+        }
+        const resp = await getPermissionRequestList(params)
+        pageTotal.value = resp.data.total
+        tableData.value = resp.data.permissionRequestList
+    } catch {}
 }
 
 onMounted( () =>
@@ -199,37 +202,40 @@ const clickAdd = () => //点击新增按钮
 
 const doAddOrEditPermissionRequest = async () =>
 {
-    const params =
+    try
     {
-        uuid: permissionRequestEditUuid.value,
-        requestMapping: permissionRequestForm.requestMapping,
-        level: permissionRequestForm.level,
-        description: permissionRequestForm.description,
-    }
-    const resp = await addOrUpdatePermissionRequest(params)
-    if(resp.data.code == 200)
-    {
-        ElMessage({
-            message: t("static.submitSuccess"),
-            type: 'success',
-        })
-    }
-    else if(resp.data.code == 400)
-    {
-        ElMessage({
-            message: t("static.nameHasBeenUsed"),
-            type: 'warning',
-        })
-    }
-    else
-    {
-        ElMessage({
-            message: t("static.paramsError"),
-            type: 'error',
-        })
-    }
-    getPermissionRequestData()
-    isDrawerOpen.value = false
+        const params =
+        {
+            uuid: permissionRequestEditUuid.value,
+            requestMapping: permissionRequestForm.requestMapping,
+            level: permissionRequestForm.level,
+            description: permissionRequestForm.description,
+        }
+        const resp = await addOrUpdatePermissionRequest(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.submitSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.nameHasBeenUsed"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        getPermissionRequestData()
+        isDrawerOpen.value = false
+    } catch {}
 }
 
 const clickAddOrEditPermissionRequest = async (formEl: FormInstance | undefined) => //点击添加或修改 permissionRequest 提交
