@@ -128,7 +128,7 @@ let route = useRoute()
 let router = useRouter()
 const defaultActiveMenu = computed( () => { return route.name })//访问页面时默认菜单选项
 
-const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像URL
+const avatarUrl = ref(axios.defaults.baseURL + "/file/userAvatar/NULL.webp") //头像URL
 const username = ref("NULL") //用户名显示
 const userUid = ref("0") //用户UID
 const isSign = ref(false) //是否已经登录
@@ -201,7 +201,7 @@ const checkUserMessage = async () => //更新用户信息(用户名，头像)
     const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
     username.value = resp.data.username
     userUid.value = resp.data.uid
-    avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
+    avatarUrl.value = axios.defaults.baseURL + "/file/userAvatar/" + resp.data.avatar
     if(resp.data.signCode == 500) //token过期
     {
       ElNotification({

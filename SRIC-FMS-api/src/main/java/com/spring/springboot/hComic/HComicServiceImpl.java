@@ -60,7 +60,7 @@ public class HComicServiceImpl implements HComicService
         data.setHComic(comic);
         List<String> list = new ArrayList<>();
         for (int i = 1; i <= comic.getPages(); i++) {
-            String webp = "/hComic/" + comic.getFileName() + "/" + String.format("%05d.webp", i);
+            String webp = "/file/hComic/" + comic.getFileName() + "/" + String.format("%05d.webp", i);
             list.add(webp);
         }
         data.setHComicPages(list);

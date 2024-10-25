@@ -18,9 +18,9 @@ public class InterceptorConfig implements WebMvcConfigurer //静态资源映射
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/hComic/**").addResourceLocations("file:" + filesPath + "/hComic/");
-        registry.addResourceHandler("/hVideo/**").addResourceLocations("file:" + filesPath + "/hVideo/");
-        registry.addResourceHandler("/hPicture/**").addResourceLocations("file:" + filesPath + "/hPicture/");
-        registry.addResourceHandler("/userAvatar/**").addResourceLocations("file:" + filesPath + "/userAvatar/");
+        registry.addResourceHandler("/file/hComic/**").addResourceLocations("file:" + filesPath + "/hComic/");
+        registry.addResourceHandler("/file/hVideo/**").addResourceLocations("file:" + filesPath + "/hVideo/");
+        registry.addResourceHandler("/file/hPicture/**").addResourceLocations("file:" + filesPath + "/hPicture/");
+        registry.addResourceHandler("/file/userAvatar/**").addResourceLocations("file:" + filesPath + "/userAvatar/");
     }
 }

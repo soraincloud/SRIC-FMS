@@ -54,16 +54,16 @@
                     const leftHeight = leftContainer.offsetHeight;
                     const rightHeight = rightContainer.offsetHeight;
                     if (leftHeight > rightHeight) {
-                        urlRight.value.push(axios.defaults.baseURL + "/hPicture/" + id + "." + filename);
+                        urlRight.value.push(axios.defaults.baseURL + "/file/hPicture/" + id + "." + filename);
                     } else {
-                        urlLeft.value.push(axios.defaults.baseURL + "/hPicture/" + id + "." + filename);
+                        urlLeft.value.push(axios.defaults.baseURL + "/file/hPicture/" + id + "." + filename);
                     }
                     resolve(); // 图片加载完成后 resolve
                 } else {
                     // 可能的错误处理
                 }
             };
-            img.src = axios.defaults.baseURL + "/hPicture/" + id + "." + filename;
+            img.src = axios.defaults.baseURL + "/file/hPicture/" + id + "." + filename;
         });
     };
 

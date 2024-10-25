@@ -24,7 +24,7 @@ import i18n from '@/language';
 
 const { t } = i18n.global
 
-const avatarUrl = ref(axios.defaults.baseURL + "/userAvatar/NULL.webp") //头像URL
+const avatarUrl = ref(axios.defaults.baseURL + "/file/userAvatar/NULL.webp") //头像URL
 const username = ref("NULL") //用户名显示
 const userUid = ref("0") //用户UID
 const mark = ref("NULL MARK") //
@@ -36,7 +36,7 @@ const checkUserMessage = async () => //更新用户信息(用户名，头像)
         const resp = await getUserMessage({ uuid: localStorage.getItem("uuid") })
         username.value = resp.data.username
         userUid.value = resp.data.uid
-        avatarUrl.value = axios.defaults.baseURL + "/userAvatar/" + resp.data.avatar
+        avatarUrl.value = axios.defaults.baseURL + "/file/userAvatar/" + resp.data.avatar
         mark.value = resp.data.mark
         if(resp.data.signCode == 500) //token过期
         {

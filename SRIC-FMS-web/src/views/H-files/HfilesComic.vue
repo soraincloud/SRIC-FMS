@@ -153,7 +153,7 @@ const getHComicListData = async () =>
                 element.mosaicText = t("static.categoryError")
             }
             element.background = ""
-            element.comicCover = axios.defaults.baseURL + "/hComic/" + element.fileName + "/00001.webp"
+            element.comicCover = axios.defaults.baseURL + "/file/hComic/" + element.fileName + "/00001.webp"
         });
     } catch {}
 }

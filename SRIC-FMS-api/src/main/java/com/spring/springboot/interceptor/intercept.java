@@ -47,6 +47,10 @@ public class intercept implements HandlerInterceptor
         log.setRequestUrl(url); //获取请求url
         String[] rulParts = url.split("/");
         log.setUrlModule(rulParts[1]); //获取权限模块
+        if(log.getUrlModule().equals("file")) //对静态文件访问放行
+        {
+            return true;
+        }
         String tokenValue = request.getHeader("Authorization");
         log.setTokenData(tokenValue);
         if (tokenValue == null) //未登录 无token
