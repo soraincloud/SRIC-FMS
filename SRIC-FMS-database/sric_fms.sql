@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 20/10/2024 04:18:18
+ Date: 26/10/2024 03:18:15
 */
 
 SET NAMES utf8mb4;
@@ -116,6 +116,18 @@ CREATE TABLE `data_user`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 用户数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Table structure for permission_main_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `permission_main_menu`;
+CREATE TABLE `permission_main_menu`  (
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT ' 名称',
+  `level` int UNSIGNED NULL DEFAULT NULL COMMENT '权限等级',
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
+  PRIMARY KEY (`uuid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表\r\n 对主菜单的权限控制' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for permission_request
 -- ----------------------------
 DROP TABLE IF EXISTS `permission_request`;
@@ -125,7 +137,7 @@ CREATE TABLE `permission_request`  (
   `level` int UNSIGNED NULL DEFAULT NULL COMMENT '权限等级',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`uuid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表\r\n 对后端接口的权限控制' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表\r\n 对后端接口的权限控制' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for relation_h_comic_tag
