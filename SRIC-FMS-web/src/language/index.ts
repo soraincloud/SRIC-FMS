@@ -12,7 +12,7 @@ const i18n = createI18n
     en,
   },
   globalInjection: true,
-  locale:localStorage.getItem('language') || 'en',
+  locale:localStorage.getItem('language') || 'zh',
 })
 
 export default i18n
