@@ -37,7 +37,7 @@
     const urlLeft:any = ref([]) //左侧图片数据
     const urlRight:any = ref([]) //右侧图片数据
     const scrollbarHeight = ref((window.innerHeight - 140) + "px") //设置滚动条高度
-    const hPictureData = ref([]) //图片名称数组
+    const hPictureData:any = ref([]) //图片名称数组
     const hPictureNumber = ref() //图片总数
     const hPictureLoadNow = ref(-1) //当前加载到图片的位置
     const isPictureAllLoad = ref(false) //图片是否全部被加载
