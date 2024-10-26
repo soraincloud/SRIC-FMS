@@ -69,4 +69,14 @@ public class PermissionMainMenuServiceImpl implements PermissionMainMenuService
         }
         return responseCode;
     }
+
+    /**
+     * @author SRIC
+     *
+     * 获取菜单列表 根据权限等级进行显示
+     */
+    public List<PermissionMainMenu> getPermissionMainMenu()
+    {
+        return permissionMainMenuMapper.getPermissionMainMenu();
+    }
 }

@@ -41,7 +41,6 @@
     </el-container>
 
     <el-drawer v-model="menuDrawer" size="300" direction="ltr">
-
       <el-menu
       :default-active="defaultActiveMenu"
       :ellipsis="false"
@@ -49,12 +48,11 @@
       @select="selectMenu"
       >
         <el-scrollbar :height="menuScrollHeight">
-          <el-menu-item index="Library">
-            <span class="app-menu-item-span">{{ $t("mainMenu.library") }}</span>
-          </el-menu-item>
-          <el-menu-item index="Hfiles">
-            <span class="app-menu-item-span">H-files</span>
-          </el-menu-item>
+          <template v-for="(item,i) in mainMenuData" :key="i" >
+            <el-menu-item :index="item.name" v-if="item.level >= userStatusNow">
+              <span class="app-menu-item-span">{{ $t("mainMenu." + item.name) }}</span>
+            </el-menu-item>
+          </template>
         </el-scrollbar>
       </el-menu>
       <div v-if="isMenuClosed">
@@ -115,9 +113,10 @@
 
 <script lang="ts" setup>
 import { useRoute,useRouter } from 'vue-router'
-import { ref,computed } from 'vue'
+import { ref,computed,onMounted } from 'vue'
 import axios from 'axios';
 import { getUserMessage } from '@/axios/api/user'
+import { getPermissionMainMenu } from './axios/api/permissionMainMenu';
 import { ElNotification } from 'element-plus'
 import MenuSettingButtons from './components/MenuSettingButtons.vue';
 import { h } from 'vue'
@@ -138,6 +137,22 @@ const personalMenuDrawer = ref(false) //个人菜单抽屉状态
 const signOutDialogVisible = ref(false) //退出登录对话框状态
 const isMenuClosed = ref(false) //菜单是否折叠
 const menuScrollHeight = ref((window.innerHeight - 175) + "px") //菜单滑动高度
+const mainMenuData:any = ref([]) //主菜单内容数据
+const userStatusNow = ref(10) //当前用户权限等级
+
+const loadMainMenuData = async () =>
+{
+  try
+  {
+    const resp = await getPermissionMainMenu({})
+    mainMenuData.value = resp.data
+  } catch {}
+}
+
+onMounted( () =>
+{
+  loadMainMenuData()
+})
 
 const clickMenu = () => //打开菜单
 {
@@ -224,7 +239,8 @@ const checkSignLocalStorage = () => //检查是否登录的localStorage
   if(localStorage.getItem("isSignIn") == "true" || false) //已登录 (没有值即为false)
   {
     isSign.value = true
-    if(Number(localStorage.getItem("userStatus")) <= 3) //获取用户的权限等级进行判断 权限等级高于 3 级时显示管理按钮
+    userStatusNow.value = Number(localStorage.getItem("userStatus"))
+    if(userStatusNow.value <= 3) //获取用户的权限等级进行判断 权限等级高于 3 级时显示管理按钮
     {
       isManagementShow.value = true
     }
@@ -237,6 +253,7 @@ const checkSignLocalStorage = () => //检查是否登录的localStorage
   else //未登录
   {
     isSign.value = false
+    userStatusNow.value = 10 //重置用户默认权限为10
     isManagementShow.value = false
   }
 }

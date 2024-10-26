@@ -74,6 +74,7 @@ export default
     mainMenu:
     {
         library: "知识库",
+        hFiles: "H-files",
     },
     menu:
     {

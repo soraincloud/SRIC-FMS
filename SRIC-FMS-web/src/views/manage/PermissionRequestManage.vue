@@ -52,7 +52,7 @@
         <el-form ref="permissionRequestFormRef" :model="permissionRequestForm" :rules="permissionRequestFormRules">
             <el-form-item prop="requestMapping">
                 <h1>{{ $t("common.interface") }}</h1>
-                <el-input v-model="permissionRequestForm.requestMapping" maxlength="20" show-word-limit clearable></el-input>
+                <el-input v-model="permissionRequestForm.requestMapping" maxlength="30" show-word-limit clearable></el-input>
             </el-form-item>
             <el-form-item prop="level">
                 <h1>{{ $t("static.permissionLevel") }}</h1>

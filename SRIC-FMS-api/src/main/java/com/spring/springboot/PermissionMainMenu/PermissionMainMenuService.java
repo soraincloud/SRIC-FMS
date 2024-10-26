@@ -9,5 +9,5 @@ public interface PermissionMainMenuService
     List<PermissionMainMenu> getPermissionMainMenuList(PermissionMainMenuListRequestPojo permissionMainMenuListRequest);
     int getPermissionMainMenuCount();
     ResponseCode addOrUpdatePermissionMainMenu(PermissionMainMenu permissionMainMenu);
-
+    List<PermissionMainMenu> getPermissionMainMenu();
 }

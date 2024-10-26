@@ -74,6 +74,7 @@ export default
     mainMenu:
     {
         library: "LIBRARY",
+        hFiles: "H-files",
     },
     menu:
     {

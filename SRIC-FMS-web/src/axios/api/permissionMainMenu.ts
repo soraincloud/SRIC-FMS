@@ -9,3 +9,8 @@ export function addOrUpdatePermissionMainMenu(params:any)
 {
     return post('/permissionMainMenuManage/addOrUpdatePermissionMainMenu',params)
 }
+
+export function getPermissionMainMenu(params:any)
+{
+    return get('/permissionMainMenu/getPermissionMainMenu',params)
+}

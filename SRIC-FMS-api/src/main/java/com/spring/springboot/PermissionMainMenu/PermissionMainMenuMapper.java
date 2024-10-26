@@ -56,4 +56,13 @@ public interface PermissionMainMenuMapper
      */
     @Select(value = "SELECT COUNT(*) FROM `permission_main_menu` WHERE name = #{name}")
     int getPermissionMainMenuCountByName(PermissionMainMenu permissionMainMenu);
+
+    /**
+     * @author SRIC
+     *
+     * 获取 permission_main_menu 数据列表
+     * 根据 level 升序排列
+     */
+    @Select(value = "SELECT name,level FROM `permission_main_menu` ORDER BY level ASC")
+    List<PermissionMainMenu> getPermissionMainMenu();
 }
