@@ -85,6 +85,7 @@ const doSignInRequest = async () => //发送登录请求
                 type: 'success',
             })
             router.push("home")
+            //.then(() => { location.reload( )}) //或许需要这样操作 有时候菜单会需要刷新
         }
         else if(resp.data.code == 400) //密码错误
         {
