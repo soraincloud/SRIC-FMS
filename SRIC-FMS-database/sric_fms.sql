@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 28/10/2024 02:28:53
+ Date: 28/10/2024 03:13:38
 */
 
 SET NAMES utf8mb4;
@@ -110,7 +110,7 @@ CREATE TABLE `data_user`  (
   `createtime` datetime NOT NULL COMMENT '注册时间',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL.webp' COMMENT '头像文件名称',
   `mark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'NULL MARK' COMMENT '个人签名',
-  `status` int UNSIGNED NOT NULL DEFAULT 1 COMMENT '权限',
+  `status` int UNSIGNED NOT NULL DEFAULT 9 COMMENT '权限',
   PRIMARY KEY (`uuid`) USING BTREE,
   INDEX `uidkey`(`UID` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 用户数据' ROW_FORMAT = DYNAMIC;
