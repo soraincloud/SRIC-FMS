@@ -91,7 +91,7 @@ const router = useRouter()
 
 const libraryData:any = ref({}) //library 数据
 const libraryDataText:any = ref("") //library 内容数据
-const scrollbarHeight = ref((window.innerHeight - 225) + "px") //设置滚动条高度
+const scrollbarHeight = ref((window.innerHeight - 265) + "px") //设置滚动条高度
 const isEdit = ref(false) //是否处于编辑模式
 const libraryEditData:any = ref("") //编辑 library 内容数据
 const cancelConfirmTitle = ref(t("static.cancelConfirmTitle")) //取消编辑确认框文字标题
@@ -178,7 +178,7 @@ const confirmEdit = async () => //确定保存编辑
 
 const windowSizeChanged = () => //窗口变动
 {
-    scrollbarHeight.value = (window.innerHeight - 225) + "px"
+    scrollbarHeight.value = (window.innerHeight - 265) + "px"
 }
 
 window.addEventListener('resize',windowSizeChanged) //监听窗口变动
