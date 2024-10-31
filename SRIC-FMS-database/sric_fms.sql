@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 28/10/2024 03:13:38
+ Date: 31/10/2024 11:16:00
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `category_library`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT ' 类别名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '类别表\r\n 书库的类别' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '类别表\r\n 书库的类别' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for data_h_comic
@@ -39,7 +39,7 @@ CREATE TABLE `data_h_comic`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：短篇，2：单本，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 293 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 漫画的数据' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 294 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 漫画的数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for data_h_comic_tags
@@ -59,7 +59,7 @@ CREATE TABLE `data_h_picture`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'webp' COMMENT '文件名称(后缀)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1122 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 图片的数据' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1123 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 图片的数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for data_h_video
@@ -73,7 +73,7 @@ CREATE TABLE `data_h_video`  (
   `mosaic` int UNSIGNED NOT NULL COMMENT '修正（1：无修正，2：有修正，）',
   `category` int UNSIGNED NOT NULL COMMENT '类型（1：REAL，2：3D MMD，3：2D，）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 229 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 视频的数据' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 230 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 视频的数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for data_h_video_tags
@@ -95,7 +95,19 @@ CREATE TABLE `data_library`  (
   `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '文件名称',
   `category` int UNSIGNED NOT NULL COMMENT '类别（对应id）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 书库的数据' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 书库的数据' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for data_notes
+-- ----------------------------
+DROP TABLE IF EXISTS `data_notes`;
+CREATE TABLE `data_notes`  (
+  `uuid` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '主键',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '标题',
+  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '内容',
+  `user_uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户uuid',
+  PRIMARY KEY (`uuid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 笔记数据' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for data_user
@@ -113,7 +125,7 @@ CREATE TABLE `data_user`  (
   `status` int UNSIGNED NOT NULL DEFAULT 9 COMMENT '权限',
   PRIMARY KEY (`uuid`) USING BTREE,
   INDEX `uidkey`(`UID` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 用户数据' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据表\r\n 用户数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for permission_main_menu
@@ -125,7 +137,7 @@ CREATE TABLE `permission_main_menu`  (
   `level` int UNSIGNED NULL DEFAULT NULL COMMENT '权限等级',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`uuid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表\r\n 对主菜单的权限控制' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表\r\n 对主菜单的权限控制' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for permission_request
