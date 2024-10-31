@@ -91,7 +91,7 @@ const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
 const tableHeight = ref((window.innerHeight - 290) + "px") //表格高度
 const isDrawerOpen = ref(false) //抽屉是否打开
-const permissionRequestForm = reactive //接口数据输入
+const permissionRequestForm = reactive //接口数据输入表单
 ({
     requestMapping: "",
     level: "",

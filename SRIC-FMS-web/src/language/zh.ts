@@ -83,10 +83,11 @@ export default
         picture: "图片",
         user: "用户",
         userProfile: "个人信息",
-        library: "知识库",
-        libraryCategory: "知识库-类别",
         permissionRequest: "接口权限",
         permissionMainMenu: "菜单权限",
+        library: "知识库",
+        libraryCategory: "知识库-类别",
+        notes: "笔记",
     },
     sign:
     {

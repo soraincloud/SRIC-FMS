@@ -106,7 +106,12 @@ const routes: Array<RouteRecordRaw> = [
         path: '/PermissionMainMenuManage',
         name: 'PermissionMainMenuManage',
         component: () => import('@/views/manage/PermissionMainMenuManage.vue')
-      }
+      },
+      {
+        path: '/NotesManage',
+        name: 'NotesManage',
+        component: () => import('@/views/manage/NotesManage.vue')
+      },
     ]
   },
 ]

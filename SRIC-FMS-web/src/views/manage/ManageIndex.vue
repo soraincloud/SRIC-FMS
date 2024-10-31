@@ -15,6 +15,18 @@
                           <span class="manage-index-menu-item-span">{{ $t("menu.user") }}</span>
                       </template>
                   </el-menu-item>
+                  <el-menu-item index="PermissionRequestManage">
+                      <el-icon :size="25"><Lock /></el-icon>
+                      <template #title>
+                          <span class="manage-index-menu-item-span">{{ $t("menu.permissionRequest") }}</span>
+                      </template>
+                  </el-menu-item>
+                  <el-menu-item index="PermissionMainMenuManage">
+                      <el-icon :size="25"><Lock /></el-icon>
+                      <template #title>
+                          <span class="manage-index-menu-item-span">{{ $t("menu.permissionMainMenu") }}</span>
+                      </template>
+                  </el-menu-item>
                   <el-menu-item index="LibraryManage">
                       <el-icon :size="25"><Collection /></el-icon>
                       <template #title>
@@ -27,16 +39,10 @@
                           <span class="manage-index-menu-item-span">{{ $t("menu.libraryCategory") }}</span>
                       </template>
                   </el-menu-item>
-                  <el-menu-item index="PermissionRequestManage">
-                      <el-icon :size="25"><Lock /></el-icon>
+                  <el-menu-item index="NotesManage">
+                      <el-icon :size="25"><MessageBox /></el-icon>
                       <template #title>
-                          <span class="manage-index-menu-item-span">{{ $t("menu.permissionRequest") }}</span>
-                      </template>
-                  </el-menu-item>
-                  <el-menu-item index="PermissionMainMenuManage">
-                      <el-icon :size="25"><Lock /></el-icon>
-                      <template #title>
-                          <span class="manage-index-menu-item-span">{{ $t("menu.permissionMainMenu") }}</span>
+                          <span class="manage-index-menu-item-span">{{ $t("menu.notes") }}</span>
                       </template>
                   </el-menu-item>
               </el-menu>
