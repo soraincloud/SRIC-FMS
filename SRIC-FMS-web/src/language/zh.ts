@@ -76,8 +76,9 @@ export default
     },
     mainMenu:
     {
-        library: "知识库",
-        hFiles: "H-files",
+        Library: "知识库",
+        Hfiles: "H-files",
+        Notes: "笔记",
     },
     menu:
     {

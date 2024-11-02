@@ -56,6 +56,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/library/LibraryReader.vue'),
   },
   {
+    path: '/Notes',
+    name: 'Notes',
+    component: () => import('@/views/notes/NotesIndex.vue'),
+  },
+  {
     path: '/SignIn',
     name: 'SignIn',
     component: () => import('@/views/user/SignIn.vue'),

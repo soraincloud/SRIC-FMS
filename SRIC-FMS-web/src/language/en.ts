@@ -76,8 +76,9 @@ export default
     },
     mainMenu:
     {
-        library: "LIBRARY",
-        hFiles: "H-files",
+        Library: "LIBRARY",
+        Hfiles: "H-files",
+        Notes: "NOTES",
     },
     menu:
     {
