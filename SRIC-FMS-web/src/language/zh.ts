@@ -34,6 +34,7 @@ export default
         interface: "接口",
         description: "描述",
         menu: "菜单",
+        content: "内容",
     },
     static:
     {
@@ -69,7 +70,9 @@ export default
         permissionLevel: "权限等级",
         editAndAddInterface: "编辑 / 添加 接口",
         permissionDenied: "权限不足",
-        editAndAddMainMenu: "编辑 / 添加 菜单"
+        editAndAddMainMenu: "编辑 / 添加 菜单",
+        userBelongs: "所属用户",
+        editNote: "编辑笔记",
     },
     mainMenu:
     {
@@ -134,6 +137,7 @@ export default
         permissionLevel: "请设置权限等级",
         description: "请输入描述",
         interface: "请输入接口",
+        content: "请输入内容",
     },
     h:
     {

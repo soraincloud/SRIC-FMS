@@ -34,6 +34,7 @@ export default
         interface: "INTERFACE",
         description: "DESCRIPTION",
         menu: "NEMU",
+        content: "CONTENT",
     },
     static:
     {
@@ -69,7 +70,9 @@ export default
         permissionLevel: "PERMISSION",
         editAndAddInterface: "edit / add interface",
         permissionDenied: "permission denied",
-        editAndAddMainMenu: "edit / add main menu"
+        editAndAddMainMenu: "edit / add main menu",
+        userBelongs: "user belongs",
+        editNote: "edit note",
     },
     mainMenu:
     {
@@ -83,10 +86,11 @@ export default
         picture: "picture",
         user: "user",
         userProfile: "user profile",
-        library: "library",
-        libraryCategory: "lib-category",
         permissionRequest: "interface",
         permissionMainMenu: "main menu",
+        library: "library",
+        libraryCategory: "lib-category",
+        notes: "notes",
     },
     sign:
     {
@@ -133,6 +137,7 @@ export default
         permissionLevel: "Please pick permission",
         description: "Please input description",
         interface: "Please input interface",
+        content: "Please inpot content",
     },
     h:
     {
