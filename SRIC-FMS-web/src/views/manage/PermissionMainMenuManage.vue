@@ -47,7 +47,7 @@
     </el-card>
     <el-drawer v-model="isDrawerOpen">
         <template #header>
-            <span class="UserManage-drawer-title">{{ $t("static.editAndAddMainMenu") }}</span>
+            <span class="permission-main-menu-manage-drawer-title">{{ $t("static.editAndAddMainMenu") }}</span>
         </template>
         <el-form ref="permissionMainMenuFormRef" :model="permissionMainMenuForm" :rules="permissionMainMenuFormRules">
             <el-form-item prop="name">
@@ -277,5 +277,10 @@ window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
     margin-right: 8px;
     border: none;
     aspect-ratio: 1;
+}
+
+.permission-main-menu-manage-drawer-title
+{
+    font-weight: bold;
 }
 </style>

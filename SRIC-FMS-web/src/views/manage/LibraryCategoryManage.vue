@@ -34,7 +34,7 @@
     </el-card>
     <el-drawer v-model="isDrawerOpen">
         <template #header>
-            <span class="UserManage-drawer-title">{{ $t("static.editAndAddCategory") }}</span>
+            <span class="library-category-manage-drawer-title">{{ $t("static.editAndAddCategory") }}</span>
         </template>
         <el-form ref="categoryFormRef" :model="categoryForm" :rules="categoryFormRules">
             <el-form-item prop="name">
@@ -164,5 +164,10 @@ window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
 {
     width: 100%;
     margin-top: 20px;
+}
+
+.library-category-maange-drawer-title
+{
+    font-weight: bold;
 }
 </style>

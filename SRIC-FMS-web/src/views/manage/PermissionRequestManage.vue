@@ -47,7 +47,7 @@
     </el-card>
     <el-drawer v-model="isDrawerOpen">
         <template #header>
-            <span class="UserManage-drawer-title">{{ $t("static.editAndAddInterface") }}</span>
+            <span class="permission-request-manage-drawer-title">{{ $t("static.editAndAddInterface") }}</span>
         </template>
         <el-form ref="permissionRequestFormRef" :model="permissionRequestForm" :rules="permissionRequestFormRules">
             <el-form-item prop="requestMapping">
@@ -277,5 +277,10 @@ window.addEventListener('resize',onWindowSizeChanged) //监听窗口变动
     margin-right: 8px;
     border: none;
     aspect-ratio: 1;
+}
+
+.permission-request-manage-drawer-title
+{
+    font-weight: bold;
 }
 </style>
