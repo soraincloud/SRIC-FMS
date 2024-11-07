@@ -194,7 +194,7 @@ npm run build
 
 ```
 
-|- SRIC-FMS-web                                  前端代码
+|- SRIC-FMS-web                                  前端
   |- dist                                        前端代码编译文件
   |- node_modules                                依赖文件
   |- public                                      公共静态文件
@@ -212,8 +212,20 @@ npm run build
     |- main.ts                                   主配置文件
   |- package.json                                依赖配置文件
   |- vue.config.js                               配置文件
-|- SRIC-FMS-api
-|- SRIC-FMS-database
+|- SRIC-FMS-api                                  后端
+  |- src                                         后端代码
+    |- java.com
+      |- pj                                      satoken配置
+      |- spring.springboot                       主要代码文件(一个包为一个模块)
+        |- interceptor                           后端拦截器相关文件
+        |- tools                                 工具类
+        |- SpringbootApplication.java            后端启动类
+    |- resources                                 资源
+      |- static                                  静态资源
+      |- application.properties                  后端配置文件
+  |- pom.xml                                     maven依赖配置文件
+|- SRIC-FMS-database                             数据库
+  |- sric_fms.sql                                数据库结构文件
 
 ```
 
