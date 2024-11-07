@@ -146,7 +146,7 @@ export default
         noMosaic: "无修正",
         mosaic: "有修正",
         allCategory: "所有类型",
-        short: "短片",
+        short: "短篇",
         book: "单本",
     },
 }
