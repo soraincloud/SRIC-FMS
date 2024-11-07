@@ -189,3 +189,21 @@ npm run build
 数据库查询文件包含部分数据 适当删除和修改以正常使用
 
 ------
+
+# 2.代码结构
+
+```
+
+|- SRIC-FMS-web                                  前端代码
+  |- dist                                        前端代码编译文件
+  |- node_modules                                依赖文件
+  |- public                                      公共静态文件
+  |- src                                         项目代码文件
+    |- assets                                    资源文件
+    |- axios                                     axios 请求 配置
+|- SRIC-FMS-api
+|- SRIC-FMS-database
+
+```
+
+-----
