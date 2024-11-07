@@ -201,6 +201,17 @@ npm run build
   |- src                                         项目代码文件
     |- assets                                    资源文件
     |- axios                                     axios 请求 配置
+    |- components                                通用组件
+    |- css                                       通用css文件
+    |- language                                  i18n 多语言适配文件
+    |- router                                    路由配置文件
+    |- store                                     vuex 前端数据配置
+    |- tools                                     自定义工具函数
+    |- views                                     组件文件
+    |- App.vue                                   主页面
+    |- main.ts                                   主配置文件
+  |- package.json                                依赖配置文件
+  |- vue.config.js                               配置文件
 |- SRIC-FMS-api
 |- SRIC-FMS-database
 
