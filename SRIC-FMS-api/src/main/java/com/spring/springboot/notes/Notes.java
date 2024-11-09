@@ -17,4 +17,5 @@ public class Notes
     private String text;
     private String userUuid;
     private String username;
+    private String createTime;
 }

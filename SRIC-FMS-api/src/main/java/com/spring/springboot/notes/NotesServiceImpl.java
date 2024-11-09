@@ -62,4 +62,28 @@ public class NotesServiceImpl implements NotesService
         }
         return responseCode;
     }
+
+    /**
+     * @author SRIC
+     *
+     * 根据用户 uuid 获取 notes 数据列表 分页
+     */
+    @Override
+    public List<Notes> getNotesListByUserUuid(NotesListByUserRequestPojo notesListByUserRequest)
+    {
+        notesListByUserRequest.setLimitSize(20); //一页获取20条数据
+        notesListByUserRequest.setLimitBefore((notesListByUserRequest.getPage() - 1) * 20); //当前获取数据之前的空缺 （如第一页空缺0条 第二页空缺20条）
+        return notesMapper.getNotesListByUserUuid(notesListByUserRequest);
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 根据用户 uuid 获取 notes 数据条目数量
+     */
+    @Override
+    public int getNotesCountByUserUuid(NotesListByUserRequestPojo notesListByUserRequest)
+    {
+        return notesMapper.getNotesCountByUserUuid(notesListByUserRequest);
+    }
 }

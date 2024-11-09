@@ -9,4 +9,6 @@ public interface NotesService
     List<Notes> getNotesList(NotesListRequestPojo notesListRequest);
     int getNotesCount();
     ResponseCode updateNote(Notes note);
+    List<Notes> getNotesListByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
+    int getNotesCountByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
 }
