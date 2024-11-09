@@ -73,6 +73,8 @@ export default
         editAndAddMainMenu: "edit / add main menu",
         userBelongs: "user belongs",
         editNote: "edit note",
+        copySuccess: "copy success",
+        copyError: "copy error",
     },
     mainMenu:
     {
@@ -112,6 +114,7 @@ export default
         successSignUpMessage: "sign up success",
         usernameHasBeenUsedMessage: "username has been used",
         wrongCodeMessage: "wrong verification or time out",
+        copyNotCompatible: "browser may not compatible to copy",
     },
     user:
     {

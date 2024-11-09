@@ -115,7 +115,6 @@ const getLibraryData = async () =>
             page: page.value,
         }
         const resp = await getLibraryList(params)
-        console.log(resp.data)
         pageTotal.value = resp.data.total
         libraryList.value = resp.data.libraryList
     } catch {}

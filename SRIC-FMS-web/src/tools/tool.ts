@@ -31,3 +31,34 @@ export const getStatusColorCode = (tag: number): string | undefined => {
         default: return undefined;
     }
 };
+
+export const getTime = () =>
+{
+    // 获取当前时间
+    const now = new Date();
+
+    // 获取各个时间部分并进行格式化
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以需要加1
+    const date = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    // 组装成所需格式
+    return `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
+}
+
+export const getDate = () =>
+{
+        // 获取当前时间
+        const now = new Date();
+
+        // 获取各个时间部分并进行格式化
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以需要加1
+        const date = String(now.getDate()).padStart(2, '0');
+    
+        // 组装成所需格式
+        return `${year}-${month}-${date}`;
+}

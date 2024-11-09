@@ -9,3 +9,8 @@ export function updateNote(params:any)
 {
     return post('/notesManage/updateNote',params)
 }
+
+export function getNotesListByUser(params:any)
+{
+    return get('/notes/getNotesListByUser',params)
+}

@@ -73,6 +73,9 @@ export default
         editAndAddMainMenu: "编辑 / 添加 菜单",
         userBelongs: "所属用户",
         editNote: "编辑笔记",
+        copySuccess: "复制成功",
+        copyError: "复制失败",
+        copyNotCompatible: "浏览器可能不支持复制",
     },
     mainMenu:
     {
