@@ -18,7 +18,7 @@ public interface NotesMapper
      *
      * 获取 notes 数据列表 分页
      */
-    @Select(value = "SELECT n.uuid, n.title, n.text, n.user_uuid, u.username " +
+    @Select(value = "SELECT n.*, u.username " +
             "FROM `data_notes` n " +
             "JOIN `data_user` u ON n.user_uuid = u.uuid " +
             "LIMIT #{limitBefore}, #{limitSize}")

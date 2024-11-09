@@ -21,6 +21,15 @@
                     {{ $t("static.userBelongs") }}
                 </template>
             </el-table-column>
+            <el-table-column prop="isDeleted">
+                <template #header>
+                    {{ $t("static.isDeleted") }}
+                </template>
+                <template #default="scope">
+                    <el-icon v-if="scope.row.isDeleted == 0" style="color: #67C23A;"><MessageBox/></el-icon>
+                    <el-icon v-if="scope.row.isDeleted == 1" style="color: #F56C6C;"><Delete/></el-icon>
+                </template>
+            </el-table-column>
             <el-table-column fixed="right" label="Operations" width="120">
                 <template #header>
                     {{ $t("common.operations") }}

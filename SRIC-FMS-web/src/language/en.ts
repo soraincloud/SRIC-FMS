@@ -78,6 +78,7 @@ export default
         deleteSuccess: "delete successful",
         deleteFailed: "delete failed",
         deleteFailedBecauseDifferentUser: "can't delete data that isn't the current user",
+        isDeleted: "IS DELETED",
     },
     mainMenu:
     {
