@@ -91,7 +91,7 @@ public class UserController
      * 注册
      */
     @PostMapping("/signUp")
-    public ResponseCode signIn(@RequestBody SignUpRequestPojo signUpRequest)
+    public ResponseCode signUp(@RequestBody SignUpRequestPojo signUpRequest)
     {
         ResponseCode responseCode = new ResponseCode();
         responseCode.setCode(userService.signUp(signUpRequest));
