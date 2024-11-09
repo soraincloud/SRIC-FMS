@@ -222,7 +222,6 @@ const checkUserMessage = async () => //更新用户信息(用户名，头像)
       ElNotification({
         title: t("common.noties"),
         message: h('i', { style: 'color: teal' }, t("sign.tokenTimeOut")),
-        
       })
       localStorage.setItem("isSignIn","false")
       localStorage.removeItem("token")

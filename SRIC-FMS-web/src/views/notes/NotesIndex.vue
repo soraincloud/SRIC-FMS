@@ -30,7 +30,29 @@
                 <el-timeline>
                     <el-timeline-item v-if="isNewNoteShow" center placement="top" :timestamp="newNoteTimeShow">
                         <el-card>
-                            <el-input></el-input>
+                            <el-form ref="notesFormRef" :model="notesForm" :rules="notesFormRules" label-width="auto">
+                                <el-form-item prop="title">
+                                    <template #label>
+                                        {{ $t("common.title") }}
+                                    </template>
+                                    <el-input v-model="notesForm.title" clearable show-word-limit maxlength="30"></el-input>
+                                </el-form-item>
+                                <el-divider></el-divider>
+                                <el-form-item prop="text">
+                                    <template #label>
+                                        {{ $t("common.content") }}
+                                    </template>
+                                    <el-input v-model="notesForm.text" clearable show-word-limit maxlength="300" type="textarea" :autosize="{ minRows: 3 }"></el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button type="success" plain>
+                                        <el-icon><Check /></el-icon>
+                                    </el-button>
+                                    <el-button type="info" plain @click = "clickCancelAdd()">
+                                        <el-icon><RefreshLeft /></el-icon>
+                                    </el-button>
+                                </el-form-item>
+                            </el-form>
                         </el-card>
                     </el-timeline-item>
                     <el-timeline-item v-for="(item,i) in notesList" :key="i" center placement="top" :timestamp="item.createTime">
@@ -58,10 +80,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,onMounted,h } from 'vue'
+import { ref,onMounted,h,reactive } from 'vue'
 import { getDate } from '@/tools/tool'
 import { getNotesListByUser } from '@/axios/api/notes';
 import { ElMessage,ElNotification } from 'element-plus'
+import type { FormInstance } from 'element-plus'
 import i18n from '@/language';
 
 const { t } = i18n.global
@@ -75,6 +98,23 @@ const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
 
 const notesList:any = ref([]) //notes数据列表
+const notesForm = reactive //添加 notes 的表单
+({
+    title: "",
+    text: "",
+})
+const notesFormRef = ref<FormInstance>() //添加 notes 表单的 ref
+const notesFormRules = reactive //添加 notes 表单的 rule
+({
+    title:
+    [
+        { required: true, message: t("rules.title"), trigger: 'blur' },
+    ],
+    text:
+    [
+        { required: true, message: t("rules.content"), trigger: 'blur' },
+    ],
+})
 
 const getNotesListData = async () => //获取 notes 列表 (需登录)
 {
@@ -111,6 +151,13 @@ const clickAddNote = () => //点击新增笔记
     newNoteTimeShow.value = getDate()
     isNewNoteShow.value = true
     notesScrollBarRef.value?.scrollTo({ top: 0, behavior: 'smooth' }) //将滚动条平滑滚动到顶部
+}
+
+const clickCancelAdd = () => //取消新增笔记
+{
+    isNewNoteShow.value = false
+    notesForm.title = ""
+    notesForm.text = ""
 }
 
 const clickCopy = (text:any) =>
