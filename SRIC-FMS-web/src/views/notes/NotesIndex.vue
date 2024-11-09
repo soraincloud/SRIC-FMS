@@ -62,9 +62,23 @@
                                 <el-button class="notes-card-button" text circle>
                                     <el-icon><Edit/></el-icon>
                                 </el-button>
-                                <el-button class="notes-card-button" text circle>
-                                    <el-icon><Delete/></el-icon>
-                                </el-button>
+                                <el-popconfirm :title="deleteConfirmTitle" icon-color="#F56C6C" @confirm="confirmDelete(item)">
+                                    <template #reference>
+                                        <el-button class="notes-card-button" text circle @click="clickDelete()">
+                                            <el-icon><Delete/></el-icon>
+                                        </el-button>
+                                    </template>
+                                    <template #actions="{ confirm, cancel }">
+                                        <el-button size="small" @click="cancel">{{ $t("common.no") }}</el-button>
+                                        <el-button
+                                            type="danger"
+                                            size="small"
+                                            @click="confirm"
+                                        >
+                                            {{ $t("common.yes") }}
+                                        </el-button>
+                                    </template>
+                                </el-popconfirm>
                                 <el-button class="notes-card-button" text circle @click="clickCopy(item.text)">
                                     <el-icon><CopyDocument/></el-icon>
                                 </el-button>
@@ -85,7 +99,7 @@
 <script lang="ts" setup>
 import { ref,onMounted,h,reactive } from 'vue'
 import { getDate } from '@/tools/tool'
-import { getNotesListByUser,addNote } from '@/axios/api/notes';
+import { getNotesListByUser,addNote,deleteNote } from '@/axios/api/notes';
 import { ElMessage,ElNotification } from 'element-plus'
 import type { FormInstance } from 'element-plus'
 import i18n from '@/language';
@@ -97,6 +111,7 @@ const scrollbarHeight = ref((window.innerHeight - 230) + "px") //设置滚动条
 const isNewNoteShow = ref(false) //新增笔记模块是否显示
 const newNoteTimeShow = ref("") //新增笔记时显示的时间
 const notesScrollBarRef = ref<HTMLElement | null>(null) //滚动条的ref 在onMounted后被赋值
+const deleteConfirmTitle = ref(t("static.deleteConfirmTitle")) //删除确认框的标题文字
 const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
 
@@ -201,6 +216,52 @@ const clickAddNoteConfirm = async () => //点击提交新增笔记
     } catch {}
 }
 
+const clickDelete = () => //点击删除笔记
+{
+    deleteConfirmTitle.value = t("static.deleteConfirmTitle") //重置一次删除警告提示语
+}
+
+const confirmDelete = async (item:any) => //确认删除
+{
+    try
+    {
+        const params = 
+        {
+            uuid: item.uuid
+        }
+        const resp = await deleteNote(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.deleteSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.deleteFailed"),
+                type: 'warning',
+            })
+        }
+        else if(resp.data.code == 401)
+        {
+            ElNotification({
+                title: t("common.noties"),
+                message: h('i', { style: 'color: #F56C6C' }, t("static.deleteFailedBecauseDifferentUser")),
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        getNotesListData()
+    } catch {}
+}
+
 const clickCopy = (text:any) =>
 {
     if (navigator.clipboard)
@@ -224,9 +285,9 @@ const clickCopy = (text:any) =>
             type: 'error',
         })
         ElNotification({
-        title: t("common.noties"),
-        message: h('i', { style: 'color: #F56C6C' }, t("static.copyNotCompatible")),
-      })
+            title: t("common.noties"),
+            message: h('i', { style: 'color: #F56C6C' }, t("static.copyNotCompatible")),
+        })
     }
 }
 

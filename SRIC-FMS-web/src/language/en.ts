@@ -75,6 +75,9 @@ export default
         editNote: "edit note",
         copySuccess: "copy success",
         copyError: "copy error",
+        deleteSuccess: "delete successful",
+        deleteFailed: "delete failed",
+        deleteFailedBecauseDifferentUser: "can't delete data that isn't the current user",
     },
     mainMenu:
     {

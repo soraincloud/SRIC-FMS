@@ -140,7 +140,7 @@ const clickEdit = (row :any) => //点击编辑
 
 const clickDelete = () => //点击删除按钮
 {
-    deleteConfirmTitle.value = t("static.deleteConfirmTitle")
+    deleteConfirmTitle.value = t("static.deleteConfirmTitle") //重置一次删除警告提示语
 }
 
 const confirmDelete = (row :any) => //点击确认删除

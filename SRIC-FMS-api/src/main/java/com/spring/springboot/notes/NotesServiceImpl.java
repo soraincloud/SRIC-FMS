@@ -106,4 +106,32 @@ public class NotesServiceImpl implements NotesService
         }
         return responseCode;
     }
+
+    /**
+     * @author SRIC
+     *
+     * 逻辑删除一条 note
+     */
+    @Override
+    public ResponseCode deleteNote(String uuid,String userUuid)
+    {
+        ResponseCode responseCode = new ResponseCode();
+        Notes noteNow = notesMapper.getNoteByUuid(uuid); //根据传入需要删除的 note 的 uuid 获取 user uuid
+        if(noteNow.getUserUuid().equals(userUuid)) //若当前登录用户的 uuid 与 需删除的 note 的 user uuid 相同
+        {
+            if(notesMapper.deleteNote(uuid) > 0)
+            {
+                responseCode.setCode(200); //成功
+            }
+            else
+            {
+                responseCode.setCode(400); //失败
+            }
+        }
+        else
+        {
+            responseCode.setCode(401); //修改了非当前登录用户的笔记
+        }
+        return responseCode;
+    }
 }

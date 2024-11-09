@@ -76,6 +76,9 @@ export default
         copySuccess: "复制成功",
         copyError: "复制失败",
         copyNotCompatible: "浏览器可能不支持复制",
+        deleteSuccess: "删除成功",
+        deleteFailed: "删除失败",
+        deleteFailedBecauseDifferentUser: "无法删除非当前用户的数据",
     },
     mainMenu:
     {

@@ -47,4 +47,16 @@ public class NotesController
         note.setUserUuid(loginId.toString()); //将 uuid 放入参数对象中
         return notesService.addNote(note);
     }
+
+    /**
+     * @author SRIC
+     *
+     * 逻辑删除一条 note
+     */
+    @PostMapping("/deleteNote")
+    public ResponseCode deleteNote(@RequestBody Notes note, @RequestHeader("Authorization") String tokenValue)
+    {
+        Object loginId = StpUtil.getLoginIdByToken(tokenValue); //通过 token 获取当前登录的用户 uuid
+        return notesService.deleteNote(note.getUuid(),loginId.toString());
+    }
 }

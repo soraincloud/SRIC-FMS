@@ -18,4 +18,5 @@ public class Notes
     private String userUuid;
     private String username;
     private String createTime;
+    private int isDeleted;
 }

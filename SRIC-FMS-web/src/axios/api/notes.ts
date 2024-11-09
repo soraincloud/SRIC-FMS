@@ -19,3 +19,8 @@ export function addNote(params:any)
 {
     return post('/notes/addNote',params)
 }
+
+export function deleteNote(params:any)
+{
+    return post('/notes/deleteNote',params)
+}

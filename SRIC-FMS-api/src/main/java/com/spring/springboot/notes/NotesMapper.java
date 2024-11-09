@@ -47,6 +47,7 @@ public interface NotesMapper
      * 若传入 searchInput 不为空 便进行匹配
      */
     @Select(value = "SELECT * FROM `data_notes` WHERE user_uuid = #{userUuid}" +
+            "AND is_deleted = 0 " +
             "AND ( ( TITLE LIKE concat('%',#{searchInput},'%') or TEXT LIKE concat('%',#{searchInput},'%') ) OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
             "LIMIT #{limitBefore}, #{limitSize}")
     List<Notes> getNotesListByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
@@ -58,6 +59,7 @@ public interface NotesMapper
      * 若传入 searchInput 不为空 便进行匹配
      */
     @Select(value = "SELECT COUNT(*) FROM `data_notes` WHERE user_uuid = #{userUuid}" +
+            "AND is_deleted = 0 " +
             "AND ( ( TITLE LIKE concat('%',#{searchInput},'%') or TEXT LIKE concat('%',#{searchInput},'%') ) OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
             "LIMIT #{limitBefore}, #{limitSize}")
     int getNotesCountByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
@@ -68,5 +70,21 @@ public interface NotesMapper
      * 新增一条 note 数据
      */
     @Insert(value = "INSERT INTO `data_notes`(uuid, title, text, user_uuid, createtime) VALUES(UUID(),#{title},#{text},#{userUuid},NOW())")
-    int addNote(Notes notes);
+    int addNote(Notes note);
+
+    /**
+     * @author SRIC
+     *
+     * 根据 uuid 获取 note 数据
+     */
+    @Select(value = "SELECT * FROM `data_notes` WHERE uuid = #{uuid}")
+    Notes getNoteByUuid(@Param(value = "uuid")String uuid);
+
+    /**
+     * @author SRIC
+     *
+     * 逻辑删除一条 note 数据
+     */
+    @Update(value = "UPDATE `data_notes` SET is_deleted = 1 WHERE uuid = #{uuid}")
+    int deleteNote(@Param(value = "uuid")String uuid);
 }
