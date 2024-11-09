@@ -1,6 +1,7 @@
 package com.spring.springboot.notes;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.spring.springboot.response.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,18 @@ public class NotesController
         notesListResponse.setNotesList(notesService.getNotesListByUserUuid(notesListByUserRequest)); //根据参数获取 notes 列表
         notesListResponse.setTotal(notesService.getNotesCountByUserUuid(notesListByUserRequest)); //根据参数获取符合条件的 notes 条目总数
         return notesListResponse;
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 添加一条 note
+     */
+    @PostMapping("/addNote")
+    public ResponseCode addNote(@RequestBody Notes note, @RequestHeader("Authorization") String tokenValue)
+    {
+        Object loginId = StpUtil.getLoginIdByToken(tokenValue); //通过 token 获取当前登录的用户 uuid
+        note.setUserUuid(loginId.toString()); //将 uuid 放入参数对象中
+        return notesService.addNote(note);
     }
 }

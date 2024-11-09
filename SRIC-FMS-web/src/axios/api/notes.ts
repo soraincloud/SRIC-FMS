@@ -14,3 +14,8 @@ export function getNotesListByUser(params:any)
 {
     return get('/notes/getNotesListByUser',params)
 }
+
+export function addNote(params:any)
+{
+    return post('/notes/addNote',params)
+}

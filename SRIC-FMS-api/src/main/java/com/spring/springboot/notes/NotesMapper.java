@@ -1,9 +1,6 @@
 package com.spring.springboot.notes;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -64,4 +61,12 @@ public interface NotesMapper
             "AND ( ( TITLE LIKE concat('%',#{searchInput},'%') or TEXT LIKE concat('%',#{searchInput},'%') ) OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
             "LIMIT #{limitBefore}, #{limitSize}")
     int getNotesCountByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
+
+    /**
+     * @author SRIC
+     *
+     * 新增一条 note 数据
+     */
+    @Insert(value = "INSERT INTO `data_notes`(uuid, title, text, user_uuid, createtime) VALUES(UUID(),#{title},#{text},#{userUuid},NOW())")
+    int addNote(Notes notes);
 }

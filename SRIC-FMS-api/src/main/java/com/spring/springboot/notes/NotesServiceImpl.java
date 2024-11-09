@@ -86,4 +86,24 @@ public class NotesServiceImpl implements NotesService
     {
         return notesMapper.getNotesCountByUserUuid(notesListByUserRequest);
     }
+
+    /**
+     * @author SRIC
+     *
+     * 添加一条 note
+     */
+    @Override
+    public ResponseCode addNote(Notes note)
+    {
+        ResponseCode responseCode = new ResponseCode();
+        if(notesMapper.addNote(note) == 1)
+        {
+            responseCode.setCode(200);
+        }
+        else
+        {
+            responseCode.setCode(400);
+        }
+        return responseCode;
+    }
 }

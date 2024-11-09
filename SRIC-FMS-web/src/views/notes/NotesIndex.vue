@@ -45,10 +45,10 @@
                                     <el-input v-model="notesForm.text" clearable show-word-limit maxlength="300" type="textarea" :autosize="{ minRows: 3 }"></el-input>
                                 </el-form-item>
                                 <el-form-item>
-                                    <el-button type="success" plain>
+                                    <el-button type="success" plain @click="clickAddNoteConfirm()">
                                         <el-icon><Check /></el-icon>
                                     </el-button>
-                                    <el-button type="info" plain @click = "clickCancelAdd()">
+                                    <el-button type="info" plain @click="clickCancelAdd()">
                                         <el-icon><RefreshLeft /></el-icon>
                                     </el-button>
                                 </el-form-item>
@@ -59,10 +59,13 @@
                         <el-card>
                             <span class="notes-card-title">{{ item.title }}</span>
                             <div class="notes-card-buttons-div">
-                                <el-button text circle>
+                                <el-button class="notes-card-button" text circle>
                                     <el-icon><Edit/></el-icon>
                                 </el-button>
-                                <el-button text circle @click="clickCopy(item.text)">
+                                <el-button class="notes-card-button" text circle>
+                                    <el-icon><Delete/></el-icon>
+                                </el-button>
+                                <el-button class="notes-card-button" text circle @click="clickCopy(item.text)">
                                     <el-icon><CopyDocument/></el-icon>
                                 </el-button>
                             </div>
@@ -82,7 +85,7 @@
 <script lang="ts" setup>
 import { ref,onMounted,h,reactive } from 'vue'
 import { getDate } from '@/tools/tool'
-import { getNotesListByUser } from '@/axios/api/notes';
+import { getNotesListByUser,addNote } from '@/axios/api/notes';
 import { ElMessage,ElNotification } from 'element-plus'
 import type { FormInstance } from 'element-plus'
 import i18n from '@/language';
@@ -121,10 +124,10 @@ const getNotesListData = async () => //获取 notes 列表 (需登录)
     try
     {
         const params = 
-    {
-        searchInput: searchInput.value,
-        page: page.value,
-    }
+        {
+            searchInput: searchInput.value,
+            page: page.value,
+        }
         const resp = await getNotesListByUser(params)
         pageTotal.value = resp.data.total
         notesList.value = resp.data.notesList
@@ -158,6 +161,44 @@ const clickCancelAdd = () => //取消新增笔记
     isNewNoteShow.value = false
     notesForm.title = ""
     notesForm.text = ""
+}
+
+const clickAddNoteConfirm = async () => //点击提交新增笔记
+{
+    try
+    {
+        const params =
+        {
+            title: notesForm.title,
+            text: notesForm.text,
+        }
+        const resp = await addNote(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.saveSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.saveFailed"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        isNewNoteShow.value = false
+        notesForm.title = ""
+        notesForm.text = ""
+        getNotesListData()
+    } catch {}
 }
 
 const clickCopy = (text:any) =>
@@ -251,6 +292,11 @@ window.addEventListener('resize',resetMinHeightAndMenu) //监听窗口变动
 .notes-card-buttons-div
 {
     float: right;
+}
+
+.notes-card-button
+{
+    margin: 0 !important;
 }
 
 .notes-card-text-span

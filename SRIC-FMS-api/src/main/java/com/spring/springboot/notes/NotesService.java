@@ -11,4 +11,5 @@ public interface NotesService
     ResponseCode updateNote(Notes note);
     List<Notes> getNotesListByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
     int getNotesCountByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
+    ResponseCode addNote(Notes note);
 }
