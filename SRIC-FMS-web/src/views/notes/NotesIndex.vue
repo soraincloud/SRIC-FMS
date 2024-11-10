@@ -35,7 +35,7 @@
                                     <template #label>
                                         {{ $t("common.title") }}
                                     </template>
-                                    <el-input v-model="notesForm.title" clearable show-word-limit maxlength="30"></el-input>
+                                    <el-input v-model="notesForm.title" clearable show-word-limit maxlength="50"></el-input>
                                 </el-form-item>
                                 <el-divider></el-divider>
                                 <el-form-item prop="text">
