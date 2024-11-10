@@ -43,4 +43,15 @@ public class NotesManageController
     {
         return notesService.updateNote(note);
     }
+
+    /**
+     * @author SRIC
+     *
+     * 强制删除一条 note 数据
+     */
+    @PostMapping("/deleteNoteData")
+    public ResponseCode deleteNoteData(@RequestBody Notes note)
+    {
+        return notesService.deleteNoteData(note.getUuid());
+    }
 }

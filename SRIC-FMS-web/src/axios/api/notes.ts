@@ -24,3 +24,8 @@ export function deleteNote(params:any)
 {
     return post('/notes/deleteNote',params)
 }
+
+export function deleteNoteData(params:any)
+{
+    return post('/notesManage/deleteNoteData',params)
+}

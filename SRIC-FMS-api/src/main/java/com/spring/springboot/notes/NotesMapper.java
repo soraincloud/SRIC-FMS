@@ -87,4 +87,12 @@ public interface NotesMapper
      */
     @Update(value = "UPDATE `data_notes` SET is_deleted = 1 WHERE uuid = #{uuid}")
     int deleteNote(@Param(value = "uuid")String uuid);
+
+    /**
+     * @author SRIC
+     *
+     * 强制删除一条 note 数据
+     */
+    @Delete(value = "DELETE FROM `data_notes` WHERE uuid = #{uuid}")
+    int deleteNoteData(@Param(value = "uuid")String uuid);
 }

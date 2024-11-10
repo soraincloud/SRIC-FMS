@@ -134,4 +134,24 @@ public class NotesServiceImpl implements NotesService
         }
         return responseCode;
     }
+
+    /**
+     * @author SRIC
+     *
+     * 强制删除一条 note
+     */
+    @Override
+    public ResponseCode deleteNoteData(String uuid)
+    {
+        ResponseCode responseCode = new ResponseCode();
+        if(notesMapper.deleteNoteData(uuid) > 0)
+        {
+            responseCode.setCode(200);
+        }
+        else
+        {
+            responseCode.setCode(400);
+        }
+        return responseCode;
+    }
 }

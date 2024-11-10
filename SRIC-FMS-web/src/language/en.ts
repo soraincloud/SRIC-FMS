@@ -35,6 +35,7 @@ export default
         description: "DESCRIPTION",
         menu: "NEMU",
         content: "CONTENT",
+        warning: "WARNING",
     },
     static:
     {
@@ -79,6 +80,7 @@ export default
         deleteFailed: "delete failed",
         deleteFailedBecauseDifferentUser: "can't delete data that isn't the current user",
         isDeleted: "IS DELETED",
+        reallyToDeleteDataConfirm: "This will completely delete the data, confirm to do that?",
     },
     mainMenu:
     {

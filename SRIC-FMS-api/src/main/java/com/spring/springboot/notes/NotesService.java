@@ -13,4 +13,5 @@ public interface NotesService
     int getNotesCountByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
     ResponseCode addNote(Notes note);
     ResponseCode deleteNote(String uuid,String userUuid);
+    ResponseCode deleteNoteData(String uuid);
 }
