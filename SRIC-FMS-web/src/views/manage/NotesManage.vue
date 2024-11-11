@@ -146,7 +146,7 @@ const clickEdit = (row:any) => //点击编辑按钮
     notesEditUuid.value = row.uuid
 }
 
-const doEditnote = async () =>
+const doUpdatenote = async () => //修改 notes
 {
     try
     {
@@ -181,6 +181,18 @@ const doEditnote = async () =>
         getNotesData()
         isEditDrawerOpen.value = false
     } catch {}
+}
+
+const clickUpdateNote = async (formEl: FormInstance | undefined) => //点击修改 notes 提交
+{
+    if (!formEl) return
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            doUpdatenote()
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
 }
 
 const clickDelete = (row:any) => //点击删除 note
@@ -230,18 +242,6 @@ const doDeleteNote = async () =>
         isDeleteConfirmDrawerOpen.value = false
         getNotesData()
     } catch {}
-}
-
-const clickUpdateNote = async (formEl: FormInstance | undefined) => //点击修改 notes 提交
-{
-    if (!formEl) return
-    await formEl.validate((valid, fields) => {
-        if (valid) {
-            doEditnote()
-        } else {
-            console.log('error submit!', fields)
-        }
-    })
 }
 
 const onWindowSizeChanged = () => //窗口大小变动

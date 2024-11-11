@@ -47,6 +47,7 @@ public class NotesServiceImpl implements NotesService
      * @author SRIC
      *
      * 修改一条 note 标题或内容
+     * 管理页面进行修改
      */
     @Override
     public ResponseCode updateNote(Notes note)
@@ -116,7 +117,7 @@ public class NotesServiceImpl implements NotesService
     public ResponseCode deleteNote(String uuid,String userUuid)
     {
         ResponseCode responseCode = new ResponseCode();
-        Notes noteNow = notesMapper.getNoteByUuid(uuid); //根据传入需要删除的 note 的 uuid 获取 user uuid
+        Notes noteNow = notesMapper.getNoteByUuid(uuid); //根据传入需要删除的 note 的 uuid 获取 note 数据（拿到 user uuid）
         if(noteNow.getUserUuid().equals(userUuid)) //若当前登录用户的 uuid 与 需删除的 note 的 user uuid 相同
         {
             if(notesMapper.deleteNote(uuid) > 0)
@@ -130,7 +131,7 @@ public class NotesServiceImpl implements NotesService
         }
         else
         {
-            responseCode.setCode(401); //修改了非当前登录用户的笔记
+            responseCode.setCode(401); //删除了非当前登录用户的笔记
         }
         return responseCode;
     }
@@ -151,6 +152,35 @@ public class NotesServiceImpl implements NotesService
         else
         {
             responseCode.setCode(400);
+        }
+        return responseCode;
+    }
+
+    /**
+     * @author SRIC
+     *
+     * 编辑一条 note
+     * 用户进行编辑
+     */
+    @Override
+    public ResponseCode editNote(Notes note,String userUuid)
+    {
+        ResponseCode responseCode = new ResponseCode();
+        Notes noteNow = notesMapper.getNoteByUuid(note.getUuid()); //根据传入需要删除的 note 的 uuid 获取 note 数据（拿到 user uuid）
+        if(noteNow.getUserUuid().equals(userUuid)) //若当前登录用户的 uuid 与 需删除的 note 的 user uuid 相同
+        {
+            if(notesMapper.updateNote(note) != 0)
+            {
+                responseCode.setCode(200); //成功
+            }
+            else
+            {
+                responseCode.setCode(400); //失败
+            }
+        }
+        else
+        {
+            responseCode.setCode(401); //修改了非当前登录用户的笔记
         }
         return responseCode;
     }

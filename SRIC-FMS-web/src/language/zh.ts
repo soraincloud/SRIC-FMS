@@ -80,6 +80,7 @@ export default
         deleteSuccess: "删除成功",
         deleteFailed: "删除失败",
         deleteFailedBecauseDifferentUser: "无法删除非当前用户的数据",
+        editFailedBecauseDifferentUser: "无法修改非当前用户的数据",
         isDeleted: "已被删除",
         reallyToDeleteDataConfirm: "这将完全删除数据,确认删除?",
     },

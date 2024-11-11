@@ -45,7 +45,7 @@
                                     <el-input v-model="notesForm.text" clearable show-word-limit maxlength="300" type="textarea" :autosize="{ minRows: 3 }"></el-input>
                                 </el-form-item>
                                 <el-form-item>
-                                    <el-button type="success" plain @click="clickAddNoteConfirm()">
+                                    <el-button type="success" plain @click="clickAddNoteConfirm(notesFormRef)">
                                         <el-icon><Check /></el-icon>
                                     </el-button>
                                     <el-button type="info" plain @click="clickCancelAdd()">
@@ -59,7 +59,7 @@
                         <el-card>
                             <span class="notes-card-title">{{ item.title }}</span>
                             <div class="notes-card-buttons-div">
-                                <el-button class="notes-card-button" text circle>
+                                <el-button class="notes-card-button" text circle @click="clickEdit(item)">
                                     <el-icon><Edit/></el-icon>
                                 </el-button>
                                 <el-popconfirm :title="deleteConfirmTitle" icon-color="#F56C6C" @confirm="confirmDelete(item)">
@@ -93,13 +93,31 @@
                 <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
             </div>
         </el-card>
+        <el-drawer v-model="isEditDrawerOpen">
+        <template #header>
+            <span class="notes-manage-drawer-title">{{ $t("static.editNote") }}</span>
+        </template>
+        <el-form ref="notesFormRef" :model="notesForm" :rules="notesFormRules">
+            <el-form-item prop="title">
+                <h1>{{ $t("common.title") }}</h1>
+                <el-input v-model="notesForm.title" maxlength="20" show-word-limit clearable></el-input>
+            </el-form-item>
+            <el-form-item prop="text">
+                <h1>{{ $t("common.content") }}</h1>
+                <el-input v-model="notesForm.text" :rows="2" type="textarea" maxlength="25" show-word-limit clearable></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button @click="clickEditNote(notesFormRef)" type="success">{{ $t("common.submit") }}</el-button>
+            </el-form-item>
+        </el-form>
+    </el-drawer>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { ref,onMounted,h,reactive } from 'vue'
 import { getDate } from '@/tools/tool'
-import { getNotesListByUser,addNote,deleteNote } from '@/axios/api/notes';
+import { getNotesListByUser,addNote,deleteNote,editNote } from '@/axios/api/notes';
 import { ElMessage,ElNotification } from 'element-plus'
 import type { FormInstance } from 'element-plus'
 import i18n from '@/language';
@@ -110,6 +128,7 @@ const searchInput = ref("") //搜索内容输入
 const scrollbarHeight = ref((window.innerHeight - 230) + "px") //设置滚动条高度
 const isNewNoteShow = ref(false) //新增笔记模块是否显示
 const newNoteTimeShow = ref("") //新增笔记时显示的时间
+const isEditDrawerOpen = ref(false) //编辑抽屉是否打开
 const notesScrollBarRef = ref<HTMLElement | null>(null) //滚动条的ref 在onMounted后被赋值
 const deleteConfirmTitle = ref(t("static.deleteConfirmTitle")) //删除确认框的标题文字
 const page = ref(1) //页数
@@ -133,6 +152,7 @@ const notesFormRules = reactive //添加 notes 表单的 rule
         { required: true, message: t("rules.content"), trigger: 'blur' },
     ],
 })
+const notesEditUuid = ref("") //修改的note uuid
 
 const getNotesListData = async () => //获取 notes 列表 (需登录)
 {
@@ -167,6 +187,8 @@ const pageChange = () => //翻页
 const clickAddNote = () => //点击新增笔记
 {
     newNoteTimeShow.value = getDate()
+    notesForm.title = ""
+    notesForm.text = ""
     isNewNoteShow.value = true
     notesScrollBarRef.value?.scrollTo({ top: 0, behavior: 'smooth' }) //将滚动条平滑滚动到顶部
 }
@@ -178,7 +200,16 @@ const clickCancelAdd = () => //取消新增笔记
     notesForm.text = ""
 }
 
-const clickAddNoteConfirm = async () => //点击提交新增笔记
+const clickEdit = (item) => //点击编辑按钮
+{
+    isNewNoteShow.value = false
+    notesForm.title = item.title
+    notesForm.text = item.text
+    isEditDrawerOpen.value = true
+    notesEditUuid.value = item.uuid
+}
+
+const doAddNoteConfirm = async () => //发送新增笔记请求
 {
     try
     {
@@ -214,6 +245,76 @@ const clickAddNoteConfirm = async () => //点击提交新增笔记
         notesForm.text = ""
         getNotesListData()
     } catch {}
+}
+
+const clickAddNoteConfirm = async (formEl: FormInstance | undefined) => //点击新增 notes 提交
+{
+    if (!formEl) return
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            doAddNoteConfirm()
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
+}
+
+const doEditnote = async () =>
+{
+    try
+    {
+        const params =
+        {
+            uuid: notesEditUuid.value,
+            title: notesForm.title,
+            text: notesForm.text,
+        }
+        const resp = await editNote(params)
+        if(resp.data.code == 200)
+        {
+            ElMessage({
+                message: t("static.submitSuccess"),
+                type: 'success',
+            })
+        }
+        else if(resp.data.code == 400)
+        {
+            ElMessage({
+                message: t("static.nameHasBeenUsed"),
+                type: 'warning',
+            })
+        }
+        else if(resp.data.code == 401)
+        {
+            ElMessage({
+                message: t("static.editFailedBecauseDifferentUser"),
+                type: 'warning',
+            })
+        }
+        else
+        {
+            ElMessage({
+                message: t("static.paramsError"),
+                type: 'error',
+            })
+        }
+        isEditDrawerOpen.value = false
+        notesForm.title = ""
+        notesForm.text = ""
+        getNotesListData()
+    } catch {}
+}
+
+const clickEditNote = async (formEl: FormInstance | undefined) => //点击修改 notes 提交
+{
+    if (!formEl) return
+    await formEl.validate((valid, fields) => {
+        if (valid) {
+            doEditnote()
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
 }
 
 const clickDelete = () => //点击删除笔记

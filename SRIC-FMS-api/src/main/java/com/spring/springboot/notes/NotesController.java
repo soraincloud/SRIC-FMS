@@ -59,4 +59,16 @@ public class NotesController
         Object loginId = StpUtil.getLoginIdByToken(tokenValue); //通过 token 获取当前登录的用户 uuid
         return notesService.deleteNote(note.getUuid(),loginId.toString());
     }
+
+    /**
+     * @author SRIC
+     *
+     * 修改一条 note
+     */
+    @PostMapping("/editNote")
+    public ResponseCode editNote(@RequestBody Notes note, @RequestHeader("Authorization") String tokenValue)
+    {
+        Object loginId = StpUtil.getLoginIdByToken(tokenValue); //通过 token 获取当前登录的用户 uuid
+        return notesService.editNote(note,loginId.toString());
+    }
 }

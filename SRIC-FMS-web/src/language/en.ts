@@ -79,6 +79,7 @@ export default
         deleteSuccess: "delete successful",
         deleteFailed: "delete failed",
         deleteFailedBecauseDifferentUser: "can't delete data that isn't the current user",
+        editFailedBecauseDifferentUser: "can't edit data that isn't the current user",
         isDeleted: "IS DELETED",
         reallyToDeleteDataConfirm: "This will completely delete the data, confirm to do that?",
     },
