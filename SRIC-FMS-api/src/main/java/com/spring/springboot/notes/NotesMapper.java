@@ -45,10 +45,12 @@ public interface NotesMapper
      *
      * 根据 user_uuid 获取 notes 数据 分页
      * 若传入 searchInput 不为空 便进行匹配
+     * 根据 create time 降序排列
      */
     @Select(value = "SELECT * FROM `data_notes` WHERE user_uuid = #{userUuid}" +
             "AND is_deleted = 0 " +
             "AND ( ( TITLE LIKE concat('%',#{searchInput},'%') or TEXT LIKE concat('%',#{searchInput},'%') ) OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
+            "ORDER BY createtime DESC " +
             "LIMIT #{limitBefore}, #{limitSize}")
     List<Notes> getNotesListByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
 
@@ -57,10 +59,12 @@ public interface NotesMapper
      *
      * 根据 user_uuid 获取 notes 数据 条目数量
      * 若传入 searchInput 不为空 便进行匹配
+     * 根据 create time 降序排列
      */
     @Select(value = "SELECT COUNT(*) FROM `data_notes` WHERE user_uuid = #{userUuid}" +
             "AND is_deleted = 0 " +
             "AND ( ( TITLE LIKE concat('%',#{searchInput},'%') or TEXT LIKE concat('%',#{searchInput},'%') ) OR #{searchInput} IS NULL OR #{searchInput} = '' )" +
+            "ORDER BY createtime DESC " +
             "LIMIT #{limitBefore}, #{limitSize}")
     int getNotesCountByUserUuid(NotesListByUserRequestPojo notesListByUserRequest);
 
