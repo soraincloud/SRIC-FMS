@@ -36,6 +36,7 @@ export default
         menu: "菜单",
         content: "内容",
         warning: "警告",
+        createTime: "创建时间",
     },
     static:
     {
@@ -81,7 +82,7 @@ export default
         deleteFailed: "删除失败",
         deleteFailedBecauseDifferentUser: "无法删除非当前用户的数据",
         editFailedBecauseDifferentUser: "无法修改非当前用户的数据",
-        isDeleted: "已被删除",
+        isDeleted: "删除状态",
         reallyToDeleteDataConfirm: "这将完全删除数据,确认删除?",
     },
     mainMenu:

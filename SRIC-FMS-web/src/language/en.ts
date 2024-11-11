@@ -36,6 +36,7 @@ export default
         menu: "NEMU",
         content: "CONTENT",
         warning: "WARNING",
+        createTime: "CREATE TIME",
     },
     static:
     {

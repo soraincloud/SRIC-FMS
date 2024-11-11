@@ -1,17 +1,17 @@
 <template>
     <el-card>
         <el-table :data="tableData" :height="tableHeight">
-            <el-table-column prop="uuid" width="300">
+            <el-table-column prop="uuid" width="200">
                 <template #header>
                     ID
                 </template>
             </el-table-column>
-            <el-table-column prop="title" width="180">
+            <el-table-column prop="title" width="100">
                 <template #header>
                     {{ $t("common.title") }}
                 </template>
             </el-table-column>
-            <el-table-column prop="text">
+            <el-table-column prop="text" width="200">
                 <template #header>
                     {{ $t("common.content") }}
                 </template>
@@ -21,7 +21,12 @@
                     {{ $t("static.userBelongs") }}
                 </template>
             </el-table-column>
-            <el-table-column prop="isDeleted">
+            <el-table-column prop="createTime">
+                <template #header>
+                    {{ $t("common.createTime") }}
+                </template>
+            </el-table-column>
+            <el-table-column prop="isDeleted" width="80">
                 <template #header>
                     {{ $t("static.isDeleted") }}
                 </template>
