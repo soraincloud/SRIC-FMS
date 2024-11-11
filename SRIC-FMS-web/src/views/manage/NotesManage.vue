@@ -44,7 +44,7 @@
             <el-pagination layout="prev, pager, next" v-model:current-page="page" @current-change="pageChange()" :page-size="20" :total="pageTotal" :pager-count="5" background />
         </div>
     </el-card>
-    <el-drawer v-model="isDrawerOpen">
+    <el-drawer v-model="isEditDrawerOpen">
         <template #header>
             <span class="notes-manage-drawer-title">{{ $t("static.editNote") }}</span>
         </template>
@@ -91,7 +91,7 @@ const tableData = ref([]) //主页面表表格数据
 const page = ref(1) //页数
 const pageTotal = ref(0) //总条数
 const tableHeight = ref((window.innerHeight - 240) + "px") //表格高度
-const isDrawerOpen = ref(false) //编辑抽屉是否打开
+const isEditDrawerOpen = ref(false) //编辑抽屉是否打开
 const isDeleteConfirmDrawerOpen = ref(false) //确认删除的抽屉是否打开
 const notesForm = reactive //接口数据输入
 ({
@@ -142,7 +142,7 @@ const clickEdit = (row:any) => //点击编辑按钮
 {
     notesForm.title = row.title
     notesForm.text = row.text
-    isDrawerOpen.value = true
+    isEditDrawerOpen.value = true
     notesEditUuid.value = row.uuid
 }
 
@@ -179,7 +179,7 @@ const doEditnote = async () =>
             })
         }
         getNotesData()
-        isDrawerOpen.value = false
+        isEditDrawerOpen.value = false
     } catch {}
 }
 
