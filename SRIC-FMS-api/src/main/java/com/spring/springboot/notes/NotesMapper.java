@@ -21,6 +21,7 @@ public interface NotesMapper
     @Select(value = "SELECT n.*, u.username " +
             "FROM `data_notes` n " +
             "JOIN `data_user` u ON n.user_uuid = u.uuid " +
+            "ORDER BY createtime DESC " +
             "LIMIT #{limitBefore}, #{limitSize}")
     List<Notes> getNotesList(NotesListRequestPojo notesListRequest);
 
