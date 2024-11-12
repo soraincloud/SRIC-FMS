@@ -49,7 +49,7 @@
                                         <el-icon><Check /></el-icon>
                                     </el-button>
                                     <el-button type="info" plain @click="clickCancelAdd()">
-                                        <el-icon><RefreshLeft /></el-icon>
+                                        <el-icon><Close /></el-icon>
                                     </el-button>
                                 </el-form-item>
                             </el-form>
