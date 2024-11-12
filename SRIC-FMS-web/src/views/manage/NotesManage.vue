@@ -56,11 +56,11 @@
         <el-form ref="notesFormRef" :model="notesForm" :rules="notesFormRules">
             <el-form-item prop="title">
                 <h1>{{ $t("common.title") }}</h1>
-                <el-input v-model="notesForm.title" maxlength="20" show-word-limit clearable></el-input>
+                <el-input v-model="notesForm.title" maxlength="50" show-word-limit clearable></el-input>
             </el-form-item>
             <el-form-item prop="text">
                 <h1>{{ $t("common.content") }}</h1>
-                <el-input v-model="notesForm.text" :rows="2" type="textarea" maxlength="25" show-word-limit clearable></el-input>
+                <el-input v-model="notesForm.text" :rows="2" type="textarea" maxlength="300" show-word-limit clearable></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button @click="clickUpdateNote(notesFormRef)" type="success">{{ $t("common.submit") }}</el-button>
