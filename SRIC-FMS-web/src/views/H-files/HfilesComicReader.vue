@@ -60,6 +60,7 @@
                         <div class="HfilesComicReader-comic-card-body">
                             <el-card
                             v-for="(item,i) in pageData"
+                            :key="i"
                             class="HfilesComicReader-comic-card"
                             >
                             <el-image :src="item" :preview-src-list="pageData" :initial-index="i" lazy></el-image>

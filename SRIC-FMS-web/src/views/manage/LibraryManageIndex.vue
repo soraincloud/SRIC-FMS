@@ -106,7 +106,7 @@
                 <el-form-item prop="category">
                     <h1>{{ $t("common.category") }}</h1> 
                     <el-select v-model="libraryForm.category">
-                        <el-option v-for="(item,i) in libraryCategory" :label="item.name" :value="item.id" />
+                        <el-option v-for="(item,i) in libraryCategory" :key="i" :label="item.name" :value="item.id" />
                     </el-select>
                 </el-form-item>
                 <el-form-item>
