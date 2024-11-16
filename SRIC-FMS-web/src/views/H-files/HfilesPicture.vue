@@ -119,7 +119,7 @@
 
     const handleScroll = (e:any) => //滚动事件（返回滚动条当前位置）
     {
-        
+        console.log(e)
     }
 
     const windowSizeChanged = () => //重置滚动条高度(适应窗口大小)

@@ -145,7 +145,7 @@ const clickDelete = () => //点击删除按钮
 
 const confirmDelete = (row :any) => //点击确认删除
 {
-
+    console.log(row)
 }
 
 const clickEditUsername = () => //在编辑抽屉中点击强制更改用户名 将输入框设置为可用

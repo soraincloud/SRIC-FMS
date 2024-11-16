@@ -2,33 +2,33 @@
     <el-card>
         <el-form ref="signUpFormRef" :model="signUpForm" :rules="signUpFormRules">
             <el-form-item prop="username">
-                <span slot="label">
+                <template #label>
                     {{ $t("sign.username") }}
-                </span>
+                </template>
                 <el-input v-model="signUpForm.username" clearable></el-input>
             </el-form-item>
             <el-form-item prop="password">
-                <span slot="label">
+                <template #label>
                     {{ $t("sign.password") }}
-                </span>
+                </template>
                 <el-input v-model="signUpForm.password" type="password" show-password clearable></el-input>
             </el-form-item>
             <el-form-item prop="passwordRepeat">
-                <span slot="label">
+                <template #label>
                     {{ $t("sign.repeatPassword") }}
-                </span>
+                </template>
                 <el-input v-model="signUpForm.passwordRepeat" type="password" show-password clearable></el-input>
             </el-form-item>
             <el-form-item prop="mail">
-                <span slot="label">
+                <template #label>
                     {{ $t("user.mail") }}
-                </span>
+                </template>
                 <el-input v-model="signUpForm.mail" clearable></el-input>
             </el-form-item>
             <el-form-item prop="code">
-                <span slot="label">
+                <template #label>
                     {{ $t("sign.code") }}
-                </span>
+                </template>
                 <el-input v-model="signUpForm.code" clearable>
                     <template #append>
                         <el-button v-if="!isDisabled" @click="clickSendCode" :loading="isSendCodeLoading">{{ $t("sign.sendCode") }}</el-button>

@@ -2,15 +2,15 @@
     <el-card>
         <el-form ref="signInFormRef" :model="signInForm" :rules="signInFormRules">
             <el-form-item prop="username">
-                <span slot="label">
+                <template #label>
                     {{ $t("sign.username") }}
-                </span>
+                </template>
                 <el-input v-model="signInForm.username" clearable></el-input>
             </el-form-item>
             <el-form-item prop="password">
-                <span slot="label">
+                <template #label>
                     {{ $t("sign.password") }}
-                </span>
+                </template>
                 <el-input v-model="signInForm.password" type="password" show-password clearable></el-input>
             </el-form-item>
             <el-form-item>

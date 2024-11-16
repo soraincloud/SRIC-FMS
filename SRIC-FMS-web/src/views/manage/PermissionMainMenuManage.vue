@@ -61,7 +61,7 @@
                         <el-tag :color="item.label" class="permission-main-menu-select-color-tag" size="small" />
                         <span :style="{ color: item.label }">{{ $t("static.permissionLevel") }} : {{ item.value }}</span>
                     </el-option>
-                    <template #label="{ label, value }">
+                    <template #label="{ value }">
                         <span>{{ $t("static.permissionLevel") }} : {{ value }}</span>
                     </template>
                 </el-select>
