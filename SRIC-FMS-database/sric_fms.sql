@@ -11,7 +11,7 @@
  Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 20/11/2024 22:24:02
+ Date: 20/11/2024 22:28:55
 */
 
 SET NAMES utf8mb4;
@@ -1229,10 +1229,6 @@ CREATE TABLE `permission_request`  (
 -- ----------------------------
 -- Records of permission_request
 -- ----------------------------
-INSERT INTO `permission_request` VALUES ('1c0e8139-9ea6-11ef-95ed-7c10c9c0a516', 'notes', 9, '笔记模块');
-INSERT INTO `permission_request` VALUES ('26378016-9ea6-11ef-95ed-7c10c9c0a516', 'notesManage', 3, '笔记管理模块');
-INSERT INTO `permission_request` VALUES ('34faf53d-8e56-11ef-8f3b-7c10c9c0a516', 'libraryManage', 3, '知识库管理模块');
-INSERT INTO `permission_request` VALUES ('5e551f18-8e56-11ef-8f3b-7c10c9c0a516', 'library', 10, '知识库模块');
 INSERT INTO `permission_request` VALUES ('75e86af4-8e33-11ef-8f3b-7c10c9c0a516', 'userManage', 1, '用户管理模块');
 INSERT INTO `permission_request` VALUES ('863dd17a-93d4-11ef-8894-7c10c9c0a516', 'permissionMainMenuManage', 1, '主菜单权限管理模块');
 INSERT INTO `permission_request` VALUES ('8966a9ee-8e56-11ef-8f3b-7c10c9c0a516', 'h', 6, 'H内容浏览模块');
