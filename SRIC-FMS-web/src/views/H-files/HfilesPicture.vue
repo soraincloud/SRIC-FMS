@@ -43,7 +43,7 @@
     const isPictureAllLoad = ref(false) //图片是否全部被加载
     const loading = ref(false) //加载更多按钮的loading
 
-    const addPicture = (id:any,filename:any) => //向高度更小的一边添加名为filename的图片
+    const addPicture = (id:any,filename:any): Promise<void> => //向高度更小的一边添加名为filename的图片
     {
         return new Promise((resolve, reject) => {
             const img = new Image();
