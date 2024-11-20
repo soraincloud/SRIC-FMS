@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,reactive,h } from 'vue'
+import { ref,reactive } from 'vue'
 import { signIn } from '@/axios/api/user';
 import { ElMessage } from 'element-plus'
 import CryptoJS from 'crypto-js' //SHA-256加密

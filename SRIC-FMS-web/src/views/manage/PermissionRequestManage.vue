@@ -80,7 +80,7 @@
 <script lang="ts" setup>
 import { ref,onMounted,reactive } from 'vue'
 import { getPermissionRequestList,addOrUpdatePermissionRequest } from '@/axios/api/permissionRequest';
-import { getStatusColor,getStatusColorCode } from '@/tools/tool'
+import { getStatusColor } from '@/tools/tool'
 import type { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus' //element消息
 import i18n from '@/language';

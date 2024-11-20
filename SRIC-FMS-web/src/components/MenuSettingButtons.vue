@@ -47,8 +47,6 @@
     const isDark = useDark()//黑暗模式所需变量
     const { locale } = useI18n()
 
-    const emit = defineEmits(['toManage']) //获取父组件方法
-
     const isDarkModeOpen = ref(false)//当前是否为黑暗模式
     const language = ref("en") //切换按钮绑定的语言
 

@@ -128,7 +128,6 @@ const { t } = i18n.global
 
 const route = useRoute()
 
-let dp:any;
 const videoUrl = axios.defaults.baseURL + "/file/hVideo/" + route.query.video + ".mp4" //设置播放视频所需url
 let videoData:any = ref({})
 let videoTagData:any = ref({})

@@ -45,7 +45,7 @@
 
     const addPicture = (id:any,filename:any): Promise<void> => //向高度更小的一边添加名为filename的图片
     {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const img = new Image();
             img.onload = () => {
                 const leftContainer = document.getElementById("hPictureLeftImage");

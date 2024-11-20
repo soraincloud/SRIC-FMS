@@ -123,7 +123,7 @@ const getHVideoListData = async () =>
         const resp = await getHVideoList(requestData);
         pageTotal.value = resp.data.total
         hVideoList.value = resp.data.hvideoList;
-        hVideoList.value.forEach((element:any,index:any) => 
+        hVideoList.value.forEach((element:any) => 
         {
             if(element.mosaic == 1)
             {
