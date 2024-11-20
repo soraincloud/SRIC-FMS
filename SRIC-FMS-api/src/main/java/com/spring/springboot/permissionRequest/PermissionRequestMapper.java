@@ -1,6 +1,5 @@
 package com.spring.springboot.permissionRequest;
 
-import com.spring.springboot.libraryCategory.LibraryCategory;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -46,21 +46,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/H-files/HfilesComicReader.vue'),
   },
   {
-    path: '/Library',
-    name: 'Library',
-    component: () => import('@/views/library/LibraryIndex.vue'),
-  },
-  {
-    path: '/LibraryReader',
-    name: 'LibraryReader',
-    component: () => import('@/views/library/LibraryReader.vue'),
-  },
-  {
-    path: '/Notes',
-    name: 'Notes',
-    component: () => import('@/views/notes/NotesIndex.vue'),
-  },
-  {
     path: '/SignIn',
     name: 'SignIn',
     component: () => import('@/views/user/SignIn.vue'),
@@ -88,21 +73,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/manage/UserManage.vue'),
       },
       {
-        path: '/LibraryManage',
-        name: 'LibraryManage',
-        component: () => import('@/views/manage/LibraryManageIndex.vue'),
-      },
-      {
-        path: '/LibraryManageReader',
-        name: 'LibraryManageReader',
-        component: () => import('@/views/manage/LibraryManageReader.vue'),
-      },
-      {
-        path: '/LibraryCategoryManage',
-        name: 'LibraryCategoryManage',
-        component: () => import('@/views/manage/LibraryCategoryManage.vue'),
-      },
-      {
         path: '/PermissionRequestManage',
         name: 'PermissionRequestManage',
         component: () => import('@/views/manage/PermissionRequestManage.vue'),
@@ -111,11 +81,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '/PermissionMainMenuManage',
         name: 'PermissionMainMenuManage',
         component: () => import('@/views/manage/PermissionMainMenuManage.vue')
-      },
-      {
-        path: '/NotesManage',
-        name: 'NotesManage',
-        component: () => import('@/views/manage/NotesManage.vue')
       },
     ]
   },
